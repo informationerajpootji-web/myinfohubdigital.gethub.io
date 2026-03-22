@@ -1,0 +1,1622 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Computer Software MCQ Quiz - 100 Questions</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;600;700&family=Poppins:wght@400;600;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Sans Devanagari', 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+    min-height: 100vh;
+    color: #fff;
+    padding: 20px;
+  }
+
+  .container {
+    max-width: 820px;
+    margin: 0 auto;
+  }
+
+  .header {
+    text-align: center;
+    padding: 30px 20px 20px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 20px;
+    margin-bottom: 24px;
+    border: 1px solid rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+  }
+
+  .header h1 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    background: linear-gradient(90deg, #f7971e, #ffd200);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 6px;
+  }
+
+  .header p { color: #aaa; font-size: 0.9rem; }
+
+  /* SCORE & PROGRESS */
+  .stats-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255,255,255,0.07);
+    border-radius: 14px;
+    padding: 14px 20px;
+    margin-bottom: 20px;
+    border: 1px solid rgba(255,255,255,0.1);
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .stat-item { text-align: center; }
+  .stat-label { font-size: 0.72rem; color: #999; text-transform: uppercase; letter-spacing: 1px; }
+  .stat-value { font-size: 1.4rem; font-weight: 700; color: #ffd200; }
+
+  .progress-wrap {
+    width: 100%;
+    background: rgba(255,255,255,0.1);
+    border-radius: 50px;
+    height: 10px;
+    overflow: hidden;
+    margin-top: 6px;
+  }
+
+  .progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, #f7971e, #ffd200);
+    border-radius: 50px;
+    transition: width 0.5s ease;
+    width: 0%;
+  }
+
+  /* QUESTION CARD */
+  .question-card {
+    background: rgba(255,255,255,0.06);
+    border-radius: 20px;
+    padding: 28px;
+    border: 1px solid rgba(255,255,255,0.12);
+    backdrop-filter: blur(10px);
+    margin-bottom: 20px;
+  }
+
+  .question-number {
+    font-size: 0.8rem;
+    color: #f7971e;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+  }
+
+  .question-text {
+    font-size: 1.1rem;
+    font-weight: 600;
+    line-height: 1.6;
+    color: #f0f0f0;
+    margin-bottom: 22px;
+  }
+
+  /* OPTIONS */
+  .options-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .option-btn {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: rgba(255,255,255,0.06);
+    border: 2px solid rgba(255,255,255,0.12);
+    border-radius: 12px;
+    padding: 14px 18px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    text-align: left;
+    color: #e0e0e0;
+    font-size: 0.97rem;
+    font-family: inherit;
+    line-height: 1.5;
+  }
+
+  .option-btn:hover:not(:disabled) {
+    background: rgba(247,151,30,0.15);
+    border-color: #f7971e;
+    transform: translateX(4px);
+  }
+
+  .option-badge {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.85rem;
+    flex-shrink: 0;
+    color: #ffd200;
+  }
+
+  /* CORRECT / WRONG */
+  .option-btn.correct {
+    background: rgba(0, 200, 100, 0.2) !important;
+    border-color: #00c864 !important;
+    color: #fff !important;
+  }
+
+  .option-btn.correct .option-badge {
+    background: #00c864 !important;
+    color: #fff !important;
+  }
+
+  .option-btn.wrong {
+    background: rgba(255, 60, 60, 0.2) !important;
+    border-color: #ff3c3c !important;
+    color: #fff !important;
+  }
+
+  .option-btn.wrong .option-badge {
+    background: #ff3c3c !important;
+    color: #fff !important;
+  }
+
+  .option-btn:disabled { cursor: not-allowed; transform: none !important; }
+
+  /* EXPLANATION */
+  .explanation-box {
+    display: none;
+    margin-top: 20px;
+    background: rgba(255,255,255,0.05);
+    border-left: 4px solid #f7971e;
+    border-radius: 0 12px 12px 0;
+    padding: 16px 18px;
+    animation: fadeIn 0.4s ease;
+  }
+
+  .explanation-box.show { display: block; }
+
+  .explanation-box .exp-title {
+    font-size: 0.78rem;
+    color: #f7971e;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+
+  .explanation-box p {
+    color: #ccc;
+    font-size: 0.93rem;
+    line-height: 1.65;
+  }
+
+  .all-explanations {
+    display: none;
+    margin-top: 14px;
+  }
+
+  .all-explanations.show { display: block; }
+
+  .exp-option-row {
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    font-size: 0.88rem;
+    color: #bbb;
+    line-height: 1.5;
+  }
+
+  .exp-option-row:last-child { border-bottom: none; }
+  .exp-option-row strong { color: #ffd200; }
+
+  /* NEXT BUTTON */
+  .next-btn {
+    display: none;
+    margin-top: 20px;
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(90deg, #f7971e, #ffd200);
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #1a1a2e;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: inherit;
+    letter-spacing: 0.5px;
+  }
+
+  .next-btn:hover { transform: scale(1.02); box-shadow: 0 8px 25px rgba(247,151,30,0.4); }
+  .next-btn.show { display: block; }
+
+  /* RESULT SCREEN */
+  .result-screen {
+    display: none;
+    text-align: center;
+    padding: 40px 20px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.12);
+  }
+
+  .result-screen.show { display: block; }
+
+  .result-emoji { font-size: 4rem; margin-bottom: 16px; }
+
+  .result-screen h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    background: linear-gradient(90deg, #f7971e, #ffd200);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 10px;
+  }
+
+  .result-screen .big-score {
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: #ffd200;
+    margin: 16px 0;
+  }
+
+  .result-screen .percentage {
+    font-size: 1.3rem;
+    color: #aaa;
+    margin-bottom: 24px;
+  }
+
+  .result-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-bottom: 28px;
+  }
+
+  .result-stat {
+    background: rgba(255,255,255,0.07);
+    border-radius: 12px;
+    padding: 16px;
+  }
+
+  .result-stat .r-num { font-size: 1.8rem; font-weight: 700; }
+  .result-stat .r-label { font-size: 0.75rem; color: #888; margin-top: 4px; }
+  .correct-stat .r-num { color: #00c864; }
+  .wrong-stat .r-num { color: #ff3c3c; }
+  .total-stat .r-num { color: #ffd200; }
+
+  .restart-btn {
+    padding: 15px 40px;
+    background: linear-gradient(90deg, #f7971e, #ffd200);
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #1a1a2e;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: inherit;
+  }
+
+  .restart-btn:hover { transform: scale(1.05); box-shadow: 0 8px 30px rgba(247,151,30,0.4); }
+
+  .grade-badge {
+    display: inline-block;
+    padding: 6px 20px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+  }
+
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+  .question-card { animation: fadeIn 0.35s ease; }
+
+  @media (max-width: 600px) {
+    .header h1 { font-size: 1.4rem; }
+    .result-grid { grid-template-columns: 1fr; }
+    .big-score { font-size: 2.5rem; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <h1>💻 Computer Software Quiz</h1>
+    <p>100 MCQs | हिंदी में | सभी विकल्पों की व्याख्या सहित</p>
+  </div>
+
+  <div class="stats-bar" id="statsBar">
+    <div class="stat-item">
+      <div class="stat-label">प्रश्न</div>
+      <div class="stat-value" id="qCounter">1 / 100</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-label">✅ सही</div>
+      <div class="stat-value" id="correctCount">0</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-label">❌ गलत</div>
+      <div class="stat-value" id="wrongCount">0</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-label">🏆 स्कोर</div>
+      <div class="stat-value" id="scorePercent">0%</div>
+    </div>
+    <div class="progress-wrap" style="width:100%">
+      <div class="progress-bar" id="progressBar"></div>
+    </div>
+  </div>
+
+  <div class="question-card" id="questionCard">
+    <div class="question-number" id="qNum">प्रश्न 1</div>
+    <div class="question-text" id="qText"></div>
+    <div class="options-grid" id="optionsGrid"></div>
+    <div class="explanation-box" id="explanationBox">
+      <div class="exp-title">✅ सही उत्तर की व्याख्या</div>
+      <p id="correctExp"></p>
+      <div class="all-explanations" id="allExplanations"></div>
+    </div>
+    <button class="next-btn" id="nextBtn" onclick="nextQuestion()">अगला सवाल →</button>
+  </div>
+
+  <div class="result-screen" id="resultScreen">
+    <div class="result-emoji" id="resultEmoji">🏆</div>
+    <div class="grade-badge" id="gradeBadge"></div>
+    <h2>Quiz पूरा हुआ!</h2>
+    <div class="big-score" id="finalScore"></div>
+    <div class="percentage" id="finalPercent"></div>
+    <div class="result-grid">
+      <div class="result-stat correct-stat">
+        <div class="r-num" id="rCorrect">0</div>
+        <div class="r-label">✅ सही उत्तर</div>
+      </div>
+      <div class="result-stat wrong-stat">
+        <div class="r-num" id="rWrong">0</div>
+        <div class="r-label">❌ गलत उत्तर</div>
+      </div>
+      <div class="result-stat total-stat">
+        <div class="r-num">100</div>
+        <div class="r-label">📋 कुल प्रश्न</div>
+      </div>
+    </div>
+    <button class="restart-btn" onclick="restartQuiz()">🔄 फिर से शुरू करें</button>
+  </div>
+
+</div>
+
+<script>
+const allQuestions = [
+  // ===== SOFTWARE CATEGORIES (1-20) =====
+  {
+    q: "सिस्टम सॉफ्टवेयर का मुख्य कार्य क्या है?",
+    options: ["उपयोगकर्ता को गेम खेलने देना", "हार्डवेयर और एप्लिकेशन के बीच इंटरफ़ेस प्रदान करना", "इंटरनेट ब्राउज़ करना", "दस्तावेज़ प्रिंट करना"],
+    correct: 1,
+    explanations: [
+      "यह गलत है — गेम खेलना Application Software का काम है।",
+      "✅ सही! System Software हार्डवेयर और एप्लिकेशन के बीच अब्स्ट्रक्शन लेयर का काम करता है।",
+      "इंटरनेट ब्राउज़ करना Application Software (Browser) का काम है।",
+      "प्रिंट करना एप्लिकेशन और Device Driver का संयुक्त कार्य है।"
+    ]
+  },
+  {
+    q: "निम्नलिखित में से कौन सा System Software का उदाहरण है?",
+    options: ["Microsoft Word", "Adobe Photoshop", "Linux Operating System", "Google Chrome"],
+    correct: 2,
+    explanations: [
+      "Microsoft Word एक Application Software (Word Processor) है।",
+      "Adobe Photoshop एक Application Software (Graphics) है।",
+      "✅ सही! Linux एक Operating System है जो System Software की श्रेणी में आता है।",
+      "Google Chrome एक Application Software (Web Browser) है।"
+    ]
+  },
+  {
+    q: "एप्लिकेशन सॉफ्टवेयर किसके लिए डिज़ाइन किया जाता है?",
+    options: ["CPU प्रबंधन के लिए", "हार्डवेयर ड्राइवर के लिए", "अंतिम उपयोगकर्ता के विशिष्ट कार्यों के लिए", "कर्नेल प्रबंधन के लिए"],
+    correct: 2,
+    explanations: [
+      "CPU प्रबंधन Operating System (System Software) का काम है।",
+      "Hardware Driver System Software का हिस्सा है।",
+      "✅ सही! Application Software End-User के specific tasks (Word Processing, Browsing आदि) के लिए बनाया जाता है।",
+      "Kernel प्रबंधन Operating System का काम है।"
+    ]
+  },
+  {
+    q: "Embedded Software किस प्रकार के डिवाइस में पाया जाता है?",
+    options: ["केवल Desktop कंप्यूटर में", "माइक्रोवेव, कार, ATM जैसे हार्डवेयर डिवाइस में", "केवल Servers में", "केवल Smartphones में"],
+    correct: 1,
+    explanations: [
+      "Desktop कंप्यूटर में System और Application Software होता है, Embedded नहीं।",
+      "✅ सही! Embedded Software हार्डवेयर डिवाइस जैसे माइक्रोवेव, कार ECU, ATM में built-in होता है।",
+      "Servers में Server OS चलता है, Embedded नहीं।",
+      "Smartphones में Android/iOS चलता है जो Embedded का हिस्सा है लेकिन यह पूरी श्रेणी नहीं है।"
+    ]
+  },
+  {
+    q: "Proprietary Software की विशेषता क्या है?",
+    options: ["इसका Source Code सार्वजनिक होता है", "इसे मुफ्त में बदला जा सकता है", "इसका Source Code गोपनीय होता है और License खरीदना पड़ता है", "यह हमेशा मुफ्त होता है"],
+    correct: 2,
+    explanations: [
+      "Source Code सार्वजनिक होना Open Source की विशेषता है।",
+      "मुफ्त में बदलना Open Source की विशेषता है।",
+      "✅ सही! Proprietary Software का Source Code Closed-Source होता है और उपयोग के लिए License खरीदना पड़ता है।",
+      "Proprietary Software हमेशा paid होता है (जैसे Windows, Photoshop)।"
+    ]
+  },
+  {
+    q: "Open Source Software का उदाहरण कौन सा है?",
+    options: ["Microsoft Windows", "Adobe Photoshop", "AutoCAD", "Linux"],
+    correct: 3,
+    explanations: [
+      "Microsoft Windows Proprietary Software है।",
+      "Adobe Photoshop Proprietary Software है।",
+      "AutoCAD Proprietary Software है।",
+      "✅ सही! Linux Open Source है — इसका Source Code GNU GPL License के तहत सार्वजनिक है।"
+    ]
+  },
+  {
+    q: "कौन सा सॉफ्टवेयर WYSIWYG इंटरफ़ेस प्रदान करता है?",
+    options: ["Linux Kernel", "Microsoft Word (एप्लिकेशन सॉफ्टवेयर)", "Device Driver", "BIOS"],
+    correct: 1,
+    explanations: [
+      "Linux Kernel System Software है, इसमें WYSIWYG नहीं होता।",
+      "✅ सही! Microsoft Word जैसे Word Processors में WYSIWYG (What You See Is What You Get) interface होता है।",
+      "Device Driver हार्डवेयर कम्युनिकेशन के लिए है।",
+      "BIOS System Software है जो बूटिंग के समय काम करता है।"
+    ]
+  },
+  {
+    q: "Android Operating System किस आर्किटेक्चर पर आधारित है?",
+    options: ["Windows NT Kernel", "Linux Kernel", "macOS Kernel (XNU)", "DOS"],
+    correct: 1,
+    explanations: [
+      "Windows NT Kernel Microsoft Windows में उपयोग होता है।",
+      "✅ सही! Android का आधार Linux Kernel है जो Hardware Abstraction प्रदान करता है।",
+      "macOS का Kernel XNU है जो Apple सिस्टम में है।",
+      "DOS बहुत पुराना और सरल OS था।"
+    ]
+  },
+  {
+    q: "Utility Software का कार्य क्या है?",
+    options: ["वीडियो गेम खेलना", "System Maintenance और Optimization", "Web Browsing करना", "Email लिखना"],
+    correct: 1,
+    explanations: [
+      "Video Game खेलना Application Software का काम है।",
+      "✅ सही! Utility Software जैसे Antivirus, Disk Cleanup, Backup Tools सिस्टम को maintain और optimize करते हैं।",
+      "Web Browsing Application Software (Browser) का काम है।",
+      "Email लिखना Application Software (Email Client) का काम है।"
+    ]
+  },
+  {
+    q: "Open Source Software में GNU GPL License का क्या अर्थ है?",
+    options: ["Software केवल पढ़ा जा सकता है", "Source Code को संशोधित और वितरित किया जा सकता है", "Software केवल commercial उपयोग के लिए है", "Software में बदलाव नहीं किया जा सकता"],
+    correct: 1,
+    explanations: [
+      "केवल पढ़ने की अनुमति Read-Only License में होती है।",
+      "✅ सही! GNU GPL (General Public License) के तहत Source Code को देखने, बदलने और वितरित करने की स्वतंत्रता है।",
+      "Commercial उपयोग Proprietary Software में होता है।",
+      "बदलाव न करने की शर्त Proprietary में होती है।"
+    ]
+  },
+  {
+    q: "Microsoft Office किस श्रेणी का सॉफ्टवेयर है?",
+    options: ["System Software", "Embedded Software", "Application Software", "Open Source Software"],
+    correct: 2,
+    explanations: [
+      "System Software OS जैसे Windows/Linux होते हैं।",
+      "Embedded Software hardware devices में होता है।",
+      "✅ सही! Microsoft Office (Word, Excel, PowerPoint) Application Software है जो उपयोगकर्ता के कार्यों के लिए बनाया गया है।",
+      "Microsoft Office Open Source नहीं है, यह Proprietary है।"
+    ]
+  },
+  {
+    q: "कार की Engine Control Unit (ECU) में कौन सा सॉफ्टवेयर होता है?",
+    options: ["Application Software", "System Software", "Embedded Software", "Open Source Software"],
+    correct: 2,
+    explanations: [
+      "Application Software उपयोगकर्ता के कार्यों के लिए होता है।",
+      "System Software OS जैसे होते हैं।",
+      "✅ सही! ECU में Embedded Software होता है जो Real-time में इंजन को control करता है।",
+      "ECU का software proprietary embedded होता है।"
+    ]
+  },
+  {
+    q: "LibreOffice किस प्रकार का सॉफ्टवेयर है?",
+    options: ["Proprietary Application Software", "Open Source Application Software", "System Software", "Embedded Software"],
+    correct: 1,
+    explanations: [
+      "LibreOffice Proprietary नहीं है — यह मुफ्त उपलब्ध है।",
+      "✅ सही! LibreOffice एक Open Source Application Software है जो Microsoft Office का विकल्प है।",
+      "System Software OS आदि होते हैं।",
+      "Embedded Software hardware में built-in होता है।"
+    ]
+  },
+  {
+    q: "Device Driver किसके बीच Communication Bridge का काम करता है?",
+    options: ["CPU और RAM के बीच", "Hardware और Operating System के बीच", "Internet और Browser के बीच", "User और Application के बीच"],
+    correct: 1,
+    explanations: [
+      "CPU और RAM सीधे Bus के जरिए communicate करते हैं।",
+      "✅ सही! Device Driver Hardware (जैसे Printer, Graphics Card) और OS के बीच संचार स्थापित करता है।",
+      "Internet और Browser Application Layer में होते हैं।",
+      "User और Application के बीच GUI/Interface होता है।"
+    ]
+  },
+  {
+    q: "Real-Time Operating System (RTOS) का उपयोग कहाँ होता है?",
+    options: ["Office दस्तावेज़ बनाने में", "Embedded Systems जैसे Robots और Medical Devices में", "Web Browsing में", "Email भेजने में"],
+    correct: 1,
+    explanations: [
+      "Office documents Application Software से बनते हैं।",
+      "✅ सही! RTOS का उपयोग Embedded Systems में होता है जहाँ Real-time response जरूरी है जैसे Robots, Medical Devices, Car ECU।",
+      "Web Browsing Application Layer में होती है।",
+      "Email भेजना Application Software का काम है।"
+    ]
+  },
+  {
+    q: "Windows Operating System का Kernel किस प्रकार का है?",
+    options: ["Monolithic Kernel", "Hybrid Kernel (NT Kernel)", "Microkernel", "Exokernel"],
+    correct: 1,
+    explanations: [
+      "Monolithic Kernel Linux में उपयोग होता है।",
+      "✅ सही! Windows NT Kernel एक Hybrid Kernel है जो Monolithic और Microkernel का मिश्रण है।",
+      "Microkernel QNX जैसे systems में होता है।",
+      "Exokernel एक research architecture है।"
+    ]
+  },
+  {
+    q: "Disk Defragmentation का क्या काम है?",
+    options: ["Virus हटाना", "Files को Contiguous Blocks में व्यवस्थित करना", "Internet Speed बढ़ाना", "RAM बढ़ाना"],
+    correct: 1,
+    explanations: [
+      "Virus हटाना Antivirus का काम है।",
+      "✅ सही! Disk Defragmentation, Files के scattered fragments को contiguous blocks में arrange करता है, जिससे read/write speed बढ़ती है।",
+      "Internet Speed ISP और Hardware से तय होती है।",
+      "RAM hardware component है जो physically बढ़ाई जाती है।"
+    ]
+  },
+  {
+    q: "फ्री और मुफ्त में उपलब्ध Firefox Browser किस श्रेणी में आता है?",
+    options: ["Proprietary Embedded Software", "Open Source Application Software", "System Software", "Closed Source Software"],
+    correct: 1,
+    explanations: [
+      "Firefox Proprietary नहीं है।",
+      "✅ सही! Mozilla Firefox Open Source Application Software है जो Gecko Rendering Engine पर आधारित है।",
+      "System Software OS आदि होते हैं।",
+      "Firefox का Source Code Public है।"
+    ]
+  },
+  {
+    q: "VLC Media Player किस श्रेणी का सॉफ्टवेयर है?",
+    options: ["System Software", "Embedded Software", "Open Source Multimedia Application Software", "Proprietary Software"],
+    correct: 2,
+    explanations: [
+      "System Software OS आदि होते हैं।",
+      "Embedded Software hardware devices में होता है।",
+      "✅ सही! VLC एक Open Source Multimedia Application Software है जिसका source code freely available है।",
+      "VLC Proprietary नहीं है — यह free और open source है।"
+    ]
+  },
+  {
+    q: "AutoCAD किस प्रकार का सॉफ्टवेयर है?",
+    options: ["Open Source System Software", "Proprietary Application Software (Engineering Design)", "Embedded Software", "Free Application Software"],
+    correct: 1,
+    explanations: [
+      "AutoCAD Open Source नहीं है।",
+      "✅ सही! AutoCAD Autodesk का Proprietary Application Software है जो Engineering और Design के लिए है।",
+      "Embedded Software hardware में होता है।",
+      "AutoCAD paid license software है।"
+    ]
+  },
+
+  // ===== COMPUTER LANGUAGES (21-40) =====
+  {
+    q: "Machine Level Language में डेटा किस रूप में होता है?",
+    options: ["Text में", "Binary (0 और 1) में", "Decimal Numbers में", "English Words में"],
+    correct: 1,
+    explanations: [
+      "Machine Language Text में नहीं होती।",
+      "✅ सही! Machine Level Language केवल Binary (0 और 1) में होती है जिसे CPU सीधे समझता है।",
+      "Decimal Numbers को CPU Binary में convert करता है।",
+      "English Words High Level Language की विशेषता है।"
+    ]
+  },
+  {
+    q: "Assembly Language में किस प्रकार के Code का उपयोग होता है?",
+    options: ["Binary Code", "Mnemonic Code (ADD, SUB, MOV)", "Python Syntax", "HTML Tags"],
+    correct: 1,
+    explanations: [
+      "Binary Code Machine Language में होता है।",
+      "✅ सही! Assembly Language में Mnemonic Codes जैसे ADD, SUB, MOV, LDI का उपयोग होता है जो readable होते हैं।",
+      "Python Syntax High Level Language है।",
+      "HTML Tags Web Development के लिए हैं।"
+    ]
+  },
+  {
+    q: "High Level Language की विशेषता क्या है?",
+    options: ["CPU के लिए सबसे तेज होती है", "केवल Binary में लिखी जाती है", "इंसानों के लिए समझने में आसान होती है", "Hardware को सीधे Control करती है"],
+    correct: 2,
+    explanations: [
+      "Machine Language CPU के लिए सबसे तेज होती है।",
+      "Binary में केवल Machine Language लिखी जाती है।",
+      "✅ सही! High Level Language जैसे Python, Java, C++ इंसानों के लिए पढ़ने और लिखने में आसान होती है।",
+      "Hardware को सीधे Assembly और Machine Language control करती है।"
+    ]
+  },
+  {
+    q: "Interpreter और Compiler में मुख्य अंतर क्या है?",
+    options: ["Interpreter पूरा program एक बार compile करता है, Compiler line-by-line करता है", "Interpreter line-by-line translate करता है, Compiler पूरा program एक बार", "दोनों एक समान काम करते हैं", "Interpreter केवल Binary Code पढ़ता है"],
+    correct: 1,
+    explanations: [
+      "यह बिल्कुल उल्टा है।",
+      "✅ सही! Interpreter source code को line-by-line execute करता है (Python), जबकि Compiler पूरे program को एक बार में machine code में बदलता है (C, C++)।",
+      "दोनों के काम करने का तरीका अलग है।",
+      "Interpreter High Level Language को translate करता है।"
+    ]
+  },
+  {
+    q: "Python किस श्रेणी की Language है?",
+    options: ["Machine Level Language", "Assembly Language", "Interpreted High Level Language", "Low Level Language"],
+    correct: 2,
+    explanations: [
+      "Machine Level Language Binary (0,1) होती है।",
+      "Assembly में Mnemonic codes होते हैं।",
+      "✅ सही! Python एक Interpreted High Level Language है जिसे CPython Interpreter द्वारा execute किया जाता है।",
+      "Python Low Level नहीं है — यह बहुत Human-readable है।"
+    ]
+  },
+  {
+    q: "C++ किस प्रकार की Language है?",
+    options: ["Interpreted Script Language", "Compiled Object-Oriented High Level Language", "Assembly Language", "Machine Language"],
+    correct: 1,
+    explanations: [
+      "C++ Interpreted नहीं है — यह Compiled है।",
+      "✅ सही! C++ एक Compiled Object-Oriented High Level Language है जिसे GCC, Clang जैसे compilers से build किया जाता है।",
+      "Assembly Mnemonic codes में होती है।",
+      "Machine Language Binary है।"
+    ]
+  },
+  {
+    q: "Java के bytecode को कौन execute करता है?",
+    options: ["GCC Compiler", "CPython Interpreter", "JVM (Java Virtual Machine)", "BIOS"],
+    correct: 2,
+    explanations: [
+      "GCC C/C++ के लिए compiler है।",
+      "CPython Python interpreter है।",
+      "✅ सही! Java Code पहले bytecode (.class file) में compile होती है, फिर JVM (Java Virtual Machine) उसे execute करती है।",
+      "BIOS System का boot program है।"
+    ]
+  },
+  {
+    q: "x86 Assembly Language में 'MOV AX, 5' का क्या अर्थ है?",
+    options: ["AX रजिस्टर से 5 को delete करो", "AX रजिस्टर में value 5 load करो", "5 + AX करो", "AX को 5 से divide करो"],
+    correct: 1,
+    explanations: [
+      "MOV delete नहीं करता।",
+      "✅ सही! 'MOV AX, 5' का अर्थ है AX रजिस्टर में Immediate Value 5 को load करना।",
+      "Addition के लिए ADD instruction होता है।",
+      "Division के लिए DIV instruction होता है।"
+    ]
+  },
+  {
+    q: "GCC का पूरा नाम क्या है?",
+    options: ["General Computer Compiler", "GNU Compiler Collection", "Global Code Compiler", "Graphics CPU Controller"],
+    correct: 1,
+    explanations: [
+      "यह GCC का नाम नहीं है।",
+      "✅ सही! GCC का पूरा नाम GNU Compiler Collection है जो C, C++, Fortran आदि को compile करता है।",
+      "यह भी गलत है।",
+      "यह भी गलत है।"
+    ]
+  },
+  {
+    q: "C Language में Manual Memory Management के लिए कौन से functions उपयोग होते हैं?",
+    options: ["new() और delete()", "malloc() और free()", "alloc() और release()", "create() और destroy()"],
+    correct: 1,
+    explanations: [
+      "new() और delete() C++ में उपयोग होते हैं।",
+      "✅ सही! C Language में Heap Memory को malloc() (allocate) और free() (deallocate) functions से manage किया जाता है।",
+      "alloc() और release() standard C functions नहीं हैं।",
+      "create() और destroy() C में नहीं होते।"
+    ]
+  },
+  {
+    q: "Python में Dynamic Typing का क्या अर्थ है?",
+    options: ["Variables तेज़ type होते हैं", "Data Type compile time पर तय होता है", "Data Type runtime पर automatically तय होता है", "केवल Integer type होता है"],
+    correct: 2,
+    explanations: [
+      "Dynamic Typing speed से संबंधित नहीं है।",
+      "Compile time पर type तय होना Static Typing है (C, C++)।",
+      "✅ सही! Python में Dynamic Typing होती है — Variable का type Runtime पर तय होता है, declare नहीं करना पड़ता।",
+      "Python में सभी data types (int, str, list, dict etc.) होते हैं।"
+    ]
+  },
+  {
+    q: "NASM का उपयोग किस भाषा के लिए होता है?",
+    options: ["Python", "Java", "Assembly Language (x86)", "C++"],
+    correct: 2,
+    explanations: [
+      "Python के लिए CPython interpreter है।",
+      "Java के लिए JVM है।",
+      "✅ सही! NASM (Netwide Assembler) x86 Assembly Language के लिए एक Assembler है।",
+      "C++ के लिए GCC, Clang compilers हैं।"
+    ]
+  },
+  {
+    q: "Java में Garbage Collection का क्या काम है?",
+    options: ["Files को delete करना", "Unused objects को memory से automatically हटाना", "Virus scan करना", "Code compress करना"],
+    correct: 1,
+    explanations: [
+      "File deletion OS/Application का काम है।",
+      "✅ सही! Java का Garbage Collector unused (unreachable) objects को Heap Memory से automatically deallocate करता है।",
+      "Virus scan Antivirus करता है।",
+      "Code compression अलग process है।"
+    ]
+  },
+  {
+    q: "JIT Compilation का पूरा नाम क्या है?",
+    options: ["Java Interface Technology", "Just-In-Time Compilation", "Joint Integration Testing", "Java Interpreter Tool"],
+    correct: 1,
+    explanations: [
+      "यह JIT का नाम नहीं है।",
+      "✅ सही! JIT का पूरा नाम Just-In-Time Compilation है, जिसमें bytecode को runtime पर machine code में convert किया जाता है।",
+      "यह भी गलत है।",
+      "यह भी गलत है।"
+    ]
+  },
+  {
+    q: "Assembly Language को Machine Code में कौन बदलता है?",
+    options: ["Compiler", "Interpreter", "Assembler", "Linker"],
+    correct: 2,
+    explanations: [
+      "Compiler High Level Language को compile करता है।",
+      "Interpreter line-by-line execute करता है।",
+      "✅ सही! Assembler, Assembly Language के Mnemonic codes को Machine Code (Binary) में convert करता है।",
+      "Linker Object files को combine करता है।"
+    ]
+  },
+  {
+    q: "C Language Compilation के दौरान '#include' को कौन process करता है?",
+    options: ["Compiler", "Linker", "Preprocessor", "Assembler"],
+    correct: 2,
+    explanations: [
+      "Compiler syntax check और assembly code generation करता है।",
+      "Linker object files जोड़ता है।",
+      "✅ सही! C Compilation का पहला step Preprocessing है जहाँ Preprocessor #include, #define आदि को process करता है।",
+      "Assembler assembly code को object code में बदलता है।"
+    ]
+  },
+  {
+    q: "Python का .pyc file क्या है?",
+    options: ["Python Configuration File", "Python Bytecode File", "Python Compressed File", "Python Certificate File"],
+    correct: 1,
+    explanations: [
+      ".pyc configuration file नहीं है।",
+      "✅ सही! .pyc Python Bytecode File है जो CPython Interpreter द्वारा .py source file से generate होती है।",
+      "यह compressed file नहीं है।",
+      "यह certificate नहीं है।"
+    ]
+  },
+  {
+    q: "C Language में Compilation के बाद बनने वाली file क्या होती है?",
+    options: [".java file", ".pyc file", "Executable (.exe/.out) file", ".html file"],
+    correct: 2,
+    explanations: [
+      ".java Java source code file है।",
+      ".pyc Python bytecode है।",
+      "✅ सही! C Compilation के बाद Machine Code की Executable file (.exe Windows में, .out Linux में) बनती है।",
+      ".html web page के लिए है।"
+    ]
+  },
+  {
+    q: "High Level Language में 'a + b' जैसे code को CPU समझने के लिए क्या जरूरी है?",
+    options: ["सीधे समझ लेता है", "Compiler या Interpreter की जरूरत होती है", "Internet की जरूरत होती है", "Keyboard की जरूरत होती है"],
+    correct: 1,
+    explanations: [
+      "CPU केवल Binary Machine Code समझता है।",
+      "✅ सही! High Level Code को CPU-readable Machine Code में बदलने के लिए Compiler (C, C++) या Interpreter (Python) की जरूरत होती है।",
+      "Internet programming से अलग है।",
+      "Keyboard input device है।"
+    ]
+  },
+  {
+    q: "x86 Architecture में EFLAGS register का क्या काम है?",
+    options: ["Data store करना", "Program Counter track करना", "CPU Status Flags (ZF, CF, IF) store करना", "Stack manage करना"],
+    correct: 2,
+    explanations: [
+      "Data general purpose registers (EAX, EBX) में store होता है।",
+      "Program Counter EIP में होता है।",
+      "✅ सही! EFLAGS register CPU की status flags store करता है जैसे Zero Flag (ZF), Carry Flag (CF), Interrupt Flag (IF)।",
+      "Stack ESP (Stack Pointer) manage करता है।"
+    ]
+  },
+
+  // ===== OPERATING SYSTEMS (41-60) =====
+  {
+    q: "Operating System का मुख्य कार्य क्या है?",
+    options: ["Photos edit करना", "Hardware और Software Resources को manage करना", "Internet download करना", "Video play करना"],
+    correct: 1,
+    explanations: [
+      "Photo editing Application Software करता है।",
+      "✅ सही! OS Hardware resources (CPU, RAM, Storage) और Software processes को manage और coordinate करता है।",
+      "Internet downloading Application Software (Browser) करता है।",
+      "Video playing Application Software (Media Player) करता है।"
+    ]
+  },
+  {
+    q: "Windows का File System क्या है?",
+    options: ["Ext4", "Btrfs", "NTFS", "FAT32 (केवल)"],
+    correct: 2,
+    explanations: [
+      "Ext4 Linux का primary file system है।",
+      "Btrfs Linux का advanced file system है।",
+      "✅ सही! Windows का primary modern File System NTFS (New Technology File System) है।",
+      "FAT32 पुराना था; आधुनिक Windows NTFS उपयोग करता है।"
+    ]
+  },
+  {
+    q: "Linux Kernel किस प्रकार का है?",
+    options: ["Microkernel", "Hybrid Kernel", "Monolithic Kernel", "Exokernel"],
+    correct: 2,
+    explanations: [
+      "Microkernel QNX जैसे systems में है।",
+      "Hybrid Kernel Windows NT में है।",
+      "✅ सही! Linux एक Monolithic Kernel है जिसमें सभी OS services kernel space में चलती हैं।",
+      "Exokernel एक research concept है।"
+    ]
+  },
+  {
+    q: "Ubuntu, Fedora, Debian किसके Distribution (Distro) हैं?",
+    options: ["Windows", "macOS", "Linux", "DOS"],
+    correct: 2,
+    explanations: [
+      "Windows का कोई distro नहीं होता।",
+      "macOS Apple का proprietary OS है।",
+      "✅ सही! Ubuntu, Fedora, Debian सभी Linux के अलग-अलग Distributions हैं जो Linux Kernel पर आधारित हैं।",
+      "DOS बहुत पुराना और अलग OS था।"
+    ]
+  },
+  {
+    q: "Process Scheduling में Round Robin Algorithm क्या करता है?",
+    options: ["सबसे पुराने process को priority देता है", "प्रत्येक process को बारी-बारी से Time Slice देता है", "सबसे छोटे process को पहले चलाता है", "केवल एक process को हमेशा चलाता है"],
+    correct: 1,
+    explanations: [
+      "सबसे पुराना process पहले = FCFS Algorithm है।",
+      "✅ सही! Round Robin में प्रत्येक process को एक fixed Time Quantum (Time Slice) मिलता है और सभी को बारी-बारी CPU मिलता है।",
+      "सबसे छोटा process पहले = SJF (Shortest Job First) है।",
+      "एक ही process = No scheduling / Batch processing होता है।"
+    ]
+  },
+  {
+    q: "Virtual Memory में Page Fault क्या है?",
+    options: ["एक Virus attack", "जब required page RAM में न हो और Disk से load करना पड़े", "जब RAM full हो जाए", "जब CPU crash हो जाए"],
+    correct: 1,
+    explanations: [
+      "Page Fault virus नहीं है।",
+      "✅ सही! Page Fault तब होता है जब program को जिस Memory Page की जरूरत है वो RAM में नहीं है और OS उसे Swap Space (Disk) से RAM में load करता है।",
+      "RAM full होना अलग situation है।",
+      "CPU crash अलग hardware issue है।"
+    ]
+  },
+  {
+    q: "Linux में Security के लिए कौन सा framework उपयोग होता है?",
+    options: ["UAC और BitLocker", "SELinux और AppArmor", "Firewall केवल", "Norton Antivirus"],
+    correct: 1,
+    explanations: [
+      "UAC और BitLocker Windows की security features हैं।",
+      "✅ सही! Linux में SELinux (Security-Enhanced Linux) और AppArmor Mandatory Access Control provide करते हैं।",
+      "Firewall एक component है, पूरी security नहीं।",
+      "Norton Antivirus Application Software है।"
+    ]
+  },
+  {
+    q: "Windows में User Account Control (UAC) का क्या काम है?",
+    options: ["Network Speed बढ़ाना", "Unauthorized changes को prevent करना और user को prompt करना", "File compression करना", "Disk cleanup करना"],
+    correct: 1,
+    explanations: [
+      "UAC network से संबंधित नहीं है।",
+      "✅ सही! UAC system changes के लिए administrator permission माँगता है, जिससे unauthorized software changes को prevent किया जाता है।",
+      "File compression अलग utility है।",
+      "Disk cleanup अलग utility है।"
+    ]
+  },
+  {
+    q: "Shell क्या होता है?",
+    options: ["Computer का physical case", "Command Interpreter जो user और kernel के बीच interface है", "RAM का एक type", "Hard Disk का हिस्सा"],
+    correct: 1,
+    explanations: [
+      "Computer का physical case 'Cabinet' या 'Case' कहलाता है।",
+      "✅ सही! Shell (जैसे Bash, PowerShell, Zsh) एक Command Interpreter है जो User के commands को interpret करके Kernel को भेजता है।",
+      "RAM electronic memory है।",
+      "Hard Disk storage device है।"
+    ]
+  },
+  {
+    q: "Linux में Package Management के लिए Debian-based distros में कौन सा tool है?",
+    options: ["YUM", "RPM", "APT (Advanced Package Tool)", "Pacman"],
+    correct: 2,
+    explanations: [
+      "YUM Red Hat/CentOS/Fedora में उपयोग होता है।",
+      "RPM Red Hat Package Manager है।",
+      "✅ सही! APT (apt-get, apt) Debian-based distributions (Ubuntu, Debian, Mint) में package management के लिए उपयोग होता है।",
+      "Pacman Arch Linux में उपयोग होता है।"
+    ]
+  },
+  {
+    q: "Kernel Mode (Ring 0) में CPU क्या कर सकता है?",
+    options: ["केवल user programs चला सकता है", "Privileged Instructions execute कर सकता है और full hardware access है", "केवल display show कर सकता है", "केवल files read कर सकता है"],
+    correct: 1,
+    explanations: [
+      "User programs Ring 3 (User Mode) में चलते हैं।",
+      "✅ सही! Kernel Mode (Ring 0) में CPU सभी Privileged Instructions (HLT, IN, OUT etc.) execute कर सकता है और full hardware access होता है।",
+      "Display show करना GPU/Display System का काम है।",
+      "File read करना Ring 3 से System Calls के जरिए भी होता है।"
+    ]
+  },
+  {
+    q: "Process Control Block (PCB) में क्या स्टोर होता है?",
+    options: ["केवल program का executable code", "Process ID, State, Registers, Memory Pointers", "केवल user data", "केवल network information"],
+    correct: 1,
+    explanations: [
+      "Executable code Disk/RAM में store होता है।",
+      "✅ सही! PCB (task_struct in Linux) में Process ID, Process State (Running/Waiting/Ready), CPU Registers, Memory Management info, Open Files आदि store होते हैं।",
+      "User data program के own memory space में होता है।",
+      "Network info separate data structure में होती है।"
+    ]
+  },
+  {
+    q: "Linux में Kernel को User Space से access करने के लिए क्या उपयोग होता है?",
+    options: ["Direct Hardware Access", "System Calls (syscall instruction)", "Network Packets", "GUI Clicks"],
+    correct: 1,
+    explanations: [
+      "User Space में programs hardware directly access नहीं कर सकते।",
+      "✅ सही! System Calls (जैसे open(), read(), write()) User Space programs को Kernel functions access करने का interface देते हैं।",
+      "Network Packets networking के लिए हैं।",
+      "GUI Clicks Application Layer में होते हैं।"
+    ]
+  },
+  {
+    q: "Paging में memory को किस size के units में divide किया जाता है?",
+    options: ["1 Byte", "1 KB", "4 KB Pages", "1 MB"],
+    correct: 2,
+    explanations: [
+      "1 Byte बहुत छोटी unit है।",
+      "1 KB standard page size नहीं है।",
+      "✅ सही! Standard x86 Paging में memory को 4 KB (4096 Bytes) के pages में divide किया जाता है।",
+      "1 MB Large Pages में होती है (special case)।"
+    ]
+  },
+  {
+    q: "TLB (Translation Lookaside Buffer) का क्या काम है?",
+    options: ["Data storage", "Page Table Entries को cache करना", "Network buffering", "Video buffering"],
+    correct: 1,
+    explanations: [
+      "Data storage RAM और Disk का काम है।",
+      "✅ सही! TLB एक special cache है जो recently accessed Page Table Entries (Virtual-to-Physical address translations) को store करता है, जिससे memory access fast होता है।",
+      "Network buffering अलग है।",
+      "Video buffering media player का काम है।"
+    ]
+  },
+  {
+    q: "Windows में BitLocker का क्या काम है?",
+    options: ["Internet block करना", "Drive Encryption (data security)", "Game lock करना", "Application disable करना"],
+    correct: 1,
+    explanations: [
+      "BitLocker internet से संबंधित नहीं है।",
+      "✅ सही! BitLocker Windows की Drive Encryption feature है जो entire drive को encrypt करती है, data unauthorized access से protect होता है।",
+      "Games lock करना parental controls का काम है।",
+      "Applications disable करना अलग है।"
+    ]
+  },
+  {
+    q: "Linux में Bash क्या है?",
+    options: ["एक Programming Language", "Bourne Again Shell — एक Command Line Interpreter", "एक Database", "एक Web Server"],
+    correct: 1,
+    explanations: [
+      "Bash primarily programming language नहीं है (scripting करता है लेकिन shell है)।",
+      "✅ सही! Bash (Bourne Again Shell) Linux/Unix का default shell है जो user के commands interpret करता है।",
+      "Database अलग software है।",
+      "Web Server (Apache, Nginx) अलग है।"
+    ]
+  },
+  {
+    q: "Multitasking Operating System क्या करता है?",
+    options: ["केवल एक program एक time में चलाता है", "Multiple programs को simultaneously (concurrently) run करता है", "केवल Games चलाता है", "केवल Office software चलाता है"],
+    correct: 1,
+    explanations: [
+      "Single-tasking OS (जैसे पुराना DOS) एक time में एक program चलाता था।",
+      "✅ सही! Modern Multitasking OS (Windows, Linux) CPU time sharing से multiple programs को simultaneously run करता है।",
+      "OS सभी प्रकार के software चलाता है।",
+      "OS सभी प्रकार के software चलाता है।"
+    ]
+  },
+  {
+    q: "Swap Space का क्या काम है?",
+    options: ["Files exchange करना", "RAM की कमी होने पर Disk को temporary RAM की तरह use करना", "Data backup लेना", "Network share करना"],
+    correct: 1,
+    explanations: [
+      "File exchange अलग operation है।",
+      "✅ सही! Swap Space (Linux) / Page File (Windows) Disk का वो area है जो Virtual Memory के लिए use होता है जब RAM full हो जाए।",
+      "Backup अलग utility है।",
+      "Network share अलग feature है।"
+    ]
+  },
+  {
+    q: "GRUB क्या है?",
+    options: ["एक Linux Application", "Bootloader जो OS को Memory में Load करता है", "एक Antivirus", "एक Text Editor"],
+    correct: 1,
+    explanations: [
+      "GRUB Application नहीं है।",
+      "✅ सही! GRUB (Grand Unified Bootloader) एक Bootloader है जो Computer start होने पर OS (Linux/Windows) को Memory में load करता है।",
+      "Antivirus Application Software है।",
+      "Text Editor Application Software है।"
+    ]
+  },
+
+  // ===== MEMORY UNITS (61-75) =====
+  {
+    q: "Computer की सबसे छोटी Memory Unit कौन सी है?",
+    options: ["Byte", "Kilobyte", "Bit", "Nibble"],
+    correct: 2,
+    explanations: [
+      "Byte = 8 bits होते हैं।",
+      "Kilobyte = 1024 Bytes होते हैं।",
+      "✅ सही! Bit (Binary Digit) Computer की सबसे छोटी memory unit है जो 0 या 1 store कर सकती है।",
+      "Nibble = 4 bits होते हैं, Bit से बड़ा।"
+    ]
+  },
+  {
+    q: "1 Byte में कितने Bits होते हैं?",
+    options: ["4", "16", "8", "2"],
+    correct: 2,
+    explanations: [
+      "4 bits = 1 Nibble।",
+      "16 bits = 2 Bytes।",
+      "✅ सही! 1 Byte = 8 Bits। यह standard computing definition है।",
+      "2 bits एक specific unit नहीं है।"
+    ]
+  },
+  {
+    q: "1 Kilobyte (KB) में कितने Bytes होते हैं?",
+    options: ["1000", "1024", "512", "2048"],
+    correct: 1,
+    explanations: [
+      "1000 Bytes = 1 Kilobyte (decimal/SI prefix), लेकिन computing में 1024 standard है।",
+      "✅ सही! Computing में 1 KB = 2^10 = 1024 Bytes (Binary System)।",
+      "512 Bytes = आधा KB।",
+      "2048 Bytes = 2 KB।"
+    ]
+  },
+  {
+    q: "1 Megabyte (MB) में कितने Kilobytes होते हैं?",
+    options: ["1000 KB", "1024 KB", "512 KB", "2000 KB"],
+    correct: 1,
+    explanations: [
+      "1000 KB decimal system में है।",
+      "✅ सही! 1 MB = 1024 KB = 1,048,576 Bytes।",
+      "512 KB = आधा MB।",
+      "2000 KB लगभग 2 MB है।"
+    ]
+  },
+  {
+    q: "1 Gigabyte (GB) कितने Megabytes के बराबर है?",
+    options: ["1000 MB", "512 MB", "1024 MB", "2048 MB"],
+    correct: 2,
+    explanations: [
+      "1000 MB decimal/SI system में है।",
+      "512 MB = आधा GB।",
+      "✅ सही! 1 GB = 1024 MB = 1,073,741,824 Bytes।",
+      "2048 MB = 2 GB।"
+    ]
+  },
+  {
+    q: "1 Terabyte (TB) में कितने Gigabytes होते हैं?",
+    options: ["512 GB", "1000 GB", "1024 GB", "2000 GB"],
+    correct: 2,
+    explanations: [
+      "512 GB = आधा TB।",
+      "1000 GB decimal system में।",
+      "✅ सही! 1 TB = 1024 GB = 1,099,511,627,776 Bytes।",
+      "2000 GB लगभग 2 TB है।"
+    ]
+  },
+  {
+    q: "ASCII कैरेक्टर को store करने के लिए कितनी memory चाहिए?",
+    options: ["1 Bit", "1 Nibble (4 bits)", "1 Byte (8 bits)", "1 KB"],
+    correct: 2,
+    explanations: [
+      "1 bit केवल 0 या 1 store कर सकता है।",
+      "4 bits = 16 values, ASCII के लिए काफी नहीं।",
+      "✅ सही! 1 Byte (8 bits) एक ASCII character store कर सकता है (जैसे 'A' = 65, 'a' = 97)।",
+      "1 KB 1024 characters store कर सकता है।"
+    ]
+  },
+  {
+    q: "Hard Disk और SSD में typically किस unit में storage measure होती है?",
+    options: ["Bits", "Bytes", "Gigabytes और Terabytes", "Kilobytes"],
+    correct: 2,
+    explanations: [
+      "Bits बहुत छोटी unit है।",
+      "Bytes बहुत छोटी unit है storage drives के लिए।",
+      "✅ सही! Modern Hard Drives और SSDs की capacity Gigabytes (GB) और Terabytes (TB) में measure होती है।",
+      "Kilobytes बहुत छोटी unit है।"
+    ]
+  },
+  {
+    q: "RAM की capacity आमतौर पर किस unit में होती है?",
+    options: ["Bits", "Kilobytes", "Gigabytes (GB)", "Terabytes"],
+    correct: 2,
+    explanations: [
+      "Bits बहुत छोटी unit है।",
+      "Kilobytes पुराने RAM के लिए था।",
+      "✅ सही! Modern computer RAM की capacity Gigabytes (GB) में होती है जैसे 8GB, 16GB, 32GB RAM।",
+      "Terabytes RAM के लिए अभी बहुत बड़ी unit है।"
+    ]
+  },
+  {
+    q: "Data Centers में storage typically किस unit में measure होती है?",
+    options: ["Kilobytes", "Megabytes", "Terabytes और Petabytes", "Gigabytes केवल"],
+    correct: 2,
+    explanations: [
+      "Kilobytes बहुत छोटी unit है।",
+      "Megabytes भी बहुत छोटी है।",
+      "✅ सही! Data Centers में Terabytes (TB) और Petabytes (PB) में storage होती है। 1 PB = 1024 TB।",
+      "Data Centers में GB से बहुत ज्यादा storage होती है।"
+    ]
+  },
+  {
+    q: "32-bit CPU में एक CPU Register कितने bits store कर सकता है?",
+    options: ["8 bits", "16 bits", "32 bits", "64 bits"],
+    correct: 2,
+    explanations: [
+      "8-bit रजिस्टर 8-bit CPUs (जैसे Intel 8080) में होते हैं।",
+      "16-bit रजिस्टर 16-bit CPUs में होते हैं।",
+      "✅ सही! 32-bit CPU Architecture (x86) में EAX, EBX जैसे रजिस्टर 32 bits (4 Bytes) store करते हैं।",
+      "64 bits x86-64 (64-bit) architecture में होते हैं।"
+    ]
+  },
+  {
+    q: "Nibble कितने bits का होता है?",
+    options: ["2 bits", "4 bits", "8 bits", "16 bits"],
+    correct: 1,
+    explanations: [
+      "2 bits एक standard named unit नहीं है।",
+      "✅ सही! 1 Nibble = 4 bits = Half a Byte। यह hexadecimal digit (0-F) represent करता है।",
+      "8 bits = 1 Byte।",
+      "16 bits = 2 Bytes।"
+    ]
+  },
+  {
+    q: "1 Petabyte (PB) में कितने Terabytes होते हैं?",
+    options: ["1000 TB", "512 TB", "1024 TB", "2000 TB"],
+    correct: 2,
+    explanations: [
+      "1000 TB decimal system में।",
+      "512 TB = आधा PB।",
+      "✅ सही! 1 PB = 1024 TB = 1,125,899,906,842,624 Bytes।",
+      "2000 TB लगभग 2 PB है।"
+    ]
+  },
+  {
+    q: "Image Files (.jpg) typically किस unit में size होती हैं?",
+    options: ["Bits", "Kilobytes (KB) या Megabytes (MB)", "Terabytes", "Petabytes"],
+    correct: 1,
+    explanations: [
+      "Image files bits में measure नहीं होती।",
+      "✅ सही! Digital images आमतौर पर Kilobytes (KB) से Megabytes (MB) में होती हैं — compressed JPEGs कुछ KB से कई MB तक।",
+      "Terabytes बहुत बड़ी unit है images के लिए।",
+      "Petabytes बहुत बड़ी unit है।"
+    ]
+  },
+  {
+    q: "Video Files (HD Videos) typically किस unit में size होती हैं?",
+    options: ["Bits", "Kilobytes", "Gigabytes (GB)", "Bytes"],
+    correct: 2,
+    explanations: [
+      "Video files bits में measure नहीं होतीं।",
+      "Kilobytes बहुत छोटी unit है HD videos के लिए।",
+      "✅ सही! HD और 4K video files Gigabytes (GB) में होती हैं — 1 hour HD video = 2-5 GB तक।",
+      "Bytes बहुत छोटी unit है।"
+    ]
+  },
+
+  // ===== ADVANCED TOPICS (76-100) =====
+  {
+    q: "Google Chrome का JavaScript Engine क्या है?",
+    options: ["SpiderMonkey", "Chakra", "V8 Engine", "JavaScriptCore"],
+    correct: 2,
+    explanations: [
+      "SpiderMonkey Mozilla Firefox का JavaScript Engine है।",
+      "Chakra Microsoft Edge (पुराने) का JavaScript Engine था।",
+      "✅ सही! Google Chrome और Node.js का JavaScript Engine V8 है जो JIT Compilation use करता है।",
+      "JavaScriptCore Safari (Apple) का JavaScript Engine है।"
+    ]
+  },
+  {
+    q: "HTML DOM का पूरा नाम क्या है?",
+    options: ["Hypertext Document Object Model", "Document Object Model", "Data Object Management", "Document Output Module"],
+    correct: 1,
+    explanations: [
+      "यह गलत expansion है।",
+      "✅ सही! DOM = Document Object Model। यह HTML document को objects के tree के रूप में represent करता है।",
+      "यह भी गलत है।",
+      "यह भी गलत है।"
+    ]
+  },
+  {
+    q: "FreeRTOS क्या है?",
+    options: ["एक Linux Distribution", "एक Real-Time Operating System for Embedded Systems", "एक Web Server", "एक Database"],
+    correct: 1,
+    explanations: [
+      "FreeRTOS Linux distribution नहीं है।",
+      "✅ सही! FreeRTOS एक Open Source Real-Time Operating System है जो Embedded Systems (IoT, Microcontrollers) के लिए design किया गया है।",
+      "Web Server (Apache) अलग है।",
+      "Database अलग software है।"
+    ]
+  },
+  {
+    q: "PID Control Algorithm का उपयोग कहाँ होता है?",
+    options: ["Web Development में", "Embedded Systems में (जैसे Car ECU, Robots)", "Database Management में", "Operating System Scheduling में"],
+    correct: 1,
+    explanations: [
+      "Web Development में PID का उपयोग नहीं होता।",
+      "✅ सही! PID (Proportional-Integral-Derivative) Controller Embedded Systems में use होता है जैसे Car ECU में engine performance optimize करना।",
+      "Database में SQL queries use होती हैं।",
+      "OS Scheduling में Round Robin, Priority जैसे algorithms हैं।"
+    ]
+  },
+  {
+    q: "Dalvik Virtual Machine किसके लिए है?",
+    options: ["Windows Apps के लिए", "Java Desktop Apps के लिए", "Android Apps के लिए", "iOS Apps के लिए"],
+    correct: 2,
+    explanations: [
+      "Windows Apps के लिए .NET Framework है।",
+      "Java Desktop Apps के लिए JVM है।",
+      "✅ सही! Dalvik VM (DVM) पुराने Android में था जो Android Apps को run करता था। अब ART (Android Runtime) use होता है।",
+      "iOS Apps Objective-C/Swift में होती हैं।"
+    ]
+  },
+  {
+    q: "Heuristic Scanning किस software में use होती है?",
+    options: ["Video Player", "Antivirus Software", "Word Processor", "Web Browser"],
+    correct: 1,
+    explanations: [
+      "Video Player media files play करता है।",
+      "✅ सही! Antivirus software Heuristic Scanning से unknown viruses को उनके suspicious behavior patterns से detect करता है।",
+      "Word Processor documents बनाता है।",
+      "Web Browser internet browse करता है।"
+    ]
+  },
+  {
+    q: "OpenGL किसके लिए उपयोग होता है?",
+    options: ["Database Queries", "2D/3D Graphics Rendering (GPU Programming)", "Network Communication", "File Management"],
+    correct: 1,
+    explanations: [
+      "Database में SQL use होता है।",
+      "✅ सही! OpenGL (Open Graphics Library) एक cross-platform API है जो GPU को 2D/3D graphics render करने के instructions देता है।",
+      "Network के लिए TCP/IP protocols हैं।",
+      "File management OS करता है।"
+    ]
+  },
+  {
+    q: "Semaphore का उपयोग किसलिए होता है?",
+    options: ["Network Routing", "Inter-Task/Process Synchronization", "File Compression", "Image Editing"],
+    correct: 1,
+    explanations: [
+      "Network Routing अलग है।",
+      "✅ सही! Semaphore RTOS और OS में Multiple Tasks/Processes को synchronize करने के लिए use होता है — shared resources को control करता है।",
+      "File Compression zip/gzip जैसे tools करते हैं।",
+      "Image Editing Photoshop जैसे software करते हैं।"
+    ]
+  },
+  {
+    q: "Mark-and-Sweep Algorithm किसका हिस्सा है?",
+    options: ["Antivirus Scanning", "Garbage Collection", "Disk Defragmentation", "Network Security"],
+    correct: 1,
+    explanations: [
+      "Antivirus में Heuristic/Signature scanning होती है।",
+      "✅ सही! Mark-and-Sweep Garbage Collection Algorithm है जो unused (unreachable) objects को memory से free करता है — Java में उपयोग होता है।",
+      "Disk Defragmentation files को rearrange करता है।",
+      "Network Security अलग है।"
+    ]
+  },
+  {
+    q: "DMA (Direct Memory Access) का क्या फायदा है?",
+    options: ["CPU काम fast करता है", "Devices CPU को bypass करके directly RAM access कर सकते हैं, CPU free रहता है", "Disk space बढ़ जाती है", "Internet faster होता है"],
+    correct: 1,
+    explanations: [
+      "DMA directly CPU speed से संबंधित नहीं है।",
+      "✅ सही! DMA से Devices (जैसे Hard Disk) CPU के बिना directly RAM तक data transfer कर सकते हैं, जिससे CPU अन्य tasks पर focus करता है।",
+      "DMA Disk space से संबंधित नहीं है।",
+      "DMA Internet speed से संबंधित नहीं है।"
+    ]
+  },
+  {
+    q: "Interrupt Request (IRQ) क्या है?",
+    options: ["एक Virus", "Hardware Device का CPU को signal कि उसे attention चाहिए", "एक programming error", "एक network request"],
+    correct: 1,
+    explanations: [
+      "IRQ virus नहीं है।",
+      "✅ सही! IRQ (Interrupt Request) वो signal है जो hardware device (Keyboard, Mouse, Hard Disk) CPU को भेजता है कि उसे process करने की जरूरत है।",
+      "IRQ programming error नहीं है।",
+      "IRQ network request नहीं है।"
+    ]
+  },
+  {
+    q: "BIOS का पूरा नाम क्या है?",
+    options: ["Basic Input Output System", "Binary Input Output Setup", "Boot Initialization Operating System", "Basic Integrated Operating Software"],
+    correct: 0,
+    explanations: [
+      "✅ सही! BIOS = Basic Input/Output System। यह motherboard पर stored firmware है जो computer start होने पर hardware initialize करता है।",
+      "यह गलत expansion है।",
+      "यह भी गलत है।",
+      "यह भी गलत है।"
+    ]
+  },
+  {
+    q: "MBR का पूरा नाम और काम क्या है?",
+    options: ["Memory Boot Register — RAM का हिस्सा", "Master Boot Record — Disk के पहले sector में OS boot info", "Main Board Register — Motherboard का chip", "Multi Boot RAM — Multiple OS RAM"],
+    correct: 1,
+    explanations: [
+      "MBR RAM से संबंधित नहीं है।",
+      "✅ सही! MBR = Master Boot Record। यह Disk के पहले sector (512 bytes) में होता है जिसमें boot code और partition table होती है।",
+      "MBR Motherboard chip नहीं है।",
+      "यह गलत है।"
+    ]
+  },
+  {
+    q: "UEFI, BIOS से कैसे अलग है?",
+    options: ["UEFI पुराना है, BIOS नया है", "UEFI modern firmware है जो large drives (>2TB) support करता है और BIOS से faster है", "दोनों समान हैं", "UEFI केवल Linux के लिए है"],
+    correct: 1,
+    explanations: [
+      "UEFI नया है, BIOS पुराना।",
+      "✅ सही! UEFI (Unified Extensible Firmware Interface) modern replacement है BIOS का — GPT partition support, drives >2TB, secure boot, faster startup।",
+      "दोनों अलग हैं।",
+      "UEFI सभी OS (Windows, Linux, macOS) के लिए है।"
+    ]
+  },
+  {
+    q: "Chrome के Blink Rendering Engine का मुख्य काम क्या है?",
+    options: ["JavaScript execute करना", "HTML, CSS को Visual Webpage में render करना", "Files download करना", "Network requests भेजना"],
+    correct: 1,
+    explanations: [
+      "JavaScript V8 Engine execute करता है।",
+      "✅ सही! Blink Engine HTML को DOM tree में, CSS को CSSOM में parse करके final webpage को screen पर render करता है।",
+      "File downloading Browser का networking part करता है।",
+      "Network requests Browser का HTTP module करता है।"
+    ]
+  },
+  {
+    q: "Compiler के Linking Stage में क्या होता है?",
+    options: ["Source code को Assembly में बदलना", "Multiple Object Files को combine करके Executable बनाना", "Preprocessing करना", "Bytecode बनाना"],
+    correct: 1,
+    explanations: [
+      "Source को Assembly में बदलना Compilation stage है।",
+      "✅ सही! Linker stage में multiple .o (object) files को combine करके एक final Executable file बनाई जाती है।",
+      "Preprocessing पहला stage है।",
+      "Bytecode Java/Python में होता है, C में नहीं।"
+    ]
+  },
+  {
+    q: "Harvard Architecture की विशेषता क्या है?",
+    options: ["Data और Instructions एक ही memory में", "Data और Instructions की memory अलग-अलग होती है", "कोई Cache नहीं होता", "केवल 8-bit processing"],
+    correct: 1,
+    explanations: [
+      "Data और Instructions एक memory में = Von Neumann Architecture।",
+      "✅ सही! Harvard Architecture में Data Memory और Instruction Memory अलग-अलग होती हैं — AVR Microcontrollers इसका उपयोग करते हैं।",
+      "Cache दोनों architectures में हो सकती है।",
+      "Harvard Architecture किसी specific bit size से bound नहीं है।"
+    ]
+  },
+  {
+    q: "ARM Cortex-M series का उपयोग कहाँ होता है?",
+    options: ["Desktop Computers में", "Servers में", "Embedded Systems और IoT Devices में", "Mainframe Computers में"],
+    correct: 2,
+    explanations: [
+      "Desktop में x86/x64 CPUs (Intel, AMD) होते हैं।",
+      "Servers में x86-64 या RISC-V होते हैं।",
+      "✅ सही! ARM Cortex-M series Low-power Microcontrollers के लिए design की है — IoT devices, wearables, industrial embedded systems में widely used है।",
+      "Mainframes में specialized processors होते हैं।"
+    ]
+  },
+  {
+    q: "GLSL किस काम के लिए उपयोग होता है?",
+    options: ["Web Scripting के लिए", "Database Queries के लिए", "GPU Shader Programming के लिए", "Network Configuration के लिए"],
+    correct: 2,
+    explanations: [
+      "Web scripting JavaScript में होती है।",
+      "Database में SQL होता है।",
+      "✅ सही! GLSL (OpenGL Shading Language) GPU के Vertex Shaders और Fragment Shaders लिखने के लिए उपयोग होता है।",
+      "Network configuration में Shell scripts/Config files होती हैं।"
+    ]
+  },
+  {
+    q: "Queue Data Structure RTOS में किस काम आता है?",
+    options: ["Video rendering में", "Tasks के बीच Data Exchange (Inter-Task Communication) में", "File storage में", "Network routing में"],
+    correct: 1,
+    explanations: [
+      "Video rendering GPU का काम है।",
+      "✅ सही! RTOS में Queue का उपयोग Tasks के बीच data exchange के लिए होता है — एक task data enqueue करता है, दूसरा dequeue करता है।",
+      "File storage File System का काम है।",
+      "Network routing Routers का काम है।"
+    ]
+  }
+];
+
+// QUIZ STATE
+let questions = [];
+let currentIndex = 0;
+let score = 0;
+let wrongAnswers = 0;
+let answered = false;
+
+function shuffle(arr) {
+  let a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function prepareQuestions() {
+  questions = shuffle(allQuestions).map(q => {
+    const indices = [0, 1, 2, 3];
+    const shuffledIndices = shuffle(indices);
+    const newOptions = shuffledIndices.map(i => q.options[i]);
+    const newExplanations = shuffledIndices.map(i => q.explanations[i]);
+    const newCorrect = shuffledIndices.indexOf(q.correct);
+    return {
+      q: q.q,
+      options: newOptions,
+      correct: newCorrect,
+      explanations: newExplanations
+    };
+  });
+}
+
+function loadQuestion() {
+  answered = false;
+  const q = questions[currentIndex];
+
+  document.getElementById('qNum').textContent = `प्रश्न ${currentIndex + 1}`;
+  document.getElementById('qText').textContent = q.q;
+  document.getElementById('qCounter').textContent = `${currentIndex + 1} / 100`;
+  document.getElementById('progressBar').style.width = `${(currentIndex / 100) * 100}%`;
+
+  const grid = document.getElementById('optionsGrid');
+  grid.innerHTML = '';
+  const labels = ['A', 'B', 'C', 'D'];
+
+  q.options.forEach((opt, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'option-btn';
+    btn.innerHTML = `<span class="option-badge">${labels[i]}</span><span>${opt}</span>`;
+    btn.onclick = () => selectAnswer(i);
+    grid.appendChild(btn);
+  });
+
+  document.getElementById('explanationBox').classList.remove('show');
+  document.getElementById('allExplanations').classList.remove('show');
+  document.getElementById('nextBtn').classList.remove('show');
+}
+
+function selectAnswer(selectedIndex) {
+  if (answered) return;
+  answered = true;
+
+  const q = questions[currentIndex];
+  const buttons = document.querySelectorAll('.option-btn');
+
+  buttons.forEach(btn => btn.disabled = true);
+
+  if (selectedIndex === q.correct) {
+    buttons[selectedIndex].classList.add('correct');
+    score++;
+    document.getElementById('correctCount').textContent = score;
+  } else {
+    buttons[selectedIndex].classList.add('wrong');
+    buttons[q.correct].classList.add('correct');
+    wrongAnswers++;
+    document.getElementById('wrongCount').textContent = wrongAnswers;
+  }
+
+  const total = currentIndex + 1;
+  document.getElementById('scorePercent').textContent = Math.round((score / total) * 100) + '%';
+
+  // Show explanation
+  const expBox = document.getElementById('explanationBox');
+  document.getElementById('correctExp').textContent = q.explanations[q.correct];
+
+  const allExp = document.getElementById('allExplanations');
+  const labels = ['A', 'B', 'C', 'D'];
+  allExp.innerHTML = '<div style="font-size:0.78rem;color:#f7971e;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">सभी विकल्पों की व्याख्या:</div>';
+  q.explanations.forEach((exp, i) => {
+    const div = document.createElement('div');
+    div.className = 'exp-option-row';
+    div.innerHTML = `<strong>${labels[i]})</strong> ${q.options[i]}: ${exp}`;
+    allExp.appendChild(div);
+  });
+
+  expBox.classList.add('show');
+  allExp.classList.add('show');
+  document.getElementById('nextBtn').classList.add('show');
+
+  if (currentIndex === 99) {
+    document.getElementById('nextBtn').textContent = 'परिणाम देखें 🏆';
+  } else {
+    document.getElementById('nextBtn').textContent = 'अगला सवाल →';
+  }
+}
+
+function nextQuestion() {
+  currentIndex++;
+  if (currentIndex >= 100) {
+    showResult();
+    return;
+  }
+  loadQuestion();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function showResult() {
+  document.getElementById('questionCard').style.display = 'none';
+  document.getElementById('statsBar').style.display = 'none';
+  const rs = document.getElementById('resultScreen');
+  rs.classList.add('show');
+
+  const pct = Math.round((score / 100) * 100);
+  document.getElementById('finalScore').textContent = `${score} / 100`;
+  document.getElementById('finalPercent').textContent = `सफलता प्रतिशत: ${pct}%`;
+  document.getElementById('rCorrect').textContent = score;
+  document.getElementById('rWrong').textContent = wrongAnswers;
+
+  let emoji, grade, color;
+  if (pct >= 90) { emoji = '🏆'; grade = 'Outstanding! श्रेष्ठ प्रदर्शन'; color = '#ffd200'; }
+  else if (pct >= 75) { emoji = '🌟'; grade = 'Excellent! उत्कृष्ट'; color = '#00c864'; }
+  else if (pct >= 60) { emoji = '👏'; grade = 'Good! अच्छा प्रदर्शन'; color = '#4fc3f7'; }
+  else if (pct >= 40) { emoji = '📚'; grade = 'Average — और पढ़ें'; color = '#f7971e'; }
+  else { emoji = '💪'; grade = 'Keep Trying! हार मत मानो'; color = '#ff6b6b'; }
+
+  document.getElementById('resultEmoji').textContent = emoji;
+  const badge = document.getElementById('gradeBadge');
+  badge.textContent = grade;
+  badge.style.background = color + '22';
+  badge.style.color = color;
+  badge.style.border = `1px solid ${color}55`;
+}
+
+function restartQuiz() {
+  score = 0;
+  wrongAnswers = 0;
+  currentIndex = 0;
+  document.getElementById('correctCount').textContent = '0';
+  document.getElementById('wrongCount').textContent = '0';
+  document.getElementById('scorePercent').textContent = '0%';
+  document.getElementById('resultScreen').classList.remove('show');
+  document.getElementById('questionCard').style.display = 'block';
+  document.getElementById('statsBar').style.display = 'flex';
+  prepareQuestions();
+  loadQuestion();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// START
+prepareQuestions();
+loadQuestion();
+</script>
+</body>
+</html>

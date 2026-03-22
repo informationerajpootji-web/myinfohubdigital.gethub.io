@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Computer Software Quiz — Set 6</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+:root{
+  --bg:#0a0f1e;--card:#111827;--card2:#0f172a;
+  --border:#ffffff12;--accent:#f97316;--accent2:#fb923c;
+  --accent3:#34d399;--warn:#ef4444;--text:#f1f5f9;--muted:#94a3b8;--r:16px;
+}
+html{scroll-behavior:smooth;}
+body{font-family:-apple-system,'Noto Sans Devanagari','Segoe UI',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;}
+.app{max-width:480px;margin:0 auto;min-height:100vh;background:var(--bg);padding-bottom:32px;}
+/* ── SPLASH ── */
+.splash{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;padding:40px 28px;text-align:center;animation:su .4s ease;}
+.slogo{width:88px;height:88px;border-radius:26px;background:linear-gradient(135deg,#f97316,#fb923c,#fbbf24);display:flex;align-items:center;justify-content:center;font-size:2.4rem;margin:0 auto 22px;box-shadow:0 10px 40px rgba(249,115,22,.4);}
+.splash h1{font-size:1.7rem;font-weight:800;line-height:1.25;margin-bottom:10px;}
+.splash h1 span{background:linear-gradient(135deg,#f97316,#fbbf24);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.splash p{color:var(--muted);font-size:.92rem;line-height:1.6;margin-bottom:38px;}
+.stbtn{width:100%;padding:18px;background:linear-gradient(135deg,#f97316,#fbbf24);border:none;border-radius:14px;font-size:1.1rem;font-weight:800;color:#1a0a00;cursor:pointer;font-family:inherit;box-shadow:0 6px 28px rgba(249,115,22,.45);transition:transform .2s;}
+.stbtn:active{transform:scale(.97);}
+/* ── TOP BAR ── */
+.sbar{background:linear-gradient(135deg,#f97316,#fbbf24);padding:14px 20px 16px;position:sticky;top:0;z-index:100;}
+.sbar-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:11px;}
+.sbar-title{font-size:.74rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(26,10,0,.85);}
+.score-pill{background:rgba(0,0,0,.18);padding:4px 12px;border-radius:50px;font-size:.78rem;font-weight:700;color:#1a0a00;}
+.prog-row{display:flex;align-items:center;gap:10px;}
+.prog-track{flex:1;height:6px;background:rgba(0,0,0,.2);border-radius:50px;overflow:hidden;}
+.prog-fill{height:100%;background:rgba(255,255,255,.85);border-radius:50px;transition:width .45s cubic-bezier(.4,0,.2,1);width:0%;}
+.q-lbl{font-size:.72rem;font-weight:700;color:rgba(26,10,0,.8);white-space:nowrap;}
+/* ── STATS ── */
+.stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;padding:14px 16px 0;}
+.sc{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:10px 8px;text-align:center;}
+.sv{font-size:1.4rem;font-weight:800;}
+.sv.g{color:var(--accent3);}
+.sv.r{color:var(--warn);}
+.sv.o{color:var(--accent);}
+.sl{font-size:.6rem;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;margin-top:2px;}
+/* ── QUESTION CARD ── */
+.qwrap{padding:14px 16px 0;}
+.qcard{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:20px;animation:su .3s cubic-bezier(.4,0,.2,1);}
+@keyframes su{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
+.qbadge{display:inline-flex;align-items:center;gap:6px;background:rgba(249,115,22,.12);border:1px solid rgba(249,115,22,.3);color:var(--accent);font-size:.7rem;font-weight:700;padding:4px 10px;border-radius:50px;text-transform:uppercase;letter-spacing:1px;margin-bottom:14px;}
+.qtext{font-size:1rem;font-weight:600;line-height:1.68;color:#e2e8f0;}
+/* ── OPTIONS ── */
+.owrap{padding:10px 16px 0;}
+.obtn{width:100%;display:flex;align-items:center;gap:12px;background:var(--card);border:2px solid var(--border);border-radius:14px;padding:14px 16px;cursor:pointer;transition:all .2s ease;text-align:left;color:var(--text);font-size:.9rem;font-family:inherit;line-height:1.5;margin-bottom:10px;-webkit-appearance:none;}
+.obtn:hover:not(:disabled){border-color:var(--accent);background:#1c1208;transform:translateX(3px);}
+.obtn:active:not(:disabled){transform:scale(.98);}
+.oltr{min-width:34px;height:34px;border-radius:10px;background:rgba(249,115,22,.1);border:1.5px solid rgba(249,115,22,.25);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.82rem;color:var(--accent);flex-shrink:0;transition:all .2s;}
+.otxt{flex:1;font-size:.9rem;line-height:1.5;}
+.oico{margin-left:auto;font-size:1.1rem;flex-shrink:0;}
+.obtn.correct{background:#052e16!important;border-color:#16a34a!important;}
+.obtn.correct .oltr{background:#16a34a!important;color:#fff!important;border-color:#16a34a!important;}
+.obtn.correct .otxt{color:#86efac!important;}
+.obtn.wrong{background:#2d0d0d!important;border-color:#dc2626!important;}
+.obtn.wrong .oltr{background:#dc2626!important;color:#fff!important;border-color:#dc2626!important;}
+.obtn.wrong .otxt{color:#fca5a5!important;}
+.obtn:disabled{cursor:default;transform:none!important;}
+/* ── EXPLANATION ── */
+.epanel{margin:10px 16px 0;background:var(--card2);border:1px solid rgba(249,115,22,.2);border-radius:var(--r);overflow:hidden;display:none;animation:su .35s ease;}
+.epanel.show{display:block;}
+.ehdr{background:rgba(249,115,22,.1);border-bottom:1px solid rgba(249,115,22,.15);padding:11px 16px;display:flex;align-items:center;gap:8px;}
+.ehdrtxt{font-size:.71rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--accent);}
+.ecbox{padding:14px 16px;}
+.eclbl{font-size:.67rem;color:var(--accent3);font-weight:700;text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px;}
+.ectxt{font-size:.88rem;color:#cbd5e1;line-height:1.65;}
+/* ── NEXT BUTTON ── */
+.nwrap{padding:12px 16px 0;display:none;}
+.nwrap.show{display:block;}
+.nbtn{width:100%;padding:16px;background:linear-gradient(135deg,#f97316,#fbbf24);border:none;border-radius:14px;font-size:1rem;font-weight:700;color:#1a0a00;cursor:pointer;font-family:inherit;transition:transform .2s;box-shadow:0 4px 20px rgba(249,115,22,.35);}
+.nbtn:active{transform:scale(.97);}
+/* ── RESULT ── */
+.rscreen{display:none;padding:22px 16px;animation:su .4s ease;}
+.rscreen.show{display:block;}
+.rhero{background:linear-gradient(135deg,var(--card),var(--card2));border:1px solid var(--border);border-radius:20px;padding:28px 20px;text-align:center;margin-bottom:14px;}
+.remoji{font-size:4.5rem;margin-bottom:10px;display:block;}
+.rgrade{display:inline-block;padding:6px 20px;border-radius:50px;font-weight:800;font-size:.85rem;margin-bottom:14px;letter-spacing:.5px;}
+.rtitle{font-size:1.5rem;font-weight:800;margin-bottom:6px;}
+.rbig{font-size:3.8rem;font-weight:900;background:linear-gradient(135deg,#f97316,#fbbf24);-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1;margin:10px 0 4px;}
+.rpct{font-size:1rem;color:var(--muted);}
+.rgrid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin:16px 0 0;}
+.rsc{background:rgba(255,255,255,.05);border-radius:12px;padding:14px 10px;text-align:center;}
+.rnum{font-size:1.9rem;font-weight:800;}
+.rnum.g{color:var(--accent3);}
+.rnum.r{color:var(--warn);}
+.rnum.o{color:var(--accent);}
+.rlbl{font-size:.62rem;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;margin-top:3px;}
+.rmsg{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:16px;margin-bottom:14px;font-size:.88rem;color:#cbd5e1;line-height:1.65;text-align:center;}
+.rbtn{width:100%;padding:17px;background:linear-gradient(135deg,#f97316,#fbbf24);border:none;border-radius:14px;font-size:1.05rem;font-weight:700;color:#1a0a00;cursor:pointer;font-family:inherit;box-shadow:0 4px 24px rgba(249,115,22,.4);transition:transform .2s;}
+.rbtn:active{transform:scale(.97);}
+@media(min-width:481px){.app{border-left:1px solid var(--border);border-right:1px solid var(--border);box-shadow:0 0 60px rgba(249,115,22,.08);}}
+</style>
+</head>
+<body>
+<div class="app">
+
+<!-- SPLASH -->
+<div class="splash" id="splashScreen">
+  <div class="slogo">🧠</div>
+  <h1>Computer Software<br><span>Quiz — Set 6</span></h1>
+  <p>100 बिल्कुल नए MCQs • हिंदी में</p>
+  <button class="stbtn" onclick="startQuiz()">🚀 Quiz शुरू करें</button>
+</div>
+
+<!-- QUIZ -->
+<div id="quizScreen" style="display:none;">
+  <div class="sbar">
+    <div class="sbar-top">
+      <span class="sbar-title">🧠 CS Quiz — Set 6</span>
+      <span class="score-pill" id="scorePill">Score: 0</span>
+    </div>
+    <div class="prog-row">
+      <div class="prog-track"><div class="prog-fill" id="progFill"></div></div>
+      <span class="q-lbl" id="qLbl">1/100</span>
+    </div>
+  </div>
+  <div class="stats">
+    <div class="sc"><div class="sv g" id="sC">0</div><div class="sl">✅ सही</div></div>
+    <div class="sc"><div class="sv r" id="sW">0</div><div class="sl">❌ गलत</div></div>
+    <div class="sc"><div class="sv o" id="sP">0%</div><div class="sl">🎯 Accuracy</div></div>
+  </div>
+  <div class="qwrap">
+    <div class="qcard">
+      <div class="qbadge">📌 <span id="qBadge">प्रश्न 1 / 100</span></div>
+      <div class="qtext" id="qText"></div>
+    </div>
+  </div>
+  <div class="owrap" id="owrap"></div>
+  <div class="epanel" id="epanel">
+    <div class="ehdr"><span>💡</span><span class="ehdrtxt">सही उत्तर की व्याख्या</span></div>
+    <div class="ecbox"><div class="eclbl">✅ Explanation</div><div class="ectxt" id="ectxt"></div></div>
+  </div>
+  <div class="nwrap" id="nwrap">
+    <button class="nbtn" id="nbtn" onclick="nextQ()">अगला सवाल →</button>
+  </div>
+</div>
+
+<!-- RESULT -->
+<div class="rscreen" id="rscreen">
+  <div class="rhero">
+    <span class="remoji" id="rEmoji">🏆</span>
+    <div class="rgrade" id="rGrade"></div>
+    <div class="rtitle">Quiz पूरा हुआ!</div>
+    <div class="rbig" id="rBig"></div>
+    <div class="rpct" id="rPct"></div>
+    <div class="rgrid">
+      <div class="rsc"><div class="rnum g" id="rC">0</div><div class="rlbl">✅ सही</div></div>
+      <div class="rsc"><div class="rnum r" id="rW">0</div><div class="rlbl">❌ गलत</div></div>
+      <div class="rsc"><div class="rnum o">100</div><div class="rlbl">📋 कुल</div></div>
+    </div>
+  </div>
+  <div class="rmsg" id="rMsg"></div>
+  <button class="rbtn" onclick="restartQuiz()">🔄 फिर से शुरू करें</button>
+</div>
+
+</div>
+<script>
+const RAW=[
+// ══ SECTION 1: NETWORKING DEEP DIVE (1-15) ══
+{q:"OSI Model की Physical Layer (Layer 1) का काम क्या है?",o:["IP addresses assign करना","Raw binary bits को physical medium (cables, radio) पर transmit करना","Packets route करना","Sessions manage करना"],c:1,e:"Physical Layer actual electrical signals, light pulses या radio waves को physical medium पर transmit करती है — cables, Wi-Fi, fiber optics।"},
+{q:"ARP (Address Resolution Protocol) क्या करता है?",o:["Domain names को IP में बदलता है","IP address को MAC address में map करता है","Routing tables update करता है","Packets encrypt करता है"],c:1,e:"ARP किसी known IP address के लिए corresponding MAC (physical) address discover करता है — same network पर communication के लिए जरूरी।"},
+{q:"NAT (Network Address Translation) क्यों use होता है?",o:["Network speed बढ़ाने के लिए","Multiple devices को एक public IP share करने देना — private IPs को public IP में translate करना","DNS resolve करने के लिए","Firewall बनाने के लिए"],c:1,e:"NAT router पर होता है — home/office के सभी devices private IPs (192.168.x.x) use करते हैं, NAT उन्हें one public IP में translate करता है। IPv4 addresses conserve होते हैं।"},
+{q:"ICMP Protocol किसलिए use होता है?",o:["File transfer","Network diagnostics — ping, traceroute errors और control messages","Email send करना","Web browsing"],c:1,e:"ICMP (Internet Control Message Protocol) network devices के बीच error messages और operational information भेजता है। ping (echo request/reply) और traceroute ICMP use करते हैं।"},
+{q:"Stateful Firewall और Stateless Firewall में क्या अंतर है?",o:["दोनों same हैं","Stateful: connection state track करता है, context-aware; Stateless: हर packet independently rules से match करता है","Stateless ज्यादा secure है","Stateful पुराना है"],c:1,e:"Stateful Firewall active connections की state table maintain करता है — related packets automatically allow होते हैं। Stateless हर packet को independently inspect करता है — faster but less secure।"},
+{q:"QoS (Quality of Service) network में क्यों use होती है?",o:["Network को secure करना","Traffic को prioritize करना — voice/video calls को data transfers से ज्यादा priority देना","Bandwidth बढ़ाना","New connections block करना"],c:1,e:"QoS different types of traffic को different priority levels देती है — VoIP calls, video conferencing को high priority, bulk downloads को low priority। Latency sensitive applications smooth रहती हैं।"},
+{q:"BGP (Border Gateway Protocol) किसलिए use होता है?",o:["Local network routing","Internet पर different Autonomous Systems (ISPs) के बीच routing information exchange करना","WiFi routing","VPN routing"],c:1,e:"BGP internet का backbone routing protocol है — ISPs और large networks (Autonomous Systems) के बीच best paths communicate करता है। इसे 'protocol of the internet' कहते हैं।"},
+{q:"OSPF Protocol किस algorithm पर based है?",o:["Distance Vector","Dijkstra's Shortest Path First algorithm","Bellman-Ford","Round Robin"],c:1,e:"OSPF (Open Shortest Path First) Link-State routing protocol है जो Dijkstra's algorithm use करके shortest path tree calculate करता है। Large enterprise networks में widely used।"},
+{q:"Network Topology में 'Mesh Topology' की क्या खासियत है?",o:["सबसे simple topology","हर device दूसरे से directly connected — highest redundancy, no single point of failure","Least cabling","Only for small networks"],c:1,e:"Full Mesh में हर node हर दूसरे node से directly connected है। Highly redundant — एक link fail हो तो alternate paths available। Expensive (many connections) लेकिन most reliable।"},
+{q:"SDN (Software Defined Networking) क्या है?",o:["Software से network cables control","Control plane को data plane से separate करना — network को software से centrally control करना","Software defined storage","Secure data network"],c:1,e:"SDN में network intelligence centralized software controller में होती है — hardware boxes individually program नहीं करने पड़ते। Flexible, automated, programmable network management।"},
+{q:"HTTP/2 HTTP/1.1 से कैसे better है?",o:["HTTP/2 पुराना है","Multiplexing (एक connection पर multiple requests simultaneously), header compression, server push — faster web","HTTP/1.1 faster है","दोनों same speed"],c:1,e:"HTTP/2 features: Multiplexing (multiple streams over one TCP connection), Header Compression (HPACK), Binary Protocol, Server Push। Web pages significantly faster load होते हैं।"},
+{q:"Wireshark किसलिए use होता है?",o:["Network firewall","Network packet analyzer — real-time traffic capture और analysis, troubleshooting","Web server","Antivirus"],c:1,e:"Wireshark GUI-based network protocol analyzer है — network interface पर live traffic capture करता है, packets decode करता है। Network troubleshooting, security analysis, protocol learning में use।"},
+{q:"VLAN (Virtual LAN) का क्या फायदा है?",o:["Physical network बदलना","Logical network segments बनाना — same physical network पर अलग-अलग isolated virtual networks","Internet speed","Network password"],c:1,e:"VLAN एक physical switch पर multiple logical networks बनाता है — HR, Finance, IT departments अलग VLANs में isolated। Broadcast domains कम होते हैं, security बढ़ती है।"},
+{q:"IPv6 में address कितने bits का होता है?",o:["32 bits","64 bits","128 bits","256 bits"],c:2,e:"IPv6 addresses 128 bits के होते हैं — hexadecimal में 8 groups of 4 hex digits: 2001:0db8:85a3:0000:0000:8a2e:0370:7334। IPv4 के 32-bit से कहीं ज्यादा addresses possible हैं।"},
+{q:"Port Number 443 किस service के लिए reserved है?",o:["HTTP","FTP","HTTPS (SSL/TLS encrypted web traffic)","SSH"],c:2,e:"Well-known ports: 80=HTTP, 443=HTTPS, 22=SSH, 21=FTP, 25=SMTP, 53=DNS, 3306=MySQL, 5432=PostgreSQL। 443 पर HTTPS encrypted web traffic चलता है।"},
+
+// ══ SECTION 2: DATABASE ADVANCED (16-30) ══
+{q:"Database में Deadlock कैसे prevent किया जाता है?",o:["Database restart करके","Lock Ordering, Timeout, Deadlock Detection और Wound-Wait/Wait-Die schemes से","More RAM add करके","Tables delete करके"],c:1,e:"Deadlock Prevention: (1) Consistent lock ordering, (2) Timeout — deadlock detect होने पर oldest/youngest transaction abort, (3) Deadlock Detection algorithm — wait-for graph cycle detection।"},
+{q:"Materialized View और Regular View में क्या अंतर है?",o:["दोनों same हैं","Materialized View physically store होती है — precomputed results; Regular View virtual होती है — query on demand","Regular View faster है","Materialized View outdated है"],c:1,e:"Regular View = stored query, हर access पर fresh execute होती है। Materialized View = physically stored precomputed results — faster read लेकिन refresh करनी पड़ती है (data stale हो सकता है)।"},
+{q:"Database Partitioning के क्या types हैं?",o:["Only Horizontal","Horizontal (Row-based), Vertical (Column-based), और Range/Hash/List Partitioning","Only Vertical","Only Range"],c:1,e:"Partitioning types: Horizontal = rows को different partitions में, Vertical = columns को split करना, Range = range of values पर, Hash = hash function पर, List = specific values पर। Performance और manageability improve होती है।"},
+{q:"OLTP और OLAP में क्या अंतर है?",o:["दोनों same हैं","OLTP: Online Transaction Processing — daily operations, fast simple queries; OLAP: Online Analytical Processing — complex analytics, aggregations","OLAP daily operations के लिए","OLTP reporting के लिए"],c:1,e:"OLTP: small, fast transactions (bank transfers, orders) — normalized schema। OLAP: complex queries on historical data for analytics — denormalized star/snowflake schema। Data Warehouse में OLAP होता है।"},
+{q:"Graph Database किस type के problems के लिए best है?",o:["Simple tabular data","Highly connected data — social networks, recommendation engines, fraud detection","File storage","Simple CRUD operations"],c:1,e:"Graph Databases (Neo4j, Amazon Neptune) nodes और relationships directly store करते हैं — deep relationship queries जो relational DB में multiple JOINs लेती हैं, graph DB में efficient होती हैं।"},
+{q:"Time Series Database क्या होता है?",o:["Time-based passwords","Time-stamped data को efficiently store और query करने के लिए optimized — metrics, sensor data, financial data","Old database type","Backup database"],c:1,e:"Time Series DB (InfluxDB, TimescaleDB, Prometheus) time-stamped data के लिए optimized हैं — IoT sensor readings, server metrics, stock prices। High write throughput और time-based queries efficient।"},
+{q:"Database Replication क्यों की जाती है?",o:["Database delete करने के लिए","Data को multiple servers पर copy रखना — high availability, fault tolerance, read scalability","Database compress करना","Database encrypt करना"],c:1,e:"Replication: Primary (write) → Replicas (read). Benefits: (1) High Availability — primary fail हो तो replica failover, (2) Read Scalability — read requests multiple replicas में distribute, (3) Geographic distribution।"},
+{q:"PostgreSQL MySQL से कैसे अलग है?",o:["दोनों same हैं","PostgreSQL: advanced features (JSON, arrays, full-text search, window functions), ACID compliant, extensible; MySQL: simpler, faster reads, wider adoption","MySQL ज्यादा advanced है","PostgreSQL simple है"],c:1,e:"PostgreSQL object-relational, more SQL standards compliant, advanced data types (JSONB, arrays), better complex queries। MySQL historically faster simple reads, huge community। Modern PostgreSQL एक powerful choice है।"},
+{q:"NoSQL में 'Eventual Consistency' क्या है?",o:["Data कभी consistent नहीं होता","Time के साथ — new updates हो तो eventually सभी replicas same state पर आ जाएंगे, immediately नहीं","Strong Consistency","Real-time Consistency"],c:1,e:"Eventual Consistency: distributed system में writes को immediately सभी nodes reflect नहीं करते — कुछ time बाद सब nodes consistent होते हैं। Speed और availability के लिए strong consistency sacrifice। DynamoDB, Cassandra use करते हैं।"},
+{q:"Database의 'Write-Ahead Log (WAL)' क्या है?",o:["Log जो writes की speed बढ़ाए","Actual data modify करने से पहले changes को log file में write करना — crash recovery के लिए","Write access log","Write audit log"],c:1,e:"WAL (PostgreSQL) / Redo Log (MySQL) — data pages modify होने से पहले changes sequential log file में write होते हैं। Crash के बाद log replay करके database recover होता है। ACID durability का foundation।"},
+{q:"Columnar Database क्या होता है?",o:["Columns delete करने वाला","Data को rows की बजाय columns में store करना — analytics queries (aggregations) बहुत fast","Row-by-row database","Column count database"],c:1,e:"Columnar DB (Redshift, BigQuery, ClickHouse) data column-wise store करते हैं — SELECT avg(salary) जैसी query में केवल salary column scan होती है, सभी columns नहीं। Compression भी better होती है।"},
+{q:"Database Connection Pool में 'Pool Exhaustion' क्या है?",o:["Pool का water खत्म होना","सभी connections already in use हों — नई requests wait या fail करें","Pool deleted होना","Pool corrupted होना"],c:1,e:"Pool Exhaustion तब होता है जब maximum pool size तक सभी connections active हों। नई requests queue में wait करती हैं या timeout से fail होती हैं। Pool size carefully tune करना जरूरी है।"},
+{q:"SQL में Window Function क्या है?",o:["Browser window से related","Rows के set पर calculation करना बिना rows को group में collapse किए — OVER() clause","Window size set करना","Window OS query"],c:1,e:"Window Functions (ROW_NUMBER, RANK, LAG, LEAD, SUM OVER) rows के एक window पर calculation करती हैं — related rows की information access होती है। SELECT salary, AVG(salary) OVER(PARTITION BY dept)।"},
+{q:"Full-Text Search Regular LIKE Query से क्यों better है?",o:["Full-Text Search slower है","Inverted Index से words efficiently search होते हैं — relevance ranking, stemming, stopwords support","LIKE ज्यादा accurate है","दोनों same हैं"],c:1,e:"LIKE '%keyword%' full table scan करता है — slow। Full-Text Search Inverted Index maintain करता है — words → documents mapping। Relevance scoring, stemming (run=running), stopwords (the, a) भी handle होते हैं।"},
+{q:"Database में Optimistic vs Pessimistic Locking में क्या अंतर है?",o:["दोनों same हैं","Pessimistic: data access करते समय lock लो; Optimistic: lock नहीं, commit पर check करो conflict तो है","Optimistic: lock early","Pessimistic: check at end"],c:1,e:"Pessimistic Locking: row को read करते ही lock — no concurrent modifications (SELECT FOR UPDATE)। Optimistic Locking: no lock — commit पर version check करो, conflict हो तो retry। Low conflict में Optimistic faster।"},
+
+// ══ SECTION 3: MOBILE DEVELOPMENT (31-45) ══
+{q:"Android Activity Lifecycle में onCreate() के बाद कौन सा method call होता है?",o:["onStop()","onStart() — activity visible होने लगती है","onDestroy()","onPause()"],c:1,e:"Android Activity Lifecycle: onCreate() → onStart() → onResume() → [Activity Running] → onPause() → onStop() → onDestroy()। onStart() में activity visible होती है but not interactive।"},
+{q:"Android में Intent क्या है?",o:["User intent","Components के बीच messaging object — activities start करना, services start करना, broadcasts send करना","Network intent","Database intent"],c:1,e:"Intent Android components (Activities, Services, BroadcastReceivers) के बीच communication का mechanism है। Explicit Intent (specific component) और Implicit Intent (action specify करना, system best match ढूंढे)।"},
+{q:"iOS में ARC (Automatic Reference Counting) क्या करता है?",o:["File counting","Objects के references को automatically track करके memory manage करना — zero references होने पर object deallocate","Array reference count","Application Reference Check"],c:1,e:"ARC Swift/Objective-C में memory management करता है — हर object के references count करता है। जब count 0 हो तो memory automatically free। Manual malloc/free की जरूरत नहीं।"},
+{q:"React Native, Flutter से कैसे अलग है?",o:["दोनों same हैं","React Native: JavaScript से native components; Flutter: Dart से own rendering engine (Skia/Impeller) — no native components","Flutter JavaScript use करता है","React Native Dart use करता है"],c:1,e:"React Native JavaScript bridge से actual native UI components render करता है। Flutter अपना rendering engine use करता है — native components नहीं, खुद draw करता है। Flutter more consistent UI across platforms।"},
+{q:"APK और AAB में क्या अंतर है?",o:["दोनों same हैं","APK: complete installable package; AAB (Android App Bundle): Google Play optimized format — device-specific APKs generate होती हैं","AAB पुराना है","APK Google Play के लिए"],c:1,e:"APK (Android Package) installable है — सभी resources included। AAB (Android App Bundle) Google Play पर upload होता है — Play Store हर device के लिए optimized smaller APK generate करता है।"},
+{q:"Push Notification कैसे काम करती है Mobile में?",o:["App directly device को message भेजता है","Server → Push Notification Service (FCM/APNs) → Device — background में message deliver होता है","Email notification","SMS notification"],c:1,e:"Push Notification flow: Your Server → FCM (Android) या APNs (iOS) → Device। App को run नहीं होना चाहिए। Firebase Cloud Messaging (FCM) Google का service है।"},
+{q:"Mobile App में 'Deep Link' क्या है?",o:["Deep internet link","URL से specific app screen directly open करना — myapp://product/123 जैसा custom URL scheme","Deep copy link","Deep network link"],c:1,e:"Deep Links users को app के specific screen पर directly navigate करते हैं। Custom URI schemes (myapp://) और Universal Links (HTTPS based) types हैं। Email campaigns, social sharing में useful।"},
+{q:"Android में RecyclerView, ListView से क्यों better है?",o:["RecyclerView पुरानी है","ViewHolder pattern enforce — smooth scrolling, View recycling, flexible layouts (grid, staggered), better performance","ListView ज्यादा smooth है","दोनों same performance"],c:1,e:"RecyclerView ViewHolder pattern mandatory है — off-screen views recycle होती हैं, no wasted view creation। LayoutManager swap करके Grid/List/Staggered layouts। Item animations built-in। ListView deprecated।"},
+{q:"iOS में CoreData क्या है?",o:["Data encryption framework","Local data persistence framework — object graph management, SQLite/binary/in-memory stores","Core networking framework","Core UI framework"],c:1,e:"CoreData iOS/macOS का object graph और persistence framework है — Swift objects को SQLite (default) में persist करता है। Relationships, filtering, sorting support। Lightweight alternatives: Realm, SQLite.swift।"},
+{q:"Mobile App का 'Crash Rate' कैसे measure होता है?",o:["Crashes / Total Downloads","Crashes / Total Sessions — % of sessions that ended in crash","Crashes / Total Users","Daily crashes only"],c:1,e:"Crash Rate = (Total Crashes / Total Sessions) × 100। Industry benchmark < 1%। Firebase Crashlytics जैसे tools real-time crash reporting देते हैं — stack traces, device info, user journey।"},
+{q:"Android में 'ProGuard/R8' क्यों use होता है?",o:["App को debug करना","Code shrink करना, obfuscate करना, optimize करना — APK size कम, reverse engineering मुश्किल","App को test करना","App को sign करना"],c:1,e:"R8 (ProGuard का successor) code shrinking (unused code remove), obfuscation (rename classes/methods to a,b,c), optimization करता है। Release builds में smaller, harder to decompile।"},
+{q:"iOS SwiftUI और UIKit में क्या अंतर है?",o:["दोनों same हैं","SwiftUI: declarative, modern, less code, live previews; UIKit: imperative, mature, more control, older","UIKit newer है","SwiftUI imperative है"],c:1,e:"UIKit (2008): Imperative — 'how to build UI' step by step, more verbose। SwiftUI (2019): Declarative — 'what UI should look like', state drives UI। SwiftUI modern approach लेकिन UIKit अभी भी complete control देता है।"},
+{q:"Mobile में 'Jank' क्या होता है?",o:["Network error","60FPS से कम frame rate के कारण UI stuttering/lag — smooth animation miss होना","App crash","Memory error"],c:1,e:"Jank frame rendering में delays से होता है। Mobile displays 60Hz (16.67ms per frame)। अगर main thread block हो तो frames drop होते हैं — choppy scrolling, laggy animations। Async operations main thread पर नहीं होने चाहिए।"},
+{q:"App Store और Play Store Review Process में Security Check कैसे होता है?",o:["कोई check नहीं","Automated scanning (malware, APIs) + Human review — policies violation, privacy, content guidelines check","Only manual review","Only speed test"],c:1,e:"Apple App Store: 1-7 days human review + automated checks — strict guidelines। Google Play: faster, more automated (Play Protect, policy scanning) + selective human review। Violations पर rejection या removal।"},
+{q:"Mobile App में Battery Optimization किसलिए important है?",o:["App को fast बनाना","Background tasks, wake locks, GPS use को minimize करना — user experience और device battery life","Memory optimization","Network optimization"],c:1,e:"Battery drain से users app uninstall करते हैं। Best practices: Doze mode respect करो, background sync batch करो, location updates minimize, wakelocks avoid। Android: WorkManager, iOS: Background App Refresh।"},
+
+// ══ SECTION 4: PROGRAMMING PARADIGMS & TOOLS (46-60) ══
+{q:"Test Driven Development (TDD) का क्या principle है?",o:["Testing बाद में करना","पहले failing test लिखो, फिर code लिखो test pass करने के लिए, फिर refactor करो — Red-Green-Refactor cycle","Tests optional हैं","Documentation पहले"],c:1,e:"TDD: (1) Red — failing test लिखो जो feature describe करे, (2) Green — minimum code लिखो test pass करने के लिए, (3) Refactor — code clean करो। Tests always up-to-date documentation बन जाते हैं।"},
+{q:"Behavior Driven Development (BDD) में Gherkin syntax क्या है?",o:["German language","Given-When-Then format — human-readable test scenarios in plain language","Graph language","Database query language"],c:1,e:"Gherkin BDD में natural language test scenarios लिखने का format है: Given (context), When (action), Then (expected outcome)। Non-technical stakeholders भी scenarios read कर सकते हैं। Cucumber framework use करता है।"},
+{q:"SOLID Principles में 'O' (Open/Closed Principle) क्या कहता है?",o:["Objects Open होने चाहिए","Software entities extension के लिए open हों लेकिन modification के लिए closed — new functionality add हो पर existing code न बदले","Open source होना चाहिए","Objects close होने चाहिए"],c:1,e:"OCP: Existing working code modify करने से bugs introduce होने का risk है। इसके बजाय inheritance या composition से extend करो। Strategy Pattern, Decorator Pattern OCP follow करते हैं।"},
+{q:"Decorator Design Pattern क्या करता है?",o:["UI decoration","Object को dynamically new behaviors/responsibilities add करना without modifying class","Code format करना","Database decoration"],c:1,e:"Decorator Pattern object को wrap करके additional behavior add करता है। Java I/O streams, Python decorators (@), middleware chains सब Decorator Pattern use करते हैं। Inheritance से more flexible।"},
+{q:"Observer Design Pattern का use case क्या है?",o:["Object observe करना","One-to-many dependency — subject state change होने पर सभी observers automatically notify होते हैं","Code watching","Database observer"],c:1,e:"Observer Pattern: Event listeners, Pub-Sub systems, MVC में View updates। React के useState/useEffect, JavaScript EventListeners, RxJS Observables — सब Observer Pattern पर based हैं।"},
+{q:"Proxy Design Pattern क्या है?",o:["Network proxy","Another object के लिए surrogate/placeholder — access control, lazy loading, logging, caching add करना","Code proxy","Data proxy"],c:1,e:"Proxy Pattern original object को wrap करता है — Virtual Proxy (lazy loading), Protection Proxy (access control), Remote Proxy (remote object), Caching Proxy। Spring AOP, Hibernate lazy loading Proxy use करते हैं।"},
+{q:"Builder Design Pattern किसलिए use होता है?",o:["Software build करना","Complex objects को step-by-step construct करना — same process से different representations","Build tool","CI/CD builder"],c:1,e:"Builder Pattern complex objects को fluent interface से construct करता है। Email.Builder().to('x').subject('y').body('z').build() — optional parameters handle करना easy। StringBuilder, Lombok @Builder examples हैं।"},
+{q:"Functional Programming में 'Immutability' का क्या फायदा है?",o:["Memory waste होती है","Thread safety — no side effects, easy reasoning, predictable behavior, simpler testing","Programs slow होते हैं","More memory use"],c:1,e:"Immutable data concurrent programs में thread-safe होता है — no race conditions। Functions pure रहती हैं — same input always same output। Testing, debugging आसान। Undo/redo trivial (previous state store)।"},
+{q:"Event-Driven Architecture में 'Event Broker' क्या है?",o:["Event organizer","Events को producers से consumers तक route करने वाला middleware — Kafka, RabbitMQ","Event scheduler","Network broker"],c:1,e:"Event Broker producers (जो events publish करते हैं) और consumers (जो events process करते हैं) के बीच decouple करता है। Topics/Queues में events store होते हैं। Kafka (log-based), RabbitMQ (message queue) popular brokers हैं।"},
+{q:"Domain Driven Design (DDD) में 'Bounded Context' क्या है?",o:["Limited domain","Domain model की boundary — अलग-अलग contexts में same term का अलग meaning हो सकता है","Database boundary","Network boundary"],c:1,e:"Bounded Context: एक domain का 'Order' concept logistics में अलग meaning रखता है vs. billing में। हर bounded context का अपना model, language, और implementation होती है। Microservices अक्सर bounded contexts पर align होती हैं।"},
+{q:"Monorepo vs Polyrepo में क्या अंतर है?",o:["दोनों same हैं","Monorepo: सब projects एक Git repo में; Polyrepo: हर project अलग repo — different tradeoffs in tooling, sharing, autonomy","Polyrepo ज्यादा modern","Monorepo पुराना approach"],c:1,e:"Monorepo (Google, Meta use करते हैं): easy code sharing, atomic changes, consistent tooling — but scaling challenges। Polyrepo: team autonomy, independent deployments, smaller repos — but dependency management complex।"},
+{q:"Software Architecture में 'Hexagonal Architecture' (Ports and Adapters) क्या है?",o:["6-sided software design","Business logic को external concerns (DB, UI, APIs) से isolate करना — ports define interfaces, adapters implement करते हैं","Hexagon UI design","6 layer architecture"],c:1,e:"Hexagonal Architecture (Alistair Cockburn): Core domain logic center में — Ports (interfaces) define करती हैं कैसे communicate करें। Adapters उन ports implement करते हैं (DB adapter, REST adapter, CLI adapter)। Testing easy — ports mock करो।"},
+{q:"'Convention over Configuration' principle क्या कहता है?",o:["Configurations ज्यादा लिखो","Sensible defaults provide करो — developer केवल convention से अलग हो तो configure करे। Less boilerplate","Only conventions, no config","Configurations avoid करो"],c:1,e:"CoC (Ruby on Rails popularized): framework sensible defaults assume करता है — folder structure, naming conventions follow करो तो configure नहीं करना पड़ता। Rails में model name 'User' → table name 'users' automatic।"},
+{q:"Pair Programming के क्या फायदे हैं?",o:["दो computers use होते हैं","Real-time code review, knowledge sharing, fewer bugs, Driver/Navigator roles — quality और learning दोनों बढ़ते हैं","Programming slow होती है","Only for beginners"],c:1,e:"Pair Programming: Driver (code लिखता है) + Navigator (review, strategy सोचता है)। Benefits: bugs early catch, knowledge transfer, better design decisions, collective code ownership। Cost: 2 developers per task।"},
+{q:"'Boy Scout Rule' Programming में क्या कहता है?",o:["Boys के लिए programming rule","Code को हमेशा उससे बेहतर छोड़ो जैसा तुमने पाया था — continuous small improvements","Scout software","Team rule"],c:1,e:"Boy Scout Rule (Uncle Bob Martin): हर बार code touch करो तो एक small improvement करो — rename unclear variable, extract method, remove dead code। Over time codebase organically clean होता जाता है।"},
+
+// ══ SECTION 5: COMPUTER SCIENCE FUNDAMENTALS (61-75) ══
+{q:"Amortized Analysis क्या है Algorithm Analysis में?",o:["Average case analysis","Expensive operations को sequence of operations में spread करके per-operation average cost analyze करना","Worst case analysis","Best case analysis"],c:1,e:"Amortized Analysis: कभी-कभी expensive operations (array resize) को उनके cheap neighbors में spread करके true average cost find करते हैं। Dynamic array का push: occasionally O(n) resize, amortized O(1)।"},
+{q:"Trie Data Structure किसलिए use होता है?",o:["Number sorting","String prefix operations — autocomplete, spell check, dictionary में words efficiently store और search करना","Image processing","Graph traversal"],c:1,e:"Trie (Prefix Tree) strings को character-by-character store करता है। Search/Insert O(m) where m = string length। Autocomplete (type 'app' → 'apple', 'application' suggest), spell checking में optimal।"},
+{q:"Bloom Filter क्या है?",o:["Flower-based algorithm","Probabilistic data structure — element probably in set है या definitely NOT in set — false positives possible, no false negatives","Exact membership test","Sorting algorithm"],c:1,e:"Bloom Filter space-efficient probabilistic structure — multiple hash functions, bit array। 'Definitely not in set' 100% accurate। 'Probably in set' कभी-कभी false positive। Databases, caches, spell checkers में use।"},
+{q:"NP-Complete problem का क्या मतलब है?",o:["No Problem = easy","NP में है और NP-Hard भी है — हर NP problem इसमें polynomial time reduce हो सकती है","Not Possible problem","Network Problem"],c:1,e:"NP-Complete: (1) Solution verify करना polynomial time में possible, (2) सभी NP problems इसमें reduce होती हैं। Travelling Salesman, Graph Coloring, Knapsack NP-Complete हैं। Efficient exact solution unknown।"},
+{q:"Divide and Conquer Algorithm Strategy क्या है?",o:["Problem को delete करना","Problem को smaller subproblems में divide करो, independently solve करो, results combine करो","Divide RAM","Network divide"],c:1,e:"Divide and Conquer: Merge Sort (divide array, sort halves, merge), Binary Search (divide search space), Quick Sort, FFT — सब इस paradigm पर based हैं। Recurrence relations से complexity analyze होती है।"},
+{q:"Topological Sort किस type के graph पर applicable है?",o:["Undirected graphs","Directed Acyclic Graph (DAG) — nodes को linear order में arrange करना जहाँ every edge u→v में u, v से पहले आए","Cyclic graphs","Weighted graphs"],c:1,e:"Topological Sort DAG पर काम करता है — task scheduling (dependency order), build systems (Makefile), course prerequisites। Cycle होने पर topological sort possible नहीं।"},
+{q:"Space Complexity का क्या मतलब है?",o:["Program का file size","Algorithm को run करने के लिए required memory — input size के function के रूप में","Disk space","Network space"],c:1,e:"Space Complexity measures additional memory algorithm use करता है। O(1) constant space, O(n) linear space। In-place algorithms (Bubble Sort) O(1) extra space। Merge Sort O(n) extra space चाहता है।"},
+{q:"Cache Invalidation क्यों hard problem है?",o:["Cache delete करना hard है","Cached data कब stale हो गया यह decide करना और correctly invalidate करना — 'one of the two hard problems in CS'","Cache access hard है","Cache create करना hard है"],c:1,e:"Phil Karlton: 'There are only two hard things in CS: cache invalidation and naming things।' Cache too aggressive invalidate → performance loss। Too conservative → stale data shown। Correct balance find करना genuinely hard।"},
+{q:"Consistent Hashing किसलिए use होती है?",o:["Encryption hashing","Distributed systems में nodes add/remove होने पर minimum data remapping — load balancing","Password hashing","File hashing"],c:1,e:"Consistent Hashing: Regular hashing में server add/remove होने पर most keys reassign होते हैं। Consistent Hashing में ring structure से केवल neighboring keys move होते हैं। CDNs, Distributed Caches (Cassandra, DynamoDB) use करते हैं।"},
+{q:"Paxos Algorithm किसलिए use होता है?",o:["Graph algorithm","Distributed systems में consensus — multiple nodes agreement पर reach करें even if some fail","Sorting algorithm","Path finding"],c:1,e:"Paxos distributed consensus protocol है — fault-tolerant में value पर agreement। Proposers, Acceptors, Learners roles। Complex लेकिन foundational। Raft (simpler alternative) अधिक commonly implemented है।"},
+{q:"Two Phase Commit (2PC) क्या है?",o:["Two coding phases","Distributed transaction protocol — Prepare phase (all nodes ready?) + Commit phase (all commit or all abort)","Two database phases","Two server phases"],c:1,e:"2PC: Coordinator सभी participants को PREPARE भेजता है — सब ready हों तो COMMIT, कोई भी fail हो तो ABORT। Atomicity across distributed nodes। Blocking protocol — coordinator fail हो तो participants wait।"},
+{q:"Idempotency क्यों important है Distributed Systems में?",o:["Performance के लिए","Network failures पर same request multiple times retry safe हो — duplicate operations से no side effects","Memory के लिए","Speed के लिए"],c:1,e:"Network में requests lost/duplicated हो सकती हैं। Idempotent operations: retry safe हैं — DELETE /users/123 ten times = same result as once। Non-idempotent: POST /orders ten times = 10 orders। Idempotency keys use करें।"},
+{q:"Circuit Breaker Pattern Microservices में क्यों use होता है?",o:["Electric circuit","Failing service को calls से protect करना — failure threshold पर 'open' हो जाए, recovery पर 'close' हो","Network protection","Database protection"],c:1,e:"Circuit Breaker (Netflix Hystrix): Closed (normal) → Open (service failing, fast fail) → Half-Open (test if recovered). Cascading failures prevent होती हैं — failing service को overwhelm नहीं करते।"},
+{q:"Saga Pattern distributed transactions में क्या है?",o:["Long story pattern","Long-running distributed transaction को sequence of local transactions में break करना — compensating transactions से rollback","Database saga","Network saga"],c:1,e:"Saga: Distributed transaction को independent local transactions में divide — each publishes event। Failure पर compensating transactions rollback करती हैं। Choreography (event-based) या Orchestration (central coordinator) styles।"},
+{q:"Service Mesh क्या है Microservices में?",o:["Mesh network","Infrastructure layer जो service-to-service communication handle करे — traffic management, mTLS, observability — sidecar proxies","Cloud mesh","Data mesh"],c:1,e:"Service Mesh (Istio, Linkerd): हर service के साथ sidecar proxy deploy होता है — load balancing, circuit breaking, mTLS encryption, distributed tracing — application code change किए बिना। Control plane + Data plane।"},
+
+// ══ SECTION 6: LINUX & SHELL SCRIPTING (76-85) ══
+{q:"Linux में 'inode exhaustion' क्या problem है?",o:["Disk space full","Disk space हो लेकिन नई files create न हो सकें — inodes खत्म हो गए हों","RAM full","CPU full"],c:1,e:"हर file/directory के लिए एक inode चाहिए। Partition पर inode count fixed होता है (format time पर set)। लाखों small files (email servers, temp files) inodes exhaust कर देती हैं। df -i से check करो।"},
+{q:"Shell में 'set -e' और 'set -u' flags क्या करते हैं?",o:["Script enable/disable","set -e: error पर script exit करो; set -u: undefined variable use हो तो exit करो — safer scripts","Set speed","Set user"],c:1,e:"set -e: किसी command का non-zero exit code → script immediately exit। set -u: unset variable reference करने पर error। set -o pipefail: pipe में failure detect। Robust shell scripts के लिए #!/bin/bash + set -euo pipefail।"},
+{q:"'awk' command Linux में किसलिए use होता है?",o:["Network tool","Pattern scanning और text processing tool — fields extract करना, calculations, filtering","File compression","Process management"],c:1,e:"awk powerful text processing tool है — columns/fields process: awk '{print $1, $3}' file.txt। Patterns: awk '/error/ {print}' log। Calculations: awk '{sum+=$2} END{print sum}'। csv, log processing में excellent।"},
+{q:"'sed' command का primary use क्या है?",o:["Sed music tool","Stream Editor — text में search-replace, delete, insert करना non-interactively","System editor","Security editor"],c:1,e:"sed stream editor है — sed 's/old/new/g' file.txt (global replace), sed '/pattern/d' (delete matching lines), sed -n '5,10p' (print lines 5-10)। In-place edit: sed -i। Pipes में powerful।"},
+{q:"Linux में 'strace' tool किसलिए use होता है?",o:["Storage trace","Process के system calls और signals को trace करना — debugging, performance analysis","Network trace","Stack trace"],c:1,e:"strace process के हर system call को intercept और print करता है — strace ls। Debugging में 'permission denied', 'file not found' find करने के लिए। Production debugging में ltrace (library calls) भी है।"},
+{q:"Cgroup (Control Groups) Linux में क्या है?",o:["Code groups","Processes के groups को resource limits (CPU, Memory, I/O) assign करने का mechanism — Docker इसे use करता है","Network groups","User groups"],c:1,e:"Cgroups Linux kernel feature है — process groups को CPU, memory, disk I/O limits assign करता है। Docker containers cgroups और namespaces से isolation achieve करते हैं।"},
+{q:"Linux Namespace क्या provide करता है?",o:["Variable namespace","Process को isolated view देना — अपना PID space, network, filesystem mount points, user IDs","Function namespace","Class namespace"],c:1,e:"Linux Namespaces isolation provide करते हैं: PID namespace (isolated process tree), Network namespace (own network interfaces), Mount namespace (own filesystem view), User namespace। Docker containers namespaces use करते हैं।"},
+{q:"'lsof' command का क्या use है?",o:["List of files permanently","List Open Files — currently open files और network connections देखना","List old files","Log search only files"],c:1,e:"lsof (List Open Files) — lsof -i :8080 (port 8080 use करने वाले processes), lsof -p PID (process के open files), lsof | grep deleted (deleted but still open files)। Debugging में very useful।"},
+{q:"Linux में 'LD_PRELOAD' trick क्या है?",o:["Library download","Application load होने से पहले custom shared library inject करना — function override करना possible","Link download","Library delete"],c:1,e:"LD_PRELOAD environment variable set करने से specified library normal loading से पहले load होती है — functions override हो सकते हैं। Security testing, debugging, mocking में use। Security risk भी है।"},
+{q:"Systemd क्या है Linux में?",o:["System delete","Modern Linux init system — services manage करना, parallel boot, dependency resolution, journald logging","System download","System disk"],c:1,e:"Systemd Linux का init process (PID 1) है — boot पर services start, stop, restart manage करता है। systemctl start/stop/enable/status। journald से centralized logs। cgroups integration। SysV init को replace किया।"},
+
+// ══ SECTION 7: CUTTING EDGE & EMERGING (86-100) ══
+{q:"WebGPU, WebGL से कैसे different है?",o:["WebGPU पुराना है","Modern GPU API — compute shaders, better performance, direct GPU compute access — WebGL से lower level और more powerful","WebGL ज्यादा modern है","दोनों same हैं"],c:1,e:"WebGPU (2023, successor to WebGL): Modern GPU APIs (Vulkan, Metal, DX12) पर based। Compute shaders support, better multi-threading, lower CPU overhead। AI/ML in browser, advanced graphics के लिए।"},
+{q:"LLM में 'Context Window' क्या है?",o:["Application window","Maximum tokens (words) जो model एक time में process कर सकता है — longer context = more expensive","Display window","Context menu"],c:1,e:"Context Window = model की memory। GPT-4: 128K tokens, Claude: 200K tokens। Long documents, conversations, code analysis के लिए large context जरूरी। Tokens = ~4 characters। Processing cost context size के साथ increases।"},
+{q:"Retrieval Augmented Generation (RAG) क्या है?",o:["Random AI Generation","LLM को generate करने से पहले relevant documents retrieve करना — hallucinations कम, up-to-date information","Regular AI Generation","Rapid AI Generation"],c:1,e:"RAG: Query → Relevant docs retrieve करो (vector DB से) → LLM को context के साथ query भेजो → Grounded answer generate। LLM को fine-tune नहीं करना पड़ता, knowledge update करना easy।"},
+{q:"Vector Database किसलिए use होता है?",o:["Number storage","High-dimensional vectors (embeddings) store और similarity search — AI applications, semantic search","Simple key-value","Graph storage"],c:1,e:"Vector DB (Pinecone, Weaviate, Qdrant) AI embeddings store करते हैं — 'semantically similar' documents find करते हैं। RAG, recommendation systems, image similarity search में essential। FAISS, HNSW indexing algorithms।"},
+{q:"Fine-tuning vs RAG में कब क्या use करें?",o:["दोनों same हैं","Fine-tuning: model behavior/style change करना, domain-specific language; RAG: up-to-date information inject करना, reduce hallucinations","RAG always better","Fine-tuning always better"],c:1,e:"Fine-tuning: domain tone/style, specific task optimization, embedded knowledge — expensive, static। RAG: dynamic knowledge, long documents, source citations — cheaper, updatable। Production में often combination।"},
+{q:"Homomorphic Encryption क्या है?",o:["Home encryption","Encrypted data पर computations करना बिना decrypt किए — result decrypt होने पर correct answer","Homogeneous encryption","Network encryption"],c:1,e:"Homomorphic Encryption: encrypt(a) + encrypt(b) = encrypt(a+b)। Cloud provider data decrypt किए बिना calculations कर सकता है। Privacy-preserving ML, secure cloud computing। Currently still computationally expensive।"},
+{q:"Differential Privacy क्या है?",o:["Different passwords","Statistical noise add करके individual data privacy protect करना while allowing aggregate analysis","Different encryption","Differential backup"],c:1,e:"Differential Privacy: query results में calibrated random noise add करता है — individual cannot be identified लेकिन aggregate statistics accurate रहती हैं। Apple, Google telemetry में, US Census use करते हैं।"},
+{q:"Federated Learning क्या है?",o:["Federation network training","Data centralize किए बिना ML model train करना — model devices पर train होता है, only gradients share होते हैं","Federal government ML","Federated database"],c:1,e:"Federated Learning: Data user devices पर रहता है — model updates (gradients) central server से aggregate होते हैं। Privacy preserved। Google Gboard keyboard prediction, healthcare में use।"},
+{q:"Zero-Knowledge Proof क्या है?",o:["No knowledge needed","Prover, Verifier को prove करे कि वो secret जानता है — without revealing the secret itself","Zero security","Knowledge database"],c:1,e:"ZK-Proof: 'मैं password जानता हूँ' prove करो बिना password बताए। ZK-SNARKs, ZK-STARKs। Blockchain (Zcash), privacy-preserving authentication में। Mathematically fascinating cryptographic concept।"},
+{q:"WASM Component Model क्या है?",o:["Computer components","WebAssembly modules को language-agnostic interfaces से compose करने का standard — any language → any language interop","Web components","CSS components"],c:1,e:"WASM Component Model: different languages (Rust, Python, Go) में लिखे WASM modules को type-safe interfaces से compose करना। 'Universal binary' vision — compile once, run anywhere, any language।"},
+{q:"eBPF (extended Berkeley Packet Filter) क्या है?",o:["Email Berkeley Filter","Linux kernel में safely custom programs run करना without kernel modules — networking, security, observability","Extended backup filter","Embedded browser filter"],c:1,e:"eBPF kernel को sandbox में custom programs run करने देता है — no kernel recompile। Network packet filtering, performance tracing (syscalls), security monitoring। Cilium (networking), Falco (security), Pixie (observability) eBPF use करते हैं।"},
+{q:"Confidential Computing क्या है?",o:["Confidential data","Data in use को protect करना — hardware-based Trusted Execution Environments (TEEs) में sensitive computations","Confident computing","Secret computing"],c:1,e:"Confidential Computing: Data at rest (encryption) और in transit (TLS) protected। Data in use → TEEs (Intel SGX, AMD SEV, ARM TrustZone) isolated memory में process होता है — cloud provider भी access नहीं कर सकता।"},
+{q:"Platform Engineering क्या है?",o:["Platform game development","Internal Developer Platform बनाना — developers को self-service infrastructure, tooling, workflows provide करना","Engineering platform purchase","Platform testing"],c:1,e:"Platform Engineering: Dedicated team Internal Developer Platform (IDP) build करती है — Golden paths (opinionated ways to deploy/monitor), self-service environments, standardized tooling। Developer productivity बढ़ती है, cognitive load कम।"},
+{q:"GitOps में ArgoCD क्या करता है?",o:["Argument CD","Git repository को Kubernetes cluster का desired state मानकर continuously sync करना","Archive CD","Automated resource CD"],c:1,e:"ArgoCD Kubernetes GitOps operator है — Git repo में declared state को cluster में continuously apply करता है। Drift detect होने पर alert या auto-sync। PR merge → automatic deployment। Rollback = revert Git commit।"}
+];
+
+let qs=[],ci=0,cor=0,wr=0,answered=false;
+
+function sh(a){
+  const b=[...a];
+  for(let i=b.length-1;i>0;i--){
+    const j=0|Math.random()*(i+1);
+    [b[i],b[j]]=[b[j],b[i]];
+  }
+  return b;
+}
+
+function prep(){
+  qs=sh(RAW).map(q=>{
+    const idx=sh([0,1,2,3]);
+    return{q:q.q,o:idx.map(i=>q.o[i]),c:idx.indexOf(q.c),e:q.e};
+  });
+}
+
+function startQuiz(){
+  document.getElementById('splashScreen').style.display='none';
+  document.getElementById('quizScreen').style.display='block';
+  prep();ci=0;cor=0;wr=0;
+  loadQ();
+}
+
+function loadQ(){
+  answered=false;
+  const q=qs[ci];
+  document.getElementById('progFill').style.width=(ci/100*100)+'%';
+  document.getElementById('qLbl').textContent=(ci+1)+'/100';
+  document.getElementById('scorePill').textContent='Score: '+cor;
+  document.getElementById('qBadge').textContent='प्रश्न '+(ci+1)+' / 100';
+  document.getElementById('qText').textContent=q.q;
+  const w=document.getElementById('owrap');
+  w.innerHTML='';
+  ['A','B','C','D'].forEach((L,i)=>{
+    const b=document.createElement('button');
+    b.className='obtn';
+    b.innerHTML=`<span class="oltr">${L}</span><span class="otxt">${q.o[i]}</span>`;
+    b.onclick=()=>pick(i);
+    w.appendChild(b);
+  });
+  document.getElementById('epanel').classList.remove('show');
+  document.getElementById('nwrap').classList.remove('show');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function pick(sel){
+  if(answered)return;
+  answered=true;
+  const q=qs[ci];
+  const bs=document.querySelectorAll('.obtn');
+  bs.forEach(b=>b.disabled=true);
+  if(sel===q.c){
+    bs[sel].classList.add('correct');
+    bs[sel].insertAdjacentHTML('beforeend','<span class="oico">✅</span>');
+    cor++;
+  } else {
+    bs[sel].classList.add('wrong');
+    bs[sel].insertAdjacentHTML('beforeend','<span class="oico">❌</span>');
+    bs[q.c].classList.add('correct');
+    bs[q.c].insertAdjacentHTML('beforeend','<span class="oico">✅</span>');
+    wr++;
+  }
+  document.getElementById('sC').textContent=cor;
+  document.getElementById('sW').textContent=wr;
+  document.getElementById('sP').textContent=Math.round(cor/(ci+1)*100)+'%';
+  document.getElementById('scorePill').textContent='Score: '+cor;
+  document.getElementById('ectxt').textContent=q.e;
+  document.getElementById('epanel').classList.add('show');
+  document.getElementById('nbtn').textContent=ci===99?'🏆 परिणाम देखें':'अगला सवाल →';
+  document.getElementById('nwrap').classList.add('show');
+  setTimeout(()=>document.getElementById('epanel').scrollIntoView({behavior:'smooth',block:'nearest'}),250);
+}
+
+function nextQ(){
+  ci++;
+  if(ci>=100){showResult();return;}
+  loadQ();
+}
+
+function showResult(){
+  document.getElementById('quizScreen').style.display='none';
+  const rs=document.getElementById('rscreen');
+  rs.classList.add('show');
+  const pct=Math.round(cor/100*100);
+  document.getElementById('rBig').textContent=cor+'/100';
+  document.getElementById('rPct').textContent=pct+'% सफलता';
+  document.getElementById('rC').textContent=cor;
+  document.getElementById('rW').textContent=wr;
+  let emoji,grade,color,msg;
+  if(pct>=90){emoji='🏆';grade='OUTSTANDING!';color='#f59e0b';msg='अविश्वसनीय प्रदर्शन! आप Computer Science के expert हैं!';}
+  else if(pct>=75){emoji='🌟';grade='EXCELLENT!';color='#10b981';msg='शानदार! Deep knowledge है — बहुत अच्छा प्रदर्शन!';}
+  else if(pct>=60){emoji='🚀';grade='VERY GOOD!';color='#f97316';msg='बहुत बढ़िया! Concepts clear हैं — और practice से expert बनेंगे!';}
+  else if(pct>=40){emoji='👏';grade='KEEP GOING!';color='#818cf8';msg='अच्छी शुरुआत! Explanations ध्यान से पढ़ें — improvement आएगी!';}
+  else{emoji='💪';grade='START FRESH!';color='#ef4444';msg='हर expert पहले beginner था — basics से शुरू करें!';}
+  document.getElementById('rEmoji').textContent=emoji;
+  const gb=document.getElementById('rGrade');
+  gb.textContent=grade;
+  gb.style.cssText=`background:${color}22;color:${color};border:1px solid ${color}44;`;
+  document.getElementById('rMsg').textContent=msg;
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function restartQuiz(){
+  cor=0;wr=0;ci=0;
+  document.getElementById('rscreen').classList.remove('show');
+  document.getElementById('quizScreen').style.display='block';
+  prep();loadQ();
+}
+</script>
+</body>
+</html>

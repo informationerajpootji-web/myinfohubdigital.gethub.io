@@ -1,0 +1,1454 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Computer Software MCQ Quiz - Set 2 (100 New Questions)</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;600;700&family=Poppins:wght@400;600;700&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Noto Sans Devanagari', 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #1a0533, #0d2137, #0a3d2e);
+    min-height: 100vh;
+    color: #fff;
+    padding: 20px;
+  }
+  .container { max-width: 820px; margin: 0 auto; }
+  .header {
+    text-align: center;
+    padding: 28px 20px 18px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 20px;
+    margin-bottom: 22px;
+    border: 1px solid rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+  }
+  .header h1 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    background: linear-gradient(90deg, #43e97b, #38f9d7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 5px;
+  }
+  .header p { color: #aaa; font-size: 0.88rem; }
+  .set-badge {
+    display: inline-block;
+    background: linear-gradient(90deg, #43e97b33, #38f9d733);
+    border: 1px solid #43e97b55;
+    color: #43e97b;
+    padding: 4px 14px;
+    border-radius: 50px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+  .stats-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255,255,255,0.06);
+    border-radius: 14px;
+    padding: 14px 20px;
+    margin-bottom: 20px;
+    border: 1px solid rgba(255,255,255,0.1);
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .stat-item { text-align: center; }
+  .stat-label { font-size: 0.7rem; color: #999; text-transform: uppercase; letter-spacing: 1px; }
+  .stat-value { font-size: 1.35rem; font-weight: 700; color: #43e97b; }
+  .progress-wrap {
+    width: 100%;
+    background: rgba(255,255,255,0.1);
+    border-radius: 50px;
+    height: 10px;
+    overflow: hidden;
+    margin-top: 6px;
+  }
+  .progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, #43e97b, #38f9d7);
+    border-radius: 50px;
+    transition: width 0.5s ease;
+    width: 0%;
+  }
+  .question-card {
+    background: rgba(255,255,255,0.05);
+    border-radius: 20px;
+    padding: 28px;
+    border: 1px solid rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    margin-bottom: 20px;
+    animation: fadeIn 0.35s ease;
+  }
+  @keyframes fadeIn { from { opacity:0; transform:translateY(12px);} to {opacity:1; transform:translateY(0);} }
+  .question-number { font-size: 0.78rem; color: #43e97b; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; }
+  .question-text { font-size: 1.08rem; font-weight: 600; line-height: 1.65; color: #f0f0f0; margin-bottom: 22px; }
+  .options-grid { display: flex; flex-direction: column; gap: 11px; }
+  .option-btn {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    background: rgba(255,255,255,0.05);
+    border: 2px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    padding: 13px 17px;
+    cursor: pointer;
+    transition: all 0.22s ease;
+    text-align: left;
+    color: #ddd;
+    font-size: 0.95rem;
+    font-family: inherit;
+    line-height: 1.5;
+  }
+  .option-btn:hover:not(:disabled) {
+    background: rgba(67,233,123,0.12);
+    border-color: #43e97b;
+    transform: translateX(4px);
+  }
+  .option-badge {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.1);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 0.83rem;
+    flex-shrink: 0; color: #43e97b;
+  }
+  .option-btn.correct { background: rgba(0,210,100,0.2) !important; border-color: #00d264 !important; color: #fff !important; }
+  .option-btn.correct .option-badge { background: #00d264 !important; color: #fff !important; }
+  .option-btn.wrong { background: rgba(255,55,55,0.2) !important; border-color: #ff3737 !important; color: #fff !important; }
+  .option-btn.wrong .option-badge { background: #ff3737 !important; color: #fff !important; }
+  .option-btn:disabled { cursor: not-allowed; transform: none !important; }
+  .explanation-box {
+    display: none;
+    margin-top: 20px;
+    background: rgba(67,233,123,0.06);
+    border-left: 4px solid #43e97b;
+    border-radius: 0 12px 12px 0;
+    padding: 16px 18px;
+    animation: fadeIn 0.4s ease;
+  }
+  .explanation-box.show { display: block; }
+  .exp-title { font-size: 0.76rem; color: #43e97b; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 7px; }
+  .explanation-box p { color: #ccc; font-size: 0.92rem; line-height: 1.65; }
+  .all-explanations { display: none; margin-top: 14px; }
+  .all-explanations.show { display: block; }
+  .exp-option-row { padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.07); font-size: 0.87rem; color: #bbb; line-height: 1.55; }
+  .exp-option-row:last-child { border-bottom: none; }
+  .exp-option-row strong { color: #43e97b; }
+  .next-btn {
+    display: none;
+    margin-top: 20px; width: 100%;
+    padding: 15px;
+    background: linear-gradient(90deg, #43e97b, #38f9d7);
+    border: none; border-radius: 12px;
+    font-size: 1rem; font-weight: 700;
+    color: #0a2010; cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: inherit; letter-spacing: 0.5px;
+  }
+  .next-btn:hover { transform: scale(1.02); box-shadow: 0 8px 25px rgba(67,233,123,0.4); }
+  .next-btn.show { display: block; }
+  .result-screen {
+    display: none;
+    text-align: center; padding: 40px 20px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+  .result-screen.show { display: block; }
+  .result-emoji { font-size: 4rem; margin-bottom: 14px; }
+  .result-screen h2 {
+    font-size: 1.9rem; font-weight: 700;
+    background: linear-gradient(90deg, #43e97b, #38f9d7);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    margin-bottom: 8px;
+  }
+  .big-score { font-size: 3.4rem; font-weight: 700; color: #43e97b; margin: 16px 0; }
+  .percentage { font-size: 1.2rem; color: #aaa; margin-bottom: 22px; }
+  .result-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; margin-bottom: 26px; }
+  .result-stat { background: rgba(255,255,255,0.06); border-radius: 12px; padding: 16px; }
+  .result-stat .r-num { font-size: 1.8rem; font-weight: 700; }
+  .result-stat .r-label { font-size: 0.73rem; color: #888; margin-top: 4px; }
+  .correct-stat .r-num { color: #43e97b; }
+  .wrong-stat .r-num { color: #ff5555; }
+  .total-stat .r-num { color: #38f9d7; }
+  .grade-badge {
+    display: inline-block; padding: 6px 18px;
+    border-radius: 50px; font-weight: 700; font-size: 0.88rem; margin-bottom: 10px;
+  }
+  .restart-btn {
+    padding: 14px 38px;
+    background: linear-gradient(90deg, #43e97b, #38f9d7);
+    border: none; border-radius: 12px;
+    font-size: 1rem; font-weight: 700; color: #0a2010;
+    cursor: pointer; transition: all 0.3s ease; font-family: inherit;
+  }
+  .restart-btn:hover { transform: scale(1.05); box-shadow: 0 8px 28px rgba(67,233,123,0.4); }
+  @media(max-width:600px) { .header h1{font-size:1.35rem;} .result-grid{grid-template-columns:1fr;} .big-score{font-size:2.4rem;} }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <div class="set-badge">SET 2 — 100 NEW MCQs</div>
+    <h1>💡 Computer Software Quiz</h1>
+    <p>100 बिल्कुल नए प्रश्न | हिंदी में | सभी विकल्पों की व्याख्या सहित</p>
+  </div>
+
+  <div class="stats-bar" id="statsBar">
+    <div class="stat-item">
+      <div class="stat-label">प्रश्न</div>
+      <div class="stat-value" id="qCounter">1 / 100</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-label">✅ सही</div>
+      <div class="stat-value" id="correctCount">0</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-label">❌ गलत</div>
+      <div class="stat-value" id="wrongCount">0</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-label">🏆 स्कोर</div>
+      <div class="stat-value" id="scorePercent">0%</div>
+    </div>
+    <div class="progress-wrap" style="width:100%">
+      <div class="progress-bar" id="progressBar"></div>
+    </div>
+  </div>
+
+  <div class="question-card" id="questionCard">
+    <div class="question-number" id="qNum">प्रश्न 1</div>
+    <div class="question-text" id="qText"></div>
+    <div class="options-grid" id="optionsGrid"></div>
+    <div class="explanation-box" id="explanationBox">
+      <div class="exp-title">✅ सही उत्तर की व्याख्या</div>
+      <p id="correctExp"></p>
+      <div class="all-explanations" id="allExplanations"></div>
+    </div>
+    <button class="next-btn" id="nextBtn" onclick="nextQuestion()">अगला सवाल →</button>
+  </div>
+
+  <div class="result-screen" id="resultScreen">
+    <div class="result-emoji" id="resultEmoji">🏆</div>
+    <div class="grade-badge" id="gradeBadge"></div>
+    <h2>Quiz पूरा हुआ!</h2>
+    <div class="big-score" id="finalScore"></div>
+    <div class="percentage" id="finalPercent"></div>
+    <div class="result-grid">
+      <div class="result-stat correct-stat"><div class="r-num" id="rCorrect">0</div><div class="r-label">✅ सही उत्तर</div></div>
+      <div class="result-stat wrong-stat"><div class="r-num" id="rWrong">0</div><div class="r-label">❌ गलत उत्तर</div></div>
+      <div class="result-stat total-stat"><div class="r-num">100</div><div class="r-label">📋 कुल प्रश्न</div></div>
+    </div>
+    <button class="restart-btn" onclick="restartQuiz()">🔄 फिर से शुरू करें</button>
+  </div>
+
+</div>
+<script>
+const allQuestions = [
+
+  // ===== SOFTWARE TYPES - NEW ANGLES (1–20) =====
+  {
+    q: "किस सॉफ्टवेयर को 'Freeware' कहा जाता है?",
+    options: ["जो केवल Linux पर चले", "जो बिना किसी charge के उपयोग किया जा सके, भले ही Source Code बंद हो", "जो केवल Government use करे", "जो केवल Mobile पर चले"],
+    correct: 1,
+    explanations: [
+      "Linux compatibility से Freeware का संबंध नहीं।",
+      "✅ सही! Freeware वह software है जो बिना cost के use होता है, लेकिन Source Code publicly available नहीं होता — जैसे Skype, WinRAR (trial)।",
+      "Government software अलग category है।",
+      "Freeware किसी भी platform पर हो सकता है।"
+    ]
+  },
+  {
+    q: "Shareware क्या होता है?",
+    options: ["Shared Network पर चलने वाला Software", "Limited time/features के साथ free trial, फिर pay करना पड़े", "Open Source Software का दूसरा नाम", "केवल Cloud Software"],
+    correct: 1,
+    explanations: [
+      "Network sharing से Shareware का मतलब नहीं।",
+      "✅ सही! Shareware limited trial period या limited features के साथ free होता है — पूरी functionality के लिए खरीदना पड़ता है, जैसे WinZip।",
+      "Shareware Open Source नहीं होता।",
+      "Shareware Cloud-specific नहीं है।"
+    ]
+  },
+  {
+    q: "किसी Software का 'Version Number' (जैसे Windows 11 या Python 3.11) क्यों होता है?",
+    options: ["केवल Marketing के लिए", "Software के different releases और updates को identify करने के लिए", "Copyright के लिए", "Hardware compatibility के लिए केवल"],
+    correct: 1,
+    explanations: [
+      "Version number सिर्फ marketing नहीं है।",
+      "✅ सही! Version number software के अलग-अलग releases, bug fixes, new features और updates को track और identify करता है।",
+      "Copyright अलग concept है।",
+      "Hardware compatibility एक use है, लेकिन मुख्य कारण नहीं।"
+    ]
+  },
+  {
+    q: "Middleware क्या होता है?",
+    options: ["Hardware के बीच की cable", "Application और OS के बीच का Software Layer जो दोनों को connect करे", "Middle-end user का software", "Antivirus का एक प्रकार"],
+    correct: 1,
+    explanations: [
+      "Middleware hardware cable नहीं है।",
+      "✅ सही! Middleware एक software layer है जो अलग-अलग applications और systems को एक-दूसरे से communicate करने देता है — जैसे Database Middleware, Message Queues।",
+      "यह user type से संबंधित नहीं।",
+      "Middleware antivirus नहीं है।"
+    ]
+  },
+  {
+    q: "SaaS का पूरा नाम क्या है?",
+    options: ["System and Application Software", "Software as a Service", "Shared Application and Storage", "Secure Application and Server"],
+    correct: 1,
+    explanations: [
+      "यह SaaS का नाम नहीं है।",
+      "✅ सही! SaaS = Software as a Service। इसमें software internet पर hosted होता है और subscription पर use होता है — जैसे Google Docs, Salesforce, Zoom।",
+      "यह भी गलत है।",
+      "यह भी गलत है।"
+    ]
+  },
+  {
+    q: "Cross-Platform Software क्या होता है?",
+    options: ["जो केवल Windows पर चले", "जो Multiple Operating Systems (Windows, Linux, macOS) पर चल सके", "जो केवल Mobile पर चले", "जो केवल Servers पर चले"],
+    correct: 1,
+    explanations: [
+      "केवल Windows पर चलना Platform-specific है।",
+      "✅ सही! Cross-Platform Software multiple OS पर run हो सकता है — जैसे VLC, Python, Java apps जो Windows/Linux/macOS तीनों पर चलते हैं।",
+      "Mobile-only apps Mobile-specific हैं।",
+      "Server-only software server-specific है।"
+    ]
+  },
+  {
+    q: "Software License का क्या उद्देश्य है?",
+    options: ["Software को faster बनाना", "Software के use, distribution और modification के rights और restrictions define करना", "Software को encrypt करना", "Software को compress करना"],
+    correct: 1,
+    explanations: [
+      "License से speed का संबंध नहीं।",
+      "✅ सही! Software License legal document है जो बताता है कि software को कैसे use, copy, modify और distribute किया जा सकता है।",
+      "Encryption security feature है।",
+      "Compression अलग process है।"
+    ]
+  },
+  {
+    q: "Firmware किसे कहते हैं?",
+    options: ["बहुत Fast Software", "Hardware device में permanently stored Software (ROM/Flash में)", "Firewall का Software", "Internet Firmware"],
+    correct: 1,
+    explanations: [
+      "Firmware speed से define नहीं होता।",
+      "✅ सही! Firmware वह software है जो hardware device के ROM या Flash Memory में permanently stored होता है — जैसे BIOS, Router Firmware, Printer Firmware।",
+      "Firmware Firewall नहीं है।",
+      "Firmware internet से संबंधित नहीं है।"
+    ]
+  },
+  {
+    q: "Patch क्या होता है Software में?",
+    options: ["Software का नया version", "Bug fix या security update के लिए छोटा software update", "Software का backup", "Software का Trial version"],
+    correct: 1,
+    explanations: [
+      "New version major release होता है।",
+      "✅ सही! Patch एक small software update है जो specific bugs, security vulnerabilities, या minor issues को fix करता है बिना पूरे software को reinstall किए।",
+      "Backup अलग है।",
+      "Trial version अलग है।"
+    ]
+  },
+  {
+    q: "Beta Software क्या होता है?",
+    options: ["बहुत पुराना software", "Testing phase का software जो public को testing के लिए दिया जाए, अभी final नहीं", "बहुत महंगा software", "केवल Mobile का software"],
+    correct: 1,
+    explanations: [
+      "Beta पुराने software के लिए नहीं है।",
+      "✅ सही! Beta Software development का वह phase है जहाँ software public testers को feedback के लिए दिया जाता है — bugs हो सकते हैं, final release नहीं।",
+      "Beta का price से संबंध नहीं।",
+      "Beta किसी भी platform पर हो सकता है।"
+    ]
+  },
+  {
+    q: "Kernel का मुख्य काम क्या है?",
+    options: ["Internet browse करना", "Hardware resources को manage करना और Applications को services देना", "Documents print करना", "Photos edit करना"],
+    correct: 1,
+    explanations: [
+      "Internet browsing Application का काम है।",
+      "✅ सही! Kernel OS का core part है जो CPU, Memory, I/O devices को manage करता है और applications को system services (system calls) provide करता है।",
+      "Printing Application + Driver का काम है।",
+      "Photo editing Application का काम है।"
+    ]
+  },
+  {
+    q: "Antivirus Software किस category में आता है?",
+    options: ["Application Software", "Utility Software (System Software का हिस्सा)", "Embedded Software", "Programming Language"],
+    correct: 1,
+    explanations: [
+      "Antivirus primarily user productivity के लिए नहीं है।",
+      "✅ सही! Antivirus एक Utility Software है (System Software की subcategory) जो system को malware और viruses से protect करता है।",
+      "Embedded hardware devices में होता है।",
+      "Antivirus programming language नहीं है।"
+    ]
+  },
+  {
+    q: "iOS किस प्रकार का Software है?",
+    options: ["Open Source Operating System", "Proprietary Embedded/Mobile Operating System (Apple)", "Application Software", "Utility Software"],
+    correct: 1,
+    explanations: [
+      "iOS Open Source नहीं है।",
+      "✅ सही! iOS Apple का Proprietary Mobile Operating System है जो iPhone और iPad में embedded होता है।",
+      "iOS Application Software नहीं, यह OS है।",
+      "iOS Utility Software नहीं है।"
+    ]
+  },
+  {
+    q: "Software का 'Source Code' क्या होता है?",
+    options: ["Compiled executable file", "Human-readable programming language में लिखा original code", "Binary machine code", "Software का License number"],
+    correct: 1,
+    explanations: [
+      "Compiled executable binary/machine code होती है।",
+      "✅ सही! Source Code वह original human-readable text है जो programmer किसी programming language (C, Python, Java) में लिखता है।",
+      "Binary machine code Source Code नहीं है।",
+      "License number अलग है।"
+    ]
+  },
+  {
+    q: "ERP Software का पूरा नाम क्या है?",
+    options: ["Embedded Real-time Program", "Enterprise Resource Planning", "Electronic Router Protocol", "Extended RAM Processing"],
+    correct: 1,
+    explanations: [
+      "यह ERP का नाम नहीं।",
+      "✅ सही! ERP = Enterprise Resource Planning। यह एक Application Software है जो organization के सभी business processes (Finance, HR, Supply Chain) integrate करता है — जैसे SAP, Oracle ERP।",
+      "यह भी गलत है।",
+      "यह भी गलत है।"
+    ]
+  },
+  {
+    q: "Compiler और Interpreter में कौन सा faster execute करता है?",
+    options: ["Interpreter हमेशा faster होता है", "Compiled programs faster run होते हैं क्योंकि पहले से machine code बना होता है", "दोनों समान speed के होते हैं", "यह internet speed पर depend करता है"],
+    correct: 1,
+    explanations: [
+      "Interpreter line-by-line translate करता है जो slower है।",
+      "✅ सही! Compiled programs (C, C++) पहले से machine code में convert होते हैं, इसलिए execution time में fast होते हैं। Interpreter runtime translation करता है जो slower है।",
+      "दोनों की speed अलग है।",
+      "Execution speed internet से नहीं जुड़ी।"
+    ]
+  },
+  {
+    q: "GUI का पूरा नाम क्या है?",
+    options: ["General Unix Interface", "Graphical User Interface", "Graphics Utility Input", "Global User Interaction"],
+    correct: 1,
+    explanations: [
+      "यह GUI का नाम नहीं।",
+      "✅ सही! GUI = Graphical User Interface। यह visual elements (icons, buttons, windows) के जरिए computer interact करने का तरीका है — जैसे Windows Desktop, macOS।",
+      "यह भी गलत है।",
+      "यह भी गलत है।"
+    ]
+  },
+  {
+    q: "CLI का पूरा नाम और उदाहरण क्या है?",
+    options: ["Computer Language Interface — Python", "Command Line Interface — Linux Terminal, Command Prompt", "Core Linux Interface — Ubuntu", "Compiled Language Input — GCC"],
+    correct: 1,
+    explanations: [
+      "CLI Python नहीं है।",
+      "✅ सही! CLI = Command Line Interface। इसमें text commands type करके computer को control किया जाता है — जैसे Linux Terminal (Bash), Windows Command Prompt।",
+      "यह गलत है।",
+      "यह भी गलत है।"
+    ]
+  },
+  {
+    q: "Software का 'Debug' करना क्या होता है?",
+    options: ["Software को download करना", "Software में Bugs (errors) ढूंढना और fix करना", "Software को update करना", "Software को install करना"],
+    correct: 1,
+    explanations: [
+      "Downloading अलग है।",
+      "✅ सही! Debugging वह process है जिसमें software के errors (bugs) को identify, isolate और fix किया जाता है।",
+      "Updating अलग process है।",
+      "Installing अलग process है।"
+    ]
+  },
+  {
+    q: "PaaS का पूरा नाम क्या है?",
+    options: ["Program and Application Service", "Platform as a Service", "Protected Application and Storage", "Private Application Software"],
+    correct: 1,
+    explanations: [
+      "यह PaaS का नाम नहीं।",
+      "✅ सही! PaaS = Platform as a Service। Developers को application develop और deploy करने के लिए cloud platform मिलती है — जैसे Google App Engine, Heroku।",
+      "यह भी गलत है।",
+      "यह भी गलत है।"
+    ]
+  },
+
+  // ===== COMPUTER LANGUAGES - NEW ANGLES (21–40) =====
+  {
+    q: "JavaScript का मुख्य उपयोग क्या है?",
+    options: ["Operating System बनाने में", "Web pages को interactive बनाने में (Client-side scripting)", "Database management में", "Hardware programming में"],
+    correct: 1,
+    explanations: [
+      "OS C/C++ में बनते हैं।",
+      "✅ सही! JavaScript primarily web browsers में client-side scripting के लिए use होती है जिससे web pages dynamic और interactive बनते हैं।",
+      "Database में SQL होता है।",
+      "Hardware programming Assembly/C में होती है।"
+    ]
+  },
+  {
+    q: "SQL का पूरा नाम क्या है?",
+    options: ["System Query Language", "Structured Query Language", "Standard Queue Language", "Software Quality Language"],
+    correct: 1,
+    explanations: [
+      "यह SQL का नाम नहीं।",
+      "✅ सही! SQL = Structured Query Language। यह relational databases को query और manage करने के लिए use होती है।",
+      "यह भी गलत है।",
+      "यह भी गलत है।"
+    ]
+  },
+  {
+    q: "Object-Oriented Programming (OOP) की मुख्य विशेषता क्या है?",
+    options: ["केवल Numbers से काम करना", "Data और Functions को Objects में encapsulate करना", "केवल Binary code लिखना", "Hardware directly control करना"],
+    correct: 1,
+    explanations: [
+      "OOP केवल numbers से नहीं है।",
+      "✅ सही! OOP में data (attributes) और functions (methods) को Classes और Objects में encapsulate किया जाता है। Java, Python, C++ OOP languages हैं।",
+      "OOP binary code के बारे में नहीं है।",
+      "Hardware programming low-level है।"
+    ]
+  },
+  {
+    q: "HTML का पूरा नाम क्या है?",
+    options: ["High Transfer Markup Language", "HyperText Markup Language", "Hyperlink and Text Making Language", "Home Tool Markup Language"],
+    correct: 1,
+    explanations: [
+      "यह HTML का नाम नहीं।",
+      "✅ सही! HTML = HyperText Markup Language। यह web pages की structure define करती है।",
+      "यह भी गलत है।",
+      "यह भी गलत है।"
+    ]
+  },
+  {
+    q: "Python में 'Indentation' का क्या महत्व है?",
+    options: ["केवल code को सुंदर बनाना", "Code blocks define करना — Python में {} की जगह indentation से blocks बनते हैं", "Comments लिखना", "Variables declare करना"],
+    correct: 1,
+    explanations: [
+      "Python में indentation सिर्फ style नहीं — यह syntax का हिस्सा है।",
+      "✅ सही! Python में code blocks (if, for, functions, classes) को {} की बजाय Indentation (spaces/tabs) से define किया जाता है — गलत indentation से error आती है।",
+      "Comments # से लिखते हैं।",
+      "Variables assignment (=) से declare होते हैं।"
+    ]
+  },
+  {
+    q: "C Language को 'Middle Level Language' क्यों कहते हैं?",
+    options: ["यह Medium Speed का है", "यह High Level (readable) और Low Level (hardware access) दोनों की features रखता है", "यह बीच में बना था", "यह Medium Size programs के लिए है"],
+    correct: 1,
+    explanations: [
+      "Middle Level speed से define नहीं होती।",
+      "✅ सही! C में High Level Language जैसी readability भी है और Low Level जैसे Pointers, Memory Management, Hardware Access भी है, इसलिए इसे Middle Level कहते हैं।",
+      "History of creation से नहीं।",
+      "Program size से नहीं।"
+    ]
+  },
+  {
+    q: "Recursion क्या होता है Programming में?",
+    options: ["Loop का दूसरा नाम", "जब एक Function खुद को बार-बार call करे", "Array को reverse करना", "Variables को reset करना"],
+    correct: 1,
+    explanations: [
+      "Recursion loop नहीं है — दोनों repetition के तरीके हैं लेकिन अलग हैं।",
+      "✅ सही! Recursion में एक function अपने अंदर खुद को call करता है — जैसे Factorial, Fibonacci, Tree traversal में।",
+      "Array reverse करना अलग operation है।",
+      "Variable reset करना अलग है।"
+    ]
+  },
+  {
+    q: "PHP का मुख्य उपयोग कहाँ होता है?",
+    options: ["Mobile Apps बनाने में", "Server-side Web Development में", "Operating System बनाने में", "Hardware programming में"],
+    correct: 1,
+    explanations: [
+      "Mobile apps Swift, Kotlin, Flutter में बनते हैं।",
+      "✅ सही! PHP एक Server-side scripting language है जो primarily web development में server पर execute होती है — WordPress, Facebook (originally) PHP में है।",
+      "OS C/C++ में बनते हैं।",
+      "Hardware programming Assembly/C में है।"
+    ]
+  },
+  {
+    q: "Ruby on Rails क्या है?",
+    options: ["एक Operating System", "Ruby Language का Web Development Framework", "एक Database", "एक Compiler"],
+    correct: 1,
+    explanations: [
+      "Rails OS नहीं है।",
+      "✅ सही! Ruby on Rails (Rails) Ruby programming language का एक popular Web Application Framework है जो web development fast बनाता है।",
+      "Rails database नहीं है।",
+      "Rails compiler नहीं है।"
+    ]
+  },
+  {
+    q: "Kotlin किसके लिए बनाई गई थी?",
+    options: ["iOS development के लिए", "Android development के लिए (Java का modern alternative)", "Web development के लिए", "Database development के लिए"],
+    correct: 1,
+    explanations: [
+      "iOS के लिए Swift है।",
+      "✅ सही! Kotlin JetBrains द्वारा बनाई गई है और Google ने इसे Android development के लिए official language declare किया है — Java का modern, concise alternative।",
+      "Kotlin web के लिए primarily नहीं है।",
+      "Kotlin database के लिए नहीं है।"
+    ]
+  },
+  {
+    q: "Swift programming language किसने बनाई और किसके लिए है?",
+    options: ["Google ने — Android के लिए", "Apple ने — iOS/macOS development के लिए", "Microsoft ने — Windows के लिए", "Oracle ने — Database के लिए"],
+    correct: 1,
+    explanations: [
+      "Google ने Kotlin और Go बनाए।",
+      "✅ सही! Swift Apple ने 2014 में बनाई — Objective-C को replace करने के लिए। iOS, macOS, watchOS, tvOS apps Swift में बनते हैं।",
+      "Microsoft ने C# बनाई।",
+      "Oracle Java maintain करती है।"
+    ]
+  },
+  {
+    q: "TypeScript, JavaScript से कैसे अलग है?",
+    options: ["TypeScript पुराना है", "TypeScript JavaScript का superset है जो Static Typing add करता है", "TypeScript केवल mobile के लिए है", "TypeScript केवल server side है"],
+    correct: 1,
+    explanations: [
+      "TypeScript newer है (2012, Microsoft)।",
+      "✅ सही! TypeScript JavaScript का superset है जो Static Type System add करता है। TypeScript code compile होकर JavaScript में बदलता है।",
+      "TypeScript किसी भी platform पर है।",
+      "TypeScript frontend और backend दोनों में है।"
+    ]
+  },
+  {
+    q: "FORTRAN किसके लिए जानी जाती है?",
+    options: ["Web Development के लिए", "Scientific और Mathematical Computing के लिए", "Database Management के लिए", "Mobile App Development के लिए"],
+    correct: 1,
+    explanations: [
+      "FORTRAN web development नहीं है।",
+      "✅ सही! FORTRAN (Formula Translation) 1957 में IBM ने बनाई — Scientific Computing, Weather Forecasting, Numerical Analysis के लिए आज भी use होती है।",
+      "FORTRAN database के लिए नहीं है।",
+      "FORTRAN mobile के लिए नहीं है।"
+    ]
+  },
+  {
+    q: "Pseudocode क्या होता है?",
+    options: ["एक actual programming language", "Algorithm को informal, human-readable way में लिखना (code जैसा but किसी specific language में नहीं)", "एक type of machine code", "Encrypted code"],
+    correct: 1,
+    explanations: [
+      "Pseudocode actual language नहीं है।",
+      "✅ सही! Pseudocode algorithm design करने का तरीका है — इसे पढ़कर logic समझा जा सकता है, लेकिन यह किसी specific language का syntax नहीं follow करता।",
+      "Pseudocode machine code नहीं है।",
+      "Pseudocode encrypted नहीं है।"
+    ]
+  },
+  {
+    q: "Flowchart का उपयोग किसलिए होता है?",
+    options: ["Network diagram बनाने के लिए", "Algorithm या Process के steps को graphically represent करने के लिए", "Hardware circuit design के लिए", "Database schema बनाने के लिए"],
+    correct: 1,
+    explanations: [
+      "Network diagrams अलग होते हैं।",
+      "✅ सही! Flowchart एक graphical representation है जो algorithm, process या workflow के steps को symbols (shapes) और arrows से दिखाता है।",
+      "Circuit design के लिए Circuit Diagrams होते हैं।",
+      "Database schema के लिए ER Diagram होता है।"
+    ]
+  },
+  {
+    q: "Array किसे कहते हैं Programming में?",
+    options: ["एक loop का प्रकार", "एक ही data type के multiple values को एक variable में store करना", "एक function का प्रकार", "एक compiler का हिस्सा"],
+    correct: 1,
+    explanations: [
+      "Array loop नहीं है।",
+      "✅ सही! Array एक Data Structure है जो same data type के multiple elements को contiguous memory में store करता है — जैसे int arr[5] = {1,2,3,4,5}।",
+      "Array function नहीं है।",
+      "Array compiler का part नहीं है।"
+    ]
+  },
+  {
+    q: "Stack Data Structure 'LIFO' principle पर काम करता है — LIFO का मतलब?",
+    options: ["Last In, First Out", "Less Input, Fast Output", "Linear Input, Fixed Output", "Last Index, First Object"],
+    correct: 0,
+    explanations: [
+      "✅ सही! LIFO = Last In, First Out। Stack में जो element सबसे बाद में push होता है वो सबसे पहले pop होता है — जैसे function call stack।",
+      "यह LIFO का अर्थ नहीं।",
+      "यह भी गलत है।",
+      "यह भी गलत है।"
+    ]
+  },
+  {
+    q: "Queue Data Structure किस principle पर काम करता है?",
+    options: ["LIFO", "FIFO (First In, First Out)", "Random Access", "LILO"],
+    correct: 1,
+    explanations: [
+      "LIFO Stack का principle है।",
+      "✅ सही! Queue FIFO = First In, First Out principle पर काम करता है — जो element पहले enter होता है वो पहले exit होता है — जैसे printer queue।",
+      "Random access Arrays में होता है।",
+      "LILO standard data structure principle नहीं है।"
+    ]
+  },
+  {
+    q: "Pointer क्या होता है C Language में?",
+    options: ["Mouse cursor का नाम", "एक Variable जो किसी दूसरे variable का Memory Address store करता है", "एक loop", "एक function"],
+    correct: 1,
+    explanations: [
+      "Pointer mouse cursor नहीं है।",
+      "✅ सही! Pointer एक special variable है जो किसी दूसरे variable का memory address store करता है। int *p = &x; — p, x का address store करता है।",
+      "Pointer loop नहीं है।",
+      "Pointer function नहीं है।"
+    ]
+  },
+  {
+    q: "Exception Handling का क्या उद्देश्य है?",
+    options: ["Program को fast बनाना", "Runtime errors को gracefully handle करना ताकि program crash न हो", "Memory save करना", "Code को short करना"],
+    correct: 1,
+    explanations: [
+      "Exception handling speed से नहीं।",
+      "✅ सही! Exception Handling (try-catch in Java/Python) runtime errors को catch करके appropriate action लेता है ताकि program unexpectedly crash न हो।",
+      "Memory का इससे direct relation नहीं।",
+      "Code length का इससे relation नहीं।"
+    ]
+  },
+
+  // ===== OPERATING SYSTEMS - NEW ANGLES (41–60) =====
+  {
+    q: "Deadlock किसे कहते हैं OS में?",
+    options: ["System का crash होना", "जब दो या अधिक processes एक-दूसरे के resources का इंतजार करें और कोई आगे न बढ़ पाए", "Slow internet connection", "Disk failure"],
+    correct: 1,
+    explanations: [
+      "Deadlock system crash नहीं है।",
+      "✅ सही! Deadlock वह situation है जहाँ multiple processes circular wait में फंस जाती हैं — Process A, B का resource चाहती है और B, A का — दोनों indefinitely wait करती रहती हैं।",
+      "Deadlock internet से नहीं।",
+      "Deadlock disk failure नहीं है।"
+    ]
+  },
+  {
+    q: "Context Switching क्या होता है?",
+    options: ["Browser के tabs बदलना", "OS का एक process से दूसरे process पर switch करना और CPU state save/restore करना", "Keyboard layout बदलना", "Screen brightness बदलना"],
+    correct: 1,
+    explanations: [
+      "Browser tabs application level है।",
+      "✅ सही! Context Switch तब होता है जब OS एक process को pause करके उसकी state (CPU registers, PC) save करता है और दूसरी process को resume करता है।",
+      "Keyboard layout OS settings है।",
+      "Screen brightness hardware/driver level है।"
+    ]
+  },
+  {
+    q: "Thrashing क्या है?",
+    options: ["Hard disk को format करना", "जब OS Page Fault इतने ज्यादा हों कि actual work की बजाय page swapping ही होती रहे", "RAM को defragment करना", "CPU को overclock करना"],
+    correct: 1,
+    explanations: [
+      "Format करना अलग operation है।",
+      "✅ सही! Thrashing तब होता है जब Memory इतनी कम हो कि OS का ज्यादातर time page swapping (disk से pages लाना-ले जाना) में लगे और actual process execution बहुत कम हो।",
+      "RAM defragmentation नहीं होती।",
+      "Overclocking CPU hardware setting है।"
+    ]
+  },
+  {
+    q: "Spooling का उपयोग किसमें होता है?",
+    options: ["Internet connection में", "Printing जैसे slow I/O devices के लिए data को temporarily disk पर store करने में", "CPU speed बढ़ाने में", "RAM allocate करने में"],
+    correct: 1,
+    explanations: [
+      "Spooling internet में नहीं है।",
+      "✅ सही! SPOOL (Simultaneous Peripheral Operations On-Line) — printer जैसे slow devices के लिए data disk पर queue में store होता है ताकि CPU free रहे।",
+      "CPU speed hardware है।",
+      "RAM allocation OS memory management है।"
+    ]
+  },
+  {
+    q: "Semaphore और Mutex में क्या अंतर है?",
+    options: ["दोनों समान हैं", "Mutex केवल एक thread के लिए lock है, Semaphore multiple threads को allow कर सकता है", "Semaphore केवल hardware के लिए है", "Mutex केवल network के लिए है"],
+    correct: 1,
+    explanations: [
+      "Semaphore और Mutex अलग-अलग हैं।",
+      "✅ सही! Mutex (Mutual Exclusion) binary lock है — एक time पर एक ही thread resource access करे। Semaphore counter-based है — N threads simultaneously access कर सकते हैं।",
+      "Semaphore software concept है।",
+      "Mutex network के लिए नहीं है।"
+    ]
+  },
+  {
+    q: "Preemptive Scheduling क्या है?",
+    options: ["जहाँ Process खुद CPU छोड़े", "जहाँ OS किसी भी time running process से CPU छीन सके", "जहाँ Priority नहीं हो", "जहाँ सभी processes same time लें"],
+    correct: 1,
+    explanations: [
+      "Non-preemptive में process खुद CPU छोड़ती है।",
+      "✅ सही! Preemptive Scheduling में OS किसी भी time high-priority process के लिए currently running process को interrupt करके CPU छीन सकता है — जैसे Round Robin।",
+      "Priority Preemptive में important है।",
+      "Equal time Round Robin की बात है।"
+    ]
+  },
+  {
+    q: "File System का मुख्य काम क्या है?",
+    options: ["Internet manage करना", "Storage device पर files और directories को organize, store और access करना", "RAM manage करना", "CPU manage करना"],
+    correct: 1,
+    explanations: [
+      "File system internet से नहीं।",
+      "✅ सही! File System (NTFS, Ext4, FAT32) storage devices पर data को files और directories में organize करता है और read/write operations manage करता है।",
+      "RAM OS Memory Manager manage करता है।",
+      "CPU OS Process Scheduler manage करता है।"
+    ]
+  },
+  {
+    q: "FAT32 और NTFS में क्या मुख्य अंतर है?",
+    options: ["FAT32 केवल Linux में है", "FAT32 में max 4GB file size, NTFS में बड़ी files और better security", "NTFS पुराना है", "दोनों समान हैं"],
+    correct: 1,
+    explanations: [
+      "FAT32 Windows और older devices में है।",
+      "✅ सही! FAT32 की max single file size 4GB है और कम security — Pendrive में use होता है। NTFS में large files, permissions, encryption, journaling support है।",
+      "NTFS newer है।",
+      "दोनों अलग हैं।"
+    ]
+  },
+  {
+    q: "Journaling File System क्या होता है?",
+    options: ["जो daily journal लिखे", "जो changes को पहले log करे ताकि crash के बाद recovery हो सके", "जो files को compress करे", "जो files को encrypt करे"],
+    correct: 1,
+    explanations: [
+      "File system diary नहीं लिखता।",
+      "✅ सही! Journaling File System (NTFS, Ext4) एक journal/log maintain करता है — system crash होने पर यह log देखकर file system को consistent state में restore किया जा सकता है।",
+      "Compression अलग feature है।",
+      "Encryption अलग feature है।"
+    ]
+  },
+  {
+    q: "Multi-core Processor का क्या फायदा है?",
+    options: ["केवल speed बढ़ती है", "Multiple tasks truly simultaneously execute हो सकते हैं (Real Parallelism)", "Storage बढ़ती है", "RAM बढ़ती है"],
+    correct: 1,
+    explanations: [
+      "Multi-core सिर्फ speed नहीं — parallel execution है।",
+      "✅ सही! Multi-core CPUs में अलग-अलग cores अलग-अलग threads/processes को simultaneously execute कर सकते हैं — यह True Parallelism है।",
+      "Multi-core से storage नहीं बढ़ती।",
+      "Multi-core से RAM नहीं बढ़ती।"
+    ]
+  },
+  {
+    q: "Thread किसे कहते हैं?",
+    options: ["Network cable", "एक Process के अंदर execution की smallest unit जो resources share करे", "एक file का प्रकार", "एक memory type"],
+    correct: 1,
+    explanations: [
+      "Thread network cable नहीं है।",
+      "✅ सही! Thread Process के अंदर lightweight execution unit है — एक process के multiple threads same memory space share करते हैं लेकिन अलग-अलग execute होते हैं।",
+      "Thread file नहीं है।",
+      "Thread memory type नहीं है।"
+    ]
+  },
+  {
+    q: "Process और Thread में क्या मुख्य अंतर है?",
+    options: ["दोनों समान हैं", "Process independent memory space रखता है, Thread एक process की memory share करता है", "Thread ज्यादा memory लेता है", "Process हमेशा faster होता है"],
+    correct: 1,
+    explanations: [
+      "Process और Thread अलग हैं।",
+      "✅ सही! हर Process का अपना independent memory space होता है। एक Process के multiple Threads उसी memory space को share करते हैं — Threads lightweight और faster create होते हैं।",
+      "Thread कम memory लेता है।",
+      "Threads context switch में faster हैं।"
+    ]
+  },
+  {
+    q: "IPC (Inter Process Communication) का उदाहरण क्या है?",
+    options: ["CPU और RAM की communication", "Pipes, Message Queues, Shared Memory — processes के बीच data exchange", "Internet communication", "User और keyboard की communication"],
+    correct: 1,
+    explanations: [
+      "CPU-RAM bus communication है।",
+      "✅ सही! IPC processes को data exchange करने के mechanisms हैं: Pipes (|), Message Queues, Shared Memory, Sockets, Signals।",
+      "Internet TCP/IP networking है।",
+      "Keyboard-User input/output है।"
+    ]
+  },
+  {
+    q: "Race Condition क्या है?",
+    options: ["CPU की speed testing", "जब multiple processes/threads shared resource को बिना synchronization के access करें और unexpected results आएं", "Network speed test", "Disk read/write speed"],
+    correct: 1,
+    explanations: [
+      "CPU speed testing benchmarking है।",
+      "✅ सही! Race Condition तब होती है जब multiple threads/processes बिना proper synchronization के shared resource access करते हैं — result execution order पर depend करता है, जो unpredictable है।",
+      "Network speed अलग है।",
+      "Disk speed I/O performance है।"
+    ]
+  },
+  {
+    q: "Virtual Machine (VM) क्या है?",
+    options: ["Online computer", "Software-based emulation of a computer जो real hardware पर run हो", "Cloud storage", "Game simulation"],
+    correct: 1,
+    explanations: [
+      "VM केवल online computer नहीं है।",
+      "✅ सही! Virtual Machine एक software emulation है जो एक computer के अंदर दूसरा complete computer चलाता है — VirtualBox, VMware, Hyper-V इसके tools हैं।",
+      "Cloud storage अलग है।",
+      "Game simulation अलग है।"
+    ]
+  },
+  {
+    q: "Hypervisor का क्या काम है?",
+    options: ["Internet speed बढ़ाना", "Multiple Virtual Machines को physical hardware पर manage करना", "Files compress करना", "Antivirus काम"],
+    correct: 1,
+    explanations: [
+      "Hypervisor internet से नहीं।",
+      "✅ सही! Hypervisor (VMM - Virtual Machine Monitor) physical hardware पर multiple VMs create और manage करता है — जैसे VMware ESXi, Microsoft Hyper-V।",
+      "Compression अलग है।",
+      "Antivirus अलग है।"
+    ]
+  },
+  {
+    q: "Container Technology (जैसे Docker) VM से कैसे अलग है?",
+    options: ["Docker केवल Linux में है", "Containers पूरा OS नहीं, केवल application और उसकी dependencies share करते हैं — lightweight और fast", "VM lightweight है", "दोनों समान हैं"],
+    correct: 1,
+    explanations: [
+      "Docker Linux, Windows, macOS सभी पर है।",
+      "✅ सही! Containers host OS kernel share करते हैं और केवल application layer isolate करते हैं — VMs से बहुत lightweight, fast start, कम resources।",
+      "VM heavyweight है (पूरा OS)।",
+      "दोनों अलग approaches हैं।"
+    ]
+  },
+  {
+    q: "Caching क्या है OS में?",
+    options: ["Files delete करना", "Frequently used data को fast memory (RAM/Cache) में temporarily store करना", "Internet history save करना", "Files backup लेना"],
+    correct: 1,
+    explanations: [
+      "Caching delete नहीं करता।",
+      "✅ सही! Caching frequently accessed data को faster storage (CPU Cache, RAM) में रखता है ताकि slow storage (Disk) से बार-बार access न करना पड़े।",
+      "Internet history browser feature है।",
+      "Backup अलग है।"
+    ]
+  },
+  {
+    q: "Zombie Process क्या है Linux में?",
+    options: ["Malware process", "जो process execute हो चुकी हो लेकिन parent process ने उसकी exit status नहीं पढ़ी", "Suspended process", "Background process"],
+    correct: 1,
+    explanations: [
+      "Zombie malware नहीं है।",
+      "✅ सही! Zombie Process वो process है जो execute complete कर चुकी है लेकिन Process Table में entry रहती है क्योंकि parent process ने wait() से exit status collect नहीं की।",
+      "Suspended process अलग है।",
+      "Background process normally running है।"
+    ]
+  },
+  {
+    q: "Kernel Panic क्या है Linux में?",
+    options: ["Slow boot", "Critical error जो Kernel handle नहीं कर सके — system halt हो जाए", "Virus attack", "RAM overflow"],
+    correct: 1,
+    explanations: [
+      "Slow boot अलग issue है।",
+      "✅ सही! Kernel Panic Linux का equivalent है Windows के 'Blue Screen of Death (BSOD)' के — critical unrecoverable error पर system halt हो जाता है।",
+      "Kernel Panic always virus नहीं।",
+      "RAM overflow इसका एक cause हो सकता है।"
+    ]
+  },
+
+  // ===== MEMORY & HARDWARE CONCEPTS (61–75) =====
+  {
+    q: "Cache Memory का उद्देश्य क्या है?",
+    options: ["Internet pages save करना", "CPU और RAM के बीच speed difference को कम करना — frequently used data CPU के पास रखना", "Files backup करना", "Network packets store करना"],
+    correct: 1,
+    explanations: [
+      "Internet cache अलग है।",
+      "✅ सही! CPU Cache (L1, L2, L3) CPU और Main Memory के बीच fast buffer है — frequently accessed data CPU के very close रहता है जिससे access time nanoseconds में होता है।",
+      "Files backup अलग है।",
+      "Network packets buffer में store होते हैं।"
+    ]
+  },
+  {
+    q: "L1, L2, L3 Cache में कौन सा सबसे तेज़ और CPU के सबसे पास होता है?",
+    options: ["L3", "L2", "L1", "सभी समान हैं"],
+    correct: 2,
+    explanations: [
+      "L3 सबसे बड़ा लेकिन सबसे धीमा cache है।",
+      "L2 middle-level cache है।",
+      "✅ सही! L1 Cache सबसे छोटा, सबसे तेज़ और CPU core के सबसे पास होता है (nanoseconds में access)।",
+      "L1, L2, L3 की speed और size अलग-अलग होती है।"
+    ]
+  },
+  {
+    q: "RAM का पूरा नाम क्या है?",
+    options: ["Read Access Memory", "Random Access Memory", "Rapid Action Memory", "Real Allocation Memory"],
+    correct: 1,
+    explanations: [
+      "यह RAM का नाम नहीं।",
+      "✅ सही! RAM = Random Access Memory। यह volatile primary memory है जहाँ currently running programs और data store होते हैं।",
+      "यह भी गलत है।",
+      "यह भी गलत है।"
+    ]
+  },
+  {
+    q: "ROM और RAM में मुख्य अंतर क्या है?",
+    options: ["दोनों समान हैं", "ROM Non-volatile (power off पर data रहता है), RAM Volatile (power off पर data जाता है)", "RAM Non-volatile है", "ROM केवल CPU में है"],
+    correct: 1,
+    explanations: [
+      "ROM और RAM अलग हैं।",
+      "✅ सही! ROM (Read Only Memory) Non-volatile है — power off पर data नहीं जाता (BIOS यहाँ होता है)। RAM Volatile है — power off पर data खो जाता है।",
+      "RAM Volatile है।",
+      "ROM motherboard पर होता है।"
+    ]
+  },
+  {
+    q: "SSD, HDD से कैसे better है?",
+    options: ["SSD सस्ता है", "SSD में moving parts नहीं — तेज़ read/write, कम power, shock-resistant", "HDD तेज़ है", "दोनों समान हैं"],
+    correct: 1,
+    explanations: [
+      "SSD HDD से महंगा होता है (per GB)।",
+      "✅ सही! SSD (Solid State Drive) में Flash Memory है — कोई mechanical moving parts नहीं। HDD से कई गुना fast read/write, कम power consumption, vibration-resistant।",
+      "HDD धीमा है mechanical parts की वजह से।",
+      "दोनों अलग technologies हैं।"
+    ]
+  },
+  {
+    q: "Virtual Memory का concept क्या है?",
+    options: ["Online cloud storage", "RAM की कमी होने पर Disk का हिस्सा RAM की तरह use करना", "Fake memory", "Encrypted memory"],
+    correct: 1,
+    explanations: [
+      "Virtual Memory cloud नहीं है।",
+      "✅ सही! Virtual Memory एक technique है जहाँ OS, RAM की कमी होने पर Hard Disk (Swap Space/Page File) को temporary RAM की तरह use करता है।",
+      "Virtual Memory actual functionality है।",
+      "Virtual Memory encryption नहीं है।"
+    ]
+  },
+  {
+    q: "DRAM और SRAM में क्या अंतर है?",
+    options: ["दोनों समान हैं", "DRAM को periodic refresh चाहिए (RAM में use), SRAM को नहीं (Cache में use)", "SRAM सस्ता है", "DRAM faster है"],
+    correct: 1,
+    explanations: [
+      "DRAM और SRAM अलग हैं।",
+      "✅ सही! DRAM (Dynamic RAM) को capacitors recharge करने के लिए periodic refresh चाहिए — Main RAM में use। SRAM (Static RAM) को refresh नहीं चाहिए — faster, expensive — CPU Cache में use।",
+      "SRAM महंगा होता है।",
+      "SRAM faster है।"
+    ]
+  },
+  {
+    q: "Bus किसे कहते हैं Computer Architecture में?",
+    options: ["Public transport का software", "Components के बीच data transfer के लिए communication pathway", "Network cable", "Power supply cable"],
+    correct: 1,
+    explanations: [
+      "Bus computer hardware term है।",
+      "✅ सही! Bus computer components (CPU, RAM, I/O) के बीच data transfer करने का communication pathway है — Data Bus, Address Bus, Control Bus।",
+      "Network cable LAN cable है।",
+      "Power supply अलग है।"
+    ]
+  },
+  {
+    q: "Address Bus का क्या काम है?",
+    options: ["Data transfer करना", "Memory locations (addresses) specify करना — CPU किस memory location को access करना चाहता है", "Power supply करना", "Clock signal देना"],
+    correct: 1,
+    explanations: [
+      "Data transfer Data Bus करता है।",
+      "✅ सही! Address Bus CPU से Memory तक memory address carry करता है — इससे CPU specify करता है कि कौन सी memory location को read/write करना है।",
+      "Power supply PSU का काम है।",
+      "Clock signal Clock Bus/Crystal Oscillator का काम है।"
+    ]
+  },
+  {
+    q: "Interrupt Latency क्या है?",
+    options: ["CPU की speed", "Interrupt आने और उसका handler execute होने के बीच का time", "Network delay", "Disk read time"],
+    correct: 1,
+    explanations: [
+      "CPU speed clock frequency है।",
+      "✅ सही! Interrupt Latency वह time है जो interrupt generate होने से लेकर उसके Interrupt Service Routine (ISR) की first instruction execute होने तक लगता है — RTOS में यह critical होता है।",
+      "Network delay latency अलग है।",
+      "Disk read time I/O latency है।"
+    ]
+  },
+  {
+    q: "Registers किससे fast होते हैं?",
+    options: ["Registers सबसे slow होते हैं", "Registers सबसे fast होते हैं — CPU के अंदर होते हैं, Cache से भी fast", "RAM और Cache दोनों से slow", "Hard Disk से slow"],
+    correct: 1,
+    explanations: [
+      "Registers सबसे fast होते हैं।",
+      "✅ सही! Memory Hierarchy में Registers सबसे top पर हैं — CPU के अंदर built-in, L1 Cache से भी fast। Hierarchy: Registers > L1 Cache > L2 Cache > L3 Cache > RAM > SSD > HDD।",
+      "Registers L1 Cache से भी fast हैं।",
+      "Hard Disk सबसे slow है।"
+    ]
+  },
+  {
+    q: "Exabyte (EB) कितने Petabytes के बराबर है?",
+    options: ["1000 PB", "512 PB", "1024 PB", "2048 PB"],
+    correct: 2,
+    explanations: [
+      "1000 PB decimal system में।",
+      "512 PB = आधा EB।",
+      "✅ सही! 1 EB = 1024 PB। Internet पर daily data traffic Exabytes में होती है।",
+      "2048 PB = 2 EB।"
+    ]
+  },
+  {
+    q: "Zettabyte किससे बड़ा है?",
+    options: ["Terabyte से छोटा", "Exabyte से बड़ा (1 ZB = 1024 EB)", "Petabyte के समान", "Gigabyte से छोटा"],
+    correct: 1,
+    explanations: [
+      "Zettabyte बहुत बड़ा है।",
+      "✅ सही! Units hierarchy: Bit < Byte < KB < MB < GB < TB < PB < EB < ZB < YB। 1 ZB = 1024 EB।",
+      "Zettabyte Petabyte से बहुत बड़ा है।",
+      "Zettabyte Gigabyte से कई गुना बड़ा है।"
+    ]
+  },
+  {
+    q: "Flash Memory की मुख्य विशेषता क्या है?",
+    options: ["Power पर data रहता है केवल", "Non-volatile electronic storage — electrically erasable and reprogrammable", "केवल once लिखा जा सकता है", "Magnetic storage"],
+    correct: 1,
+    explanations: [
+      "Flash Memory power off पर भी data रखती है।",
+      "✅ सही! Flash Memory Non-volatile solid-state storage है जिसे electrically erase और reprogram किया जा सकता है — USB drives, SSDs, Memory cards में use होती है।",
+      "Flash को multiple times write किया जा सकता है।",
+      "Flash magnetic नहीं — electronic है।"
+    ]
+  },
+  {
+    q: "BIOS में POST का मतलब क्या है?",
+    options: ["Program On System Test", "Power-On Self-Test — startup पर hardware check", "Peripheral Output System Tool", "Processor Output Status Test"],
+    correct: 1,
+    explanations: [
+      "यह POST का नाम नहीं।",
+      "✅ सही! POST = Power-On Self-Test। Computer start होने पर BIOS automatically hardware (RAM, CPU, keyboard) को test करता है — अगर error हो तो beep codes आते हैं।",
+      "यह भी गलत है।",
+      "यह भी गलत है।"
+    ]
+  },
+
+  // ===== NETWORKING & ADVANCED TOPICS (76–100) =====
+  {
+    q: "TCP/IP का पूरा नाम क्या है?",
+    options: ["Transfer Control Protocol/Internet Programming", "Transmission Control Protocol/Internet Protocol", "Total Computer Protocol/IP", "Transfer Command Protocol/Interface Protocol"],
+    correct: 1,
+    explanations: [
+      "यह TCP/IP का नाम नहीं।",
+      "✅ सही! TCP/IP = Transmission Control Protocol/Internet Protocol। यह internet communication का foundation protocol suite है।",
+      "यह भी गलत है।",
+      "यह भी गलत है।"
+    ]
+  },
+  {
+    q: "DNS का क्या काम है?",
+    options: ["Internet speed बढ़ाना", "Domain names (google.com) को IP addresses में translate करना", "Data encrypt करना", "Network password set करना"],
+    correct: 1,
+    explanations: [
+      "DNS internet speed से directly नहीं।",
+      "✅ सही! DNS (Domain Name System) human-readable domain names को machine-readable IP addresses में translate करता है — जैसे google.com → 142.250.x.x।",
+      "DNS encryption नहीं है।",
+      "DNS password नहीं।"
+    ]
+  },
+  {
+    q: "API का पूरा नाम क्या है?",
+    options: ["Application Programming Interface", "Advanced Program Input", "Automatic Process Integration", "Application Process Interaction"],
+    correct: 0,
+    explanations: [
+      "✅ सही! API = Application Programming Interface। यह different software applications को एक-दूसरे के साथ communicate करने का तरीका define करता है।",
+      "यह API का नाम नहीं।",
+      "यह भी गलत है।",
+      "यह भी गलत है।"
+    ]
+  },
+  {
+    q: "Agile Software Development क्या है?",
+    options: ["एक programming language", "Iterative, incremental software development methodology जो flexibility और collaboration पर focus करे", "Hardware design process", "Database design method"],
+    correct: 1,
+    explanations: [
+      "Agile language नहीं है।",
+      "✅ सही! Agile एक software development methodology है जिसमें software छोटे iterations (Sprints) में develop होता है, requirements change हो सकती हैं, team collaboration important है।",
+      "Agile hardware के लिए नहीं।",
+      "Agile database design नहीं।"
+    ]
+  },
+  {
+    q: "Version Control System (जैसे Git) का क्या उपयोग है?",
+    options: ["Internet control", "Code changes को track करना, history रखना, multiple developers में collaborate करना", "Hardware version check", "OS update management"],
+    correct: 1,
+    explanations: [
+      "Version control internet नहीं है।",
+      "✅ सही! Git जैसे VCS code के changes track करते हैं, complete history रखते हैं, branches allow करते हैं और teams को simultaneously काम करने देते हैं।",
+      "Hardware version अलग है।",
+      "OS updates अलग है।"
+    ]
+  },
+  {
+    q: "DevOps क्या है?",
+    options: ["एक programming language", "Development और Operations teams को integrate करने की practice — faster software delivery", "एक database type", "एक OS"],
+    correct: 1,
+    explanations: [
+      "DevOps language नहीं है।",
+      "✅ सही! DevOps Development (software) और Operations (infrastructure) teams को combine करती है — Automation, CI/CD, faster deployment और collaboration focus है।",
+      "DevOps database नहीं है।",
+      "DevOps OS नहीं है।"
+    ]
+  },
+  {
+    q: "Malware क्या है?",
+    options: ["Helpful software", "Malicious software जो computer को harm करने के लिए बना हो — virus, trojan, ransomware", "System update", "Antivirus"],
+    correct: 1,
+    explanations: [
+      "Malware helpful नहीं है।",
+      "✅ सही! Malware (Malicious Software) computer systems को damage, disrupt या unauthorized access देने के लिए बनाया जाता है — Viruses, Trojans, Ransomware, Spyware सब malware हैं।",
+      "System update helpful है।",
+      "Antivirus malware से protect करता है।"
+    ]
+  },
+  {
+    q: "Trojan Horse क्या है?",
+    options: ["एक programming language", "Legitimate software लगने वाला malware जो secretly harmful काम करे", "Antivirus tool", "Network firewall"],
+    correct: 1,
+    explanations: [
+      "Trojan language नहीं है।",
+      "✅ सही! Trojan Horse ऐसा malware है जो useful software (game, utility) की तरह दिखता है लेकिन secretly system में backdoor, data theft, या damage करता है।",
+      "Trojan antivirus नहीं।",
+      "Trojan firewall नहीं।"
+    ]
+  },
+  {
+    q: "Ransomware क्या करता है?",
+    options: ["System speed बढ़ाता है", "Files को encrypt करता है और decrypt key के लिए ransom (पैसे) माँगता है", "Internet speed बढ़ाता है", "Antivirus updates करता है"],
+    correct: 1,
+    explanations: [
+      "Ransomware helpful नहीं है।",
+      "✅ सही! Ransomware victim के files/system को encrypt करता है और decrypt करने के लिए cryptocurrency में payment demand करता है — WannaCry famous ransomware था।",
+      "Ransomware internet speed से नहीं।",
+      "Ransomware antivirus नहीं है।"
+    ]
+  },
+  {
+    q: "Phishing क्या है?",
+    options: ["एक programming technique", "Fraudulent attempt to steal sensitive information by impersonating trusted entity", "Network configuration", "Code optimization"],
+    correct: 1,
+    explanations: [
+      "Phishing programming नहीं है।",
+      "✅ सही! Phishing में attackers fake emails, websites या messages से users को fool करते हैं ताकि passwords, credit card numbers जैसी sensitive information steal कर सकें।",
+      "Phishing network config नहीं है।",
+      "Phishing code optimization नहीं है।"
+    ]
+  },
+  {
+    q: "Firewall का क्या काम है?",
+    options: ["System को cool रखना", "Network traffic को monitor और filter करना — unauthorized access को block करना", "Internet speed बढ़ाना", "Files compress करना"],
+    correct: 1,
+    explanations: [
+      "Firewall cooling system नहीं है।",
+      "✅ सही! Firewall network security system है जो incoming और outgoing traffic को predefined rules के basis पर monitor और filter करता है — unauthorized access और threats block होते हैं।",
+      "Firewall internet speed से नहीं।",
+      "Firewall compression नहीं करता।"
+    ]
+  },
+  {
+    q: "Encryption क्या है?",
+    options: ["Data को compress करना", "Data को unreadable format में convert करना ताकि केवल authorized party ही पढ़ सके", "Data को backup करना", "Data को delete करना"],
+    correct: 1,
+    explanations: [
+      "Encryption compression नहीं है।",
+      "✅ सही! Encryption data को algorithm से cipher text में convert करता है — केवल correct decryption key से original data पढ़ा जा सकता है। HTTPS, WhatsApp इसे use करते हैं।",
+      "Encryption backup नहीं है।",
+      "Encryption delete नहीं करता।"
+    ]
+  },
+  {
+    q: "Machine Learning, Traditional Programming से कैसे अलग है?",
+    options: ["ML केवल faster programming है", "ML में computers data से खुद patterns सीखते हैं, rules explicitly program नहीं करने पड़ते", "ML केवल web development है", "ML में कोई code नहीं होता"],
+    correct: 1,
+    explanations: [
+      "ML सिर्फ faster programming नहीं।",
+      "✅ सही! Traditional Programming में rules explicitly लिखे जाते हैं। Machine Learning में algorithm data से खुद patterns, rules और insights सीखता है।",
+      "ML web development से बहुत broader है।",
+      "ML में code होता है (algorithms, neural networks)।"
+    ]
+  },
+  {
+    q: "Artificial Intelligence (AI) का Computer Software में क्या भूमिका है?",
+    options: ["AI केवल robots के लिए है", "AI software को intelligent बनाता है — reasoning, learning, problem-solving जैसे human-like tasks perform करने में", "AI केवल hardware है", "AI केवल internet के लिए है"],
+    correct: 1,
+    explanations: [
+      "AI robots तक सीमित नहीं।",
+      "✅ सही! AI software को human-like intelligence देता है — Speech recognition, Image recognition, Natural Language Processing, Decision making सब AI applications हैं।",
+      "AI primarily software field है।",
+      "AI internet तक सीमित नहीं।"
+    ]
+  },
+  {
+    q: "Cloud Computing क्या है?",
+    options: ["Weather prediction software", "Internet पर hosted computing resources (servers, storage, software) को on-demand use करना", "Cloud की photography", "Offline computing"],
+    correct: 1,
+    explanations: [
+      "Cloud Computing weather से नहीं।",
+      "✅ सही! Cloud Computing में computing resources (CPU, Storage, Software) internet के through remote servers पर available होते हैं — AWS, Google Cloud, Azure examples हैं।",
+      "Photography अलग है।",
+      "Cloud Computing online है।"
+    ]
+  },
+  {
+    q: "Open Source AI Model का उदाहरण क्या है?",
+    options: ["ChatGPT", "Meta का LLaMA", "Google Bard", "Apple Siri"],
+    correct: 1,
+    explanations: [
+      "ChatGPT OpenAI का Proprietary model है।",
+      "✅ सही! Meta का LLaMA (Large Language Model Meta AI) Open Source है — researchers और developers इसे freely use और modify कर सकते हैं।",
+      "Google Bard/Gemini Proprietary है।",
+      "Apple Siri Proprietary है।"
+    ]
+  },
+  {
+    q: "IDE का पूरा नाम और उदाहरण क्या है?",
+    options: ["Internet Development Engine — Chrome", "Integrated Development Environment — VS Code, PyCharm, Eclipse", "Internal Data Editor — Notepad", "Instant Debug Engine — GDB"],
+    correct: 1,
+    explanations: [
+      "Chrome browser है।",
+      "✅ सही! IDE = Integrated Development Environment। यह code editor, compiler/interpreter, debugger को एक tool में integrate करता है — VS Code, PyCharm, Eclipse, IntelliJ IDEA।",
+      "Notepad simple text editor है।",
+      "GDB debugger है।"
+    ]
+  },
+  {
+    q: "Git में 'Commit' क्या होता है?",
+    options: ["Code को internet पर upload करना", "Code changes को locally snapshot के रूप में save करना", "Code को delete करना", "Code को compile करना"],
+    correct: 1,
+    explanations: [
+      "Upload करना 'Push' होता है Git में।",
+      "✅ सही! Git Commit code के current state का snapshot बनाकर local repository में save करता है — हर commit का unique ID (hash) होता है।",
+      "Commit delete नहीं करता।",
+      "Commit compilation नहीं है।"
+    ]
+  },
+  {
+    q: "Responsive Web Design क्या है?",
+    options: ["Website जो बहुत fast हो", "Website जो different screen sizes (mobile, tablet, desktop) पर properly display हो", "Website जो offline काम करे", "Website जो automatic update हो"],
+    correct: 1,
+    explanations: [
+      "Responsive design speed से नहीं।",
+      "✅ सही! Responsive Web Design में website CSS Media Queries और flexible layouts से अलग-अलग screen sizes पर automatically adapt होती है।",
+      "Offline capability PWA (Progressive Web App) है।",
+      "Auto update अलग feature है।"
+    ]
+  },
+  {
+    q: "Microservices Architecture क्या है?",
+    options: ["बहुत small files", "Application को छोटे, independent services में divide करना जो अलग-अलग deploy हो सकें", "Microcontroller programming", "Small database"],
+    correct: 1,
+    explanations: [
+      "Microservices files से नहीं।",
+      "✅ सही! Microservices Architecture में large application को small, loosely-coupled, independently deployable services में break किया जाता है — Netflix, Amazon इसे use करते हैं।",
+      "Microservices microcontroller से अलग concept है।",
+      "Microservices database नहीं है।"
+    ]
+  },
+  {
+    q: "Cybersecurity में 'Zero-Day Vulnerability' क्या है?",
+    options: ["नई vulnerability जो आज fix हो गई", "Software में ऐसी vulnerability जो vendor को पता नहीं, इसलिए patch नहीं है — attackers exploit कर सकते हैं", "Test environment की vulnerability", "Old, already-fixed vulnerability"],
+    correct: 1,
+    explanations: [
+      "Fixed vulnerability zero-day नहीं है।",
+      "✅ सही! Zero-Day Vulnerability एक unknown security flaw है जिसे software vendor को अभी पता नहीं — इसलिए patch available नहीं है। Attackers इसे 'zero days' में exploit कर सकते हैं।",
+      "Test environment vulnerabilities अलग हैं।",
+      "Old fixed vulnerabilities CVE में documented होती हैं।"
+    ]
+  }
+];
+
+// ===== QUIZ ENGINE =====
+let questions = [];
+let currentIndex = 0;
+let score = 0;
+let wrongAnswers = 0;
+let answered = false;
+
+function shuffle(arr) {
+  let a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function prepareQuestions() {
+  questions = shuffle(allQuestions).map(q => {
+    const idx = shuffle([0,1,2,3]);
+    const newOptions = idx.map(i => q.options[i]);
+    const newExps = idx.map(i => q.explanations[i]);
+    const newCorrect = idx.indexOf(q.correct);
+    return { q: q.q, options: newOptions, correct: newCorrect, explanations: newExps };
+  });
+}
+
+function loadQuestion() {
+  answered = false;
+  const q = questions[currentIndex];
+  document.getElementById('qNum').textContent = `प्रश्न ${currentIndex + 1}`;
+  document.getElementById('qText').textContent = q.q;
+  document.getElementById('qCounter').textContent = `${currentIndex + 1} / 100`;
+  document.getElementById('progressBar').style.width = `${(currentIndex / 100) * 100}%`;
+
+  const grid = document.getElementById('optionsGrid');
+  grid.innerHTML = '';
+  ['A','B','C','D'].forEach((lbl, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'option-btn';
+    btn.innerHTML = `<span class="option-badge">${lbl}</span><span>${q.options[i]}</span>`;
+    btn.onclick = () => selectAnswer(i);
+    grid.appendChild(btn);
+  });
+
+  document.getElementById('explanationBox').classList.remove('show');
+  document.getElementById('allExplanations').classList.remove('show');
+  document.getElementById('nextBtn').classList.remove('show');
+}
+
+function selectAnswer(selectedIndex) {
+  if (answered) return;
+  answered = true;
+  const q = questions[currentIndex];
+  const buttons = document.querySelectorAll('.option-btn');
+  buttons.forEach(b => b.disabled = true);
+
+  if (selectedIndex === q.correct) {
+    buttons[selectedIndex].classList.add('correct');
+    score++;
+    document.getElementById('correctCount').textContent = score;
+  } else {
+    buttons[selectedIndex].classList.add('wrong');
+    buttons[q.correct].classList.add('correct');
+    wrongAnswers++;
+    document.getElementById('wrongCount').textContent = wrongAnswers;
+  }
+
+  const total = currentIndex + 1;
+  document.getElementById('scorePercent').textContent = Math.round((score / total) * 100) + '%';
+
+  document.getElementById('correctExp').textContent = q.explanations[q.correct];
+  const allExp = document.getElementById('allExplanations');
+  allExp.innerHTML = '<div style="font-size:0.76rem;color:#43e97b;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">सभी विकल्पों की व्याख्या:</div>';
+  ['A','B','C','D'].forEach((lbl, i) => {
+    const div = document.createElement('div');
+    div.className = 'exp-option-row';
+    div.innerHTML = `<strong>${lbl})</strong> ${q.options[i]}: ${q.explanations[i]}`;
+    allExp.appendChild(div);
+  });
+
+  document.getElementById('explanationBox').classList.add('show');
+  document.getElementById('allExplanations').classList.add('show');
+  const nb = document.getElementById('nextBtn');
+  nb.textContent = currentIndex === 99 ? 'परिणाम देखें 🏆' : 'अगला सवाल →';
+  nb.classList.add('show');
+}
+
+function nextQuestion() {
+  currentIndex++;
+  if (currentIndex >= 100) { showResult(); return; }
+  loadQuestion();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function showResult() {
+  document.getElementById('questionCard').style.display = 'none';
+  document.getElementById('statsBar').style.display = 'none';
+  document.getElementById('resultScreen').classList.add('show');
+  const pct = Math.round((score / 100) * 100);
+  document.getElementById('finalScore').textContent = `${score} / 100`;
+  document.getElementById('finalPercent').textContent = `सफलता प्रतिशत: ${pct}%`;
+  document.getElementById('rCorrect').textContent = score;
+  document.getElementById('rWrong').textContent = wrongAnswers;
+  let emoji, grade, color;
+  if (pct >= 90) { emoji='🏆'; grade='Outstanding! अद्भुत प्रदर्शन'; color='#43e97b'; }
+  else if (pct >= 75) { emoji='🌟'; grade='Excellent! उत्कृष्ट'; color='#38f9d7'; }
+  else if (pct >= 60) { emoji='👏'; grade='Good! अच्छा प्रदर्शन'; color='#4fc3f7'; }
+  else if (pct >= 40) { emoji='📚'; grade='Average — और अभ्यास करें'; color='#ffd200'; }
+  else { emoji='💪'; grade='Keep Trying! हिम्मत रखो'; color='#ff6b6b'; }
+  document.getElementById('resultEmoji').textContent = emoji;
+  const badge = document.getElementById('gradeBadge');
+  badge.textContent = grade;
+  badge.style.cssText = `background:${color}22; color:${color}; border:1px solid ${color}55;`;
+}
+
+function restartQuiz() {
+  score = 0; wrongAnswers = 0; currentIndex = 0;
+  document.getElementById('correctCount').textContent = '0';
+  document.getElementById('wrongCount').textContent = '0';
+  document.getElementById('scorePercent').textContent = '0%';
+  document.getElementById('resultScreen').classList.remove('show');
+  document.getElementById('questionCard').style.display = 'block';
+  document.getElementById('statsBar').style.display = 'flex';
+  prepareQuestions();
+  loadQuestion();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+prepareQuestions();
+loadQuestion();
+</script>
+</body>
+</html>

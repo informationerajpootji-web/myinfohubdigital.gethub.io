@@ -1,0 +1,2116 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Computer Software — विस्तृत संपूर्ण ज्ञान</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@300;400;500;600;700;800&family=Noto+Serif+Devanagari:wght@400;600;700;900&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #080a10;
+  --bg2: #0f1118;
+  --bg3: #151820;
+  --card: #1a1e2a;
+  --card2: #1f2436;
+  --card3: #242b40;
+  --border: rgba(255,255,255,0.06);
+  --border2: rgba(255,255,255,0.11);
+  --border3: rgba(255,255,255,0.18);
+  --text: #dde0f0;
+  --text2: #b8bcd0;
+  --muted: #7a7f98;
+  --dim: #4a4f65;
+  --gold: #f5c842;
+  --gold2: #e8a820;
+  --gold3: rgba(245,200,66,0.08);
+  --teal: #2dd4bf;
+  --blue: #60a5fa;
+  --purple: #a78bfa;
+  --coral: #fb7185;
+  --green: #4ade80;
+  --amber: #fbbf24;
+  --rose: #f43f5e;
+  --sky: #38bdf8;
+  --font-main: 'Noto Sans Devanagari', sans-serif;
+  --font-serif: 'Noto Serif Devanagari', serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --r: 12px;
+  --r2: 16px;
+  --r3: 20px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:var(--font-main);min-height:100vh;overflow-x:hidden;font-size:15px;line-height:1.75;}
+
+/* BG TEXTURE */
+body::before{content:'';position:fixed;inset:0;
+  background-image:radial-gradient(ellipse 60% 40% at 70% 20%,rgba(96,165,250,0.04) 0%,transparent 60%),
+  radial-gradient(ellipse 50% 35% at 20% 80%,rgba(167,139,250,0.04) 0%,transparent 55%),
+  linear-gradient(rgba(245,200,66,0.025) 1px,transparent 1px),
+  linear-gradient(90deg,rgba(245,200,66,0.025) 1px,transparent 1px);
+  background-size:100% 100%,100% 100%,36px 36px,36px 36px;
+  pointer-events:none;z-index:0;}
+
+/* HERO */
+.hero{position:relative;z-index:1;padding:70px 48px 48px;text-align:center;
+  background:linear-gradient(180deg,rgba(245,200,66,0.05) 0%,transparent 100%);
+  border-bottom:1px solid var(--border);}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;
+  background:rgba(245,200,66,0.1);border:1px solid rgba(245,200,66,0.25);
+  color:var(--gold);font-size:11px;letter-spacing:2.5px;padding:5px 18px;
+  border-radius:30px;margin-bottom:24px;text-transform:uppercase;font-weight:600;}
+.hero h1{font-family:var(--font-serif);font-size:clamp(30px,5.5vw,58px);font-weight:900;
+  color:#fff;line-height:1.15;margin-bottom:16px;letter-spacing:-0.5px;}
+.hero h1 em{color:var(--gold);font-style:normal;}
+.hero-sub{font-size:15px;color:var(--muted);max-width:620px;margin:0 auto 28px;line-height:1.85;}
+.hero-stats{display:flex;justify-content:center;gap:32px;flex-wrap:wrap;}
+.stat{text-align:center;}
+.stat-num{font-size:28px;font-weight:800;color:var(--gold);font-family:var(--font-serif);}
+.stat-label{font-size:11px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;}
+
+/* NAV */
+.nav{position:sticky;top:0;z-index:100;background:rgba(8,10,16,0.96);
+  backdrop-filter:blur(16px);border-bottom:1px solid var(--border);
+  padding:0 48px;display:flex;gap:0;overflow-x:auto;}
+.nav::-webkit-scrollbar{display:none;}
+.nav-btn{flex-shrink:0;padding:17px 22px;background:none;border:none;
+  color:var(--muted);font-size:13px;font-weight:500;font-family:var(--font-main);
+  cursor:pointer;white-space:nowrap;border-bottom:2px solid transparent;
+  transition:all .2s;display:flex;align-items:center;gap:8px;}
+.nav-btn:hover{color:var(--text);}
+.nav-btn.active{color:var(--gold);border-bottom-color:var(--gold);}
+.nav-icon{font-size:15px;}
+
+/* CONTENT */
+.content{position:relative;z-index:1;padding:44px 48px;max-width:1160px;margin:0 auto;}
+.panel{display:none;}
+.panel.active{display:block;animation:fadeUp .35s ease;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:none;}}
+
+/* SEC HEADER */
+.sec-header{display:flex;align-items:flex-start;gap:18px;margin-bottom:36px;
+  padding-bottom:24px;border-bottom:1px solid var(--border);}
+.sec-icon{width:56px;height:56px;flex-shrink:0;border-radius:16px;
+  display:flex;align-items:center;justify-content:center;font-size:26px;}
+.sec-title{font-family:var(--font-serif);font-size:28px;color:#fff;margin-bottom:8px;font-weight:700;}
+.sec-desc{font-size:14px;color:var(--muted);line-height:1.85;max-width:680px;}
+
+/* ACCORDION */
+.accordion{display:flex;flex-direction:column;gap:14px;}
+.acc-item{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);overflow:hidden;transition:border-color .2s;}
+.acc-item:hover{border-color:var(--border2);}
+.acc-item.open{border-color:var(--border2);}
+.acc-head{display:flex;align-items:center;gap:16px;padding:22px 26px;cursor:pointer;transition:background .2s;}
+.acc-head:hover{background:rgba(255,255,255,0.02);}
+.acc-icon{width:48px;height:48px;flex-shrink:0;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:22px;}
+.acc-label{flex:1;}
+.acc-name{font-size:17px;font-weight:700;color:#fff;margin-bottom:4px;}
+.acc-sub{font-size:12px;color:var(--muted);line-height:1.5;}
+.acc-badge{font-size:11px;padding:4px 12px;border-radius:20px;font-weight:600;flex-shrink:0;letter-spacing:.3px;}
+.acc-arrow{font-size:13px;color:var(--dim);transition:transform .25s;flex-shrink:0;}
+.acc-item.open .acc-arrow{transform:rotate(180deg);}
+.acc-body{display:none;padding:0 26px 28px;border-top:1px solid var(--border);}
+.acc-item.open .acc-body{display:block;}
+
+/* TYPOGRAPHY */
+.def-box{background:linear-gradient(135deg,rgba(245,200,66,0.07),rgba(245,200,66,0.03));
+  border:1px solid rgba(245,200,66,0.18);border-left:3px solid var(--gold);
+  border-radius:var(--r);padding:20px 22px;margin:18px 0;
+  font-size:14.5px;line-height:1.9;color:var(--text2);}
+.def-box strong,.def-box b{color:var(--gold);}
+
+.section-h{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;
+  color:var(--gold);margin:24px 0 14px;display:flex;align-items:center;gap:8px;}
+.section-h::after{content:'';flex:1;height:1px;background:var(--border);}
+
+.body-para{font-size:14px;color:var(--text2);line-height:1.9;margin:12px 0;}
+.body-para b,.body-para strong{color:var(--text);font-weight:600;}
+
+/* GRID CARDS */
+.grid-2{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;margin:16px 0;}
+.grid-3{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin:16px 0;}
+.grid-4{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:12px;margin:16px 0;}
+
+.info-card{background:var(--card2);border:1px solid var(--border);border-radius:var(--r);padding:16px 18px;}
+.info-card-head{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-bottom:10px;}
+.info-card-body{font-size:13px;color:var(--text2);line-height:1.75;}
+.info-card-body b{color:var(--text);}
+
+.feature-card{background:var(--card2);border:1px solid var(--border);border-radius:var(--r);padding:18px;}
+.feature-card h4{font-size:14px;font-weight:700;margin-bottom:10px;}
+.feature-card ul{list-style:none;}
+.feature-card ul li{font-size:13px;color:var(--text2);padding:5px 0;display:flex;align-items:flex-start;gap:9px;line-height:1.65;border-bottom:1px solid var(--border);}
+.feature-card ul li:last-child{border-bottom:none;}
+.feature-card ul li .dot{color:var(--gold);flex-shrink:0;margin-top:1px;font-size:12px;}
+
+/* HIGHLIGHT / CALLOUT */
+.callout{border-radius:var(--r);padding:18px 20px;margin:16px 0;font-size:13.5px;line-height:1.85;}
+.callout b,.callout strong{font-weight:700;}
+.callout-gold{background:rgba(245,200,66,0.07);border:1px solid rgba(245,200,66,0.18);color:var(--text2);}
+.callout-gold b{color:var(--gold);}
+.callout-blue{background:rgba(96,165,250,0.07);border:1px solid rgba(96,165,250,0.2);color:var(--text2);}
+.callout-blue b{color:var(--blue);}
+.callout-teal{background:rgba(45,212,191,0.07);border:1px solid rgba(45,212,191,0.2);color:var(--text2);}
+.callout-teal b{color:var(--teal);}
+.callout-coral{background:rgba(251,113,133,0.07);border:1px solid rgba(251,113,133,0.2);color:var(--text2);}
+.callout-coral b{color:var(--coral);}
+.callout-green{background:rgba(74,222,128,0.07);border:1px solid rgba(74,222,128,0.2);color:var(--text2);}
+.callout-green b{color:var(--green);}
+.callout-purple{background:rgba(167,139,250,0.07);border:1px solid rgba(167,139,250,0.2);color:var(--text2);}
+.callout-purple b{color:var(--purple);}
+
+/* CODE */
+.code-block{background:#060810;border:1px solid var(--border);border-radius:var(--r);
+  padding:18px 20px;margin:14px 0;font-family:var(--font-mono);font-size:12.5px;
+  color:#8fa8c8;overflow-x:auto;line-height:1.8;}
+.code-block .kw{color:var(--purple);}
+.code-block .str{color:var(--green);}
+.code-block .cmt{color:#3d4560;font-style:italic;}
+.code-block .num{color:var(--coral);}
+.code-block .fn{color:var(--blue);}
+.code-block .op{color:var(--amber);}
+.code-block .t{color:var(--teal);}
+.code-label{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;
+  color:var(--muted);background:var(--card3);border:1px solid var(--border);
+  border-bottom:none;border-radius:var(--r) var(--r) 0 0;padding:8px 16px;
+  display:inline-block;margin-top:14px;}
+
+/* TAGS */
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0;}
+.tag{padding:5px 13px;border-radius:20px;font-size:12px;font-weight:500;
+  background:var(--card2);color:var(--text2);border:1px solid var(--border2);
+  font-family:var(--font-mono);}
+
+/* TABLE */
+.data-table{width:100%;border-collapse:collapse;margin:16px 0;font-size:13px;}
+.data-table th{text-align:left;padding:11px 14px;font-size:11px;font-weight:700;
+  text-transform:uppercase;letter-spacing:1px;color:var(--muted);
+  border-bottom:1px solid var(--border);white-space:nowrap;}
+.data-table td{padding:13px 14px;border-bottom:1px solid var(--border);color:var(--text2);vertical-align:middle;}
+.data-table tr:last-child td{border-bottom:none;}
+.data-table tr:hover td{background:rgba(255,255,255,0.015);}
+.tval{font-family:var(--font-mono);color:var(--teal);}
+.tname{font-weight:700;color:#fff;font-size:14px;}
+.tsub{font-size:11px;color:var(--muted);}
+.bar-wrap{background:rgba(255,255,255,0.06);border-radius:4px;height:7px;width:130px;}
+.bar-in{height:7px;border-radius:4px;background:linear-gradient(90deg,var(--teal),var(--blue));}
+
+/* FLOW */
+.flow{display:flex;flex-direction:column;gap:0;margin:16px 0;}
+.flow-node{display:flex;gap:16px;background:var(--card2);border-radius:var(--r);
+  padding:18px 20px;border:1px solid var(--border);transition:border-color .2s;}
+.flow-node:hover{border-color:var(--border2);}
+.flow-num{width:34px;height:34px;flex-shrink:0;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:14px;font-weight:700;font-family:var(--font-mono);
+  background:rgba(245,200,66,0.1);color:var(--gold);border:1px solid rgba(245,200,66,0.25);}
+.flow-content{flex:1;}
+.flow-title{font-size:14px;font-weight:700;color:#fff;margin-bottom:5px;}
+.flow-desc{font-size:13px;color:var(--text2);line-height:1.7;}
+.flow-arrow{text-align:center;color:var(--dim);font-size:18px;padding:4px 0;}
+
+/* OS GRID */
+.os-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px;margin:18px 0;}
+.os-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:24px;transition:border-color .2s,transform .2s;}
+.os-card:hover{border-color:var(--border2);transform:translateY(-2px);}
+.os-logo{font-size:40px;margin-bottom:14px;}
+.os-name{font-size:18px;font-weight:800;color:#fff;margin-bottom:4px;}
+.os-tag{font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;display:inline-block;margin-bottom:14px;letter-spacing:.3px;}
+.os-list{list-style:none;}
+.os-list li{font-size:13px;color:var(--text2);padding:6px 0;display:flex;gap:9px;align-items:flex-start;border-bottom:1px solid var(--border);line-height:1.5;}
+.os-list li:last-child{border-bottom:none;}
+.os-list li .ic{flex-shrink:0;margin-top:1px;font-size:13px;}
+
+/* DIVIDER */
+.divider{height:1px;background:var(--border);margin:22px 0;}
+
+/* COLOR CLASSES */
+.ic-tl{background:rgba(45,212,191,.12);color:var(--teal);}
+.ic-bl{background:rgba(96,165,250,.12);color:var(--blue);}
+.ic-pu{background:rgba(167,139,250,.12);color:var(--purple);}
+.ic-co{background:rgba(251,113,133,.12);color:var(--coral);}
+.ic-gr{background:rgba(74,222,128,.12);color:var(--green);}
+.ic-go{background:rgba(245,200,66,.12);color:var(--gold);}
+.ic-am{background:rgba(251,191,36,.12);color:var(--amber);}
+.ic-sk{background:rgba(56,189,248,.12);color:var(--sky);}
+
+.badge-teal{background:rgba(45,212,191,.12);color:var(--teal);border:1px solid rgba(45,212,191,.2);}
+.badge-blue{background:rgba(96,165,250,.12);color:var(--blue);border:1px solid rgba(96,165,250,.2);}
+.badge-purple{background:rgba(167,139,250,.12);color:var(--purple);border:1px solid rgba(167,139,250,.2);}
+.badge-coral{background:rgba(251,113,133,.12);color:var(--coral);border:1px solid rgba(251,113,133,.2);}
+.badge-green{background:rgba(74,222,128,.12);color:var(--green);border:1px solid rgba(74,222,128,.2);}
+.badge-gold{background:rgba(245,200,66,.12);color:var(--gold);border:1px solid rgba(245,200,66,.2);}
+.badge-amber{background:rgba(251,191,36,.12);color:var(--amber);border:1px solid rgba(251,191,36,.2);}
+
+/* COMPARE TABLE */
+.cmp-table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13px;}
+.cmp-table th{padding:10px 14px;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--border);}
+.cmp-table td{padding:11px 14px;border-bottom:1px solid var(--border);color:var(--text2);line-height:1.6;}
+.cmp-table tr:last-child td{border-bottom:none;}
+.cmp-yes{color:var(--green);}
+.cmp-no{color:var(--coral);}
+.cmp-ok{color:var(--amber);}
+
+/* QUOTE */
+.quote-block{border-left:3px solid var(--purple);background:rgba(167,139,250,0.05);
+  border-radius:0 var(--r) var(--r) 0;padding:16px 20px;margin:16px 0;
+  font-size:14px;color:var(--text2);line-height:1.85;font-style:italic;}
+.quote-block cite{display:block;margin-top:8px;font-size:12px;color:var(--muted);font-style:normal;font-weight:600;}
+
+/* TIMELINE */
+.timeline{margin:16px 0;display:flex;flex-direction:column;gap:0;}
+.tl-item{display:flex;gap:16px;padding-bottom:20px;position:relative;}
+.tl-item:last-child{padding-bottom:0;}
+.tl-item::before{content:'';position:absolute;left:17px;top:36px;width:2px;
+  height:calc(100% - 36px);background:var(--border);}
+.tl-item:last-child::before{display:none;}
+.tl-dot{width:36px;height:36px;flex-shrink:0;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;
+  font-family:var(--font-mono);background:var(--card2);border:1px solid var(--border2);
+  color:var(--gold);z-index:1;}
+.tl-content{flex:1;padding-top:6px;}
+.tl-year{font-size:11px;font-weight:700;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;}
+.tl-text{font-size:13px;color:var(--text2);line-height:1.7;}
+
+/* RESPONSIVE */
+@media(max-width:700px){
+  .content{padding:24px 16px;}
+  .hero{padding:44px 20px 30px;}
+  .nav{padding:0 16px;}
+  .acc-head{padding:16px;}
+  .acc-body{padding:0 16px 20px;}
+  .hero-stats{gap:20px;}
+  .grid-2,.grid-3,.grid-4{grid-template-columns:1fr;}
+  .os-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow">📚 कक्षा के लिए संपूर्ण अध्ययन सामग्री</div>
+  <h1>Computer <em>Software</em> का<br>विस्तृत संपूर्ण परिचय</h1>
+  <p class="hero-sub">Software के प्रकार, Computer भाषाएँ, Operating Systems और Memory Units — गहन व्याख्या, उदाहरण, आरेख और वास्तविक जीवन के संदर्भों के साथ</p>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-num">5</div><div class="stat-label">Software श्रेणियाँ</div></div>
+    <div class="stat"><div class="stat-num">5</div><div class="stat-label">Computer भाषाएँ</div></div>
+    <div class="stat"><div class="stat-num">6+</div><div class="stat-label">Operating Systems</div></div>
+    <div class="stat"><div class="stat-num">10</div><div class="stat-label">Memory Units</div></div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav class="nav" id="mainNav">
+  <button class="nav-btn active" onclick="showPanel('software',this)"><span class="nav-icon">💾</span>Software के प्रकार</button>
+  <button class="nav-btn" onclick="showPanel('language',this)"><span class="nav-icon">🖥️</span>Computer भाषाएँ</button>
+  <button class="nav-btn" onclick="showPanel('translator',this)"><span class="nav-icon">🔄</span>Interpreter vs Compiler</button>
+  <button class="nav-btn" onclick="showPanel('os',this)"><span class="nav-icon">⚙️</span>Operating System</button>
+  <button class="nav-btn" onclick="showPanel('memory',this)"><span class="nav-icon">📦</span>Memory Units</button>
+</nav>
+
+<div class="content">
+
+<!-- ══════════════════════════════════════════════════════
+     PANEL 1 — SOFTWARE TYPES
+══════════════════════════════════════════════════════ -->
+<div class="panel active" id="panel-software">
+  <div class="sec-header">
+    <div class="sec-icon ic-bl">💾</div>
+    <div>
+      <div class="sec-title">Software क्या है? — और उसके प्रकार</div>
+      <div class="sec-desc">Software निर्देशों (instructions) का वह समूह है जो कंप्यूटर को बताता है कि क्या करना है और कैसे करना है। यह अदृश्य (invisible) होता है — हम इसे देख या छू नहीं सकते, लेकिन इसके बिना Hardware एक निर्जीव मशीन है।</div>
+    </div>
+  </div>
+
+  <div class="def-box">
+    <b>Software की परिभाषा:</b> Software प्रोग्राम्स, डेटा और निर्देशों का वह संग्रह है जो कंप्यूटर hardware को किसी विशेष कार्य को करने योग्य बनाता है। यह <b>Machine Readable Instructions</b> का समूह है जिसे CPU क्रमबद्ध रूप से execute करता है।<br><br>
+    <b>Hardware vs Software:</b> Hardware = कंप्यूटर का शरीर (जिसे छू सकते हैं) | Software = कंप्यूटर की आत्मा (जिसे केवल अनुभव कर सकते हैं)
+  </div>
+
+  <div class="callout callout-gold">
+    💡 <b>सरल उदाहरण:</b> एक DVD Player में — DVD और Player खुद <b>Hardware</b> है, लेकिन उस Player को चलाने वाला program (जो बटन दबाने पर play करता है, volume बढ़ाता है) — वह <b>Software</b> है।
+  </div>
+
+  <div class="accordion">
+
+    <!-- ─── 1. SYSTEM SOFTWARE ─── -->
+    <div class="acc-item" id="acc-sys">
+      <div class="acc-head" onclick="toggleAcc('acc-sys')">
+        <div class="acc-icon ic-bl">🖥️</div>
+        <div class="acc-label">
+          <div class="acc-name">System Software — सिस्टम सॉफ्टवेयर</div>
+          <div class="acc-sub">Hardware को चलाने वाला, पृष्ठभूमि में काम करने वाला सॉफ्टवेयर</div>
+        </div>
+        <span class="acc-badge badge-blue">श्रेणी 1</span>
+        <span class="acc-arrow">▼</span>
+      </div>
+      <div class="acc-body">
+        <div class="def-box">
+          <b>विस्तृत परिभाषा:</b> System Software वह सॉफ्टवेयर है जो कंप्यूटर के <b>hardware resources को manage और control</b> करता है। यह एक मध्यस्थ (intermediary) का काम करता है — एक तरफ hardware है और दूसरी तरफ Application Software। System Software इन दोनों के बीच संपर्क बनाता है।<br><br>
+          यह <b>कंप्यूटर चालू होते ही (boot time)</b> automatically load हो जाता है और पूरे session में पृष्ठभूमि में चलता रहता है। उपयोगकर्ता इससे सीधे interact नहीं करता — लेकिन इसके बिना कुछ भी काम नहीं करेगा।
+        </div>
+
+        <p class="body-para">System Software को <b>Low-Level Software</b> भी कहते हैं क्योंकि यह hardware के बहुत करीब काम करता है। यह <b>Machine Language या Assembly Language</b> में लिखा जाता है ताकि hardware को सीधे नियंत्रित कर सके।</p>
+
+        <div class="section-h">System Software के मुख्य प्रकार</div>
+
+        <div class="grid-2">
+          <div class="feature-card">
+            <h4 style="color:var(--blue);">🔵 Operating System (OS)</h4>
+            <ul>
+              <li><span class="dot">→</span>सबसे महत्वपूर्ण System Software</li>
+              <li><span class="dot">→</span>CPU, RAM, Disk, I/O सब manage करता है</li>
+              <li><span class="dot">→</span>User को GUI या Command Line interface देता है</li>
+              <li><span class="dot">→</span>उदा: Windows 11, Ubuntu Linux, macOS</li>
+            </ul>
+          </div>
+          <div class="feature-card">
+            <h4 style="color:var(--teal);">🔵 Device Drivers (डिवाइस ड्राइवर)</h4>
+            <ul>
+              <li><span class="dot">→</span>Hardware devices को OS से जोड़ता है</li>
+              <li><span class="dot">→</span>हर device (printer, keyboard, webcam) का अलग driver</li>
+              <li><span class="dot">→</span>बिना driver के hardware काम नहीं करता</li>
+              <li><span class="dot">→</span>उदा: Realtek Audio Driver, Intel HD Graphics Driver</li>
+            </ul>
+          </div>
+          <div class="feature-card">
+            <h4 style="color:var(--purple);">🟣 Utility Programs (उपयोगिता प्रोग्राम)</h4>
+            <ul>
+              <li><span class="dot">→</span>System की देखभाल और maintenance के लिए</li>
+              <li><span class="dot">→</span>Disk Cleanup — अनावश्यक files हटाता है</li>
+              <li><span class="dot">→</span>Antivirus — virus से सुरक्षा</li>
+              <li><span class="dot">→</span>उदा: CCleaner, Avast, WinRAR, Disk Defragmenter</li>
+            </ul>
+          </div>
+          <div class="feature-card">
+            <h4 style="color:var(--amber);">🟡 BIOS / UEFI (Firmware)</h4>
+            <ul>
+              <li><span class="dot">→</span>कंप्यूटर ON होने पर सबसे पहले चलता है</li>
+              <li><span class="dot">→</span>POST (Power On Self Test) करता है — hardware जाँचता है</li>
+              <li><span class="dot">→</span>Motherboard की ROM chip में stored होता है</li>
+              <li><span class="dot">→</span>OS को Hard Disk से RAM में load करता है</li>
+            </ul>
+          </div>
+          <div class="feature-card">
+            <h4 style="color:var(--coral);">🔴 Language Translators</h4>
+            <ul>
+              <li><span class="dot">→</span>High Level Language को Machine Code में बदलते हैं</li>
+              <li><span class="dot">→</span>Compiler, Interpreter, Assembler — तीन प्रकार</li>
+              <li><span class="dot">→</span>ये System Software के हिस्से हैं</li>
+              <li><span class="dot">→</span>उदा: GCC Compiler, Python Interpreter</li>
+            </ul>
+          </div>
+          <div class="feature-card">
+            <h4 style="color:var(--green);">🟢 Loader & Linker</h4>
+            <ul>
+              <li><span class="dot">→</span>Program को disk से RAM में load करता है</li>
+              <li><span class="dot">→</span>अलग-अलग program modules को जोड़ता है</li>
+              <li><span class="dot">→</span>Program run होने से पहले काम करता है</li>
+              <li><span class="dot">→</span>OS का अभिन्न हिस्सा</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="section-h">System Software कैसे काम करता है — Boot Process</div>
+        <div class="flow">
+          <div class="flow-node">
+            <div class="flow-num">1</div>
+            <div class="flow-content">
+              <div class="flow-title">Power ON → BIOS/UEFI चालू</div>
+              <div class="flow-desc">Motherboard की ROM से BIOS load होता है। POST (Power On Self Test) होता है — CPU, RAM, Keyboard, Monitor सब जाँचे जाते हैं।</div>
+            </div>
+          </div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-node">
+            <div class="flow-num">2</div>
+            <div class="flow-content">
+              <div class="flow-title">Boot Device खोजना</div>
+              <div class="flow-desc">BIOS Hard Disk / SSD में Operating System का Bootloader खोजता है। GRUB (Linux) या Windows Boot Manager मिलता है।</div>
+            </div>
+          </div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-node">
+            <div class="flow-num">3</div>
+            <div class="flow-content">
+              <div class="flow-title">OS Kernel RAM में Load</div>
+              <div class="flow-desc">OS का Core Part (Kernel) Hard Disk से RAM में आता है। Kernel — CPU scheduling, Memory management शुरू करता है।</div>
+            </div>
+          </div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-node">
+            <div class="flow-num">4</div>
+            <div class="flow-content">
+              <div class="flow-title">Device Drivers Load</div>
+              <div class="flow-desc">सभी hardware devices के drivers load होते हैं — Sound card, Graphics card, Network card, USB, etc.</div>
+            </div>
+          </div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-node">
+            <div class="flow-num">5</div>
+            <div class="flow-content">
+              <div class="flow-title">Desktop / User Interface</div>
+              <div class="flow-desc">Windows Explorer या GNOME Desktop start होता है। Login Screen आती है — उपयोगकर्ता computer use कर सकता है।</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="callout callout-blue">
+          💡 <b>सटीक उपमा:</b> System Software एक <b>Orchestra Conductor (संगीत संचालक)</b> की तरह है। जैसे Conductor बिना खुद वाद्य बजाए, सभी musicians को सही समय पर सही notes बजाने का निर्देश देता है — वैसे ही System Software बिना कोई application काम किए, सभी hardware और software को manage करता है।
+        </div>
+
+        <div class="section-h">उदाहरण</div>
+        <div class="tags">
+          <span class="tag">Windows 11</span><span class="tag">Ubuntu Linux</span><span class="tag">macOS Ventura</span>
+          <span class="tag">Android OS</span><span class="tag">BIOS/UEFI</span><span class="tag">Intel HD Driver</span>
+          <span class="tag">Realtek Audio Driver</span><span class="tag">Avast Antivirus</span><span class="tag">WinRAR</span>
+          <span class="tag">CCleaner</span><span class="tag">GCC Compiler</span><span class="tag">Python Interpreter</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─── 2. APPLICATION SOFTWARE ─── -->
+    <div class="acc-item" id="acc-app">
+      <div class="acc-head" onclick="toggleAcc('acc-app')">
+        <div class="acc-icon ic-tl">📱</div>
+        <div class="acc-label">
+          <div class="acc-name">Application Software — एप्लीकेशन सॉफ्टवेयर</div>
+          <div class="acc-sub">उपयोगकर्ता के विशेष कार्यों के लिए — सीधे interact करने वाला</div>
+        </div>
+        <span class="acc-badge badge-teal">श्रेणी 2</span>
+        <span class="acc-arrow">▼</span>
+      </div>
+      <div class="acc-body">
+        <div class="def-box">
+          <b>विस्तृत परिभाषा:</b> Application Software वह सॉफ्टवेयर है जो <b>किसी विशेष उद्देश्य या अंतिम-उपयोगकर्ता (end-user) की जरूरत</b> को पूरा करने के लिए बनाया जाता है। यह System Software के ऊपर (on top of) चलता है। उपयोगकर्ता इससे सीधे interact करता है।<br><br>
+          Application Software को <b>App या Program</b> भी कहते हैं। आज हम जो भी काम computer पर करते हैं — document बनाना, internet चलाना, game खेलना, गाना सुनना — ये सब Application Software के माध्यम से होता है।
+        </div>
+
+        <p class="body-para">Application Software <b>High Level Language</b> (Python, Java, C++, JavaScript) में लिखा जाता है। यह OS पर निर्भर है — अगर OS बंद हो तो Application भी बंद हो जाती है। Application Software को <b>End-User Software</b> या <b>Productivity Software</b> भी कहते हैं।</p>
+
+        <div class="section-h">Application Software के प्रमुख प्रकार</div>
+
+        <div class="grid-2">
+          <div class="feature-card">
+            <h4 style="color:var(--teal);">📝 Word Processing Software</h4>
+            <ul>
+              <li><span class="dot">→</span>Documents, letters, reports बनाना</li>
+              <li><span class="dot">→</span>Formatting: bold, italic, font, color</li>
+              <li><span class="dot">→</span>Spell Check, Grammar Check सुविधा</li>
+              <li><span class="dot">→</span>उदा: MS Word, LibreOffice Writer, Google Docs</li>
+            </ul>
+          </div>
+          <div class="feature-card">
+            <h4 style="color:var(--blue);">📊 Spreadsheet Software</h4>
+            <ul>
+              <li><span class="dot">→</span>Data organize करना, गणना, Chart बनाना</li>
+              <li><span class="dot">→</span>Formulas: SUM, AVERAGE, IF, VLOOKUP</li>
+              <li><span class="dot">→</span>Business और finance में अत्यंत उपयोगी</li>
+              <li><span class="dot">→</span>उदा: MS Excel, Google Sheets, LibreOffice Calc</li>
+            </ul>
+          </div>
+          <div class="feature-card">
+            <h4 style="color:var(--purple);">🎨 Presentation Software</h4>
+            <ul>
+              <li><span class="dot">→</span>Slides बनाना, visual presentations</li>
+              <li><span class="dot">→</span>Animations, transitions, charts</li>
+              <li><span class="dot">→</span>Meetings, seminars, classrooms में उपयोग</li>
+              <li><span class="dot">→</span>उदा: MS PowerPoint, Google Slides, Prezi</li>
+            </ul>
+          </div>
+          <div class="feature-card">
+            <h4 style="color:var(--coral);">🌐 Internet Browsers</h4>
+            <ul>
+              <li><span class="dot">→</span>World Wide Web access करना</li>
+              <li><span class="dot">→</span>HTML, CSS, JavaScript render करना</li>
+              <li><span class="dot">→</span>Bookmarks, History, Extensions</li>
+              <li><span class="dot">→</span>उदा: Google Chrome, Firefox, Edge, Safari</li>
+            </ul>
+          </div>
+          <div class="feature-card">
+            <h4 style="color:var(--amber);">🎵 Multimedia Software</h4>
+            <ul>
+              <li><span class="dot">→</span>Audio/Video play करना, editing</li>
+              <li><span class="dot">→</span>Photo editing, Graphic Design</li>
+              <li><span class="dot">→</span>उदा: VLC, Winamp, Adobe Photoshop, Premiere Pro</li>
+            </ul>
+          </div>
+          <div class="feature-card">
+            <h4 style="color:var(--green);">💰 Business/Accounting Software</h4>
+            <ul>
+              <li><span class="dot">→</span>Financial records, invoices, GST</li>
+              <li><span class="dot">→</span>Inventory management, Payroll</li>
+              <li><span class="dot">→</span>उदा: Tally ERP 9, Tally Prime, Zoho Books</li>
+            </ul>
+          </div>
+          <div class="feature-card">
+            <h4 style="color:var(--sky);">🏫 Educational Software</h4>
+            <ul>
+              <li><span class="dot">→</span>Online learning, tutorials, quizzes</li>
+              <li><span class="dot">→</span>Interactive simulations, virtual labs</li>
+              <li><span class="dot">→</span>उदा: Byju's, Khan Academy App, Duolingo</li>
+            </ul>
+          </div>
+          <div class="feature-card">
+            <h4 style="color:var(--rose);">🎮 Entertainment Software</h4>
+            <ul>
+              <li><span class="dot">→</span>Video games — 2D, 3D, Online</li>
+              <li><span class="dot">→</span>Streaming apps — Netflix, YouTube</li>
+              <li><span class="dot">→</span>उदा: PUBG, Minecraft, Spotify, Disney+ Hotstar</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="section-h">General Purpose vs Specific Purpose</div>
+        <table class="cmp-table">
+          <thead>
+            <tr><th>आधार</th><th>General Purpose</th><th>Specific Purpose</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>परिभाषा</td><td>सभी के लिए, कई कार्यों के लिए</td><td>किसी एक क्षेत्र के लिए विशेष</td></tr>
+            <tr><td>उपयोगकर्ता</td><td>हर कोई उपयोग कर सकता है</td><td>केवल विशेष professionals</td></tr>
+            <tr><td>उदाहरण</td><td>MS Word, Excel, Chrome</td><td>Hospital Management System, CAD Software</td></tr>
+            <tr><td>लागत</td><td>अपेक्षाकृत सस्ता</td><td>अधिक महँगा (custom built)</td></tr>
+            <tr><td>लचीलापन</td><td>अधिक लचीला</td><td>सीमित लेकिन विशेषज्ञ</td></tr>
+          </tbody>
+        </table>
+
+        <div class="callout callout-teal">
+          💡 <b>वास्तविक जीवन में:</b> एक <b>Railway Reservation System</b> Specific Purpose Application Software है — यह केवल train tickets book करने के लिए है। वहीं <b>MS Excel</b> General Purpose है — इसे school reports, business accounts, scientific data — सभी के लिए उपयोग कर सकते हैं।
+        </div>
+
+        <div class="section-h">उदाहरण</div>
+        <div class="tags">
+          <span class="tag">MS Office Suite</span><span class="tag">Google Chrome</span><span class="tag">WhatsApp</span>
+          <span class="tag">Adobe Photoshop</span><span class="tag">VLC Player</span><span class="tag">Tally Prime</span>
+          <span class="tag">Zoom</span><span class="tag">Gmail</span><span class="tag">Byju's</span>
+          <span class="tag">PUBG Mobile</span><span class="tag">Paytm</span><span class="tag">Netflix</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─── 3. EMBEDDED SOFTWARE ─── -->
+    <div class="acc-item" id="acc-emb">
+      <div class="acc-head" onclick="toggleAcc('acc-emb')">
+        <div class="acc-icon ic-am">🔧</div>
+        <div class="acc-label">
+          <div class="acc-name">Embedded Software — एम्बेडेड सॉफ्टवेयर</div>
+          <div class="acc-sub">यंत्रों के अंदर छुपा, एक विशेष कार्य के लिए बना सॉफ्टवेयर</div>
+        </div>
+        <span class="acc-badge badge-amber">श्रेणी 3</span>
+        <span class="acc-arrow">▼</span>
+      </div>
+      <div class="acc-body">
+        <div class="def-box">
+          <b>विस्तृत परिभाषा:</b> Embedded Software वह सॉफ्टवेयर है जो किसी <b>विशेष इलेक्ट्रॉनिक उपकरण (device) के अंदर स्थायी रूप से</b> लगाया जाता है। यह उस device की <b>ROM (Read Only Memory) या Flash Memory</b> में संग्रहीत होता है। इसे आम तौर पर <b>Firmware</b> भी कहते हैं।<br><br>
+          यह सॉफ्टवेयर <b>केवल एक ही विशेष कार्य</b> के लिए design किया जाता है। जैसे washing machine का software केवल washing cycles control करता है — वह internet चला नहीं सकता, game नहीं खेल सकता।
+        </div>
+
+        <div class="section-h">Embedded Software की विशेषताएँ (Characteristics)</div>
+
+        <div class="grid-2">
+          <div class="info-card">
+            <div class="info-card-head">⚡ Real-Time Operation</div>
+            <div class="info-card-body"><b>Real-time</b> में काम करता है। यानी input मिलते ही तुरंत response देना होता है — कोई देरी (delay) नहीं। जैसे Anti-lock Braking System (ABS) को milliseconds में decide करना होता है।</div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-head">💾 सीमित Memory</div>
+            <div class="info-card-body">बहुत कम memory (KB से MB तक) में काम करता है। इसलिए code बहुत <b>optimized और efficient</b> लिखा जाता है। Assembly Language या C में लिखा जाता है।</div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-head">🔒 Dedicated Purpose</div>
+            <div class="info-card-body">एक ही काम, हमेशा वही काम। Microwave का software केवल heating control करेगा — कोई अन्य function नहीं। यही इसकी सबसे बड़ी विशेषता है।</div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-head">⚙️ Hardware-Specific</div>
+            <div class="info-card-body">किसी एक specific hardware के लिए बना होता है। HP Printer का firmware EPSON Printer पर काम नहीं करेगा।</div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-head">🔄 Firmware Update</div>
+            <div class="info-card-body">कभी-कभी update हो सकता है — जैसे Smartphone का Software Update या Router का Firmware Update। लेकिन पुराने devices में नहीं।</div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-head">🏃 स्वायत्त (Autonomous)</div>
+            <div class="info-card-body">बिना किसी human intervention के स्वयं काम करता है। Pacemaker को हर धड़कन के लिए user input की जरूरत नहीं।</div>
+          </div>
+        </div>
+
+        <div class="section-h">Embedded Software कहाँ-कहाँ होता है?</div>
+
+        <div class="grid-2">
+          <div class="feature-card">
+            <h4 style="color:var(--amber);">🏠 घरेलू उपकरण (Home Appliances)</h4>
+            <ul>
+              <li><span class="dot">→</span><b>Washing Machine:</b> धुलाई का समय, पानी की मात्रा, spin speed control</li>
+              <li><span class="dot">→</span><b>Microwave Oven:</b> temperature, timer, preset cooking modes</li>
+              <li><span class="dot">→</span><b>Refrigerator (Smart):</b> temperature monitoring, defrost cycle</li>
+              <li><span class="dot">→</span><b>Air Conditioner:</b> thermostat, compressor control, timer</li>
+              <li><span class="dot">→</span><b>TV Remote:</b> infrared signal generation and frequency control</li>
+            </ul>
+          </div>
+          <div class="feature-card">
+            <h4 style="color:var(--coral);">🚗 वाहन (Automobile)</h4>
+            <ul>
+              <li><span class="dot">→</span><b>ECU (Engine Control Unit):</b> fuel injection, ignition timing</li>
+              <li><span class="dot">→</span><b>ABS:</b> Anti-lock Braking — skidding रोकना</li>
+              <li><span class="dot">→</span><b>Airbag Controller:</b> crash detection, airbag deployment</li>
+              <li><span class="dot">→</span><b>GPS Navigation:</b> real-time location tracking</li>
+              <li><span class="dot">→</span><b>Cruise Control:</b> speed automatic maintain करना</li>
+            </ul>
+          </div>
+          <div class="feature-card">
+            <h4 style="color:var(--blue);">🏦 बैंकिंग और Finance</h4>
+            <ul>
+              <li><span class="dot">→</span><b>ATM Machine:</b> cash dispensing, card authentication</li>
+              <li><span class="dot">→</span><b>Credit/Debit Card Chip (EMV):</b> secure transaction processing</li>
+              <li><span class="dot">→</span><b>POS Terminal:</b> payment processing</li>
+              <li><span class="dot">→</span><b>Smart Meter:</b> electricity consumption measurement</li>
+            </ul>
+          </div>
+          <div class="feature-card">
+            <h4 style="color:var(--green);">🏥 चिकित्सा (Medical)</h4>
+            <ul>
+              <li><span class="dot">→</span><b>Pacemaker:</b> heart rate monitoring and pulse generation</li>
+              <li><span class="dot">→</span><b>Insulin Pump:</b> automatic insulin delivery</li>
+              <li><span class="dot">→</span><b>Blood Glucose Monitor:</b> sugar level measurement</li>
+              <li><span class="dot">→</span><b>Ventilator:</b> breathing rate और oxygen control</li>
+            </ul>
+          </div>
+          <div class="feature-card">
+            <h4 style="color:var(--purple);">🚀 Industrial &amp; Defense</h4>
+            <ul>
+              <li><span class="dot">→</span><b>Missile Guidance System:</b> trajectory control</li>
+              <li><span class="dot">→</span><b>Industrial Robots:</b> precise arm movement control</li>
+              <li><span class="dot">→</span><b>CNC Machines:</b> computer-controlled cutting/drilling</li>
+              <li><span class="dot">→</span><b>Power Plant Controllers:</b> safety and efficiency</li>
+            </ul>
+          </div>
+          <div class="feature-card">
+            <h4 style="color:var(--sky);">📡 Communication</h4>
+            <ul>
+              <li><span class="dot">→</span><b>WiFi Router:</b> network packet routing firmware</li>
+              <li><span class="dot">→</span><b>Mobile Phone Baseband:</b> call और SMS processing</li>
+              <li><span class="dot">→</span><b>Satellite:</b> orbit control, communication protocols</li>
+              <li><span class="dot">→</span><b>Smart Watch:</b> heart rate, step counting</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="callout callout-gold">
+          💡 <b>आश्चर्यजनक तथ्य:</b> एक आधुनिक <b>कार में 100+ Embedded Systems</b> होते हैं! Engine से लेकर seat adjustment तक, AC से लेकर reverse camera तक — सब अलग-अलग microcontrollers और embedded software से चलते हैं। एक Boeing 787 विमान में <b>6.5 million lines of code</b> होते हैं!
+        </div>
+      </div>
+    </div>
+
+    <!-- ─── 4. PROPRIETARY SOFTWARE ─── -->
+    <div class="acc-item" id="acc-prop">
+      <div class="acc-head" onclick="toggleAcc('acc-prop')">
+        <div class="acc-icon ic-co">🔒</div>
+        <div class="acc-label">
+          <div class="acc-name">Proprietary Software — प्रोप्राइटरी सॉफ्टवेयर</div>
+          <div class="acc-sub">बंद स्रोत, लाइसेंस-आधारित व्यावसायिक सॉफ्टवेयर</div>
+        </div>
+        <span class="acc-badge badge-coral">श्रेणी 4</span>
+        <span class="acc-arrow">▼</span>
+      </div>
+      <div class="acc-body">
+        <div class="def-box">
+          <b>विस्तृत परिभाषा:</b> Proprietary Software वह सॉफ्टवेयर है जिसका <b>Source Code (मूल कोड) पूरी तरह गुप्त</b> रखा जाता है और उस पर <b>केवल उसे बनाने वाली कंपनी या व्यक्ति का अधिकार (ownership)</b> होता है। इसे उपयोग करने के लिए एक <b>End User License Agreement (EULA)</b> के तहत license खरीदना पड़ता है।<br><br>
+          इसे <b>Closed Source Software</b> या <b>Commercial Software</b> भी कहते हैं। बिना अनुमति के इसे copy करना, share करना, या modify करना <b>Copyright Law के तहत अपराध</b> है।
+        </div>
+
+        <div class="section-h">License के प्रकार</div>
+        <div class="grid-2">
+          <div class="info-card">
+            <div class="info-card-head">💳 Perpetual License (स्थायी)</div>
+            <div class="info-card-body">एक बार खरीदो, हमेशा उपयोग करो। पुराना MS Office (2019, 2021) ऐसा था। Updates अलग से लेने पड़ते थे।</div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-head">🔄 Subscription License (सदस्यता)</div>
+            <div class="info-card-body">Monthly या Yearly भुगतान। Microsoft 365, Adobe Creative Cloud। हमेशा latest version मिलता है। भुगतान रुकने पर software बंद।</div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-head">👥 Per-User License</div>
+            <div class="info-card-body">एक license = एक user। 10 users के लिए 10 licenses। Enterprises में आम। प्रति user ₹ charge होता है।</div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-head">🖥️ Site License</div>
+            <div class="info-card-body">एक institution / organization को unlimited users के लिए। Schools और companies bulk में खरीदती हैं। सस्ता पड़ता है।</div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-head">⏱️ Trial / Freemium</div>
+            <div class="info-card-body">Limited time (30 days) या limited features free। पूरी features के लिए pay करो। उदा: WinRAR, Adobe Acrobat, Zoom।</div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-head">🎁 OEM License</div>
+            <div class="info-card-body">Hardware के साथ बंडल। Windows जो laptop के साथ आता है वह OEM license है। अलग computer पर transfer नहीं होता।</div>
+          </div>
+        </div>
+
+        <div class="section-h">Proprietary के फायदे और नुकसान</div>
+        <table class="cmp-table">
+          <thead><tr><th>पक्ष</th><th>विवरण</th><th>उदाहरण</th></tr></thead>
+          <tbody>
+            <tr><td class="cmp-yes">✅ Professional Support</td><td>24/7 helpline, documentation</td><td>Microsoft Support Center</td></tr>
+            <tr><td class="cmp-yes">✅ Regular Updates</td><td>Security patches, new features</td><td>Windows Update, Office 365</td></tr>
+            <tr><td class="cmp-yes">✅ User-Friendly</td><td>Professional UI/UX design</td><td>MS Office, Adobe Suite</td></tr>
+            <tr><td class="cmp-yes">✅ Integration</td><td>एक ecosystem में सब काम करता है</td><td>Microsoft 365 + Teams + Azure</td></tr>
+            <tr><td class="cmp-no">❌ महँगा</td><td>Annual renewal, per-user cost</td><td>Adobe CC: ₹4,230/month</td></tr>
+            <tr><td class="cmp-no">❌ Vendor Lock-in</td><td>बदलना मुश्किल और महँगा</td><td>.docx format dependency</td></tr>
+            <tr><td class="cmp-no">❌ Privacy Risk</td><td>Code inspect नहीं हो सकता</td><td>Data collection की जानकारी नहीं</td></tr>
+            <tr><td class="cmp-no">❌ Company बंद हो तो?</td><td>Software भी बंद हो सकता है</td><td>Google Stadia बंद हुआ</td></tr>
+          </tbody>
+        </table>
+
+        <div class="callout callout-coral">
+          ⚠️ <b>Piracy (चोरी) क्या है?</b> किसी Proprietary Software को बिना license खरीदे उपयोग करना, crack करना, या share करना <b>Software Piracy</b> है। यह <b>Indian Copyright Act 1957</b> के तहत आपराधिक अपराध है। दोषी पाए जाने पर <b>3 साल तक की जेल और ₹2 लाख तक का जुर्माना</b> हो सकता है।
+        </div>
+
+        <div class="section-h">प्रसिद्ध उदाहरण और उनकी कीमत</div>
+        <table class="cmp-table">
+          <thead><tr><th>Software</th><th>Company</th><th>License Type</th><th>अनुमानित मूल्य</th></tr></thead>
+          <tbody>
+            <tr><td>Windows 11 Home</td><td>Microsoft</td><td>OEM / Perpetual</td><td>₹8,999</td></tr>
+            <tr><td>Microsoft 365 Personal</td><td>Microsoft</td><td>Subscription</td><td>₹4,899/year</td></tr>
+            <tr><td>Adobe Creative Cloud</td><td>Adobe</td><td>Subscription</td><td>₹50,760/year</td></tr>
+            <tr><td>AutoCAD</td><td>Autodesk</td><td>Subscription</td><td>₹1,38,000+/year</td></tr>
+            <tr><td>Tally Prime</td><td>Tally Solutions</td><td>Perpetual</td><td>₹18,000+</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ─── 5. OPEN SOURCE SOFTWARE ─── -->
+    <div class="acc-item" id="acc-oss">
+      <div class="acc-head" onclick="toggleAcc('acc-oss')">
+        <div class="acc-icon ic-gr">🌐</div>
+        <div class="acc-label">
+          <div class="acc-name">Open Source Software — ओपन सोर्स सॉफ्टवेयर</div>
+          <div class="acc-sub">मुक्त स्रोत, समुदाय-निर्मित, पारदर्शी सॉफ्टवेयर</div>
+        </div>
+        <span class="acc-badge badge-green">श्रेणी 5</span>
+        <span class="acc-arrow">▼</span>
+      </div>
+      <div class="acc-body">
+        <div class="def-box">
+          <b>विस्तृत परिभाषा:</b> Open Source Software वह सॉफ्टवेयर है जिसका <b>Source Code सार्वजनिक रूप से उपलब्ध</b> होता है। <b>Open Source Initiative (OSI)</b> के अनुसार, कोई भी इसे: <b>(1) देख सकता है (2) उपयोग कर सकता है (3) बदल सकता है (4) वितरित कर सकता है</b> — बिना किसी शुल्क के।<br><br>
+          इसे <b>FOSS (Free and Open Source Software)</b> भी कहते हैं। "Free" का मतलब मुफ्त (gratis) नहीं, बल्कि <b>स्वतंत्रता (freedom)</b> है — जैसे "free speech" (स्वतंत्र भाषण) में, न कि "free beer" (मुफ्त बियर) में।
+        </div>
+
+        <div class="section-h">Open Source Licenses के प्रकार</div>
+        <div class="grid-2">
+          <div class="info-card">
+            <div class="info-card-head">🔓 GPL (GNU General Public License)</div>
+            <div class="info-card-body">सबसे कठोर। यदि आप GPL software में बदलाव करके distribute करते हैं, तो आपका modified version भी GPL होना चाहिए। Linux Kernel GPL है।</div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-head">🔑 MIT License</div>
+            <div class="info-card-body">सबसे लचीला। लगभग कोई भी प्रतिबंध नहीं। Commercial use में भी उपयोग कर सकते हैं। React.js, jQuery MIT licensed हैं।</div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-head">🛡️ Apache License 2.0</div>
+            <div class="info-card-body">MIT जैसा flexible। Patents का भी protection देता है। Android, Apache Web Server इसी license पर हैं।</div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-head">📋 BSD License</div>
+            <div class="info-card-body">बहुत permissive। Attribution जरूरी है। FreeBSD, macOS का Darwin kernel BSD पर आधारित।</div>
+          </div>
+        </div>
+
+        <div class="section-h">Proprietary vs Open Source — विस्तृत तुलना</div>
+        <table class="cmp-table">
+          <thead><tr><th>विशेषता</th><th>Open Source</th><th>Proprietary</th></tr></thead>
+          <tbody>
+            <tr><td>Source Code</td><td class="cmp-yes">✅ सार्वजनिक</td><td class="cmp-no">❌ गुप्त</td></tr>
+            <tr><td>मूल्य</td><td class="cmp-yes">✅ अधिकतर मुफ्त</td><td class="cmp-no">❌ License fee देना होगी</td></tr>
+            <tr><td>Customization</td><td class="cmp-yes">✅ असीमित</td><td class="cmp-no">❌ बहुत सीमित</td></tr>
+            <tr><td>Security Audit</td><td class="cmp-yes">✅ कोई भी inspect कर सकता है</td><td class="cmp-no">❌ केवल company देख सकती है</td></tr>
+            <tr><td>Professional Support</td><td class="cmp-ok">⚠️ Community या paid support</td><td class="cmp-yes">✅ Direct company support</td></tr>
+            <tr><td>Vendor Lock-in</td><td class="cmp-yes">✅ नहीं</td><td class="cmp-no">❌ हाँ, अधिकतर</td></tr>
+            <tr><td>Update Frequency</td><td class="cmp-yes">✅ Community द्वारा तेज़</td><td class="cmp-ok">⚠️ Company schedule पर</td></tr>
+            <tr><td>Reliability</td><td class="cmp-yes">✅ बहुत उच्च (Linux uptime years)</td><td class="cmp-ok">⚠️ अच्छा लेकिन crashes होते हैं</td></tr>
+          </tbody>
+        </table>
+
+        <div class="callout callout-green">
+          🌟 <b>Open Source की शक्ति:</b> दुनिया के <b>96.3% Web Servers Linux पर</b> चलते हैं (Open Source)। <b>Android (Linux Kernel)</b> = 72% Mobile Market। <b>Python, JavaScript, MySQL</b> — सब Open Source। यानी Digital World की नींव Open Source है, भले ही ऊपर Proprietary Software नजर आए!
+        </div>
+
+        <div class="section-h">प्रसिद्ध Open Source Software</div>
+        <div class="tags">
+          <span class="tag">Linux Kernel</span><span class="tag">Mozilla Firefox</span><span class="tag">VLC Media Player</span>
+          <span class="tag">LibreOffice</span><span class="tag">Python 3</span><span class="tag">MySQL</span>
+          <span class="tag">PostgreSQL</span><span class="tag">WordPress</span><span class="tag">Android (AOSP)</span>
+          <span class="tag">GIMP</span><span class="tag">Apache HTTP Server</span><span class="tag">Git</span>
+          <span class="tag">VS Code</span><span class="tag">React.js</span><span class="tag">Kubernetes</span>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /accordion software -->
+</div>
+
+<!-- ══════════════════════════════════════════════════════
+     PANEL 2 — COMPUTER LANGUAGES
+══════════════════════════════════════════════════════ -->
+<div class="panel" id="panel-language">
+  <div class="sec-header">
+    <div class="sec-icon ic-pu">🖥️</div>
+    <div>
+      <div class="sec-title">Computer भाषाएँ — पीढ़ी दर पीढ़ी विकास</div>
+      <div class="sec-desc">Computer Language वह माध्यम है जिससे हम computer को निर्देश देते हैं। ये निम्न स्तर (Hardware के पास) से उच्च स्तर (मनुष्य के पास) तक क्रमबद्ध हैं। जितना उच्च स्तर, उतना आसान लिखना लेकिन उतनी ही अधिक translation की जरूरत।</div>
+    </div>
+  </div>
+
+  <div class="def-box">
+    <b>Computer Language क्यों चाहिए?</b> CPU केवल <b>Binary (0 और 1)</b> समझता है। लेकिन मनुष्य के लिए 01001000 01100101 01101100... लिखना असंभव है। इसलिए ऐसी भाषाएँ बनाई गईं जो मनुष्य लिख सकें, और फिर उन्हें Machine Language में translate किया जाए। यही <b>Programming Languages का उद्देश्य</b> है।
+  </div>
+
+  <div class="accordion">
+
+    <!-- MACHINE LEVEL -->
+    <div class="acc-item" id="acc-mll">
+      <div class="acc-head" onclick="toggleAcc('acc-mll')">
+        <div class="acc-icon ic-co">⚡</div>
+        <div class="acc-label">
+          <div class="acc-name">Machine Level Language (MLL) — मशीन स्तरीय भाषा</div>
+          <div class="acc-sub">0 और 1 की भाषा — 1st Generation Language (1GL)</div>
+        </div>
+        <span class="acc-badge badge-coral">Generation 1</span>
+        <span class="acc-arrow">▼</span>
+      </div>
+      <div class="acc-body">
+        <div class="def-box">
+          <b>विस्तृत परिभाषा:</b> Machine Level Language कंप्यूटर की <b>एकमात्र मूल भाषा</b> है जिसे CPU (Central Processing Unit) सीधे समझता और execute करता है। यह <b>Binary Number System (0 और 1)</b> पर आधारित है। 0 का अर्थ है — बिजली नहीं (OFF), 1 का अर्थ है — बिजली है (ON)।<br><br>
+          इसे <b>First Generation Language (1GL)</b> कहते हैं। कोई भी translation नहीं होती — CPU सीधे इसे समझता है। लेकिन मनुष्य के लिए यह इतनी कठिन है कि 1950s के बाद इसमें सीधे प्रोग्राम लिखना बंद हो गया।
+        </div>
+
+        <div class="section-h">Machine Language कैसे काम करती है?</div>
+        <p class="body-para">Computer का CPU (Processor) Transistors से बना है। प्रत्येक Transistor एक switch है — ON या OFF। <b>ON = 1, OFF = 0।</b> करोड़ों transistors मिलकर जटिल calculations करते हैं।</p>
+        <p class="body-para">CPU में <b>Instruction Set Architecture (ISA)</b> होता है — यह define करता है कि कौन सा binary pattern किस operation को execute करेगा। जैसे Intel x86 में <code style="color:var(--teal);font-family:var(--font-mono);">10110000</code> का मतलब है "Register AL में value रखो।"</p>
+
+        <div class="section-h">Machine Language का उदाहरण — "2+3 का जोड़"</div>
+        <div class="code-label">💻 Machine Code (Binary)</div>
+        <div class="code-block">
+<span class="cmt">; CPU को 2 और 3 जोड़ने के निर्देश — Binary में</span>
+
+<span class="num">10110000</span> <span class="num">00000010</span>   <span class="cmt">← Register AL में decimal 2 (binary 00000010) रखो</span>
+<span class="num">00000100</span> <span class="num">00000011</span>   <span class="cmt">← AL में decimal 3 (binary 00000011) जोड़ो</span>
+<span class="num">10100011</span> <span class="num">00000000</span>   <span class="cmt">← परिणाम (5) Memory address 0 में रखो</span>
+
+<span class="cmt">; 'H' अक्षर का ASCII Machine Code</span>
+'<span class="t">H</span>' = decimal <span class="num">72</span> = <span class="num">01001000</span>  (8 bits = 1 Byte)
+'<span class="t">i</span>' = decimal <span class="num">105</span> = <span class="num">01101001</span>
+        </div>
+
+        <div class="grid-2">
+          <div class="info-card">
+            <div class="info-card-head">✅ फायदे</div>
+            <div class="info-card-body">
+              → <b>सबसे तेज</b> — कोई translation overhead नहीं<br>
+              → CPU सीधे execute करता है<br>
+              → Memory बहुत कम उपयोग<br>
+              → Hardware का पूर्ण नियंत्रण
+            </div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-head">❌ नुकसान</div>
+            <div class="info-card-body">
+              → मनुष्य के लिए <b>अत्यंत कठिन</b><br>
+              → लिखना, पढ़ना, debug करना — सब मुश्किल<br>
+              → <b>Machine Dependent</b> — Intel का code ARM पर नहीं चलेगा<br>
+              → छोटी सी गलती का पता लगाना असंभव
+            </div>
+          </div>
+        </div>
+
+        <div class="callout callout-coral">
+          🧠 <b>सोचिए:</b> "Hello World" print करने के लिए Machine Code में लगभग <b>50-100 lines</b> की binary लिखनी होगी! Python में यह केवल <b>1 line</b> है: <code style="color:var(--teal);font-family:var(--font-mono);">print("Hello World")</code>। यही High Level Languages की शक्ति है।
+        </div>
+      </div>
+    </div>
+
+    <!-- ASSEMBLY LEVEL -->
+    <div class="acc-item" id="acc-all">
+      <div class="acc-head" onclick="toggleAcc('acc-all')">
+        <div class="acc-icon ic-am">🔤</div>
+        <div class="acc-label">
+          <div class="acc-name">Assembly Level Language (ALL) — असेंबली स्तरीय भाषा</div>
+          <div class="acc-sub">Mnemonics-आधारित — 2nd Generation Language (2GL)</div>
+        </div>
+        <span class="acc-badge badge-amber">Generation 2</span>
+        <span class="acc-arrow">▼</span>
+      </div>
+      <div class="acc-body">
+        <div class="def-box">
+          <b>विस्तृत परिभाषा:</b> Assembly Language में <b>0 और 1 की जगह छोटे-छोटे symbolic codes (Mnemonics)</b> का उपयोग किया जाता है जो याद रखने योग्य होते हैं। जैसे — <b>MOV</b> (Move/Move Data), <b>ADD</b> (Add/जोड़ो), <b>SUB</b> (Subtract/घटाओ), <b>JMP</b> (Jump/कूदो), <b>HLT</b> (Halt/रुको)।<br><br>
+          इसे Machine Language में translate करने के लिए एक special program — <b>Assembler</b> — का उपयोग होता है। यह <b>Second Generation Language (2GL)</b> है।
+        </div>
+
+        <div class="section-h">Assembly Language के Components</div>
+        <div class="grid-2">
+          <div class="info-card">
+            <div class="info-card-head">📝 Mnemonics (स्मरक कोड)</div>
+            <div class="info-card-body">
+              <b>MOV</b> = Data move करो<br>
+              <b>ADD</b> = जोड़ो<br>
+              <b>SUB</b> = घटाओ<br>
+              <b>MUL</b> = गुणा करो<br>
+              <b>DIV</b> = भाग करो<br>
+              <b>CMP</b> = तुलना करो<br>
+              <b>JMP</b> = किसी address पर जाओ<br>
+              <b>HLT</b> = प्रोग्राम बंद करो
+            </div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-head">📦 Registers (रजिस्टर)</div>
+            <div class="info-card-body">
+              CPU के अंदर छोटी-छोटी memory cells:<br>
+              <b>AL, AX, EAX</b> = Accumulator (गणना के लिए)<br>
+              <b>BX, CX, DX</b> = General purpose<br>
+              <b>SP</b> = Stack Pointer<br>
+              <b>IP</b> = Instruction Pointer<br>
+              ये registers CPU के कार्य-क्षेत्र हैं।
+            </div>
+          </div>
+        </div>
+
+        <div class="section-h">Assembly Language का विस्तृत उदाहरण</div>
+        <div class="code-label">⚙️ x86 Assembly — "5 + 3 = 8" और Screen Print</div>
+        <div class="code-block">
+<span class="cmt">; x86 Assembly Language Program</span>
+<span class="cmt">; यह program 5 + 3 जोड़कर result memory में store करता है</span>
+
+<span class="kw">section</span> .data
+    msg     <span class="kw">db</span>  <span class="str">'Result: 8'</span>, <span class="num">10</span>, <span class="num">0</span>   <span class="cmt">; message string</span>
+    result  <span class="kw">db</span>  <span class="num">0</span>                   <span class="cmt">; result store करने के लिए</span>
+
+<span class="kw">section</span> .text
+    <span class="kw">global</span> _start
+
+_start:
+    <span class="fn">MOV</span>  AL,  <span class="num">5</span>         <span class="cmt">; Register AL में 5 रखो</span>
+    <span class="fn">ADD</span>  AL,  <span class="num">3</span>         <span class="cmt">; AL = AL + 3 = 8</span>
+    <span class="fn">MOV</span>  [result], AL  <span class="cmt">; परिणाम memory में रखो</span>
+
+    <span class="cmt">; Linux system call — message print करो</span>
+    <span class="fn">MOV</span>  EAX, <span class="num">4</span>         <span class="cmt">; sys_write system call number</span>
+    <span class="fn">MOV</span>  EBX, <span class="num">1</span>         <span class="cmt">; file descriptor = 1 (stdout)</span>
+    <span class="fn">MOV</span>  ECX, msg       <span class="cmt">; message का address</span>
+    <span class="fn">MOV</span>  EDX, <span class="num">9</span>         <span class="cmt">; message की length</span>
+    <span class="op">INT</span>  <span class="num">0x80</span>           <span class="cmt">; System Call करो</span>
+
+    <span class="fn">MOV</span>  EAX, <span class="num">1</span>         <span class="cmt">; sys_exit</span>
+    <span class="fn">XOR</span>  EBX, EBX       <span class="cmt">; exit code = 0</span>
+    <span class="op">INT</span>  <span class="num">0x80</span>           <span class="cmt">; Program बंद करो</span>
+
+<span class="cmt">; Assembler इसे Binary में बदलेगा:
+; MOV AL,5  →  10110000 00000101
+; ADD AL,3  →  00000100 00000011</span>
+        </div>
+
+        <div class="section-h">Assembler की कार्यप्रणाली</div>
+        <div class="flow">
+          <div class="flow-node"><div class="flow-num">1</div><div class="flow-content"><div class="flow-title">Source File (.asm)</div><div class="flow-desc">Programmer Assembly code लिखता है — MOV, ADD, JMP आदि Mnemonics के साथ।</div></div></div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-node"><div class="flow-num">2</div><div class="flow-content"><div class="flow-title">Assembler प्रक्रिया</div><div class="flow-desc">Assembler program प्रत्येक Mnemonic को उसके binary equivalent में बदलता है। MOV AL,5 → 10110000 00000101</div></div></div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-node"><div class="flow-num">3</div><div class="flow-content"><div class="flow-title">Object File (.obj)</div><div class="flow-desc">Assembled binary code object file में save होता है।</div></div></div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-node"><div class="flow-num">4</div><div class="flow-content"><div class="flow-title">Linker → Executable (.exe)</div><div class="flow-desc">Linker सभी object files को जोड़कर executable बनाता है जिसे CPU directly run कर सकता है।</div></div></div>
+        </div>
+
+        <div class="callout callout-gold">
+          💡 <b>आज भी उपयोग:</b> Assembly Language आज भी <b>Antivirus software</b> (virus patterns detect करने), <b>Game Engines</b> (graphics optimization), <b>Operating System Kernels</b> (critical sections), और <b>Embedded Systems</b> (microcontrollers) में लिखी जाती है जहाँ maximum speed और minimum memory चाहिए।
+        </div>
+      </div>
+    </div>
+
+    <!-- HIGH LEVEL LANGUAGE -->
+    <div class="acc-item" id="acc-hll">
+      <div class="acc-head" onclick="toggleAcc('acc-hll')">
+        <div class="acc-icon ic-tl">📝</div>
+        <div class="acc-label">
+          <div class="acc-name">High Level Language (HLL) — उच्च स्तरीय भाषा</div>
+          <div class="acc-sub">English जैसी सरल भाषा — 3rd, 4th, 5th Generation Languages</div>
+        </div>
+        <span class="acc-badge badge-teal">Generation 3-5</span>
+        <span class="acc-arrow">▼</span>
+      </div>
+      <div class="acc-body">
+        <div class="def-box">
+          <b>विस्तृत परिभाषा:</b> High Level Language ऐसी Programming Language है जो <b>सामान्य अंग्रेजी भाषा जैसी दिखती और पढ़ी जाती है।</b> इसमें मनुष्य-सुलभ शब्द (print, read, if, while, for, class, function) उपयोग होते हैं। CPU इसे सीधे नहीं समझता — इसे <b>Compiler या Interpreter</b> Machine Language में बदलते हैं।<br><br>
+          HLL <b>Machine Independent</b> है — एक बार लिखा Python code Windows, Linux, Mac — सब पर चलता है (थोड़े बदलाव के साथ)। यही इसकी सबसे बड़ी शक्ति है।
+        </div>
+
+        <div class="section-h">Generations of High Level Languages</div>
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-dot">3G</div>
+            <div class="tl-content">
+              <div class="tl-year">3rd Generation (1950s-आज)</div>
+              <div class="tl-text"><b>Procedural Languages:</b> Step-by-step instructions। FORTRAN (1957 — scientists के लिए), COBOL (1959 — business), BASIC (1964), C (1972 — OS लिखने के लिए), Pascal। ये सब procedural हैं — "पहले यह करो, फिर वो करो।"</div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot">4G</div>
+            <div class="tl-content">
+              <div class="tl-year">4th Generation (1970s-आज)</div>
+              <div class="tl-text"><b>Object Oriented Languages:</b> Real-world objects की तरह प्रोग्राम बनाओ। C++ (C + OOP), Java, Python, Ruby, C#। SQL भी 4GL है — Database के लिए।</div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot">5G</div>
+            <div class="tl-content">
+              <div class="tl-year">5th Generation (1990s-आज)</div>
+              <div class="tl-text"><b>AI/Natural Language:</b> Problem बताओ, computer solution ढूंढे। Prolog (AI), Mercury, OPS5। आज का <b>ChatGPT, GitHub Copilot</b> — यही दिशा है।</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-h">प्रमुख High Level Languages — तुलना</div>
+
+        <div class="grid-2">
+          <div class="feature-card">
+            <h4 style="color:#3776ab;">🐍 Python (1991)</h4>
+            <ul>
+              <li><span class="dot">→</span>सबसे readable syntax — अंग्रेजी जैसा</li>
+              <li><span class="dot">→</span><b>AI, Machine Learning, Data Science</b> में अग्रणी</li>
+              <li><span class="dot">→</span>Web Development (Django, Flask)</li>
+              <li><span class="dot">→</span>Scripting, Automation, Research</li>
+              <li><span class="dot">→</span>Interpreter: CPython, PyPy</li>
+              <li><span class="dot">→</span>Beginners के लिए सबसे उपयुक्त</li>
+            </ul>
+          </div>
+          <div class="feature-card">
+            <h4 style="color:#f89820;">☕ Java (1995)</h4>
+            <ul>
+              <li><span class="dot">→</span>"Write Once, Run Anywhere" — JVM</li>
+              <li><span class="dot">→</span><b>Android Apps, Enterprise Software</b></li>
+              <li><span class="dot">→</span>बड़े Banks, Insurance companies का backend</li>
+              <li><span class="dot">→</span>Object Oriented — कठोर structure</li>
+              <li><span class="dot">→</span>Compiler + JVM Interpreter दोनों</li>
+              <li><span class="dot">→</span>Netflix, Amazon का backend Java में</li>
+            </ul>
+          </div>
+          <div class="feature-card">
+            <h4 style="color:#00599c;">⚡ C / C++ (1972/1985)</h4>
+            <ul>
+              <li><span class="dot">→</span>सबसे पुराना और शक्तिशाली</li>
+              <li><span class="dot">→</span><b>Operating Systems, Games, Compilers</b></li>
+              <li><span class="dot">→</span>Linux Kernel, Windows — C में लिखे हैं</li>
+              <li><span class="dot">→</span>Hardware के बहुत करीब — maximum control</li>
+              <li><span class="dot">→</span>GTA, FIFA, Call of Duty — C++ में</li>
+              <li><span class="dot">→</span>Compiler: GCC, Clang, MSVC</li>
+            </ul>
+          </div>
+          <div class="feature-card">
+            <h4 style="color:#f7df1e;background:#1a1a1a;border-radius:8px;padding:4px 8px;">🌐 JavaScript (1995)</h4>
+            <ul>
+              <li><span class="dot">→</span><b>Web Browser की एकमात्र भाषा</b></li>
+              <li><span class="dot">→</span>Frontend: Websites को interactive बनाता है</li>
+              <li><span class="dot">→</span>Backend: Node.js से server भी चला सकता है</li>
+              <li><span class="dot">→</span>React, Angular, Vue — JS frameworks</li>
+              <li><span class="dot">→</span>Interpreter: V8 (Chrome), SpiderMonkey (Firefox)</li>
+            </ul>
+          </div>
+          <div class="feature-card">
+            <h4 style="color:#e34f26;">🗄️ SQL (1974)</h4>
+            <ul>
+              <li><span class="dot">→</span>Database से data लेना, डालना, बदलना</li>
+              <li><span class="dot">→</span>SELECT, INSERT, UPDATE, DELETE</li>
+              <li><span class="dot">→</span>MySQL, PostgreSQL, Oracle — सब SQL</li>
+              <li><span class="dot">→</span>हर website का data SQL database में</li>
+              <li><span class="dot">→</span>4GL — Declarative language</li>
+            </ul>
+          </div>
+          <div class="feature-card">
+            <h4 style="color:#cc342d;">💎 Ruby / Swift / Kotlin</h4>
+            <ul>
+              <li><span class="dot">→</span><b>Ruby:</b> Web (Ruby on Rails), Twitter पहले Ruby था</li>
+              <li><span class="dot">→</span><b>Swift:</b> Apple iOS/macOS apps, Xcode में</li>
+              <li><span class="dot">→</span><b>Kotlin:</b> Android apps, Java का modern alternative</li>
+              <li><span class="dot">→</span><b>Rust:</b> Systems programming, Memory safe</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="section-h">Python में "Hello World" — तीन generations की तुलना</div>
+        <div class="code-label">⚡ Machine Language (Binary)</div>
+        <div class="code-block"><span class="num">01001000 01100101 01101100 01101100 01101111</span> <span class="cmt">← यह केवल "Hello" है! और code 100+ lines</span></div>
+        <div class="code-label">🔤 Assembly Language (x86)</div>
+        <div class="code-block">
+<span class="kw">section</span> .data
+  msg <span class="kw">db</span> <span class="str">'Hello World'</span>,<span class="num">10</span>
+  len <span class="kw">equ</span> $ - msg
+<span class="kw">section</span> .text
+  <span class="kw">global</span> _start
+_start:
+  <span class="fn">mov</span> eax,<span class="num">4</span> | <span class="fn">mov</span> ebx,<span class="num">1</span> | <span class="fn">mov</span> ecx,msg | <span class="fn">mov</span> edx,len | <span class="op">int</span> <span class="num">80h</span>
+  <span class="fn">mov</span> eax,<span class="num">1</span> | <span class="fn">xor</span> ebx,ebx | <span class="op">int</span> <span class="num">80h</span>   <span class="cmt">← 12+ lines सिर्फ Hello World के लिए!</span></div>
+        <div class="code-label">🐍 Python (High Level Language)</div>
+        <div class="code-block"><span class="fn">print</span>(<span class="str">"Hello World"</span>)  <span class="cmt">← बस 1 लाइन! यही HLL की शक्ति है!</span></div>
+
+        <div class="callout callout-blue">
+          💡 <b>Programming Languages की संख्या:</b> आज दुनिया में <b>700 से अधिक Programming Languages</b> हैं! लेकिन व्यावसायिक रूप से केवल 20-25 भाषाएँ उपयोग होती हैं। <b>TIOBE Index</b> हर महीने most popular languages track करता है।
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════
+     PANEL 3 — INTERPRETER vs COMPILER
+══════════════════════════════════════════════════════ -->
+<div class="panel" id="panel-translator">
+  <div class="sec-header">
+    <div class="sec-icon ic-go">🔄</div>
+    <div>
+      <div class="sec-title">Language Translators — Interpreter vs Compiler</div>
+      <div class="sec-desc">High Level Language को Machine Language में बदलने वाले program को Language Translator कहते हैं। तीन प्रकार होते हैं: Compiler, Interpreter, और Assembler। यहाँ Compiler और Interpreter की गहन तुलना की गई है।</div>
+    </div>
+  </div>
+
+  <div class="accordion">
+
+    <div class="acc-item" id="acc-interp">
+      <div class="acc-head" onclick="toggleAcc('acc-interp')">
+        <div class="acc-icon ic-tl">🔁</div>
+        <div class="acc-label">
+          <div class="acc-name">Interpreter — इंटरप्रेटर</div>
+          <div class="acc-sub">Line-by-line translation और तत्काल execution</div>
+        </div>
+        <span class="acc-badge badge-teal">Translator Type 1</span>
+        <span class="acc-arrow">▼</span>
+      </div>
+      <div class="acc-body">
+        <div class="def-box">
+          <b>विस्तृत परिभाषा:</b> Interpreter एक ऐसा Language Translator है जो Source Code की <b>एक-एक line को क्रमबद्ध रूप से पढ़ता है, उसे Machine Language में translate करता है, और तुरंत execute करता है।</b> यह पूरे program का एक साथ अनुवाद नहीं करता। हर बार program run करने पर यह दोबारा translate करता है।<br><br>
+          नाम का अर्थ: जैसे एक भाषा <b>दुभाषिया (interpreter)</b> बोले गए शब्दों का तुरंत अनुवाद करता है — वैसे ही यह program के instructions का तुरंत अनुवाद करता है।
+        </div>
+
+        <div class="section-h">Interpreter की कार्यप्रणाली — Step by Step</div>
+        <div class="flow">
+          <div class="flow-node"><div class="flow-num">1</div><div class="flow-content"><div class="flow-title">Program Start</div><div class="flow-desc">Programmer Python file (script.py) को run करता है। Interpreter प्रोग्राम शुरू होता है।</div></div></div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-node"><div class="flow-num">2</div><div class="flow-content"><div class="flow-title">Line 1 पढ़ी जाती है</div><div class="flow-desc"><code style="color:var(--teal);font-family:var(--font-mono);">x = 5</code> — Interpreter इसे पढ़ता है।</div></div></div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-node"><div class="flow-num">3</div><div class="flow-content"><div class="flow-title">Syntax Check → Translate</div><div class="flow-desc">Line में कोई गलती? नहीं → Machine Code में convert करो → CPU Execute करो।</div></div></div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-node"><div class="flow-num">4</div><div class="flow-content"><div class="flow-title">Line 2 पढ़ी जाती है</div><div class="flow-desc"><code style="color:var(--teal);font-family:var(--font-mono);">print(x * 2)</code> — यही process दोहराती है।</div></div></div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-node"><div class="flow-num">5</div><div class="flow-content"><div class="flow-title">गलती मिली → रुको</div><div class="flow-desc">अगर किसी line में syntax error है, Interpreter उसी line पर रुक जाता है। Error message दिखाता है। बाकी lines execute नहीं होतीं।</div></div></div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-node"><div class="flow-num">6</div><div class="flow-content"><div class="flow-title">Program समाप्त</div><div class="flow-desc">सभी lines execute होने पर program बंद। Memory खाली। कोई permanent file नहीं बनती।</div></div></div>
+        </div>
+
+        <div class="section-h">Interpreter का उदाहरण — Python</div>
+        <div class="code-label">🐍 Python Script (script.py)</div>
+        <div class="code-block">
+<span class="cmt"># Python Interpreter इसे line-by-line execute करेगा</span>
+
+name = <span class="str">"राम"</span>           <span class="cmt">← Line 1: execute ✓</span>
+age  = <span class="num">20</span>              <span class="cmt">← Line 2: execute ✓</span>
+<span class="fn">print</span>(<span class="str">f"नमस्ते {name}"</span>) <span class="cmt">← Line 3: execute ✓ → Output: नमस्ते राम</span>
+<span class="fn">print</span>(<span class="str">f"आयु: {age}"</span>)   <span class="cmt">← Line 4: execute ✓ → Output: आयु: 20</span>
+
+<span class="cmt"># अगर यहाँ गलती है:</span>
+<span class="fn">prnt</span>(<span class="str">"यह गलत है"</span>)    <span class="cmt">← Line 5: ❌ ERROR! यहाँ रुकेगा
+# NameError: name 'prnt' is not defined
+# Line 5 पर रुका — Line 6 नहीं चली</span>
+
+<span class="fn">print</span>(<span class="str">"यह कभी नहीं चलेगा"</span>) <span class="cmt">← Line 6: कभी नहीं चलती</span>
+        </div>
+
+        <div class="grid-2">
+          <div class="info-card">
+            <div class="info-card-head">✅ Interpreter के फायदे</div>
+            <div class="info-card-body">
+              → <b>Testing और Debugging</b> आसान — line by line error मिलती है<br>
+              → Program लिखो और तुरंत run करो<br>
+              → Interactive mode — REPL (Read-Eval-Print Loop)<br>
+              → अलग Compilation step नहीं<br>
+              → Beginners के लिए सुविधाजनक
+            </div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-head">❌ Interpreter के नुकसान</div>
+            <div class="info-card-body">
+              → <b>Compiler से धीमा</b> — हर बार translate होता है<br>
+              → Source Code share करना पड़ता है<br>
+              → Production में performance कम<br>
+              → बड़े programs के लिए समय अधिक<br>
+              → Memory में Interpreter भी रहता है
+            </div>
+          </div>
+        </div>
+
+        <div class="section-h">Interpreter उपयोग करने वाली Languages</div>
+        <div class="tags">
+          <span class="tag">Python</span><span class="tag">Ruby</span><span class="tag">JavaScript (Browser)</span>
+          <span class="tag">PHP</span><span class="tag">MATLAB</span><span class="tag">Perl</span>
+          <span class="tag">Bash/Shell Script</span><span class="tag">R Language</span><span class="tag">Lua</span>
+        </div>
+
+        <div class="callout callout-teal">
+          🔬 <b>Python का REPL (Interactive Mode):</b><br>
+          Terminal में <code style="color:var(--teal);font-family:var(--font-mono);">python3</code> type करने पर आप directly Python commands लिख सकते हैं और तुरंत output देख सकते हैं — बिना कोई file बनाए। यही Interpreter की सबसे बड़ी सुविधा है।
+        </div>
+      </div>
+    </div>
+
+    <div class="acc-item" id="acc-compiler">
+      <div class="acc-head" onclick="toggleAcc('acc-compiler')">
+        <div class="acc-icon ic-go">⚙️</div>
+        <div class="acc-label">
+          <div class="acc-name">Compiler — कंपाइलर</div>
+          <div class="acc-sub">पूरे program का एक साथ अनुवाद → Executable file</div>
+        </div>
+        <span class="acc-badge badge-gold">Translator Type 2</span>
+        <span class="acc-arrow">▼</span>
+      </div>
+      <div class="acc-body">
+        <div class="def-box">
+          <b>विस्तृत परिभाषा:</b> Compiler एक ऐसा Language Translator है जो <b>पूरे Source Code को एक साथ पढ़ता है, सभी errors ढूंढता है, और पूरे program को Machine Language में translate करके एक Executable File (.exe, .out) बनाता है।</b> यह Executable File बाद में बिना Compiler के directly run की जा सकती है।<br><br>
+          Compilation एक बार होती है। उसके बाद हर बार program directly Machine Code के रूप में चलता है — इसलिए Compiler-based programs बहुत <b>तेज</b> होते हैं।
+        </div>
+
+        <div class="section-h">Compiler की Compilation Process — विस्तार से</div>
+        <div class="flow">
+          <div class="flow-node"><div class="flow-num">1</div><div class="flow-content"><div class="flow-title">Lexical Analysis (शाब्दिक विश्लेषण)</div><div class="flow-desc">Source code को Tokens में तोड़ता है। Keywords (int, if, for), Identifiers (x, y, main), Operators (+, -, =), Literals (5, "hello") आदि identify करता है।</div></div></div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-node"><div class="flow-num">2</div><div class="flow-content"><div class="flow-title">Syntax Analysis (वाक्य-विश्लेषण)</div><div class="flow-desc">Grammar rules check करता है। जैसे if statement के बाद condition होनी चाहिए। Parse Tree बनाता है। यहाँ Syntax Errors मिलती हैं।</div></div></div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-node"><div class="flow-num">3</div><div class="flow-content"><div class="flow-title">Semantic Analysis (अर्थ-विश्लेषण)</div><div class="flow-desc">Type checking — int variable में string assign करने की कोशिश → Error। Undeclared variable use → Error। Logic की जाँच।</div></div></div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-node"><div class="flow-num">4</div><div class="flow-content"><div class="flow-title">Intermediate Code Generation</div><div class="flow-desc">Platform-independent intermediate code बनाता है। Three-Address Code या Bytecode। Optimization के लिए तैयार।</div></div></div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-node"><div class="flow-num">5</div><div class="flow-content"><div class="flow-title">Code Optimization</div><div class="flow-desc">Unnecessary code हटाना, loops को efficient बनाना, constant folding। जैसे x = 2+3 → x = 5 (compile time पर ही)।</div></div></div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-node"><div class="flow-num">6</div><div class="flow-content"><div class="flow-title">Code Generation → .exe / .out</div><div class="flow-desc">Final Machine Code generate होता है। Linker libraries जोड़ता है। Executable file तैयार! User इसे run कर सकता है।</div></div></div>
+        </div>
+
+        <div class="section-h">Compiler का उदाहरण — C Language</div>
+        <div class="code-label">🔵 C Source Code (hello.c)</div>
+        <div class="code-block">
+<span class="cmt">// C Language — यह compile होगा, interpret नहीं</span>
+<span class="kw">#include</span> <span class="str">&lt;stdio.h&gt;</span>
+
+<span class="kw">int</span> <span class="fn">main</span>() {
+    <span class="kw">int</span> x = <span class="num">5</span>;
+    <span class="kw">int</span> y = <span class="num">3</span>;
+    <span class="kw">int</span> result = x + y;
+    <span class="fn">printf</span>(<span class="str">"जोड़ = %d\n"</span>, result);
+    <span class="kw">return</span> <span class="num">0</span>;
+}
+<span class="cmt">// Compile करने का Command: gcc hello.c -o hello
+// यह hello.exe (Windows) या hello (Linux) बनाएगा
+// अब इसे कहीं भी बिना GCC के run कर सकते हैं!</span>
+        </div>
+
+        <div class="section-h">Compiler vs Interpreter — सबसे महत्वपूर्ण तुलना</div>
+        <table class="cmp-table">
+          <thead><tr><th>विशेषता</th><th style="color:var(--teal);">Interpreter</th><th style="color:var(--gold);">Compiler</th></tr></thead>
+          <tbody>
+            <tr><td>Translation</td><td>Line-by-line, एक-एक करके</td><td>पूरा program एक साथ</td></tr>
+            <tr><td>Execution</td><td>Translation के साथ-साथ</td><td>Translation के बाद separately</td></tr>
+            <tr><td>Output</td><td>कोई file नहीं बनती</td><td>Executable (.exe/.out) बनती है</td></tr>
+            <tr><td>Speed</td><td>धीमा — हर बार translate</td><td>तेज — एक बार compile</td></tr>
+            <tr><td>Error Report</td><td>पहली गलती पर रुकता है</td><td>सभी errors एक साथ दिखाता है</td></tr>
+            <tr><td>Memory</td><td>Interpreter RAM में रहता है</td><td>Only executable RAM में</td></tr>
+            <tr><td>Security</td><td>Source code दिखाई देता है</td><td>Source code छुपा रहता है</td></tr>
+            <tr><td>Debugging</td><td>आसान — line number clear</td><td>कठिन — errors compile time पर</td></tr>
+            <tr><td>Portability</td><td>अधिक portable</td><td>Platform specific exe</td></tr>
+            <tr><td>Examples</td><td>Python, Ruby, PHP, JS</td><td>C, C++, Fortran, Go, Rust</td></tr>
+          </tbody>
+        </table>
+
+        <div class="callout callout-purple">
+          🔬 <b>Java — दोनों का संयोजन:</b><br>
+          Java <b>Compiler (javac)</b> Source Code को <b>Bytecode (.class)</b> में बदलता है। फिर <b>JVM (Java Virtual Machine)</b> — एक Interpreter — Bytecode को execute करता है।<br>
+          <b>फायदा:</b> एक बार compile करो → किसी भी OS के JVM पर चलाओ। "Write Once, Run Anywhere" — यही Java की शक्ति है।<br><br>
+          इसी तरह <b>Python</b> भी internally <b>.pyc (Bytecode)</b> बनाता है, फिर Python VM execute करता है।
+        </div>
+
+        <div class="section-h">Assembler — तीसरा Translator</div>
+        <div class="def-box">
+          <b>Assembler:</b> Assembly Language code को Machine Language में translate करने वाला program। यह Compiler का सरल रूप है — केवल Assembly → Binary translation। NASM, MASM, GAS प्रसिद्ध Assemblers हैं।
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════
+     PANEL 4 — OPERATING SYSTEMS
+══════════════════════════════════════════════════════ -->
+<div class="panel" id="panel-os">
+  <div class="sec-header">
+    <div class="sec-icon ic-am">⚙️</div>
+    <div>
+      <div class="sec-title">Operating System — कंप्यूटर का मस्तिष्क</div>
+      <div class="sec-desc">Operating System (OS) वह सर्वाधिक महत्वपूर्ण System Software है जो Computer Hardware को manage करता है, Resources allocate करता है, और उपयोगकर्ता को कंप्यूटर से communicate करने का माध्यम देता है।</div>
+    </div>
+  </div>
+
+  <div class="def-box">
+    <b>Operating System की परिभाषा:</b> OS वह <b>System Software</b> है जो — <b>Hardware Resources (CPU, RAM, Disk, I/O) को manage करता है</b>, Application Programs को चलाने का environment देता है, और User तथा Hardware के बीच <b>Interface (सेतु)</b> का काम करता है। इसे <b>Resource Manager</b> भी कहते हैं।<br><br>
+    <b>OS के बिना:</b> कंप्यूटर केवल एक बिजली से चलने वाला metal box है। OS ही उसे "intelligent machine" बनाता है।
+  </div>
+
+  <div class="section-h">OS के मुख्य कार्य (Functions of OS)</div>
+  <div class="grid-2">
+    <div class="info-card">
+      <div class="info-card-head">⚡ Process Management</div>
+      <div class="info-card-body">एक साथ कई programs (processes) चलाना। CPU का time अलग-अलग processes में बाँटना — <b>CPU Scheduling</b>। Deadlock prevent करना। Process create/terminate करना।</div>
+    </div>
+    <div class="info-card">
+      <div class="info-card-head">💾 Memory Management</div>
+      <div class="info-card-body">RAM को अलग-अलग programs में allocate करना। <b>Virtual Memory</b> — RAM से अधिक memory simulate करना (Swap File)। Memory Leak रोकना। Program बंद होने पर memory free करना।</div>
+    </div>
+    <div class="info-card">
+      <div class="info-card-head">📁 File System Management</div>
+      <div class="info-card-body">Files और Folders को organize करना। <b>NTFS</b> (Windows), <b>ext4</b> (Linux), <b>APFS</b> (macOS)। File permissions — कौन पढ़ सकता है, कौन लिख सकता है। Directory structure बनाए रखना।</div>
+    </div>
+    <div class="info-card">
+      <div class="info-card-head">🔌 Device Management (I/O)</div>
+      <div class="info-card-body">Keyboard, Mouse, Printer, USB — सब I/O Devices को manage करना। Device Drivers के माध्यम से hardware को access देना। Data transfer को coordinate करना।</div>
+    </div>
+    <div class="info-card">
+      <div class="info-card-head">🔐 Security & Access Control</div>
+      <div class="info-card-body">User Authentication — Login/Password। File Permissions — Owner, Group, Others। Firewall। Virus से सुरक्षा। बिना permission किसी file को access नहीं।</div>
+    </div>
+    <div class="info-card">
+      <div class="info-card-head">🖥️ User Interface (UI)</div>
+      <div class="info-card-body"><b>GUI (Graphical)</b> — Windows, Icons, Mouse। Desktop, Taskbar, Start Menu। <b>CLI (Command Line)</b> — Terminal, Command Prompt। Commands type करके काम करना।</div>
+    </div>
+    <div class="info-card">
+      <div class="info-card-head">🌐 Network Management</div>
+      <div class="info-card-body">Internet Connection, Network Interface manage करना। TCP/IP Protocols implement करना। File Sharing, Printer Sharing। WiFi, Ethernet configuration।</div>
+    </div>
+    <div class="info-card">
+      <div class="info-card-head">⏱️ Job Scheduling</div>
+      <div class="info-card-body">Batch jobs schedule करना। Priority-based processing। Foreground (user देख रहा है) vs Background (पीछे चल रहा है) processes। Windows Task Scheduler, Linux Cron Jobs।</div>
+    </div>
+  </div>
+
+  <div class="section-h">प्रमुख Operating Systems — विस्तृत जानकारी</div>
+
+  <div class="accordion">
+
+    <div class="acc-item" id="acc-windows">
+      <div class="acc-head" onclick="toggleAcc('acc-windows')">
+        <div class="acc-icon ic-bl">🪟</div>
+        <div class="acc-label">
+          <div class="acc-name">Microsoft Windows</div>
+          <div class="acc-sub">दुनिया का सबसे लोकप्रिय Desktop OS</div>
+        </div>
+        <span class="acc-badge badge-blue">Desktop King</span>
+        <span class="acc-arrow">▼</span>
+      </div>
+      <div class="acc-body">
+        <div class="def-box">Windows Microsoft Corporation द्वारा विकसित Proprietary OS है। 1985 में MS-DOS के लिए GUI बनाया, 1995 में Windows 95 से revolutionary हुआ। आज Windows 11 सबसे latest version है। Desktop computers पर <b>73%+ market share</b> है।</div>
+
+        <div class="grid-2">
+          <div class="info-card">
+            <div class="info-card-head">📅 इतिहास</div>
+            <div class="info-card-body">
+              <b>1985</b> — Windows 1.0 (MS-DOS पर GUI)<br>
+              <b>1995</b> — Windows 95 (Start Menu, Taskbar)<br>
+              <b>2001</b> — Windows XP (सबसे popular)<br>
+              <b>2009</b> — Windows 7 (excellent stability)<br>
+              <b>2015</b> — Windows 10 (free upgrade)<br>
+              <b>2021</b> — Windows 11 (latest)
+            </div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-head">🔧 Technical Details</div>
+            <div class="info-card-body">
+              <b>File System:</b> NTFS, FAT32, exFAT<br>
+              <b>Kernel:</b> Windows NT Kernel<br>
+              <b>Architecture:</b> x86, x64, ARM<br>
+              <b>Shell:</b> Explorer.exe<br>
+              <b>CLI:</b> CMD, PowerShell<br>
+              <b>Package Manager:</b> winget, Chocolatey
+            </div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-head">✅ विशेषताएँ</div>
+            <div class="info-card-body">
+              → सबसे user-friendly GUI<br>
+              → Maximum software compatibility<br>
+              → Gaming के लिए DirectX support<br>
+              → Microsoft Office native support<br>
+              → Active Directory — enterprise networking<br>
+              → Hyper-V — built-in Virtualization
+            </div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-head">⚠️ कमियाँ</div>
+            <div class="info-card-body">
+              → Virus/Malware का सबसे बड़ा target<br>
+              → Frequent updates (कभी-कभी परेशानी)<br>
+              → महँगा — ₹8,999 से शुरू<br>
+              → Resource heavy — अधिक RAM चाहिए<br>
+              → Privacy concerns (telemetry)<br>
+              → Server के लिए Linux से कमज़ोर
+            </div>
+          </div>
+        </div>
+
+        <div class="callout callout-blue">
+          📊 <b>Windows का उपयोग:</b> भारत में सरकारी दफ्तर, banks, schools — अधिकांश Windows उपयोग करते हैं। भारत सरकार के <b>UMANG, DigiLocker, Income Tax Portal</b> — सब Windows Servers पर develop किए गए।
+        </div>
+      </div>
+    </div>
+
+    <div class="acc-item" id="acc-linux">
+      <div class="acc-head" onclick="toggleAcc('acc-linux')">
+        <div class="acc-icon ic-gr">🐧</div>
+        <div class="acc-label">
+          <div class="acc-name">Linux</div>
+          <div class="acc-sub">Open Source, Server का राजा, Programmer की पहली पसंद</div>
+        </div>
+        <span class="acc-badge badge-green">Open Source King</span>
+        <span class="acc-arrow">▼</span>
+      </div>
+      <div class="acc-body">
+        <div class="def-box">Linux एक <b>Open Source Unix-like Operating System</b> है। 1991 में Finnish student <b>Linus Torvalds</b> ने Helsinki University में बनाया। आज दुनिया के <b>96.3% Web Servers, 100% Supercomputers, और 71.85% Smartphones (Android)</b> Linux पर चलते हैं।</div>
+
+        <div class="section-h">Linux Distributions (Distros)</div>
+        <div class="grid-2">
+          <div class="info-card">
+            <div class="info-card-head">🟠 Ubuntu</div>
+            <div class="info-card-body">Beginners के लिए सबसे अच्छा। हर 6 महीने नया version। LTS (Long Term Support) versions 5 साल support। Desktop और Server दोनों। Canonical Ltd. maintain करती है। मुफ्त।</div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-head">🔴 Fedora / Red Hat</div>
+            <div class="info-card-body">Cutting-edge technology। IBM की Red Hat Enterprise Linux (RHEL) — business के लिए। CentOS (free RHEL alternative)। Servers में बहुत popular। Security-focused।</div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-head">🎩 Debian</div>
+            <div class="info-card-body">सबसे stable। Ubuntu का parent। Community-driven। 3 branches: Stable, Testing, Unstable। Server के लिए excellent। Very conservative updates।</div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-head">💀 Kali Linux</div>
+            <div class="info-card-body">Cyber Security और Ethical Hacking के लिए। 600+ Security Tools pre-installed। Penetration Testing। CEH, OSCP certification में उपयोग। Offensive Security maintain करती है।</div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-head">🎨 Manjaro / Arch</div>
+            <div class="info-card-body">Advanced users के लिए। Rolling Release — हमेशा latest। Customize everything। Arch is notoriously difficult — "I use Arch BTW" culture।</div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-head">🇮🇳 Boss Linux</div>
+            <div class="info-card-body">India का अपना Linux! CDAC (Centre for Development of Advanced Computing) ने बनाया। Hindi और अन्य भारतीय भाषाओं में। Government offices के लिए। मुफ्त।</div>
+          </div>
+        </div>
+
+        <div class="section-h">Linux का Architecture</div>
+        <div class="flow">
+          <div class="flow-node"><div class="flow-num">1</div><div class="flow-content"><div class="flow-title">Hardware (CPU, RAM, Disk)</div><div class="flow-desc">Physical components जो actual processing करते हैं।</div></div></div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-node"><div class="flow-num">2</div><div class="flow-content"><div class="flow-title">Linux Kernel (Core)</div><div class="flow-desc">OS का दिल। Linus Torvalds ने लिखा। Hardware को directly manage करता है। Process scheduling, Memory management, Driver management।</div></div></div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-node"><div class="flow-num">3</div><div class="flow-content"><div class="flow-title">Shell (Command Interface)</div><div class="flow-desc">Bash, Zsh, Fish — user commands को Kernel तक पहुँचाता है। ls, cd, cp, mv, grep, chmod — यही Linux commands हैं।</div></div></div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-node"><div class="flow-num">4</div><div class="flow-content"><div class="flow-title">GUI (Optional)</div><div class="flow-desc">GNOME, KDE Plasma, XFCE, LXDE — Desktop Environments। Server पर GUI नहीं होता — केवल Terminal।</div></div></div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-node"><div class="flow-num">5</div><div class="flow-content"><div class="flow-title">Applications</div><div class="flow-desc">Firefox, LibreOffice, VLC, GIMP — सब Linux पर चलते हैं।</div></div></div>
+        </div>
+
+        <div class="callout callout-green">
+          🌟 <b>Linux की शक्ति — Real Examples:</b><br>
+          → <b>Google</b> के सभी Servers Linux पर<br>
+          → <b>NASA</b> के Supercomputers Linux पर<br>
+          → <b>ISS (International Space Station)</b> Linux पर<br>
+          → <b>Android</b> = Linux Kernel + Java/Kotlin Apps<br>
+          → <b>Stock Exchange (NSE, BSE)</b> Linux पर trade होता है
+        </div>
+      </div>
+    </div>
+
+    <div class="acc-item" id="acc-macos">
+      <div class="acc-head" onclick="toggleAcc('acc-macos')">
+        <div class="acc-icon ic-co">🍎</div>
+        <div class="acc-label">
+          <div class="acc-name">macOS (Mac OS X)</div>
+          <div class="acc-sub">Apple का Unix-आधारित प्रीमियम OS</div>
+        </div>
+        <span class="acc-badge badge-coral">Apple Ecosystem</span>
+        <span class="acc-arrow">▼</span>
+      </div>
+      <div class="acc-body">
+        <div class="def-box">macOS Apple Inc. का Proprietary OS है जो केवल Apple के Mac computers (iMac, MacBook, Mac Mini, Mac Pro) पर चलता है। यह <b>Unix (BSD) पर आधारित</b> है — इसलिए बहुत stable और secure है। 2001 में Mac OS X के नाम से शुरू हुआ।</div>
+
+        <div class="grid-2">
+          <div class="info-card">
+            <div class="info-card-head">📅 macOS Versions (Big Cats → Places)</div>
+            <div class="info-card-body">
+              <b>2001</b> — Mac OS X 10.0 Cheetah<br>
+              <b>2007</b> — OS X Leopard (first Intel)<br>
+              <b>2020</b> — macOS Big Sur (Apple Silicon M1)<br>
+              <b>2022</b> — macOS Ventura<br>
+              <b>2023</b> — macOS Sonoma<br>
+              <b>2024</b> — macOS Sequoia
+            </div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-head">🔧 Technical Details</div>
+            <div class="info-card-body">
+              <b>Kernel:</b> XNU (Darwin) — Hybrid Kernel<br>
+              <b>File System:</b> APFS (Apple File System)<br>
+              <b>Shell:</b> Zsh (default), Bash<br>
+              <b>Package Manager:</b> Homebrew<br>
+              <b>CPU:</b> Apple Silicon (M1-M4) या Intel<br>
+              <b>Architecture:</b> ARM (M-series), x86-64
+            </div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-head">✅ macOS क्यों चुनें?</div>
+            <div class="info-card-body">
+              → iOS/iPhone के साथ seamless integration<br>
+              → Creative professionals: Music, Video, Design<br>
+              → Unix terminal — developers love it<br>
+              → Virus लगभग नहीं — strict app review<br>
+              → Battery life बहुत अच्छी (M-series)<br>
+              → Retina Display — stunning visuals
+            </div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-head">⚠️ macOS की सीमाएँ</div>
+            <div class="info-card-body">
+              → केवल Apple hardware पर — बहुत महँगा<br>
+              → MacBook Air: ₹80,000+<br>
+              → Mac Pro: ₹5,00,000+<br>
+              → Gaming — Windows जितना अच्छा नहीं<br>
+              → Customization सीमित<br>
+              → कुछ Windows software नहीं चलते
+            </div>
+          </div>
+        </div>
+
+        <div class="callout callout-coral">
+          🎵 <b>Creative Industry में macOS का दबदबा:</b> Bollywood, Hollywood की <b>Video Editing (Final Cut Pro)</b>, Music Production (<b>GarageBand, Logic Pro</b>), Graphic Design (<b>Sketch App</b>) — ये सब macOS exclusive tools हैं। यही कारण है कि Creative Professionals Mac पसंद करते हैं।
+        </div>
+      </div>
+    </div>
+
+    <div class="acc-item" id="acc-android">
+      <div class="acc-head" onclick="toggleAcc('acc-android')">
+        <div class="acc-icon ic-gr">🤖</div>
+        <div class="acc-label">
+          <div class="acc-name">Android OS</div>
+          <div class="acc-sub">दुनिया का सबसे बड़ा Mobile Operating System</div>
+        </div>
+        <span class="acc-badge badge-green">Mobile Champion</span>
+        <span class="acc-arrow">▼</span>
+      </div>
+      <div class="acc-body">
+        <div class="def-box">Android Google द्वारा विकसित <b>Linux Kernel-based Open Source Mobile OS</b> है। 2003 में Android Inc. ने बनाया, 2005 में Google ने खरीदा, 2008 में पहला Android phone आया। आज <b>3.6 Billion से अधिक devices</b> पर Android चलता है। Global Mobile Market Share: <b>72%+।</b></div>
+
+        <div class="grid-2">
+          <div class="info-card">
+            <div class="info-card-head">📅 Android Versions (Dessert Names)</div>
+            <div class="info-card-body">
+              <b>2008</b> — Android 1.0<br>
+              <b>2011</b> — Android 4.0 Ice Cream Sandwich<br>
+              <b>2014</b> — Android 5.0 Lollipop<br>
+              <b>2016</b> — Android 7.0 Nougat<br>
+              <b>2019</b> — Android 10 (no dessert name)<br>
+              <b>2024</b> — Android 15 (latest)
+            </div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-head">🏗️ Android Architecture</div>
+            <div class="info-card-body">
+              <b>Layer 1:</b> Linux Kernel (Hardware control)<br>
+              <b>Layer 2:</b> HAL (Hardware Abstraction)<br>
+              <b>Layer 3:</b> Android Runtime (ART)<br>
+              <b>Layer 4:</b> Java API Framework<br>
+              <b>Layer 5:</b> System Apps<br>
+              <b>Layer 6:</b> User Apps (APK files)
+            </div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-head">✅ Android के फायदे</div>
+            <div class="info-card-body">
+              → Open Source — manufacturers customize कर सकते हैं<br>
+              → Google Play: 3.5 million+ Apps<br>
+              → Sideloading (बाहर से APK install)<br>
+              → Samsung, OnePlus, Xiaomi, Oppo सब Android<br>
+              → कम कीमत से शुरू — ₹3,000 में भी smartphone<br>
+              → Google services: Maps, Gmail, Drive
+            </div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-head">📱 Android Versions का India में उपयोग</div>
+            <div class="info-card-body">
+              → UPI Payments (Google Pay, PhonePe)<br>
+              → Aadhaar-based services<br>
+              → DigiLocker, UMANG App<br>
+              → Banking Apps (SBI, HDFC, etc.)<br>
+              → India में 97%+ smartphones Android हैं<br>
+              → JioPhone भी Android (KaiOS)
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /accordion os -->
+
+  <div class="callout callout-gold" style="margin-top:24px;">
+    💡 <b>OS की तुलना — एक नज़र में:</b><br><br>
+    🪟 <b>Windows</b> = Easy to use + Best for Gaming + Office Work<br>
+    🐧 <b>Linux</b> = Free + Secure + Servers + Programming<br>
+    🍎 <b>macOS</b> = Premium + Creative Work + Apple Ecosystem<br>
+    🤖 <b>Android</b> = Mobile + Most Devices + Google Services<br>
+    📱 <b>iOS</b> = Mobile + Security + Apple Quality + Expensive
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════
+     PANEL 5 — MEMORY UNITS
+══════════════════════════════════════════════════════ -->
+<div class="panel" id="panel-memory">
+  <div class="sec-header">
+    <div class="sec-icon ic-tl">📦</div>
+    <div>
+      <div class="sec-title">Memory Units — डेटा मापने की इकाइयाँ</div>
+      <div class="sec-desc">Computer में Data को Binary System (0 और 1) में store किया जाता है। इसे मापने के लिए Bit से लेकर Yottabyte तक की विशेष इकाइयाँ होती हैं। ये सभी 2 की शक्तियों (powers) में बढ़ती हैं।</div>
+    </div>
+  </div>
+
+  <div class="def-box">
+    <b>Memory क्यों महत्वपूर्ण है?</b> Computer में सब कुछ — Documents, Photos, Videos, Programs, OS — <b>Binary Data</b> के रूप में Memory में store होता है। Memory जितनी अधिक = अधिक data रख सकते हैं।<br><br>
+    <b>दो प्रकार की Memory:</b><br>
+    → <b>Primary Memory (RAM):</b> अस्थायी, तेज, CPU सीधे access करता है। Program चलने पर use होती है।<br>
+    → <b>Secondary Memory (HDD/SSD):</b> स्थायी, धीमी, बड़ी। Files permanently store होती हैं।
+  </div>
+
+  <div class="accordion">
+
+    <div class="acc-item" id="acc-bit2">
+      <div class="acc-head" onclick="toggleAcc('acc-bit2')">
+        <div class="acc-icon ic-co">⚡</div>
+        <div class="acc-label">
+          <div class="acc-name">Bit (बिट) — Binary Digit</div>
+          <div class="acc-sub">Computer Memory की सबसे छोटी इकाई — 0 या 1</div>
+        </div>
+        <span class="acc-badge badge-coral">इकाई 1</span>
+        <span class="acc-arrow">▼</span>
+      </div>
+      <div class="acc-body">
+        <div class="def-box">
+          <b>Bit क्या है?</b> <b>Binary Digit</b> — Bit कहलाता है। यह Computer की <b>सबसे छोटी Memory Unit</b> है। एक Bit का मान केवल <b>0 (शून्य/OFF)</b> या <b>1 (एक/ON)</b> हो सकता है।<br><br>
+          Bit का भौतिक अर्थ: एक Transistor जो ON (1) या OFF (0) हो सकता है। आधुनिक CPU में <b>अरबों Transistors</b> होते हैं — जैसे Apple M4 chip में <b>28 Billion Transistors!</b>
+        </div>
+
+        <div class="grid-2">
+          <div class="info-card">
+            <div class="info-card-head">🔌 भौतिक representation</div>
+            <div class="info-card-body">
+              <b>RAM में:</b> Capacitor — charged (1) या discharged (0)<br>
+              <b>Hard Disk में:</b> Magnetic field — North (1) या South (0)<br>
+              <b>SSD में:</b> Flash cell — electrons की उपस्थिति/अनुपस्थिति<br>
+              <b>Optical Disk में:</b> Land (flat=0) या Pit (hole=1)
+            </div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-head">📊 Bit के उपयोग</div>
+            <div class="info-card-body">
+              <b>Network Speed:</b> Mbps, Gbps (bits per second)<br>
+              <b>Color Depth:</b> 8-bit, 16-bit, 32-bit color<br>
+              <b>CPU Architecture:</b> 32-bit vs 64-bit processor<br>
+              <b>Encryption:</b> 128-bit, 256-bit AES key<br>
+              <b>Audio:</b> 16-bit, 24-bit audio quality
+            </div>
+          </div>
+        </div>
+
+        <div class="section-h">Nibble — 4 Bits</div>
+        <p class="body-para"><b>Nibble = 4 Bits</b> (आधा Byte)। 4 Bits = 16 possible values (2⁴ = 16, यानी 0000 से 1111)। Hexadecimal का एक digit (0-9, A-F) = 1 Nibble। Memory addresses हेक्साडेसिमल में लिखे जाते हैं।</p>
+
+        <div class="code-label">💡 Binary Numbers — Bit Patterns</div>
+        <div class="code-block">
+<span class="cmt">; 1 Bit — केवल 2 values</span>
+<span class="num">0</span>  <span class="cmt">= 0 (decimal)</span>
+<span class="num">1</span>  <span class="cmt">= 1 (decimal)</span>
+
+<span class="cmt">; 1 Nibble (4 Bits) — 16 values (0-15)</span>
+<span class="num">0000</span> <span class="cmt">= 0</span>  | <span class="num">0001</span> <span class="cmt">= 1</span>  | <span class="num">0010</span> <span class="cmt">= 2</span>  | <span class="num">0011</span> <span class="cmt">= 3</span>
+<span class="num">0100</span> <span class="cmt">= 4</span>  | <span class="num">0101</span> <span class="cmt">= 5</span>  | <span class="num">0110</span> <span class="cmt">= 6</span>  | <span class="num">0111</span> <span class="cmt">= 7</span>
+<span class="num">1000</span> <span class="cmt">= 8</span>  | <span class="num">1001</span> <span class="cmt">= 9</span>  | <span class="num">1010</span> <span class="cmt">= A(10)</span>| <span class="num">1011</span> <span class="cmt">= B(11)</span>
+<span class="num">1100</span> <span class="cmt">= C(12)</span>| <span class="num">1101</span> <span class="cmt">= D(13)</span>| <span class="num">1110</span> <span class="cmt">= E(14)</span>| <span class="num">1111</span> <span class="cmt">= F(15)</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="acc-item" id="acc-byte2">
+      <div class="acc-head" onclick="toggleAcc('acc-byte2')">
+        <div class="acc-icon ic-am">💾</div>
+        <div class="acc-label">
+          <div class="acc-name">Byte (बाइट)</div>
+          <div class="acc-sub">8 Bits = 1 Byte — Computer Memory की मूल इकाई</div>
+        </div>
+        <span class="acc-badge badge-amber">इकाई 2</span>
+        <span class="acc-arrow">▼</span>
+      </div>
+      <div class="acc-body">
+        <div class="def-box">
+          <b>Byte क्या है?</b> <b>8 Bits मिलकर 1 Byte</b> बनाते हैं। Byte को Computer Memory की <b>मूल (Basic) इकाई</b> माना जाता है। 1 Byte में <b>एक Character (अक्षर, अंक, symbol)</b> store किया जा सकता है।<br><br>
+          1 Byte = 8 Bits = <b>256 अलग-अलग values</b> (2⁸ = 256, यानी 0 से 255)। इसी 0-255 range में ASCII characters — सभी letters, digits, symbols — encode होते हैं।
+        </div>
+
+        <div class="section-h">ASCII Encoding — Byte और Characters</div>
+        <div class="code-label">🔤 ASCII Table — Byte में Characters</div>
+        <div class="code-block">
+<span class="cmt">; ASCII (American Standard Code for Information Interchange)</span>
+<span class="cmt">; प्रत्येक Character = 1 Byte = 8 Bits</span>
+
+'<span class="t">A</span>' = <span class="num">65</span>  = <span class="num">01000001</span>   '<span class="t">a</span>' = <span class="num">97</span>  = <span class="num">01100001</span>
+'<span class="t">B</span>' = <span class="num">66</span>  = <span class="num">01000010</span>   '<span class="t">b</span>' = <span class="num">98</span>  = <span class="num">01100010</span>
+'<span class="t">Z</span>' = <span class="num">90</span>  = <span class="num">01011010</span>   '<span class="t">z</span>' = <span class="num">122</span> = <span class="num">01111010</span>
+'<span class="t">0</span>' = <span class="num">48</span>  = <span class="num">00110000</span>   '<span class="t">9</span>' = <span class="num">57</span>  = <span class="num">00111001</span>
+'<span class="t">!</span>' = <span class="num">33</span>  = <span class="num">00100001</span>   '<span class="t"> </span>' = <span class="num">32</span>  = <span class="num">00100000</span>
+
+<span class="cmt">; "Ram" = 3 Bytes = 24 Bits</span>
+'<span class="t">R</span>' = <span class="num">82</span>  → <span class="num">01010010</span>
+'<span class="t">a</span>' = <span class="num">97</span>  → <span class="num">01100001</span>
+'<span class="t">m</span>' = <span class="num">109</span> → <span class="num">01101101</span>
+
+<span class="cmt">; Hindi के लिए UTF-8 encoding: 1 Hindi character = 3 Bytes
+; 'अ' = 3 Bytes, 'क' = 3 Bytes (Unicode)</span>
+        </div>
+
+        <div class="callout callout-gold">
+          💡 <b>Important:</b> ASCII = 1 Byte per character (English)। लेकिन Hindi/Chinese/Arabic जैसी भाषाओं के लिए <b>Unicode (UTF-8)</b> उपयोग होता है जिसमें एक character के लिए 2-4 Bytes चाहिए। आज सभी modern systems UTF-8 उपयोग करते हैं।
+        </div>
+      </div>
+    </div>
+
+    <div class="acc-item" id="acc-kb2">
+      <div class="acc-head" onclick="toggleAcc('acc-kb2')">
+        <div class="acc-icon ic-go">📄</div>
+        <div class="acc-label">
+          <div class="acc-name">Kilobyte (KB) — किलोबाइट</div>
+          <div class="acc-sub">1024 Bytes = 1 KB</div>
+        </div>
+        <span class="acc-badge badge-gold">इकाई 3</span>
+        <span class="acc-arrow">▼</span>
+      </div>
+      <div class="acc-body">
+        <div class="def-box">
+          <b>Kilobyte (KB):</b> <b>1024 Bytes = 1 Kilobyte।</b><br><br>
+          <b>1024 क्यों — 1000 क्यों नहीं?</b> Computer <b>Binary System (Base 2)</b> में काम करता है। 2¹⁰ = 1024, जो 1000 के सबसे करीब है। इसलिए Computer Science में 1 KB = 1024 Bytes। लेकिन Hard Drive manufacturers <b>1 KB = 1000 Bytes</b> (Decimal) मानते हैं — इसीलिए 1 TB HDD खरीदने पर OS में कम space दिखता है!<br><br>
+          <b>IEC Standard (2000):</b> इस confusion से बचने के लिए: <b>1 KiB (Kibibyte) = 1024 Bytes, 1 KB (Kilobyte) = 1000 Bytes</b>। लेकिन common usage में 1 KB = 1024 Bytes ही माना जाता है।
+        </div>
+
+        <div class="grid-2">
+          <div class="info-card">
+            <div class="info-card-head">📊 KB में क्या-क्या मापते हैं?</div>
+            <div class="info-card-body">
+              → Plain text (.txt) file ≈ 1-50 KB<br>
+              → एक Email (text only) ≈ 2-5 KB<br>
+              → एक webpage का HTML ≈ 10-100 KB<br>
+              → छोटा program/script ≈ 1-500 KB<br>
+              → एक Microsoft Word page ≈ 20-50 KB<br>
+              → Emoji एक piece ≈ 1-4 KB
+            </div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-head">🌐 Network में KB</div>
+            <div class="info-card-body">
+              → <b>Kbps</b> = Kilobits per second (internet speed)<br>
+              → पुराना 2G internet: 50-100 Kbps<br>
+              → 3G internet: 384 Kbps - 2 Mbps<br>
+              → 1 KB/s download = 8 Kbps connection<br>
+              → Dial-up modem: 56 Kbps (बहुत धीमा!)
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="acc-item" id="acc-mb2">
+      <div class="acc-head" onclick="toggleAcc('acc-mb2')">
+        <div class="acc-icon ic-tl">🎵</div>
+        <div class="acc-label">
+          <div class="acc-name">Megabyte (MB) — मेगाबाइट</div>
+          <div class="acc-sub">1024 KB = 1 MB — गाने, Photos, Apps की इकाई</div>
+        </div>
+        <span class="acc-badge badge-teal">इकाई 4</span>
+        <span class="acc-arrow">▼</span>
+      </div>
+      <div class="acc-body">
+        <div class="def-box">
+          <b>Megabyte (MB):</b> <b>1024 KB = 1 Megabyte (MB)</b> = 1,048,576 Bytes = लगभग 10 लाख Bytes।<br><br>
+          आज के युग में MB छोटी इकाई लगती है, लेकिन 1990s में Floppy Disk (1.44 MB) और CD (700 MB) सब MB में मापते थे। Mobile Data Plans अभी भी MB में track होते हैं।
+        </div>
+
+        <div class="grid-2">
+          <div class="info-card">
+            <div class="info-card-head">🎵 MB में क्या होता है?</div>
+            <div class="info-card-body">
+              → 1 MP3 गाना (128kbps) ≈ 4 MB<br>
+              → 1 Photo (JPEG, smartphone) ≈ 2-8 MB<br>
+              → 1 Photo (RAW, DSLR) ≈ 20-40 MB<br>
+              → WhatsApp compressed image ≈ 200-500 KB<br>
+              → Android App (simple) ≈ 10-50 MB<br>
+              → 1 minute HD Video ≈ 150-300 MB<br>
+              → CD-ROM ≈ 700 MB
+            </div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-head">🌐 Mbps vs MBps — बड़ा अंतर!</div>
+            <div class="info-card-body">
+              → <b>Mbps</b> = Megabits per second (internet speed)<br>
+              → <b>MBps</b> = Megabytes per second (file transfer)<br>
+              → 1 MBps = 8 Mbps<br>
+              → Jio 4G "100 Mbps" = 12.5 MBps actual download<br>
+              → ISP हमेशा <b>bits</b> में बताते हैं — ध्यान रखें!<br>
+              → 100 Mbps पर 100 MB file = 8 seconds में
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="acc-item" id="acc-gb2">
+      <div class="acc-head" onclick="toggleAcc('acc-gb2')">
+        <div class="acc-icon ic-bl">🎬</div>
+        <div class="acc-label">
+          <div class="acc-name">Gigabyte (GB) — गीगाबाइट</div>
+          <div class="acc-sub">1024 MB = 1 GB — आज की सबसे सामान्य इकाई</div>
+        </div>
+        <span class="acc-badge badge-blue">इकाई 5</span>
+        <span class="acc-arrow">▼</span>
+      </div>
+      <div class="acc-body">
+        <div class="def-box">
+          <b>Gigabyte (GB):</b> <b>1024 MB = 1 Gigabyte (GB)</b> = 1,073,741,824 Bytes ≈ 1 अरब Bytes।<br><br>
+          GB आज के युग की सबसे उपयोगी इकाई है। RAM 8/16/32 GB में, Smartphone Storage 64/128/256 GB में, Mobile Data Plan GB में — सब यहीं है।
+        </div>
+
+        <div class="grid-2">
+          <div class="info-card">
+            <div class="info-card-head">💾 Hardware में GB</div>
+            <div class="info-card-body">
+              → RAM: 4 GB (basic), 8 GB, 16 GB, 32 GB, 64 GB<br>
+              → Smartphone Storage: 32/64/128/256/512 GB<br>
+              → Pendrive: 16/32/64/128/256 GB<br>
+              → Graphics Card VRAM: 4/6/8/12/16 GB<br>
+              → Cache Memory: L3 cache ≈ 8-64 MB (MB में!)
+            </div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-head">📱 Mobile Data में GB</div>
+            <div class="info-card-body">
+              → Jio Daily Pack: 1.5 GB/day<br>
+              → Airtel Monthly: 50 GB or Unlimited<br>
+              → YouTube HD Video: 1.5 GB/hour<br>
+              → Instagram Scrolling: 300 MB/hour<br>
+              → WhatsApp Call (HD): 250 MB/hour<br>
+              → Online Gaming: 50-300 MB/hour
+            </div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-head">🎬 Media में GB</div>
+            <div class="info-card-body">
+              → 1 HD Movie (1080p, H.264) ≈ 1.5-4 GB<br>
+              → 1 4K Movie ≈ 50-80 GB<br>
+              → PC Game (modern) ≈ 10-100 GB<br>
+              → Minecraft ≈ 1 GB, GTA 5 ≈ 90 GB<br>
+              → 1 hour YouTube 4K download ≈ 8-15 GB
+            </div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-head">🧮 1 GB में कितना?</div>
+            <div class="info-card-body">
+              → लगभग <b>250 MP3 गाने</b><br>
+              → लगभग <b>100-200 Photos</b> (JPEG)<br>
+              → लगभग <b>10-20 minutes 4K Video</b><br>
+              → लगभग <b>5 crore</b> से अधिक characters<br>
+              → एक novel ≈ 1 MB — तो 1 GB = 1000 novels!
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="acc-item" id="acc-tb2">
+      <div class="acc-head" onclick="toggleAcc('acc-tb2')">
+        <div class="acc-icon ic-gr">🖴</div>
+        <div class="acc-label">
+          <div class="acc-name">Terabyte (TB) — टेराबाइट</div>
+          <div class="acc-sub">1024 GB = 1 TB — Hard Disk और NAS की इकाई</div>
+        </div>
+        <span class="acc-badge badge-green">इकाई 6</span>
+        <span class="acc-arrow">▼</span>
+      </div>
+      <div class="acc-body">
+        <div class="def-box">
+          <b>Terabyte (TB):</b> <b>1024 GB = 1 Terabyte (TB)</b> = 1,099,511,627,776 Bytes ≈ 1 लाख करोड़ Bytes।<br><br>
+          TB Storage devices — Hard Disk Drive (HDD) और Solid State Drive (SSD) — मापने के लिए सबसे उपयुक्त इकाई है। आज घरेलू computers में 500 GB से 4 TB तक की Hard Disk सामान्य है।
+        </div>
+
+        <div class="grid-2">
+          <div class="info-card">
+            <div class="info-card-head">💽 HDD vs SSD — TB Storage</div>
+            <div class="info-card-body">
+              <b>HDD (Hard Disk Drive):</b><br>
+              → Mechanical — rotating magnetic disk<br>
+              → 1 TB HDD ≈ ₹2,500-4,000<br>
+              → Speed: 80-150 MB/s<br>
+              → Shock में damage हो सकता है<br><br>
+              <b>SSD (Solid State Drive):</b><br>
+              → Flash memory — no moving parts<br>
+              → 1 TB SSD ≈ ₹6,000-10,000<br>
+              → Speed: 500 MB/s - 7000 MB/s (NVMe)<br>
+              → Shock resistant, silent
+            </div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-head">☁️ Cloud Storage (TB में)</div>
+            <div class="info-card-body">
+              → Google One: 2 TB = ₹5,300/year<br>
+              → iCloud+: 2 TB = ₹219/month<br>
+              → OneDrive: 1 TB (Microsoft 365 में)<br>
+              → Amazon S3: Pay as you go<br>
+              → Backblaze B2: $6/TB/month<br>
+              → NAS (Network Attached Storage): 4-40+ TB
+            </div>
+          </div>
+        </div>
+
+        <div class="callout callout-green">
+          💡 <b>1 TB में क्या-क्या समाएगा?</b><br>
+          → 250,000 से अधिक MP3 गाने (पूरे जीवन का music!)<br>
+          → 500+ Full HD Movies<br>
+          → 1,50,000 से अधिक Photos<br>
+          → 17,000 घंटे की audio recording<br>
+          → 6.5 million document pages (यदि A4 में print करें → Delhi से Jaipur तक की ऊँचाई!)
+        </div>
+      </div>
+    </div>
+
+    <div class="acc-item" id="acc-larger">
+      <div class="acc-head" onclick="toggleAcc('acc-larger')">
+        <div class="acc-icon ic-pu">🌌</div>
+        <div class="acc-label">
+          <div class="acc-name">Petabyte, Exabyte, Zettabyte, Yottabyte</div>
+          <div class="acc-sub">बड़े Data Centers और Global Internet का data</div>
+        </div>
+        <span class="acc-badge badge-purple">इकाई 7-10</span>
+        <span class="acc-arrow">▼</span>
+      </div>
+      <div class="acc-body">
+
+        <div class="grid-2">
+          <div class="info-card">
+            <div class="info-card-head">🌐 Petabyte (PB) — 1024 TB</div>
+            <div class="info-card-body">
+              <b>1 PB = 1024 TB = 1,000,000 GB</b><br><br>
+              → Facebook प्रतिदिन <b>500+ TB data</b> process करता है<br>
+              → Google का Search Index: Hundreds of PB<br>
+              → CERN (LHC particle accelerator): 15 PB/year<br>
+              → Waymo (Self-driving cars): 40 TB/day data collect<br>
+              → NASA Hubble Space Telescope: 120 GB/week
+            </div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-head">🌍 Exabyte (EB) — 1024 PB</div>
+            <div class="info-card-body">
+              <b>1 EB = 1024 PB = 10¹⁸ Bytes</b><br><br>
+              → 2023 में Global Internet Traffic: <b>500+ EB/year</b><br>
+              → NSA (अमेरिकी खुफिया): Multiple EB storage<br>
+              → All words ever spoken by humans ≈ 5 EB<br>
+              → Wayback Machine (Internet Archive): 70+ PB<br>
+              → 1 EB = 10 lakh million (1 quadrillion) KB
+            </div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-head">🚀 Zettabyte (ZB) — 1024 EB</div>
+            <div class="info-card-body">
+              <b>1 ZB = 1024 EB = 10²¹ Bytes</b><br><br>
+              → 2022: Global Data Created ≈ <b>120 ZB</b><br>
+              → 2025 estimate: 175 ZB global data<br>
+              → यदि 1 ZB को CDs में store करें → 200 million years of music<br>
+              → Internet of Things (IoT) devices सबसे अधिक data generate करते हैं
+            </div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-head">🌌 Yottabyte (YB) — 1024 ZB</div>
+            <div class="info-card-body">
+              <b>1 YB = 1024 ZB = 10²⁴ Bytes</b><br><br>
+              → अभी तक कोई device नहीं बनी जो 1 YB store कर सके<br>
+              → Theoretical — भविष्य की इकाई<br>
+              → Earth's data storage capacity अभी YB के करीब भी नहीं<br>
+              → Human brain की storage capacity ≈ 2.5 PB — Yottabyte नहीं!
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div><!-- /accordion memory -->
+
+  <div class="section-h" style="margin-top:28px;">सभी Memory Units — संपूर्ण Summary Table</div>
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>इकाई</th><th>Symbol</th><th>मान</th><th>Binary मान</th><th>Approximate</th><th>सापेक्ष आकार</th><th>वास्तविक उदाहरण</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td><span class="tname">Bit</span><br><span class="tsub">बिट</span></td><td class="tval">b</td><td>0 या 1</td><td>1 binary digit</td><td>—</td><td><div class="bar-wrap"><div class="bar-in" style="width:1%"></div></div></td><td>एक Switch (ON/OFF)</td></tr>
+      <tr><td><span class="tname">Nibble</span><br><span class="tsub">निबल</span></td><td class="tval">—</td><td>4 Bits</td><td>2⁴ = 16 values</td><td>—</td><td><div class="bar-wrap"><div class="bar-in" style="width:2%"></div></div></td><td>एक Hex digit (0-F)</td></tr>
+      <tr><td><span class="tname">Byte</span><br><span class="tsub">बाइट</span></td><td class="tval">B</td><td>8 Bits</td><td>2⁸ = 256 values</td><td>—</td><td><div class="bar-wrap"><div class="bar-in" style="width:3%"></div></div></td><td>एक अक्षर 'A'</td></tr>
+      <tr><td><span class="tname">Kilobyte</span><br><span class="tsub">किलोबाइट</span></td><td class="tval">KB</td><td>1024 B</td><td>2¹⁰ Bytes</td><td>~1 हजार Bytes</td><td><div class="bar-wrap"><div class="bar-in" style="width:6%"></div></div></td><td>छोटी text file, SMS</td></tr>
+      <tr><td><span class="tname">Megabyte</span><br><span class="tsub">मेगाबाइट</span></td><td class="tval">MB</td><td>1024 KB</td><td>2²⁰ Bytes</td><td>~10 लाख Bytes</td><td><div class="bar-wrap"><div class="bar-in" style="width:13%"></div></div></td><td>1 MP3 गाना (~4 MB)</td></tr>
+      <tr><td><span class="tname">Gigabyte</span><br><span class="tsub">गीगाबाइट</span></td><td class="tval">GB</td><td>1024 MB</td><td>2³⁰ Bytes</td><td>~1 अरब Bytes</td><td><div class="bar-wrap"><div class="bar-in" style="width:28%"></div></div></td><td>RAM, 1 HD Movie</td></tr>
+      <tr><td><span class="tname">Terabyte</span><br><span class="tsub">टेराबाइट</span></td><td class="tval">TB</td><td>1024 GB</td><td>2⁴⁰ Bytes</td><td>~1 लाख करोड़</td><td><div class="bar-wrap"><div class="bar-in" style="width:45%"></div></div></td><td>Hard Disk Drive</td></tr>
+      <tr><td><span class="tname">Petabyte</span><br><span class="tsub">पेटाबाइट</span></td><td class="tval">PB</td><td>1024 TB</td><td>2⁵⁰ Bytes</td><td>~10¹⁵ Bytes</td><td><div class="bar-wrap"><div class="bar-in" style="width:60%"></div></div></td><td>Data Centers, Facebook</td></tr>
+      <tr><td><span class="tname">Exabyte</span><br><span class="tsub">एक्साबाइट</span></td><td class="tval">EB</td><td>1024 PB</td><td>2⁶⁰ Bytes</td><td>~10¹⁸ Bytes</td><td><div class="bar-wrap"><div class="bar-in" style="width:75%"></div></div></td><td>Global Internet Traffic</td></tr>
+      <tr><td><span class="tname">Zettabyte</span><br><span class="tsub">ज़ेटाबाइट</span></td><td class="tval">ZB</td><td>1024 EB</td><td>2⁷⁰ Bytes</td><td>~10²¹ Bytes</td><td><div class="bar-wrap"><div class="bar-in" style="width:88%"></div></div></td><td>Global Data Created/year</td></tr>
+      <tr><td><span class="tname">Yottabyte</span><br><span class="tsub">योटाबाइट</span></td><td class="tval">YB</td><td>1024 ZB</td><td>2⁸⁰ Bytes</td><td>~10²⁴ Bytes</td><td><div class="bar-wrap"><div class="bar-in" style="width:100%"></div></div></td><td>Theoretical (भविष्य)</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout callout-gold">
+    🧠 <b>Memory Units याद रखने का Formula:</b><br><br>
+    <code style="font-family:var(--font-mono);color:var(--teal);font-size:14px;">Bit → (×8) → Byte → (×1024) → KB → (×1024) → MB → (×1024) → GB → (×1024) → TB → (×1024) → PB → (×1024) → EB → (×1024) → ZB → (×1024) → YB</code><br><br>
+    <b>Trick:</b> "<b>B</b>etter <b>K</b>eep <b>M</b>emorise <b>G</b>ood <b>T</b>echnique <b>P</b>lease <b>E</b>lse <b>Z</b>ero <b>Y</b>ield" (Byte, Kilo, Mega, Giga, Tera, Peta, Exa, Zetta, Yotta)<br><br>
+    <b>Internet Speed Formula:</b> Jio 100 Mbps plan पर actual download speed = 100 ÷ 8 = <b>12.5 MB/s</b> (क्योंकि ISP bits में बताते हैं, files bytes में होती हैं)
+  </div>
+
+</div><!-- /panel-memory -->
+
+</div><!-- /content -->
+
+<script>
+function showPanel(name, btn) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('panel-' + name).classList.add('active');
+  btn.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function toggleAcc(id) {
+  const item = document.getElementById(id);
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.acc-item.open').forEach(i => {
+    if(i.id !== id) i.classList.remove('open');
+  });
+  item.classList.toggle('open', !isOpen);
+  if (!isOpen) {
+    setTimeout(() => item.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 50);
+  }
+}
+</script>
+</body>
+</html>

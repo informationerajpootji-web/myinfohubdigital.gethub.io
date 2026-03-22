@@ -1,0 +1,1402 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Computer Software MCQ Quiz - Set 4</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;600;700&family=Poppins:wght@400;600;700&display=swap');
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{
+    font-family:'Noto Sans Devanagari','Poppins',sans-serif;
+    background:linear-gradient(135deg,#0a1628,#0d2b1e,#1a0a28,#0a2020);
+    background-size:400% 400%;
+    animation:bgShift 12s ease infinite;
+    min-height:100vh;color:#fff;padding:20px;
+  }
+  @keyframes bgShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+  .container{max-width:820px;margin:0 auto;}
+  .header{
+    text-align:center;padding:28px 20px 18px;
+    background:rgba(255,255,255,0.05);border-radius:20px;
+    margin-bottom:22px;border:1px solid rgba(255,255,255,0.1);
+    backdrop-filter:blur(12px);
+  }
+  .header h1{
+    font-size:1.75rem;font-weight:700;
+    background:linear-gradient(90deg,#a78bfa,#60a5fa,#34d399);
+    -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+    margin-bottom:5px;
+  }
+  .header p{color:#aaa;font-size:0.88rem;}
+  .set-badge{
+    display:inline-block;
+    background:linear-gradient(90deg,#a78bfa33,#60a5fa33);
+    border:1px solid #a78bfa55;color:#a78bfa;
+    padding:4px 14px;border-radius:50px;
+    font-size:0.78rem;font-weight:700;letter-spacing:1px;margin-bottom:8px;
+  }
+  .stats-bar{
+    display:flex;justify-content:space-between;align-items:center;
+    background:rgba(255,255,255,0.06);border-radius:14px;
+    padding:14px 20px;margin-bottom:20px;
+    border:1px solid rgba(255,255,255,0.1);flex-wrap:wrap;gap:10px;
+  }
+  .stat-item{text-align:center;}
+  .stat-label{font-size:0.7rem;color:#999;text-transform:uppercase;letter-spacing:1px;}
+  .stat-value{font-size:1.35rem;font-weight:700;color:#a78bfa;}
+  .progress-wrap{width:100%;background:rgba(255,255,255,0.1);border-radius:50px;height:10px;overflow:hidden;margin-top:6px;}
+  .progress-bar{height:100%;background:linear-gradient(90deg,#a78bfa,#60a5fa,#34d399);border-radius:50px;transition:width .5s ease;width:0%;}
+  .question-card{
+    background:rgba(255,255,255,0.05);border-radius:20px;padding:28px;
+    border:1px solid rgba(255,255,255,0.1);backdrop-filter:blur(10px);
+    margin-bottom:20px;animation:fadeIn .35s ease;
+  }
+  @keyframes fadeIn{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
+  .question-number{font-size:0.78rem;color:#a78bfa;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;}
+  .question-text{font-size:1.08rem;font-weight:600;line-height:1.65;color:#f0f0f0;margin-bottom:22px;}
+  .options-grid{display:flex;flex-direction:column;gap:11px;}
+  .option-btn{
+    display:flex;align-items:center;gap:13px;
+    background:rgba(255,255,255,0.05);border:2px solid rgba(255,255,255,0.1);
+    border-radius:12px;padding:13px 17px;cursor:pointer;
+    transition:all .22s ease;text-align:left;color:#ddd;
+    font-size:0.95rem;font-family:inherit;line-height:1.5;
+  }
+  .option-btn:hover:not(:disabled){background:rgba(167,139,250,.13);border-color:#a78bfa;transform:translateX(4px);}
+  .option-badge{
+    width:32px;height:32px;border-radius:50%;
+    background:rgba(255,255,255,0.1);display:flex;align-items:center;
+    justify-content:center;font-weight:700;font-size:0.83rem;flex-shrink:0;color:#a78bfa;
+  }
+  .option-btn.correct{background:rgba(52,211,153,.2)!important;border-color:#34d399!important;color:#fff!important;}
+  .option-btn.correct .option-badge{background:#34d399!important;color:#0a1628!important;}
+  .option-btn.wrong{background:rgba(248,113,113,.2)!important;border-color:#f87171!important;color:#fff!important;}
+  .option-btn.wrong .option-badge{background:#f87171!important;color:#fff!important;}
+  .option-btn:disabled{cursor:not-allowed;transform:none!important;}
+  .explanation-box{
+    display:none;margin-top:20px;
+    background:rgba(167,139,250,.07);border-left:4px solid #a78bfa;
+    border-radius:0 12px 12px 0;padding:16px 18px;animation:fadeIn .4s ease;
+  }
+  .explanation-box.show{display:block;}
+  .exp-title{font-size:0.76rem;color:#a78bfa;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:7px;}
+  .explanation-box p{color:#ccc;font-size:0.92rem;line-height:1.65;}
+  .all-explanations{display:none;margin-top:14px;}
+  .all-explanations.show{display:block;}
+  .exp-option-row{padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.07);font-size:0.87rem;color:#bbb;line-height:1.55;}
+  .exp-option-row:last-child{border-bottom:none;}
+  .exp-option-row strong{color:#a78bfa;}
+  .next-btn{
+    display:none;margin-top:20px;width:100%;padding:15px;
+    background:linear-gradient(90deg,#a78bfa,#60a5fa);border:none;
+    border-radius:12px;font-size:1rem;font-weight:700;color:#0a0a1e;
+    cursor:pointer;transition:all .3s ease;font-family:inherit;letter-spacing:.5px;
+  }
+  .next-btn:hover{transform:scale(1.02);box-shadow:0 8px 25px rgba(167,139,250,.4);}
+  .next-btn.show{display:block;}
+  .result-screen{
+    display:none;text-align:center;padding:40px 20px;
+    background:rgba(255,255,255,0.05);border-radius:20px;
+    border:1px solid rgba(255,255,255,0.1);
+  }
+  .result-screen.show{display:block;}
+  .result-emoji{font-size:4rem;margin-bottom:14px;}
+  .result-screen h2{
+    font-size:1.9rem;font-weight:700;
+    background:linear-gradient(90deg,#a78bfa,#60a5fa,#34d399);
+    -webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:8px;
+  }
+  .big-score{font-size:3.4rem;font-weight:700;color:#a78bfa;margin:16px 0;}
+  .percentage{font-size:1.2rem;color:#aaa;margin-bottom:22px;}
+  .result-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:26px;}
+  .result-stat{background:rgba(255,255,255,0.06);border-radius:12px;padding:16px;}
+  .r-num{font-size:1.8rem;font-weight:700;}
+  .r-label{font-size:0.73rem;color:#888;margin-top:4px;}
+  .correct-stat .r-num{color:#34d399;}
+  .wrong-stat .r-num{color:#f87171;}
+  .total-stat .r-num{color:#60a5fa;}
+  .grade-badge{display:inline-block;padding:6px 18px;border-radius:50px;font-weight:700;font-size:0.88rem;margin-bottom:10px;}
+  .restart-btn{
+    padding:14px 38px;background:linear-gradient(90deg,#a78bfa,#60a5fa);
+    border:none;border-radius:12px;font-size:1rem;font-weight:700;
+    color:#0a0a1e;cursor:pointer;transition:all .3s ease;font-family:inherit;
+  }
+  .restart-btn:hover{transform:scale(1.05);box-shadow:0 8px 28px rgba(167,139,250,.4);}
+  @media(max-width:600px){.header h1{font-size:1.35rem;}.result-grid{grid-template-columns:1fr;}.big-score{font-size:2.4rem;}}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <div class="set-badge">SET 4 — 100 BRAND NEW MCQs</div>
+    <h1>⚡ Computer Software Quiz</h1>
+    <p>100 एकदम नए प्रश्न | हिंदी में | सभी विकल्पों की व्याख्या सहित</p>
+  </div>
+
+  <div class="stats-bar" id="statsBar">
+    <div class="stat-item"><div class="stat-label">प्रश्न</div><div class="stat-value" id="qCounter">1 / 100</div></div>
+    <div class="stat-item"><div class="stat-label">✅ सही</div><div class="stat-value" id="correctCount">0</div></div>
+    <div class="stat-item"><div class="stat-label">❌ गलत</div><div class="stat-value" id="wrongCount">0</div></div>
+    <div class="stat-item"><div class="stat-label">🏆 स्कोर</div><div class="stat-value" id="scorePercent">0%</div></div>
+    <div class="progress-wrap" style="width:100%"><div class="progress-bar" id="progressBar"></div></div>
+  </div>
+
+  <div class="question-card" id="questionCard">
+    <div class="question-number" id="qNum">प्रश्न 1</div>
+    <div class="question-text" id="qText"></div>
+    <div class="options-grid" id="optionsGrid"></div>
+    <div class="explanation-box" id="explanationBox">
+      <div class="exp-title">✅ सही उत्तर की व्याख्या</div>
+      <p id="correctExp"></p>
+      <div class="all-explanations" id="allExplanations"></div>
+    </div>
+    <button class="next-btn" id="nextBtn" onclick="nextQuestion()">अगला सवाल →</button>
+  </div>
+
+  <div class="result-screen" id="resultScreen">
+    <div class="result-emoji" id="resultEmoji">🏆</div>
+    <div class="grade-badge" id="gradeBadge"></div>
+    <h2>Quiz पूरा हुआ!</h2>
+    <div class="big-score" id="finalScore"></div>
+    <div class="percentage" id="finalPercent"></div>
+    <div class="result-grid">
+      <div class="result-stat correct-stat"><div class="r-num" id="rCorrect">0</div><div class="r-label">✅ सही उत्तर</div></div>
+      <div class="result-stat wrong-stat"><div class="r-num" id="rWrong">0</div><div class="r-label">❌ गलत उत्तर</div></div>
+      <div class="result-stat total-stat"><div class="r-num">100</div><div class="r-label">📋 कुल प्रश्न</div></div>
+    </div>
+    <button class="restart-btn" onclick="restartQuiz()">🔄 फिर से शुरू करें</button>
+  </div>
+</div>
+
+<script>
+const allQuestions = [
+
+// ══════════════════════════════════════════════
+// SECTION 1 : OS INTERNALS & SYSTEM PROGRAMMING (1-20)
+// ══════════════════════════════════════════════
+{
+  q:"Segmentation Fault (Segfault) क्यों होती है?",
+  options:["Internet connection टूटने पर","Program किसी ऐसी memory location को access करे जो उसे allowed नहीं","Hard disk full होने पर","Keyboard disconnect होने पर"],
+  correct:1,
+  explanations:[
+    "Segfault internet से नहीं।",
+    "✅ सही! Segmentation Fault तब होती है जब program ऐसी memory address access करता है जिसकी उसे permission नहीं — जैसे NULL pointer dereference, out-of-bounds array access।",
+    "Disk full अलग error है।",
+    "Keyboard disconnect अलग है।"
+  ]
+},
+{
+  q:"Stack Overflow Error किस कारण होती है?",
+  options:["Too many files open","Infinite या too deep recursion से call stack भर जाए","RAM का ज्यादा use","Disk full होना"],
+  correct:1,
+  explanations:[
+    "File limit अलग error है।",
+    "✅ सही! Stack Overflow तब होती है जब function calls का stack बहुत deep हो जाए — infinite recursion इसका सबसे common cause है — call stack की fixed limit होती है।",
+    "RAM अलग issue है।",
+    "Disk full अलग है।"
+  ]
+},
+{
+  q:"Memory Leak क्या होती है?",
+  options:["RAM से data leak होना","Allocated memory को free न करना — memory available कम होती जाती है","Password leak होना","Data corruption"],
+  correct:1,
+  explanations:[
+    "RAM physically leak नहीं होती।",
+    "✅ सही! Memory Leak तब होती है जब program memory allocate करता है लेकिन use के बाद free नहीं करता — time के साथ available memory कम होती जाती है, program slow/crash होता है।",
+    "Password leak security issue है।",
+    "Data corruption अलग है।"
+  ]
+},
+{
+  q:"Buffer Overflow Attack क्या है?",
+  options:["Network buffer slow होना","Buffer की fixed size से ज्यादा data लिखकर adjacent memory overwrite करना — exploit हो सकता है","Video buffer होना","Audio buffer होना"],
+  correct:1,
+  explanations:[
+    "Network buffering अलग है।",
+    "✅ सही! Buffer Overflow में attacker buffer की capacity से ज्यादा data inject करता है — adjacent memory (return address) overwrite होती है — malicious code execute हो सकता है।",
+    "Video buffering media का है।",
+    "Audio buffering media का है।"
+  ]
+},
+{
+  q:"Multithreading के क्या फायदे हैं?",
+  options:["केवल memory बढ़ती है","CPU utilization बढ़ती है, parallel tasks execute होते हैं, responsiveness बढ़ती है","Internet fast होता है","Disk space बढ़ती है"],
+  correct:1,
+  explanations:[
+    "Multithreading memory से नहीं।",
+    "✅ सही! Multithreading से: (1) CPU efficiently use होता है, (2) multiple tasks simultaneously run होते हैं, (3) UI responsive रहती है — background में काम होता है।",
+    "Internet speed threading से नहीं।",
+    "Disk space threading से नहीं।"
+  ]
+},
+{
+  q:"Mutex Lock लेने पर क्या होता है अगर दूसरा thread same lock लेना चाहे?",
+  options:["दूसरा thread automatically access पा जाता है","दूसरा thread block/wait होता है जब तक first thread lock release न करे","System crash होता है","New lock बन जाता है"],
+  correct:1,
+  explanations:[
+    "Mutex exclusive lock है — दो threads simultaneously नहीं।",
+    "✅ सही! जब Thread A Mutex lock hold करे और Thread B same lock acquire करने की कोशिश करे, तो Thread B block हो जाता है और wait करता है जब तक Thread A lock release न करे।",
+    "System crash नहीं होता।",
+    "New lock नहीं बनता।"
+  ]
+},
+{
+  q:"Copy-on-Write (COW) technique क्या है?",
+  options:["Files को copy करना","Resources को tab करने तक share करना, modify होने पर ही copy बनाना — memory efficient","Writing speed बढ़ाना","Copy protection"],
+  correct:1,
+  explanations:[
+    "COW physical file copy नहीं।",
+    "✅ सही! Copy-on-Write में parent और child process (fork) same memory pages share करते हैं — जब कोई भी page modify करे, तभी उस page की copy बनती है। Fork() में Linux यही करता है।",
+    "Writing speed से नहीं।",
+    "Copy protection DRM है।"
+  ]
+},
+{
+  q:"Demand Paging क्या है?",
+  options:["Printing demand करना","Pages को जरूरत पड़ने पर ही disk से RAM में load करना — सब pages पहले से load नहीं","Page numbering","Pagination in UI"],
+  correct:1,
+  explanations:[
+    "Demand Paging printing नहीं।",
+    "✅ सही! Demand Paging lazy loading strategy है — process शुरू होने पर सभी pages RAM में नहीं आतीं, केवल जब किसी page की जरूरत हो (page fault पर) तब disk से load होती है।",
+    "Page numbering documents में होता है।",
+    "UI Pagination अलग concept है।"
+  ]
+},
+{
+  q:"Inter-Process Communication में Pipe का उपयोग कैसे होता है?",
+  options:["Network pipes connect करना","एक process का output दूसरे process का input बनाना — Linux में | symbol","Water pipes","Hardware pipes"],
+  correct:1,
+  explanations:[
+    "Network pipes अलग हैं।",
+    "✅ सही! Unix/Linux में Pipe (|) एक process के stdout को दूसरे के stdin से connect करता है — जैसे: ls | grep txt — ls का output grep को जाता है।",
+    "Water pipes physical हैं।",
+    "Hardware pipes अलग concept है।"
+  ]
+},
+{
+  q:"Monolithic Kernel vs Microkernel में performance का अंतर क्या है?",
+  options:["दोनों equal हैं","Monolithic faster है क्योंकि kernel services same address space में; Microkernel slower क्योंकि IPC overhead है","Microkernel faster है","Speed hardware पर depends"],
+  correct:1,
+  explanations:[
+    "Performance difference है।",
+    "✅ सही! Monolithic Kernel में सभी services (file system, drivers) kernel space में run होती हैं — fast। Microkernel में services user space में होती हैं — IPC (message passing) की वजह से overhead है।",
+    "Microkernel IPC overhead की वजह से slower हो सकता है।",
+    "Architecture का fundamental impact है।"
+  ]
+},
+{
+  q:"System Call की संख्या Linux में लगभग कितनी है?",
+  options:["10","50","300+ से ज्यादा","1000+"],
+  correct:2,
+  explanations:[
+    "10 बहुत कम है।",
+    "50 भी कम है।",
+    "✅ सही! Linux में 300+ system calls हैं — read(), write(), open(), close(), fork(), exec(), mmap() आदि। x86-64 Linux में approximately 300-400 system calls हैं।",
+    "1000+ नहीं है।"
+  ]
+},
+{
+  q:"Process Orphan क्या होता है?",
+  options:["Process जिसका कोई काम नहीं","जिस process का parent process पहले terminate हो जाए — child अकेली रह जाए","Deleted process","Paused process"],
+  correct:1,
+  explanations:[
+    "Orphan काम से define नहीं।",
+    "✅ सही! Orphan Process वह है जिसका Parent Process terminate हो गया हो। Linux में orphan process को 'init' process (PID 1) adopt कर लेती है।",
+    "Deleted process terminated है।",
+    "Paused process suspended है।"
+  ]
+},
+{
+  q:"Kernel Space और User Space में memory separation क्यों है?",
+  options:["Memory save करने के लिए","Security और stability — user programs kernel memory corrupt न कर सकें","Speed बढ़ाने के लिए","Disk space बचाने के लिए"],
+  correct:1,
+  explanations:[
+    "Memory separation से memory save नहीं होती।",
+    "✅ सही! Separation ensures करती है कि malicious या buggy user programs kernel memory access न करें — system stability और security maintained रहती है।",
+    "Speed separation का goal नहीं।",
+    "Disk space से नहीं।"
+  ]
+},
+{
+  q:"Spin Lock क्या है?",
+  options:["Lock जो spin करता हो","Thread जो lock available होने तक CPU time waste करते हुए continuously check करे (busy waiting)","Database lock","File lock"],
+  correct:1,
+  explanations:[
+    "Physical spin नहीं।",
+    "✅ सही! Spin Lock में thread lock acquire होने तक loop में continuously check करता रहता है (busy waiting) — short wait के लिए efficient, long wait के लिए CPU wasteful।",
+    "Database lock अलग है।",
+    "File lock अलग है।"
+  ]
+},
+{
+  q:"Inode क्या है Linux में?",
+  options:["Input Node","File का metadata store करने वाला data structure — permissions, size, timestamps, disk location","Internet Node","Index Node जो files का नाम store करे"],
+  correct:1,
+  explanations:[
+    "Inode input से नहीं।",
+    "✅ सही! Inode (Index Node) Linux file system में file का metadata store करता है — size, owner, permissions, timestamps, disk block locations — filename inode में नहीं होता।",
+    "Internet से नहीं।",
+    "Filename directory में होता है, inode में नहीं।"
+  ]
+},
+{
+  q:"ELF format क्या है Linux में?",
+  options:["Elf programming language","Executable and Linkable Format — Linux executables, object files और shared libraries का format","Error Log File","Embedded Linux Format"],
+  correct:1,
+  explanations:[
+    "ELF programming language नहीं।",
+    "✅ सही! ELF (Executable and Linkable Format) Linux/Unix का standard binary format है — compiled programs (.out), shared libraries (.so), object files (.o) सब ELF format में होते हैं।",
+    "Error Log Format अलग है।",
+    "Embedded Linux Format नहीं।"
+  ]
+},
+{
+  q:"Shared Library (.so file) का क्या फायदा है?",
+  options:["Larger executable size","Multiple programs एक ही library code को memory में share करें — disk और memory efficient","Slower execution","More dependencies"],
+  correct:1,
+  explanations:[
+    "Shared library executable size कम करती है।",
+    "✅ सही! Shared Library (.so Linux, .dll Windows) को multiple programs runtime पर share करते हैं — disk पर एक copy, memory में एक copy। Static library हर executable में embedded होती है।",
+    "Shared library execution faster होती है।",
+    "Shared library dependencies manage करती है।"
+  ]
+},
+{
+  q:"Fork() System Call क्या करता है?",
+  options:["File fork करना","Current process की exact copy (child process) बनाना","Fork join operation","Keyboard shortcut"],
+  correct:1,
+  explanations:[
+    "File fork अलग है।",
+    "✅ सही! fork() system call current process (parent) की exact duplicate (child process) बनाता है — child को नया PID मिलता है, बाकी सब copy होता है। Child में fork() 0 return करता है।",
+    "Fork-Join parallel programming pattern है।",
+    "Keyboard shortcut से अलग है।"
+  ]
+},
+{
+  q:"Real-Time System में 'Hard Real-Time' और 'Soft Real-Time' में क्या अंतर है?",
+  options:["दोनों समान हैं","Hard: deadline miss होना catastrophic है; Soft: deadline miss होने पर quality degrade होती है लेकिन system चलता रहे","Soft Real-Time stricter है","Hard Real-Time only hardware में"],
+  correct:1,
+  explanations:[
+    "दोनों अलग हैं।",
+    "✅ सही! Hard Real-Time में deadline absolutely miss नहीं हो सकती — जैसे aircraft control, pacemaker। Soft Real-Time में occasional deadline miss acceptable है — जैसे video streaming।",
+    "Hard Real-Time stricter है।",
+    "Hard Real-Time software systems में भी होता है।"
+  ]
+},
+{
+  q:"64-bit OS, 32-bit OS से कैसे better है?",
+  options:["64-bit OS cheaper है","64-bit OS 4GB से ज्यादा RAM address कर सकता है (theoretically 16 EB) और larger data process करता है","32-bit OS ज्यादा programs run करता है","दोनों same RAM support करते हैं"],
+  correct:1,
+  explanations:[
+    "Price architecture से नहीं।",
+    "✅ सही! 32-bit OS maximum 4GB RAM address कर सकता है। 64-bit OS theoretically 16 Exabytes address कर सकता है — modern systems 4GB+ RAM use करते हैं इसलिए 64-bit जरूरी है।",
+    "64-bit OS ज्यादा programs run कर सकता है।",
+    "RAM support fundamentally different है।"
+  ]
+},
+
+// ══════════════════════════════════════════════
+// SECTION 2 : WEB TECHNOLOGIES & FRAMEWORKS (21-40)
+// ══════════════════════════════════════════════
+{
+  q:"CSS में 'Box Model' क्या होता है?",
+  options:["3D box बनाना","हर element के आसपास Content, Padding, Border, Margin का layout model","CSS animations","CSS grid"],
+  correct:1,
+  explanations:[
+    "Box Model 3D नहीं।",
+    "✅ सही! CSS Box Model में हर HTML element एक rectangular box है: Content (actual content) → Padding (content के चारों तरफ space) → Border (padding के बाहर border) → Margin (border के बाहर space)।",
+    "Animations CSS @keyframes से हैं।",
+    "Grid CSS Grid Layout है।"
+  ]
+},
+{
+  q:"CSS Flexbox किसलिए use होता है?",
+  options:["3D animations","One-dimensional layout — row या column में items को easily align और distribute करना","Database queries","Server-side scripting"],
+  correct:1,
+  explanations:[
+    "3D CSS transform से होता है।",
+    "✅ सही! CSS Flexbox (Flexible Box) 1D layout model है — items को row या column में align, space, wrap करना easy बनाता है। justify-content, align-items, flex-wrap key properties हैं।",
+    "Database CSS से नहीं।",
+    "Server-side PHP/Node.js है।"
+  ]
+},
+{
+  q:"React.js का मुख्य concept क्या है?",
+  options:["Server-side rendering only","Component-based UI — reusable components, Virtual DOM, one-way data flow","Database management","Mobile apps only"],
+  correct:1,
+  explanations:[
+    "React client-side और server-side दोनों में use होता है।",
+    "✅ सही! React (Facebook/Meta) Component-based architecture use करता है — Virtual DOM से efficient updates, JSX syntax, one-way data binding। Reusable UI components।",
+    "React database नहीं।",
+    "React primarily web है (React Native mobile के लिए है)।"
+  ]
+},
+{
+  q:"Virtual DOM क्या है React में?",
+  options:["Fake website","Real DOM का in-memory lightweight representation — changes पहले यहाँ होते हैं, फिर efficiently real DOM update होता है","Virtual reality","DOM का backup"],
+  correct:1,
+  explanations:[
+    "Virtual DOM fake website नहीं।",
+    "✅ सही! Virtual DOM JavaScript object है जो real DOM की copy है। React changes पहले Virtual DOM में करता है, फिर diffing algorithm से only changed parts real DOM में update करता है — performance बेहतर होती है।",
+    "VR अलग technology है।",
+    "Virtual DOM backup नहीं।"
+  ]
+},
+{
+  q:"Node.js क्या है?",
+  options:["Browser plugin","JavaScript को server-side run करने देने वाला runtime — Chrome V8 engine पर based","Database","Operating System"],
+  correct:1,
+  explanations:[
+    "Node.js browser plugin नहीं।",
+    "✅ सही! Node.js Chrome के V8 JavaScript engine को server-side run करता है — non-blocking, event-driven architecture — real-time apps, APIs के लिए excellent।",
+    "Node.js database नहीं।",
+    "Node.js OS नहीं।"
+  ]
+},
+{
+  q:"npm क्या है?",
+  options:["New Programming Module","Node Package Manager — JavaScript packages/libraries install, manage करने का tool","Network Protocol Manager","No-code Platform Manager"],
+  correct:1,
+  explanations:[
+    "npm programming module नहीं।",
+    "✅ सही! npm (Node Package Manager) world का largest software registry है — JavaScript packages install करना, project dependencies manage करना। npm install react, npm init।",
+    "Network protocol अलग है।",
+    "No-code platform अलग है।"
+  ]
+},
+{
+  q:"Single Page Application (SPA) क्या है?",
+  options:["केवल एक page का website","Web app जो single HTML page load करे और JavaScript से dynamically content update करे बिना full page reload के","Single user application","Simple website"],
+  correct:1,
+  explanations:[
+    "SPA physically एक page नहीं है — dynamic content load होता है।",
+    "✅ सही! SPA (React, Angular, Vue से बनी apps) एक बार HTML load करती है — navigation पर server से new page नहीं आती, JavaScript dynamically content render करता है। Fast UX।",
+    "Single user अलग है।",
+    "SPA complex modern web apps हैं।"
+  ]
+},
+{
+  q:"WebAssembly (WASM) क्या है?",
+  options:["Web design tool","Browser में near-native speed पर C/C++/Rust जैसे languages का compiled code run करना","Web scraping tool","Web server"],
+  correct:1,
+  explanations:[
+    "WebAssembly design tool नहीं।",
+    "✅ सही! WebAssembly binary instruction format है — C, C++, Rust code को browser में near-native speed पर run करने देता है। Games, CAD tools, video editing browser में possible।",
+    "Web scraping अलग है।",
+    "Web server अलग है।"
+  ]
+},
+{
+  q:"CORS (Cross-Origin Resource Sharing) क्यों important है?",
+  options:["Website colors share करना","Browser security mechanism — different origin के resources को कौन access कर सकता है यह control करना","CSS resources share करना","Cookie sharing"],
+  correct:1,
+  explanations:[
+    "CORS colors से नहीं।",
+    "✅ सही! CORS browser security feature है जो control करता है कि एक origin (domain) का web page किस दूसरे origin के resources request कर सकता है। APIs में important।",
+    "CSS resources अलग हैं।",
+    "Cookie security अलग है।"
+  ]
+},
+{
+  q:"HTTP Status Code 404 का क्या मतलब है?",
+  options:["Server Error","Not Found — requested resource server पर exist नहीं करती","Forbidden","Success"],
+  correct:1,
+  explanations:[
+    "Server Error = 500।",
+    "✅ सही! HTTP 404 Not Found — client ने ऐसी resource request की जो server पर exist नहीं। Common HTTP codes: 200 OK, 301 Redirect, 400 Bad Request, 401 Unauthorized, 403 Forbidden, 500 Server Error।",
+    "Forbidden = 403।",
+    "Success = 200।"
+  ]
+},
+{
+  q:"OAuth 2.0 क्या है?",
+  options:["Password encryption","Authorization framework — third-party apps को user की credentials share किए बिना limited access देना","Authentication protocol","Database security"],
+  correct:1,
+  explanations:[
+    "OAuth password encryption नहीं।",
+    "✅ सही! OAuth 2.0 authorization framework है — 'Google से Login' जैसे features इसी से बनते हैं। User अपना password third-party app को नहीं देता — access token से limited access।",
+    "Authentication OpenID Connect करता है (OAuth के ऊपर)।",
+    "Database security अलग है।"
+  ]
+},
+{
+  q:"Cookie और Session में क्या अंतर है?",
+  options:["दोनों same हैं","Cookie: client (browser) में store होता है; Session: server पर store होता है — session ID cookie में होती है","Session: browser में store","Cookie: server में store"],
+  correct:1,
+  explanations:[
+    "दोनों अलग storage locations हैं।",
+    "✅ सही! Cookie browser में store होती है — persistent, user देख सकता है। Session server पर store होती है — server memory या database में। Browser में केवल session ID cookie store होती है।",
+    "यह उल्टा है।",
+    "यह भी उल्टा है।"
+  ]
+},
+{
+  q:"Webpack क्या है?",
+  options:["Web server","JavaScript module bundler — multiple files को एक या few optimized files में bundle करना","Web scraper","Database tool"],
+  correct:1,
+  explanations:[
+    "Webpack web server नहीं।",
+    "✅ सही! Webpack module bundler है — JavaScript, CSS, images सभी को dependency graph के basis पर bundle करता है — code splitting, tree shaking, minification करता है।",
+    "Web scraping अलग है।",
+    "Webpack database tool नहीं।"
+  ]
+},
+{
+  q:"Service Worker क्या है Web में?",
+  options:["Web developer","Browser और network के बीच proxy — background में run होता है, offline support, push notifications, caching enable करता है","Server का worker process","CSS worker"],
+  correct:1,
+  explanations:[
+    "Service Worker human worker नहीं।",
+    "✅ सही! Service Worker browser background में run होने वाला JavaScript script है — network requests intercept करता है, cache manage करता है। PWA (Progressive Web App) का foundation।",
+    "Server worker processes अलग हैं।",
+    "CSS workers नहीं होते।"
+  ]
+},
+{
+  q:"SEO का पूरा नाम और इसका software से क्या संबंध है?",
+  options:["Software Engineering Operations","Search Engine Optimization — website को search engines में higher rank दिलाना","System Execution Order","Server Error Output"],
+  correct:1,
+  explanations:[
+    "यह SEO का नाम नहीं।",
+    "✅ सही! SEO = Search Engine Optimization। Web developers technical SEO करते हैं — fast loading, mobile-friendly, proper HTML structure, meta tags, structured data।",
+    "यह भी गलत है।",
+    "यह भी गलत है।"
+  ]
+},
+{
+  q:"Lazy Loading क्या है Web Development में?",
+  options:["Slow website","Resources (images, components) को तब load करना जब actually जरूरत हो — initial page load fast होती है","Lazy programmer","Background loading"],
+  correct:1,
+  explanations:[
+    "Lazy Loading slow नहीं — actually fast बनाता है।",
+    "✅ सही! Lazy Loading performance optimization technique है — images नीचे scroll होने पर load होती हैं, components use होने पर load होते हैं — initial load time और bandwidth save।",
+    "Programming practice से अलग है।",
+    "Lazy Loading on-demand है — always background नहीं।"
+  ]
+},
+{
+  q:"JWT (JSON Web Token) किसलिए use होता है?",
+  options:["JSON file compress करना","Authentication और Information exchange — digitally signed compact token","JavaScript testing","Database query"],
+  correct:1,
+  explanations:[
+    "JWT compression नहीं।",
+    "✅ सही! JWT compact, self-contained token है जो parties के बीच information securely transmit करता है। Header.Payload.Signature format। REST API authentication में widely used।",
+    "JWT JS testing नहीं।",
+    "JWT database query नहीं।"
+  ]
+},
+{
+  q:"TypeScript में 'Interface' क्या define करती है?",
+  options:["UI components","Object का shape/structure — कौन से properties और types होने चाहिए","Network interface","Hardware interface"],
+  correct:1,
+  explanations:[
+    "TypeScript Interface UI नहीं।",
+    "✅ सही! TypeScript Interface object का contract define करती है — object में कौन से properties होनी चाहिए और उनके types क्या होने चाहिए। Type checking at compile time।",
+    "Network interface OSI Layer है।",
+    "Hardware interface physical connector है।"
+  ]
+},
+{
+  q:"WebRTC क्या है?",
+  options:["Web Request Transfer Control","Real-Time Communication — browser में plugin-free video/audio/data communication","Web Routing Table Cache","Web Resource Transfer Container"],
+  correct:1,
+  explanations:[
+    "यह WebRTC का नाम नहीं।",
+    "✅ सही! WebRTC (Web Real-Time Communication) open standard है जो browsers में directly peer-to-peer video calls, voice calls और data sharing enable करता है — Google Meet, Discord इसे use करते हैं।",
+    "यह भी गलत है।",
+    "यह भी गलत है।"
+  ]
+},
+{
+  q:"Static Site Generator (SSG) क्या है?",
+  options:["Old website type","Build time पर HTML files generate करना — server-side rendering हर request पर नहीं","Static electricity generator","CSS generator"],
+  correct:1,
+  explanations:[
+    "SSG modern approach है।",
+    "✅ सही! SSG (Next.js, Gatsby, Hugo) build time पर pre-rendered HTML files generate करता है — server पर dynamic processing नहीं, CDN से fast serve होता है। Blog, docs के लिए ideal।",
+    "Electricity से नहीं।",
+    "CSS generator अलग है।"
+  ]
+},
+
+// ══════════════════════════════════════════════
+// SECTION 3 : DATA SCIENCE, AI & MATH CONCEPTS (41-60)
+// ══════════════════════════════════════════════
+{
+  q:"Supervised Learning किसे कहते हैं Machine Learning में?",
+  options:["Teacher supervised करे","Labeled training data से model सिखाना — input-output pairs दिए जाते हैं","Unsupervised data analysis","Reinforcement learning"],
+  correct:1,
+  explanations:[
+    "Human teacher नहीं।",
+    "✅ सही! Supervised Learning में model labeled examples (input + correct output) से सीखता है — जैसे Email spam detection (spam/not spam labels), Image classification।",
+    "Unsupervised में labels नहीं होते।",
+    "Reinforcement में reward/punishment से सीखता है।"
+  ]
+},
+{
+  q:"Unsupervised Learning का उदाहरण क्या है?",
+  options:["Image classification","Spam detection","Customer segmentation (Clustering — K-Means)","Speech recognition"],
+  correct:2,
+  explanations:[
+    "Image classification = Supervised Learning।",
+    "Spam detection = Supervised Learning।",
+    "✅ सही! Unsupervised Learning में unlabeled data से patterns ढूंढे जाते हैं — K-Means Clustering customers को similar groups में divide करता है बिना predefined labels के।",
+    "Speech recognition = Supervised/Deep Learning।"
+  ]
+},
+{
+  q:"Overfitting क्या है Machine Learning में?",
+  options:["Model बहुत simple है","Model training data पर बहुत well fit करे लेकिन new data पर poorly perform करे","Model fast है","Model accurate है"],
+  correct:1,
+  explanations:[
+    "बहुत simple model = Underfitting।",
+    "✅ सही! Overfitting में model training data का noise और fluctuations भी 'याद' कर लेता है — training accuracy high, but test/validation accuracy low। Regularization, Dropout से prevent होता है।",
+    "Overfitting से model slow नहीं होता।",
+    "Overfitting actually training पर accurate है।"
+  ]
+},
+{
+  q:"Convolutional Neural Network (CNN) किसलिए specially designed है?",
+  options:["Text processing","Image recognition और visual data processing","Audio only","Time series data"],
+  correct:1,
+  explanations:[
+    "Text के लिए RNN/Transformer है।",
+    "✅ सही! CNN image data के लिए specially designed है — Convolutional layers local patterns (edges, textures) detect करती हैं। Image classification, object detection, face recognition में use।",
+    "Audio के लिए CNN use हो सकता है लेकिन primary use visual है।",
+    "Time series के लिए LSTM/RNN है।"
+  ]
+},
+{
+  q:"Recurrent Neural Network (RNN) किस type के data के लिए use होता है?",
+  options:["Image data","Sequential/Time series data — text, speech, time series","Only numbers","Only images"],
+  correct:1,
+  explanations:[
+    "Images के लिए CNN है।",
+    "✅ सही! RNN sequential data के लिए designed है — previous inputs का memory (hidden state) रखता है। Language translation, speech recognition, time series prediction में use।",
+    "RNN numbers सहित sequential data process करता है।",
+    "Images CNN के लिए हैं।"
+  ]
+},
+{
+  q:"Transfer Learning क्या है?",
+  options:["Data transfer करना","Pre-trained model के knowledge को नए related task के लिए use करना — training time और data कम लगता है","File transfer","Network transfer"],
+  correct:1,
+  explanations:[
+    "Transfer Learning data transfer नहीं।",
+    "✅ सही! Transfer Learning में pre-trained model (जैसे ImageNet पर trained VGG, ResNet) के weights को नए task के लिए fine-tune करते हैं — कम data और compute में good results।",
+    "File transfer OS operation है।",
+    "Network transfer networking है।"
+  ]
+},
+{
+  q:"Gradient Descent क्या है?",
+  options:["Data को sort करना","ML model के parameters को iteratively adjust करना ताकि loss/error minimize हो","Graph को descend करना","Data compression"],
+  correct:1,
+  explanations:[
+    "Gradient Descent sorting नहीं।",
+    "✅ सही! Gradient Descent optimization algorithm है — loss function के gradient की direction में parameters (weights) को छोटे-छोटे steps (learning rate) से update करता है जब तक minimum loss न मिले।",
+    "Graph descent literal नहीं।",
+    "Gradient Descent compression नहीं।"
+  ]
+},
+{
+  q:"Epoch क्या होता है Deep Learning Training में?",
+  options:["Training का एक layer","पूरे training dataset से एक बार pass — सभी examples एक बार देखे जाएं","Training का error","Model का size"],
+  correct:1,
+  explanations:[
+    "Epoch layer नहीं।",
+    "✅ सही! One Epoch = model ने पूरे training dataset को एक बार देखा। Training में multiple epochs होते हैं — जैसे 100 epochs = dataset 100 बार देखा गया।",
+    "Error = Loss है।",
+    "Model size = parameters की संख्या है।"
+  ]
+},
+{
+  q:"Confusion Matrix में 'False Positive' क्या है?",
+  options:["Correct prediction","Model ने Positive predict किया लेकिन actually Negative था — Type I Error","Negative correctly predicted","Positive correctly predicted"],
+  correct:1,
+  explanations:[
+    "Correct prediction True Positive/True Negative है।",
+    "✅ सही! False Positive (Type I Error) — model ने कहा 'हाँ/Positive' लेकिन actual answer 'नहीं/Negative' था। Example: Spam filter ने legitimate email को spam बताया।",
+    "True Negative correctly predicted negative है।",
+    "True Positive correctly predicted positive है।"
+  ]
+},
+{
+  q:"Precision और Recall में क्या अंतर है?",
+  options:["दोनों same हैं","Precision = predicted positives में कितने सही; Recall = actual positives में से कितने detect हुए","Recall = predicted positives में सही","Precision = actual positives detect किए"],
+  correct:1,
+  explanations:[
+    "Precision और Recall अलग metrics हैं।",
+    "✅ सही! Precision = TP/(TP+FP) — जो positive predict किए उनमें कितने सही। Recall = TP/(TP+FN) — जो actually positive थे उनमें से कितने detect हुए।",
+    "यह उल्टा है।",
+    "यह भी उल्टा है।"
+  ]
+},
+{
+  q:"Random Forest Algorithm क्या है?",
+  options:["Random data से forest बनाना","Multiple Decision Trees को combine करना (Ensemble) — majority vote से predict करना","Single Decision Tree","Graph algorithm"],
+  correct:1,
+  explanations:[
+    "Random Forest literal forest नहीं।",
+    "✅ सही! Random Forest Ensemble method है — multiple decision trees को random data samples और features से train करता है — majority vote (classification) या average (regression) से final prediction।",
+    "Random Forest multiple trees है।",
+    "Graph algorithm अलग है।"
+  ]
+},
+{
+  q:"Generative AI और Discriminative AI में क्या अंतर है?",
+  options:["दोनों same हैं","Generative: नया content create करे (text, image); Discriminative: classify/discriminate करे (spam या not spam)","Discriminative content बनाता है","Generative classify करता है"],
+  correct:1,
+  explanations:[
+    "दोनों fundamentally अलग हैं।",
+    "✅ सही! Generative AI (GPT, DALL-E, Stable Diffusion) नया content generate करता है। Discriminative AI (classifiers, detectors) input को categories में classify करता है।",
+    "यह उल्टा है।",
+    "यह भी उल्टा है।"
+  ]
+},
+{
+  q:"Attention Mechanism (Transformer में) क्या करता है?",
+  options:["Model को alert रखना","Input sequence के different parts पर अलग-अलग importance (weight) देना — relevant context पर focus","Network attention management","CPU attention"],
+  correct:1,
+  explanations:[
+    "Attention literal human attention नहीं।",
+    "✅ सही! Attention Mechanism model को input के relevant parts पर focus करने देता है — 'Attention is All You Need' paper ने Transformer introduce किया जो BERT, GPT का foundation है।",
+    "Network management अलग है।",
+    "CPU attention अलग है।"
+  ]
+},
+{
+  q:"Feature Engineering क्या है ML में?",
+  options:["Software features बनाना","Raw data से useful features extract/create करना जो model को better predict करने में help करें","Product features","UI features"],
+  correct:1,
+  explanations:[
+    "Software features product में होते हैं।",
+    "✅ सही! Feature Engineering raw data को meaningful features में transform करना है — जैसे Date से 'day of week', 'is_weekend' features बनाना। ML model performance बढ़ती है।",
+    "Product features software development में हैं।",
+    "UI features design में हैं।"
+  ]
+},
+{
+  q:"Hyperparameter और Parameter में क्या अंतर है?",
+  options:["दोनों same हैं","Parameter: model training से सीखता है (weights); Hyperparameter: training से पहले manually set करते हैं (learning rate, epochs)","Hyperparameter training से सीखता है","Parameter manually set होता है"],
+  correct:1,
+  explanations:[
+    "दोनों अलग हैं।",
+    "✅ सही! Parameters (weights, biases) training data से automatically optimize होते हैं। Hyperparameters (learning rate, batch size, epochs, layers) training से पहले manually tune करते हैं।",
+    "यह उल्टा है।",
+    "यह भी उल्टा है।"
+  ]
+},
+{
+  q:"Dimensionality Reduction क्यों की जाती है?",
+  options:["Data बढ़ाने के लिए","Features की संख्या कम करना — noise remove होता है, visualization possible होता है, model efficient बनता है","Data delete करने के लिए","Speed बढ़ाने केवल के लिए"],
+  correct:1,
+  explanations:[
+    "Dimensionality Reduction data बढ़ाती नहीं।",
+    "✅ सही! PCA, t-SNE जैसे techniques high-dimensional data को lower dimensions में represent करते हैं — curse of dimensionality avoid होता है, overfitting कम होता है।",
+    "Delete अलग है।",
+    "Multiple benefits हैं — केवल speed नहीं।"
+  ]
+},
+{
+  q:"Cross-Validation क्या है ML में?",
+  options:["Data cross करना","Model को multiple train/test splits पर evaluate करना — reliable performance estimate के लिए","Cross-platform testing","Browser cross testing"],
+  correct:1,
+  explanations:[
+    "Cross-Validation data physically cross नहीं करती।",
+    "✅ सही! K-Fold Cross-Validation में data K parts में divide होता है — K बार model train होता है, हर बार different part test set — average performance reliable estimate देता है।",
+    "Cross-platform testing software compatibility के लिए है।",
+    "Browser testing web development के लिए है।"
+  ]
+},
+{
+  q:"Data Preprocessing में 'Normalization' क्यों की जाती है?",
+  options:["Data को delete करना","Features को same scale पर लाना — बड़े values वाले features dominant न हों","Data encrypt करना","Data backup करना"],
+  correct:1,
+  explanations:[
+    "Normalization delete नहीं करती।",
+    "✅ सही! Normalization (Min-Max: 0-1 range, Standardization: mean=0, std=1) features को comparable scale पर लाती है — distance-based algorithms (KNN, SVM) और gradient descent में जरूरी।",
+    "Encryption अलग है।",
+    "Backup अलग है।"
+  ]
+},
+{
+  q:"Reinforcement Learning में 'Agent' क्या करता है?",
+  options:["Data collect करता है","Environment के साथ interact करता है — actions लेता है, rewards/penalties पाता है, optimal policy सीखता है","Database manage करता है","UI design करता है"],
+  correct:1,
+  explanations:[
+    "RL Agent passive data collector नहीं।",
+    "✅ सही! RL Agent environment में actions लेता है — positive reward से अच्छे actions reinforce होते हैं, negative reward से बुरे actions discourage — Game playing AI (AlphaGo), Robotics में use।",
+    "Database management अलग है।",
+    "UI design अलग है।"
+  ]
+},
+{
+  q:"Large Language Model (LLM) को train करने के लिए क्या चाहिए?",
+  options:["Keyboard और mouse","Massive text data, huge compute (GPUs/TPUs), और weeks/months of training time","Small dataset","1 CPU"],
+  correct:1,
+  explanations:[
+    "LLM training keyboard/mouse से नहीं।",
+    "✅ सही! GPT-4 जैसे LLMs को train करने के लिए trillions of tokens का text data, thousands of specialized GPUs/TPUs और weeks-months का compute time लगता है — cost millions of dollars।",
+    "Small dataset LLM के लिए insufficient है।",
+    "LLM training single CPU से impossible है।"
+  ]
+},
+
+// ══════════════════════════════════════════════
+// SECTION 4 : COMPUTER HARDWARE & ARCHITECTURE (61-80)
+// ══════════════════════════════════════════════
+{
+  q:"CPU का पूरा नाम क्या है?",
+  options:["Computer Processing Unit","Central Processing Unit","Core Processing Unit","Computer Program Unit"],
+  correct:1,
+  explanations:[
+    "यह CPU का नाम नहीं।",
+    "✅ सही! CPU = Central Processing Unit — computer का 'brain' जो instructions execute करता है। ALU (Arithmetic Logic Unit) + Control Unit + Registers मिलकर CPU बनाते हैं।",
+    "Core Processing Unit नहीं।",
+    "Computer Program Unit नहीं।"
+  ]
+},
+{
+  q:"ALU का क्या काम है?",
+  options:["Memory store करना","Arithmetic (add, subtract) और Logical (AND, OR, NOT) operations perform करना","Data transfer करना","Clock signal देना"],
+  correct:1,
+  explanations:[
+    "Memory store करना RAM/Cache का काम है।",
+    "✅ सही! ALU (Arithmetic Logic Unit) CPU का वह हिस्सा है जो mathematical calculations (addition, subtraction, multiplication) और logical operations (AND, OR, XOR, NOT, compare) करता है।",
+    "Data transfer Buses करती हैं।",
+    "Clock signal Crystal Oscillator देता है।"
+  ]
+},
+{
+  q:"Control Unit (CU) का क्या काम है?",
+  options:["Math calculations करना","Instructions fetch, decode करना और computer components को coordinate करना","Data store करना","Network control करना"],
+  correct:1,
+  explanations:[
+    "Math calculations ALU करता है।",
+    "✅ सही! Control Unit CPU का director है — memory से instructions fetch करता है, decode करता है, और ALU, Memory, I/O devices को coordinate करता है।",
+    "Data storage RAM/Disk का काम है।",
+    "Network control networking का है।"
+  ]
+},
+{
+  q:"Pipeline Execution में CPU क्या करता है?",
+  options:["Instructions एक-एक करके complete करना","Multiple instructions के different stages (Fetch, Decode, Execute) को simultaneously process करना — throughput बढ़ता है","Data compress करना","Memory manage करना"],
+  correct:1,
+  explanations:[
+    "One by one = non-pipelined execution।",
+    "✅ सही! CPU Pipelining में जैसे assembly line — Instruction 1 Execute stage में है तो Instruction 2 Decode में, Instruction 3 Fetch में — simultaneously multiple instructions process होती हैं।",
+    "Compression अलग है।",
+    "Memory management OS करता है।"
+  ]
+},
+{
+  q:"Instruction Set Architecture (ISA) क्या है?",
+  options:["Software architecture","CPU द्वारा supported machine instructions का set — hardware-software interface","Database architecture","Network architecture"],
+  correct:1,
+  explanations:[
+    "ISA software architecture नहीं।",
+    "✅ सही! ISA processor की programming interface है — कौन से instructions, registers, addressing modes supported हैं। x86 (Intel/AMD), ARM (mobile), RISC-V (open) major ISAs हैं।",
+    "Database architecture अलग है।",
+    "Network architecture OSI/TCP-IP है।"
+  ]
+},
+{
+  q:"RISC और CISC Architecture में क्या अंतर है?",
+  options:["दोनों same हैं","RISC: simple, fewer instructions (fast execution); CISC: complex, many instructions (do more per instruction)","CISC newer है","RISC में ज्यादा instructions होते हैं"],
+  correct:1,
+  explanations:[
+    "RISC और CISC fundamentally different हैं।",
+    "✅ सही! RISC (Reduced Instruction Set Computer — ARM, RISC-V) में simple instructions — fast, efficient, mobile में popular। CISC (Complex Instruction Set — x86) में complex instructions — desktop में popular।",
+    "दोनों के अलग evolution हैं।",
+    "RISC में fewer instructions होते हैं।"
+  ]
+},
+{
+  q:"Overclocking क्या है?",
+  options:["CPU को repair करना","CPU/GPU को manufacturer specified clock speed से ज्यादा speed पर run करना — performance बढ़ती है लेकिन heat भी","Clock set करना","CPU software update"],
+  correct:1,
+  explanations:[
+    "Overclocking repair नहीं।",
+    "✅ सही! Overclocking hardware को rated speed से ज्यादा पर run करना है — extra performance मिलती है लेकिन heat बढ़ती है, power consumption बढ़ता है, stability risk होता है।",
+    "Clock set करना BIOS में होता है।",
+    "CPU software updates firmware/BIOS updates हैं।"
+  ]
+},
+{
+  q:"Thermal Throttling क्या है?",
+  options:["CPU speed manually बढ़ाना","CPU/GPU का overheating से बचने के लिए automatically speed कम करना","Throttle hardware","Network throttling"],
+  correct:1,
+  explanations:[
+    "Speed बढ़ाना overclocking है।",
+    "✅ सही! Thermal Throttling में CPU/GPU temperature threshold पार होने पर automatically clock speed reduce करता है — damage prevent होता है। Laptops में common issue।",
+    "Throttle hardware से नहीं।",
+    "Network throttling bandwidth limitation है।"
+  ]
+},
+{
+  q:"NVMe SSD, SATA SSD से कैसे faster है?",
+  options:["NVMe cheaper है","NVMe PCIe interface use करता है जो SATA से कई गुना ज्यादा bandwidth देता है","SATA faster है","दोनों same speed हैं"],
+  correct:1,
+  explanations:[
+    "NVMe more expensive है।",
+    "✅ सही! NVMe (Non-Volatile Memory Express) PCIe bus use करता है — read speed 3500+ MB/s। SATA SSD maximum ~550 MB/s तक limited है। NVMe 6-7x faster है।",
+    "NVMe faster है।",
+    "Speed difference significant है।"
+  ]
+},
+{
+  q:"Hyper-Threading (Intel) / SMT क्या है?",
+  options:["Multiple physical cores","Single physical core को OS के लिए 2 logical cores की तरह present करना — better CPU utilization","Overclocking technique","Cache technique"],
+  correct:1,
+  explanations:[
+    "Hyper-Threading physical cores नहीं बढ़ाता।",
+    "✅ सही! Intel Hyper-Threading (AMD में SMT) एक physical core को 2 logical threads handle करने देता है — CPU idle cycles को better utilize करता है — 15-30% performance improvement।",
+    "Overclocking अलग है।",
+    "Hyper-Threading cache technique नहीं।"
+  ]
+},
+{
+  q:"RAID क्या है?",
+  options:["Rapid AI Development","Redundant Array of Independent Disks — multiple disks को performance/redundancy के लिए combine करना","RAM Integrated Array Interface","Router Array in Data centers"],
+  correct:1,
+  explanations:[
+    "यह RAID का नाम नहीं।",
+    "✅ सही! RAID = Redundant Array of Independent Disks। RAID 0 = Striping (speed), RAID 1 = Mirroring (redundancy), RAID 5 = Striping + Parity (balance)।",
+    "यह भी गलत है।",
+    "यह भी गलत है।"
+  ]
+},
+{
+  q:"GPU (Graphics Processing Unit) ML में क्यों use होता है?",
+  options:["GPU सस्ता है","GPU में हजारों parallel cores हैं — matrix multiplications (ML का core operation) बहुत fast होती हैं","GPU ज्यादा memory रखता है","GPU internet fast करता है"],
+  correct:1,
+  explanations:[
+    "GPU usually CPU से expensive है ML के लिए।",
+    "✅ सही! GPU thousands of smaller cores के साथ massive parallelism provide करता है — Neural Network training में matrix multiplications को parallel में compute करता है — CPU से 100x+ fast।",
+    "GPU VRAM होती है लेकिन यह main reason नहीं।",
+    "GPU internet से नहीं।"
+  ]
+},
+{
+  q:"Motherboard का क्या काम है?",
+  options:["Data permanently store करना","सभी computer components (CPU, RAM, GPU, Storage) को connect करने वाला main circuit board","Internet connect करना","Power supply करना"],
+  correct:1,
+  explanations:[
+    "Permanent storage = HDD/SSD।",
+    "✅ सही! Motherboard (Main Board) वह primary circuit board है जिसमें CPU socket, RAM slots, PCIe slots, storage connectors, I/O ports सब होते हैं — सभी components यहाँ connect होते हैं।",
+    "Internet NIC (Network Interface Card) करता है।",
+    "Power supply PSU (Power Supply Unit) करता है।"
+  ]
+},
+{
+  q:"PCIe (PCI Express) क्या है?",
+  options:["Peripheral Component Interconnect Express — high-speed serial interface जो GPU, SSD, Network cards के लिए use होता है","Power Component Interface","Program Component Input","Peripheral Control Interface"],
+  correct:0,
+  explanations:[
+    "✅ सही! PCIe = Peripheral Component Interconnect Express। Motherboard का high-speed expansion slot interface है — GPU, NVMe SSD, Network Cards इसी से connect होते हैं। PCIe 4.0, 5.0 versions हैं।",
+    "यह PCIe का नाम नहीं।",
+    "यह भी गलत है।",
+    "यह भी गलत है।"
+  ]
+},
+{
+  q:"USB का पूरा नाम क्या है?",
+  options:["Universal Software Bus","Universal Serial Bus","Unified System Bridge","Universal Storage Base"],
+  correct:1,
+  explanations:[
+    "यह USB का नाम नहीं।",
+    "✅ सही! USB = Universal Serial Bus। Standard interface है external devices (keyboard, mouse, storage, phones) connect करने के लिए। USB 3.0, USB-C, USB4 versions हैं।",
+    "यह भी गलत है।",
+    "यह भी गलत है।"
+  ]
+},
+{
+  q:"BIOS में CMOS Battery का क्या काम है?",
+  options:["CPU power देना","BIOS settings और real-time clock (date/time) को power off के बाद भी preserve करना","RAM power देना","Hard disk power देना"],
+  correct:1,
+  explanations:[
+    "CPU power PSU देता है।",
+    "✅ सही! CMOS Battery (CR2032) motherboard पर लगी छोटी battery है जो BIOS/UEFI settings (boot order, date/time) को main power off होने पर भी maintain करती है।",
+    "RAM को main power supply से power मिलती है।",
+    "Hard disk को PSU से power मिलती है।"
+  ]
+},
+{
+  q:"Solid State Drive में NAND Flash Memory के क्या types हैं?",
+  options:["Hard और Soft","SLC, MLC, TLC, QLC — bits per cell की संख्या अलग (1,2,3,4 bits per cell)","Only one type","Fast और Slow"],
+  correct:1,
+  explanations:[
+    "NAND types Hard/Soft से नहीं।",
+    "✅ सही! NAND Flash types: SLC (1 bit/cell — fastest, most durable), MLC (2 bits), TLC (3 bits — most common consumer), QLC (4 bits — highest density, slower). More bits = cheaper but slower/less durable।",
+    "Multiple types हैं।",
+    "यह technical specification नहीं।"
+  ]
+},
+{
+  q:"Chipset (Motherboard में) का क्या काम है?",
+  options:["CPU के साथ कोई काम नहीं","CPU, RAM, storage, I/O के बीच communication coordinate करना — North Bridge और South Bridge","Internet connection","Power management only"],
+  correct:1,
+  explanations:[
+    "Chipset CPU के साथ closely काम करता है।",
+    "✅ सही! Chipset motherboard पर chips का set है — पहले North Bridge (CPU-RAM-GPU) और South Bridge (I/O, USB, storage) अलग थे, modern में Platform Controller Hub (PCH) में integrated।",
+    "Internet NIC करता है।",
+    "Chipset का काम broader है।"
+  ]
+},
+{
+  q:"Heat Sink का क्या काम है?",
+  options:["Data sink करना","CPU/GPU से heat absorb करके air में dissipate करना — temperature control","Power sink करना","Sound absorb करना"],
+  correct:1,
+  explanations:[
+    "Heat Sink data से नहीं।",
+    "✅ सही! Heat Sink thermally conductive material (aluminum, copper) का block है जो CPU/GPU से heat absorb करता है और large surface area से air में dissipate करता है।",
+    "Heat Sink power से नहीं।",
+    "Sound absorption अलग material है।"
+  ]
+},
+{
+  q:"Von Neumann Architecture की bottleneck क्या है?",
+  options:["CPU speed कम है","CPU और Memory के बीच data transfer की speed — Von Neumann Bottleneck — CPU Memory से faster होता है","Storage speed","Network speed"],
+  correct:1,
+  explanations:[
+    "Modern CPUs very fast हैं।",
+    "✅ सही! Von Neumann Bottleneck: CPU data और instructions दोनों same bus से memory से लाता है — memory access CPU execution से slow है — यही fundamental performance limitation है।",
+    "Storage Von Neumann bottleneck नहीं।",
+    "Network अलग bottleneck है।"
+  ]
+},
+
+// ══════════════════════════════════════════════
+// SECTION 5 : MISCELLANEOUS & EXAM-FOCUSED (81-100)
+// ══════════════════════════════════════════════
+{
+  q:"Boolean Algebra में De Morgan's Law क्या कहता है?",
+  options:["A AND B = A OR B","NOT(A AND B) = NOT(A) OR NOT(B) और NOT(A OR B) = NOT(A) AND NOT(B)","A OR B = A AND B","NOT A = A"],
+  correct:1,
+  explanations:[
+    "A AND B ≠ A OR B।",
+    "✅ सही! De Morgan's Laws: (1) ¬(A∧B) = ¬A∨¬B, (2) ¬(A∨B) = ¬A∧¬B। Digital logic design, programming में NOT के साथ AND/OR को convert करने में use।",
+    "A OR B ≠ A AND B।",
+    "NOT A ≠ A।"
+  ]
+},
+{
+  q:"Two's Complement किसलिए use होता है?",
+  options:["Positive numbers represent करने के लिए","Binary में negative numbers represent करने के लिए — computers इसी method से subtraction करते हैं","Hexadecimal conversion","ASCII encoding"],
+  correct:1,
+  explanations:[
+    "Two's Complement primarily negative numbers के लिए है।",
+    "✅ सही! Two's Complement binary में signed integers represent करता है — -1 को all 1s (1111...1) के रूप में store किया जाता है। Hardware addition circuit subtraction भी कर सकता है।",
+    "Hex conversion अलग है।",
+    "ASCII text encoding है।"
+  ]
+},
+{
+  q:"Hexadecimal Number System में base क्या है?",
+  options:["Base 2","Base 8","Base 10","Base 16"],
+  correct:3,
+  explanations:[
+    "Base 2 = Binary।",
+    "Base 8 = Octal।",
+    "Base 10 = Decimal।",
+    "✅ सही! Hexadecimal = Base 16। Digits: 0-9 और A-F (A=10, B=11, C=12, D=13, E=14, F=15)। Programming में memory addresses, colors (#FF5733) hex में होते हैं।"
+  ]
+},
+{
+  q:"Floating Point Numbers में IEEE 754 Standard क्यों important है?",
+  options:["Internet standard","Real numbers को binary में represent करने का standard — fraction और very large/small numbers","Audio standard","Video standard"],
+  correct:1,
+  explanations:[
+    "IEEE 754 internet से नहीं।",
+    "✅ सही! IEEE 754 floating point arithmetic का universal standard है — Sign bit, Exponent, Mantissa। float (32-bit) और double (64-bit) precision। सभी modern CPUs और languages इसे follow करते हैं।",
+    "Audio standard अलग है।",
+    "Video standard अलग है।"
+  ]
+},
+{
+  q:"ASCII में capital 'A' की decimal value क्या है?",
+  options:["61","63","65","67"],
+  correct:2,
+  explanations:[
+    "61 नहीं।",
+    "63 नहीं।",
+    "✅ सही! ASCII में 'A' = 65 (decimal) = 41 (hex) = 01000001 (binary)। 'a' = 97। '0' = 48। These are important in programming।",
+    "67 नहीं।"
+  ]
+},
+{
+  q:"Unicode, ASCII से कैसे different है?",
+  options:["Unicode पुराना है","Unicode worldwide सभी scripts (Hindi, Chinese, Arabic, Emoji) को support करता है — 1M+ characters; ASCII केवल 128 English characters","ASCII ज्यादा characters support करता है","दोनों same हैं"],
+  correct:1,
+  explanations:[
+    "Unicode newer है।",
+    "✅ सही! ASCII केवल 128 characters (English, basic symbols)। Unicode (UTF-8, UTF-16, UTF-32) 1 million+ characters support करता है — दुनिया की सभी writing systems, emojis।",
+    "ASCII केवल 128 characters support करता है।",
+    "दोनों अलग standards हैं।"
+  ]
+},
+{
+  q:"Compiler में Lexical Analysis (Scanner) क्या करता है?",
+  options:["Code execute करना","Source code को tokens (keywords, identifiers, operators) में break करना","Code optimize करना","Executable बनाना"],
+  correct:1,
+  explanations:[
+    "Execution runtime में होती है।",
+    "✅ सही! Lexical Analysis (Lexer/Scanner) compilation का पहला phase है — source code के characters को meaningful tokens में convert करता है जैसे int, x, =, 5, ; अलग tokens हैं।",
+    "Optimization अलग phase है।",
+    "Executable linking phase में बनता है।"
+  ]
+},
+{
+  q:"Abstract Syntax Tree (AST) क्या है?",
+  options:["Tree जो abstract हो","Source code की grammatical structure का tree representation — compiler द्वारा parsing के बाद बनता है","Data structure for abstract classes","Binary Tree"],
+  correct:1,
+  explanations:[
+    "AST सिर्फ abstract tree नहीं।",
+    "✅ सही! AST compiler में Parsing phase का output है — source code की hierarchical syntactic structure represent करता है। x = a + b का AST: Assignment(x, Add(a, b))।",
+    "AST abstract classes से नहीं।",
+    "AST Binary Tree की तरह नहीं।"
+  ]
+},
+{
+  q:"Linting क्या है Software Development में?",
+  options:["Code compile करना","Automated tool से code की style issues, potential bugs और anti-patterns detect करना without running","Code delete करना","Code format करना only"],
+  correct:1,
+  explanations:[
+    "Linting compile नहीं करता।",
+    "✅ सही! Linter (ESLint, PyLint, RuboCop) code को statically analyze करता है — syntax errors, style violations, potential bugs, undefined variables detect करता है code run किए बिना।",
+    "Linting delete नहीं।",
+    "Formatting (Prettier) अलग है — लेकिन linting broader है।"
+  ]
+},
+{
+  q:"Continuous Deployment (CD) और Continuous Delivery में क्या अंतर है?",
+  options:["दोनों same हैं","Continuous Delivery = production deploy के लिए ready है, manual approval चाहिए; Continuous Deployment = automatically production में deploy","Delivery manual testing करती है","Deployment development stage है"],
+  correct:1,
+  explanations:[
+    "दोनों similar लेकिन अलग हैं।",
+    "✅ सही! Continuous Delivery में code automatically staging/pre-prod तक जाता है — production deploy के लिए human approval चाहिए। Continuous Deployment में tests pass होते ही automatically production में जाता है।",
+    "Testing दोनों में automated होती है।",
+    "Deployment production stage है।"
+  ]
+},
+{
+  q:"Software Architecture में 'Coupling' क्या है?",
+  options:["Modules को physically connect करना","Modules के बीच interdependence की degree — Low Coupling: independent modules (better); High Coupling: tightly dependent (worse)","Database connection","Network connection"],
+  correct:1,
+  explanations:[
+    "Coupling physical connection नहीं।",
+    "✅ सही! Low Coupling goal है — modules independently change हो सकें। High Coupling में एक module change करने पर दूसरे modules भी change करने पड़ते हैं। Microservices low coupling achieve करती है।",
+    "Database connection अलग है।",
+    "Network connection अलग है।"
+  ]
+},
+{
+  q:"'Cohesion' Software Architecture में क्या है?",
+  options:["Module का size","एक module के elements एक ही purpose के लिए हों — High Cohesion (better): focused module; Low Cohesion (worse): करता-धरता कुछ भी","Module का speed","Module का price"],
+  correct:1,
+  explanations:[
+    "Cohesion size से नहीं।",
+    "✅ सही! High Cohesion = module के सभी functions strongly related हैं और एक ही purpose serve करते हैं। Low Cohesion = module में unrelated functions हैं। High Cohesion + Low Coupling = good design।",
+    "Speed अलग है।",
+    "Price अलग है।"
+  ]
+},
+{
+  q:"Dependency Injection (DI) क्या है?",
+  options:["Code inject करना maliciously","Objects/Dependencies को बाहर से provide करना बजाय class के खुद बनाने के — loose coupling, testability बढ़ती है","Database injection","Network injection"],
+  correct:1,
+  explanations:[
+    "DI malicious code injection नहीं।",
+    "✅ सही! Dependency Injection design pattern है — class अपनी dependencies खुद नहीं बनाती, बाहर से inject होती हैं (constructor, setter से)। Testing में mock objects inject करना easy होता है।",
+    "Database injection SQL Injection है।",
+    "Network injection अलग है।"
+  ]
+},
+{
+  q:"SOLID Principles में 'S' किसके लिए है?",
+  options:["Speed Principle","Single Responsibility Principle — हर class का केवल एक responsibility हो, बदलने का केवल एक कारण","Security Principle","Software Principle"],
+  correct:1,
+  explanations:[
+    "S = Speed नहीं।",
+    "✅ सही! SOLID = Single Responsibility, Open/Closed, Liskov Substitution, Interface Segregation, Dependency Inversion। 'S' = SRP: हर class केवल एक काम करे — change करने का एक reason।",
+    "S = Security नहीं।",
+    "S = Software generic नहीं।"
+  ]
+},
+{
+  q:"Event Sourcing Pattern क्या है?",
+  options:["Events schedule करना","Application state को events की sequence के रूप में store करना — state किसी भी point पर reconstruct हो सके","Event logging only","UI events handle करना"],
+  correct:1,
+  explanations:[
+    "Event Sourcing scheduling नहीं।",
+    "✅ सही! Event Sourcing में application state directly store नहीं होती — instead events (OrderPlaced, PaymentMade) append-only store में save होती हैं। State replay करके बनाई जाती है।",
+    "Simple logging से deeper है।",
+    "UI events application layer हैं।"
+  ]
+},
+{
+  q:"CQRS Pattern का पूरा नाम क्या है?",
+  options:["Core Query Resource System","Command Query Responsibility Segregation — read और write operations को separate करना","Computer Queue Resource Sharing","Central Query Response System"],
+  correct:1,
+  explanations:[
+    "यह CQRS का नाम नहीं।",
+    "✅ सही! CQRS = Command Query Responsibility Segregation। Commands (write/update) और Queries (read) के लिए separate models होते हैं — complex systems में scalability और performance improve होती है।",
+    "यह भी गलत है।",
+    "यह भी गलत है।"
+  ]
+},
+{
+  q:"Strangler Fig Pattern (Software) क्या है?",
+  options:["Bug pattern","Legacy system को incrementally modern system से replace करना — पुराना system धीरे-धीरे retire होता है","Security pattern","Database pattern"],
+  correct:1,
+  explanations:[
+    "Strangler Fig bugs से नहीं।",
+    "✅ सही! Strangler Fig Pattern (Martin Fowler) legacy monolith को gradually microservices से replace करने की strategy है — नई functionality नए system में, पुरानी धीरे-धीरे migrate होती है।",
+    "Security pattern अलग है।",
+    "Database pattern अलग है।"
+  ]
+},
+{
+  q:"APM (Application Performance Monitoring) क्या है?",
+  options:["App store management","Applications की real-time performance metrics (response time, throughput, errors) monitor करना — bottlenecks identify करना","Application privacy management","Android Package Manager"],
+  correct:1,
+  explanations:[
+    "APM app store नहीं।",
+    "✅ सही! APM tools (Datadog, New Relic, Dynatrace) production applications की performance continuously monitor करते हैं — slow queries, errors, high latency identify होती है।",
+    "Privacy management अलग है।",
+    "Android Package Manager (apk) अलग है।"
+  ]
+},
+{
+  q:"Blue-Green Deployment क्या है?",
+  options:["Blue और green color का UI","Two identical production environments — एक live (Blue), एक standby (Green) — zero downtime deployment के लिए switch करना","Color-based testing","Database deployment"],
+  correct:1,
+  explanations:[
+    "Color scheme से नहीं।",
+    "✅ सही! Blue-Green Deployment में दो identical environments होते हैं। New version Green में deploy होता है — tested होने पर traffic Blue से Green पर switch होता है। Rollback = traffic वापस Blue पर।",
+    "Testing strategy से अलग।",
+    "Database deployment अलग है।"
+  ]
+},
+{
+  q:"Canary Deployment क्या है?",
+  options:["Bird release करना","New version को पहले small subset of users को deploy करना — अगर सब ठीक हो तो gradually सभी को rollout","Color-based deployment","Emergency deployment"],
+  correct:1,
+  explanations:[
+    "Literal birds से नहीं।",
+    "✅ सही! Canary Deployment में new version को 1-5% users को पहले deploy करते हैं — metrics monitor करते हैं। Issues नहीं आए तो gradually 100% users तक rollout। Risk कम होता है।",
+    "Blue-Green color-based है।",
+    "Emergency deployment अलग है।"
+  ]
+}
+];
+
+// ═══════════ QUIZ ENGINE ═══════════
+let questions=[],currentIndex=0,score=0,wrongAnswers=0,answered=false;
+
+function shuffle(arr){
+  let a=[...arr];
+  for(let i=a.length-1;i>0;i--){
+    const j=Math.floor(Math.random()*(i+1));
+    [a[i],a[j]]=[a[j],a[i]];
+  }
+  return a;
+}
+
+function prepareQuestions(){
+  questions=shuffle(allQuestions).map(q=>{
+    const idx=shuffle([0,1,2,3]);
+    return{q:q.q,options:idx.map(i=>q.options[i]),correct:idx.indexOf(q.correct),explanations:idx.map(i=>q.explanations[i])};
+  });
+}
+
+function loadQuestion(){
+  answered=false;
+  const q=questions[currentIndex];
+  document.getElementById('qNum').textContent=`प्रश्न ${currentIndex+1}`;
+  document.getElementById('qText').textContent=q.q;
+  document.getElementById('qCounter').textContent=`${currentIndex+1} / 100`;
+  document.getElementById('progressBar').style.width=`${(currentIndex/100)*100}%`;
+  const grid=document.getElementById('optionsGrid');
+  grid.innerHTML='';
+  ['A','B','C','D'].forEach((lbl,i)=>{
+    const btn=document.createElement('button');
+    btn.className='option-btn';
+    btn.innerHTML=`<span class="option-badge">${lbl}</span><span>${q.options[i]}</span>`;
+    btn.onclick=()=>selectAnswer(i);
+    grid.appendChild(btn);
+  });
+  document.getElementById('explanationBox').classList.remove('show');
+  document.getElementById('allExplanations').classList.remove('show');
+  document.getElementById('nextBtn').classList.remove('show');
+}
+
+function selectAnswer(sel){
+  if(answered)return;
+  answered=true;
+  const q=questions[currentIndex];
+  const btns=document.querySelectorAll('.option-btn');
+  btns.forEach(b=>b.disabled=true);
+  if(sel===q.correct){btns[sel].classList.add('correct');score++;document.getElementById('correctCount').textContent=score;}
+  else{btns[sel].classList.add('wrong');btns[q.correct].classList.add('correct');wrongAnswers++;document.getElementById('wrongCount').textContent=wrongAnswers;}
+  document.getElementById('scorePercent').textContent=Math.round((score/(currentIndex+1))*100)+'%';
+  document.getElementById('correctExp').textContent=q.explanations[q.correct];
+  const ae=document.getElementById('allExplanations');
+  ae.innerHTML='<div style="font-size:.76rem;color:#a78bfa;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">सभी विकल्पों की व्याख्या:</div>';
+  ['A','B','C','D'].forEach((lbl,i)=>{
+    const d=document.createElement('div');d.className='exp-option-row';
+    d.innerHTML=`<strong>${lbl})</strong> ${q.options[i]}: ${q.explanations[i]}`;ae.appendChild(d);
+  });
+  document.getElementById('explanationBox').classList.add('show');
+  document.getElementById('allExplanations').classList.add('show');
+  const nb=document.getElementById('nextBtn');
+  nb.textContent=currentIndex===99?'परिणाम देखें 🏆':'अगला सवाल →';
+  nb.classList.add('show');
+}
+
+function nextQuestion(){
+  currentIndex++;
+  if(currentIndex>=100){showResult();return;}
+  loadQuestion();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function showResult(){
+  document.getElementById('questionCard').style.display='none';
+  document.getElementById('statsBar').style.display='none';
+  document.getElementById('resultScreen').classList.add('show');
+  const pct=Math.round((score/100)*100);
+  document.getElementById('finalScore').textContent=`${score} / 100`;
+  document.getElementById('finalPercent').textContent=`सफलता प्रतिशत: ${pct}%`;
+  document.getElementById('rCorrect').textContent=score;
+  document.getElementById('rWrong').textContent=wrongAnswers;
+  let emoji,grade,color;
+  if(pct>=90){emoji='🏆';grade='Outstanding! लाजवाब';color='#fbbf24';}
+  else if(pct>=75){emoji='🌟';grade='Excellent! उत्कृष्ट';color='#34d399';}
+  else if(pct>=60){emoji='👏';grade='Good! शाबाश';color='#60a5fa';}
+  else if(pct>=40){emoji='📚';grade='Average — अभ्यास जारी रखें';color='#a78bfa';}
+  else{emoji='💪';grade='Keep Going! हार मत मानो';color='#f87171';}
+  document.getElementById('resultEmoji').textContent=emoji;
+  const b=document.getElementById('gradeBadge');
+  b.textContent=grade;
+  b.style.cssText=`background:${color}22;color:${color};border:1px solid ${color}55;`;
+}
+
+function restartQuiz(){
+  score=0;wrongAnswers=0;currentIndex=0;
+  ['correctCount','wrongCount'].forEach(id=>document.getElementById(id).textContent='0');
+  document.getElementById('scorePercent').textContent='0%';
+  document.getElementById('resultScreen').classList.remove('show');
+  document.getElementById('questionCard').style.display='block';
+  document.getElementById('statsBar').style.display='flex';
+  prepareQuestions();loadQuestion();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+prepareQuestions();
+loadQuestion();
+</script>
+</body>
+</html>

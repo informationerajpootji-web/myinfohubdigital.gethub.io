@@ -1,0 +1,1411 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Computer Software MCQ Quiz - Set 3</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;600;700&family=Poppins:wght@400;600;700&display=swap');
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{
+    font-family:'Noto Sans Devanagari','Poppins',sans-serif;
+    background:linear-gradient(135deg,#1a0a2e,#16213e,#0f3460);
+    min-height:100vh;color:#fff;padding:20px;
+  }
+  .container{max-width:820px;margin:0 auto;}
+  .header{
+    text-align:center;padding:28px 20px 18px;
+    background:rgba(255,255,255,0.05);border-radius:20px;
+    margin-bottom:22px;border:1px solid rgba(255,255,255,0.1);
+    backdrop-filter:blur(10px);
+  }
+  .header h1{
+    font-size:1.75rem;font-weight:700;
+    background:linear-gradient(90deg,#e96c43,#f9a338,#ffd200);
+    -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+    margin-bottom:5px;
+  }
+  .header p{color:#aaa;font-size:0.88rem;}
+  .set-badge{
+    display:inline-block;
+    background:linear-gradient(90deg,#e96c4333,#ffd20033);
+    border:1px solid #e96c4355;color:#f9a338;
+    padding:4px 14px;border-radius:50px;
+    font-size:0.78rem;font-weight:700;letter-spacing:1px;margin-bottom:8px;
+  }
+  .stats-bar{
+    display:flex;justify-content:space-between;align-items:center;
+    background:rgba(255,255,255,0.06);border-radius:14px;
+    padding:14px 20px;margin-bottom:20px;
+    border:1px solid rgba(255,255,255,0.1);flex-wrap:wrap;gap:10px;
+  }
+  .stat-item{text-align:center;}
+  .stat-label{font-size:0.7rem;color:#999;text-transform:uppercase;letter-spacing:1px;}
+  .stat-value{font-size:1.35rem;font-weight:700;color:#f9a338;}
+  .progress-wrap{width:100%;background:rgba(255,255,255,0.1);border-radius:50px;height:10px;overflow:hidden;margin-top:6px;}
+  .progress-bar{height:100%;background:linear-gradient(90deg,#e96c43,#ffd200);border-radius:50px;transition:width .5s ease;width:0%;}
+  .question-card{
+    background:rgba(255,255,255,0.05);border-radius:20px;padding:28px;
+    border:1px solid rgba(255,255,255,0.1);backdrop-filter:blur(10px);
+    margin-bottom:20px;animation:fadeIn .35s ease;
+  }
+  @keyframes fadeIn{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
+  .question-number{font-size:0.78rem;color:#f9a338;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;}
+  .question-text{font-size:1.08rem;font-weight:600;line-height:1.65;color:#f0f0f0;margin-bottom:22px;}
+  .options-grid{display:flex;flex-direction:column;gap:11px;}
+  .option-btn{
+    display:flex;align-items:center;gap:13px;
+    background:rgba(255,255,255,0.05);border:2px solid rgba(255,255,255,0.1);
+    border-radius:12px;padding:13px 17px;cursor:pointer;
+    transition:all .22s ease;text-align:left;color:#ddd;
+    font-size:0.95rem;font-family:inherit;line-height:1.5;
+  }
+  .option-btn:hover:not(:disabled){background:rgba(233,108,67,.13);border-color:#e96c43;transform:translateX(4px);}
+  .option-badge{
+    width:32px;height:32px;border-radius:50%;
+    background:rgba(255,255,255,0.1);display:flex;
+    align-items:center;justify-content:center;
+    font-weight:700;font-size:0.83rem;flex-shrink:0;color:#f9a338;
+  }
+  .option-btn.correct{background:rgba(0,210,100,.2)!important;border-color:#00d264!important;color:#fff!important;}
+  .option-btn.correct .option-badge{background:#00d264!important;color:#fff!important;}
+  .option-btn.wrong{background:rgba(255,55,55,.2)!important;border-color:#ff3737!important;color:#fff!important;}
+  .option-btn.wrong .option-badge{background:#ff3737!important;color:#fff!important;}
+  .option-btn:disabled{cursor:not-allowed;transform:none!important;}
+  .explanation-box{
+    display:none;margin-top:20px;
+    background:rgba(233,108,67,.07);border-left:4px solid #e96c43;
+    border-radius:0 12px 12px 0;padding:16px 18px;animation:fadeIn .4s ease;
+  }
+  .explanation-box.show{display:block;}
+  .exp-title{font-size:0.76rem;color:#f9a338;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:7px;}
+  .explanation-box p{color:#ccc;font-size:0.92rem;line-height:1.65;}
+  .all-explanations{display:none;margin-top:14px;}
+  .all-explanations.show{display:block;}
+  .exp-option-row{padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.07);font-size:0.87rem;color:#bbb;line-height:1.55;}
+  .exp-option-row:last-child{border-bottom:none;}
+  .exp-option-row strong{color:#f9a338;}
+  .next-btn{
+    display:none;margin-top:20px;width:100%;padding:15px;
+    background:linear-gradient(90deg,#e96c43,#ffd200);border:none;
+    border-radius:12px;font-size:1rem;font-weight:700;color:#1a0a00;
+    cursor:pointer;transition:all .3s ease;font-family:inherit;letter-spacing:.5px;
+  }
+  .next-btn:hover{transform:scale(1.02);box-shadow:0 8px 25px rgba(233,108,67,.4);}
+  .next-btn.show{display:block;}
+  .result-screen{
+    display:none;text-align:center;padding:40px 20px;
+    background:rgba(255,255,255,0.05);border-radius:20px;
+    border:1px solid rgba(255,255,255,0.1);
+  }
+  .result-screen.show{display:block;}
+  .result-emoji{font-size:4rem;margin-bottom:14px;}
+  .result-screen h2{
+    font-size:1.9rem;font-weight:700;
+    background:linear-gradient(90deg,#e96c43,#ffd200);
+    -webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:8px;
+  }
+  .big-score{font-size:3.4rem;font-weight:700;color:#f9a338;margin:16px 0;}
+  .percentage{font-size:1.2rem;color:#aaa;margin-bottom:22px;}
+  .result-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:26px;}
+  .result-stat{background:rgba(255,255,255,0.06);border-radius:12px;padding:16px;}
+  .result-stat .r-num{font-size:1.8rem;font-weight:700;}
+  .result-stat .r-label{font-size:0.73rem;color:#888;margin-top:4px;}
+  .correct-stat .r-num{color:#00d264;}
+  .wrong-stat .r-num{color:#ff5555;}
+  .total-stat .r-num{color:#f9a338;}
+  .grade-badge{display:inline-block;padding:6px 18px;border-radius:50px;font-weight:700;font-size:0.88rem;margin-bottom:10px;}
+  .restart-btn{
+    padding:14px 38px;background:linear-gradient(90deg,#e96c43,#ffd200);
+    border:none;border-radius:12px;font-size:1rem;font-weight:700;
+    color:#1a0a00;cursor:pointer;transition:all .3s ease;font-family:inherit;
+  }
+  .restart-btn:hover{transform:scale(1.05);box-shadow:0 8px 28px rgba(233,108,67,.4);}
+  @media(max-width:600px){.header h1{font-size:1.35rem;}.result-grid{grid-template-columns:1fr;}.big-score{font-size:2.4rem;}}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <div class="set-badge">SET 3 — 100 BRAND NEW MCQs</div>
+    <h1>🔥 Computer Software Quiz</h1>
+    <p>100 एकदम नए प्रश्न | हिंदी में | सभी विकल्पों की व्याख्या सहित</p>
+  </div>
+
+  <div class="stats-bar" id="statsBar">
+    <div class="stat-item"><div class="stat-label">प्रश्न</div><div class="stat-value" id="qCounter">1 / 100</div></div>
+    <div class="stat-item"><div class="stat-label">✅ सही</div><div class="stat-value" id="correctCount">0</div></div>
+    <div class="stat-item"><div class="stat-label">❌ गलत</div><div class="stat-value" id="wrongCount">0</div></div>
+    <div class="stat-item"><div class="stat-label">🏆 स्कोर</div><div class="stat-value" id="scorePercent">0%</div></div>
+    <div class="progress-wrap" style="width:100%"><div class="progress-bar" id="progressBar"></div></div>
+  </div>
+
+  <div class="question-card" id="questionCard">
+    <div class="question-number" id="qNum">प्रश्न 1</div>
+    <div class="question-text" id="qText"></div>
+    <div class="options-grid" id="optionsGrid"></div>
+    <div class="explanation-box" id="explanationBox">
+      <div class="exp-title">✅ सही उत्तर की व्याख्या</div>
+      <p id="correctExp"></p>
+      <div class="all-explanations" id="allExplanations"></div>
+    </div>
+    <button class="next-btn" id="nextBtn" onclick="nextQuestion()">अगला सवाल →</button>
+  </div>
+
+  <div class="result-screen" id="resultScreen">
+    <div class="result-emoji" id="resultEmoji">🏆</div>
+    <div class="grade-badge" id="gradeBadge"></div>
+    <h2>Quiz पूरा हुआ!</h2>
+    <div class="big-score" id="finalScore"></div>
+    <div class="percentage" id="finalPercent"></div>
+    <div class="result-grid">
+      <div class="result-stat correct-stat"><div class="r-num" id="rCorrect">0</div><div class="r-label">✅ सही उत्तर</div></div>
+      <div class="result-stat wrong-stat"><div class="r-num" id="rWrong">0</div><div class="r-label">❌ गलत उत्तर</div></div>
+      <div class="result-stat total-stat"><div class="r-num">100</div><div class="r-label">📋 कुल प्रश्न</div></div>
+    </div>
+    <button class="restart-btn" onclick="restartQuiz()">🔄 फिर से शुरू करें</button>
+  </div>
+
+</div>
+<script>
+const allQuestions = [
+
+  // ===== SECTION 1: SOFTWARE DEVELOPMENT & ENGINEERING (1-20) =====
+  {
+    q: "Software Development Life Cycle (SDLC) का सही क्रम क्या है?",
+    options: ["Coding → Testing → Planning → Design", "Planning → Analysis → Design → Coding → Testing → Maintenance", "Testing → Coding → Design → Planning", "Design → Planning → Testing → Coding"],
+    correct: 1,
+    explanations: [
+      "यह SDLC का सही क्रम नहीं है।",
+      "✅ सही! SDLC का standard क्रम है: Planning → Requirements Analysis → System Design → Coding/Implementation → Testing → Deployment → Maintenance।",
+      "यह भी गलत क्रम है।",
+      "यह भी गलत है।"
+    ]
+  },
+  {
+    q: "Waterfall Model की मुख्य कमज़ोरी क्या है?",
+    options: ["यह बहुत fast है", "एक phase पूरा होने के बाद पिछले phase में जाना बहुत मुश्किल होता है — changes costly हैं", "यह केवल small projects के लिए है", "यह Testing नहीं करता"],
+    correct: 1,
+    explanations: [
+      "Waterfall fast नहीं होता।",
+      "✅ सही! Waterfall Model में phases sequential होते हैं — एक बार Design phase पार होने पर Requirements change करना बहुत costly होता है।",
+      "Waterfall large projects के लिए भी use होता था।",
+      "Waterfall में Testing phase होता है।"
+    ]
+  },
+  {
+    q: "Scrum किस methodology का हिस्सा है?",
+    options: ["Waterfall", "Agile", "Spiral Model", "V-Model"],
+    correct: 1,
+    explanations: [
+      "Scrum Waterfall का हिस्सा नहीं।",
+      "✅ सही! Scrum Agile framework का सबसे popular implementation है — इसमें Sprints (2-4 weeks), Daily Standups, Sprint Review होते हैं।",
+      "Spiral Model risk-based model है।",
+      "V-Model Verification और Validation पर focus करता है।"
+    ]
+  },
+  {
+    q: "Unit Testing किसे कहते हैं?",
+    options: ["पूरे software को test करना", "Individual functions/modules को अलग-अलग test करना", "केवल UI test करना", "Network test करना"],
+    correct: 1,
+    explanations: [
+      "पूरे software को test करना Integration/System Testing है।",
+      "✅ सही! Unit Testing में software के smallest testable units (individual functions, methods, classes) को independently test किया जाता है।",
+      "UI testing अलग है।",
+      "Network testing अलग है।"
+    ]
+  },
+  {
+    q: "Integration Testing क्या है?",
+    options: ["एक module को test करना", "Multiple modules को combine करके उनके interaction को test करना", "Final product को test करना", "User interface test करना"],
+    correct: 1,
+    explanations: [
+      "Single module test = Unit Testing।",
+      "✅ सही! Integration Testing में individual modules को combine करके देखते हैं कि वे सही तरीके से एक-दूसरे के साथ काम कर रहे हैं।",
+      "Final product test = System Testing।",
+      "UI test = UI Testing।"
+    ]
+  },
+  {
+    q: "Black Box Testing और White Box Testing में अंतर क्या है?",
+    options: ["दोनों समान हैं", "Black Box: internal code जाने बिना test, White Box: internal code जानकर test", "Black Box: Hardware test, White Box: Software test", "Black Box: Fast test, White Box: Slow test"],
+    correct: 1,
+    explanations: [
+      "दोनों अलग हैं।",
+      "✅ सही! Black Box Testing में tester को code की जानकारी नहीं — केवल inputs/outputs test होते हैं। White Box में tester code जानता है और internal logic test करता है।",
+      "दोनों software testing के types हैं।",
+      "Speed से define नहीं होते।"
+    ]
+  },
+  {
+    q: "Regression Testing क्यों की जाती है?",
+    options: ["नई features add करने के लिए", "Code changes के बाद यह verify करने के लिए कि पहले काम करने वाले features अभी भी सही काम कर रहे हैं", "Performance test करने के लिए", "Security test करने के लिए"],
+    correct: 1,
+    explanations: [
+      "Features add करना development है।",
+      "✅ सही! Regression Testing ensure करती है कि new code changes ने existing, working functionality को break नहीं किया — bug fix या new feature के बाद crucial है।",
+      "Performance testing अलग है।",
+      "Security testing अलग है।"
+    ]
+  },
+  {
+    q: "CI/CD का पूरा नाम क्या है?",
+    options: ["Computer Integration/Computer Deployment", "Continuous Integration/Continuous Delivery (or Deployment)", "Code Input/Code Distribution", "Central Integration/Central Deployment"],
+    correct: 1,
+    explanations: [
+      "यह CI/CD का नाम नहीं।",
+      "✅ सही! CI/CD = Continuous Integration/Continuous Delivery (या Deployment)। इसमें code changes automatically test और deploy होते हैं — Jenkins, GitHub Actions इसके tools हैं।",
+      "यह भी गलत है।",
+      "यह भी गलत है।"
+    ]
+  },
+  {
+    q: "Code Review का क्या उद्देश्य होता है?",
+    options: ["Code को delete करना", "Team members द्वारा code को check करना — bugs, quality issues और improvements find करना", "Code को compress करना", "Code को encrypt करना"],
+    correct: 1,
+    explanations: [
+      "Code review delete नहीं करता।",
+      "✅ सही! Code Review में developers एक-दूसरे का code review करते हैं — bugs early catch होते हैं, code quality बढ़ती है और knowledge sharing होती है।",
+      "Review compression नहीं है।",
+      "Review encryption नहीं है।"
+    ]
+  },
+  {
+    q: "Technical Debt क्या होता है?",
+    options: ["Software का financial cost", "Quick/poor solution लिखने से future में extra work जमा होना जो later fix करना पड़े", "Software का license cost", "Server का maintenance cost"],
+    correct: 1,
+    explanations: [
+      "Technical Debt financial debt नहीं है।",
+      "✅ सही! Technical Debt वह accumulated work है जो shortcut लेने से होता है — poor code quality, missing tests, outdated dependencies जो future में fix करने पड़ते हैं।",
+      "License cost financial है।",
+      "Server maintenance अलग है।"
+    ]
+  },
+  {
+    q: "Design Pattern क्या होता है?",
+    options: ["UI का color pattern", "Common software problems के proven, reusable solutions", "Database का structure", "Network का design"],
+    correct: 1,
+    explanations: [
+      "Design Pattern UI से नहीं।",
+      "✅ सही! Design Patterns recurring software design problems के best-practice solutions हैं — Singleton, Factory, Observer, MVC जैसे patterns proven reusable solutions हैं।",
+      "Database structure ERD है।",
+      "Network design network architecture है।"
+    ]
+  },
+  {
+    q: "MVC Architecture में 'V' का मतलब क्या है?",
+    options: ["Version", "View — user को दिखने वाला UI component", "Variable", "Validator"],
+    correct: 1,
+    explanations: [
+      "V = Version नहीं।",
+      "✅ सही! MVC = Model-View-Controller। View वह component है जो user को UI दिखाता है। Model = data/business logic, Controller = request handle करता है।",
+      "V = Variable नहीं।",
+      "V = Validator नहीं।"
+    ]
+  },
+  {
+    q: "Refactoring क्या है?",
+    options: ["Code की functionality बदलना", "External behavior बदले बिना internal code structure improve करना", "Code को delete करना", "New features add करना"],
+    correct: 1,
+    explanations: [
+      "Refactoring functionality change नहीं करता।",
+      "✅ सही! Refactoring में code की external behavior वही रहती है, लेकिन internal structure clean, readable और maintainable बनाया जाता है।",
+      "Refactoring delete नहीं करता।",
+      "Refactoring new features नहीं जोड़ता।"
+    ]
+  },
+  {
+    q: "Microservices में Service Discovery क्या काम करती है?",
+    options: ["New services create करना", "Services को automatically locate और communicate करने देना बिना hardcoded addresses के", "Services को delete करना", "Services को deploy करना"],
+    correct: 1,
+    explanations: [
+      "Service Discovery services create नहीं करती।",
+      "✅ सही! Service Discovery mechanism services को एक-दूसरे को dynamically discover करने देता है — Consul, Eureka इसके tools हैं।",
+      "Services delete करना अलग है।",
+      "Deployment CI/CD pipeline करती है।"
+    ]
+  },
+  {
+    q: "Load Balancer का क्या काम है?",
+    options: ["Data store करना", "Incoming traffic को multiple servers में distribute करना ताकि कोई एक server overloaded न हो", "Files compress करना", "Code compile करना"],
+    correct: 1,
+    explanations: [
+      "Data store करना database का काम है।",
+      "✅ सही! Load Balancer incoming requests को multiple backend servers में distribute करता है — high availability, fault tolerance और performance के लिए critical है।",
+      "Compression अलग है।",
+      "Compilation अलग है।"
+    ]
+  },
+  {
+    q: "REST API में HTTP GET method का उपयोग किसलिए होता है?",
+    options: ["Data delete करने के लिए", "Data retrieve/read करने के लिए", "Data create करने के लिए", "Data update करने के लिए"],
+    correct: 1,
+    explanations: [
+      "Delete के लिए HTTP DELETE method है।",
+      "✅ सही! REST API में GET = Read/Retrieve data। POST = Create, PUT/PATCH = Update, DELETE = Delete। GET idempotent और safe operation है।",
+      "Create के लिए POST method है।",
+      "Update के लिए PUT/PATCH है।"
+    ]
+  },
+  {
+    q: "JSON का पूरा नाम क्या है?",
+    options: ["Java Serialized Object Notation", "JavaScript Object Notation", "Joint Standard Object Network", "Java Standard Output Notation"],
+    correct: 1,
+    explanations: [
+      "JSON Java-specific नहीं है।",
+      "✅ सही! JSON = JavaScript Object Notation। यह lightweight data interchange format है जो human-readable है — APIs में widely used है।",
+      "यह भी गलत है।",
+      "यह भी गलत है।"
+    ]
+  },
+  {
+    q: "GraphQL, REST API से कैसे अलग है?",
+    options: ["GraphQL केवल databases के लिए है", "GraphQL में client exactly वही data request कर सकता है जो चाहिए — over/under-fetching नहीं", "REST ज्यादा modern है", "दोनों समान हैं"],
+    correct: 1,
+    explanations: [
+      "GraphQL databases के लिए नहीं — API query language है।",
+      "✅ सही! GraphQL में client precise data request करता है — REST में fixed endpoints होते हैं जो extra या कम data दे सकते हैं। Facebook ने GraphQL बनाया।",
+      "GraphQL newer है।",
+      "दोनों अलग approaches हैं।"
+    ]
+  },
+  {
+    q: "Docker Image और Docker Container में क्या अंतर है?",
+    options: ["दोनों समान हैं", "Image = static blueprint/template, Container = Image का running instance", "Container = blueprint, Image = running instance", "Image केवल Linux के लिए है"],
+    correct: 1,
+    explanations: [
+      "Image और Container अलग हैं।",
+      "✅ सही! Docker Image read-only template है (like a class)। Container उस Image का running instance है (like an object)। एक Image से multiple Containers बन सकते हैं।",
+      "यह उल्टा है।",
+      "Docker Images cross-platform हैं।"
+    ]
+  },
+  {
+    q: "Kubernetes क्या है?",
+    options: ["एक programming language", "Container Orchestration System — containers को automate, scale और manage करना", "एक database", "एक text editor"],
+    correct: 1,
+    explanations: [
+      "Kubernetes language नहीं।",
+      "✅ सही! Kubernetes (K8s) Google द्वारा बनाया Container Orchestration tool है — containers को automatically deploy, scale, load balance और manage करता है।",
+      "Kubernetes database नहीं।",
+      "Kubernetes text editor नहीं।"
+    ]
+  },
+
+  // ===== SECTION 2: DATABASES & DATA (21-40) =====
+  {
+    q: "DBMS का पूरा नाम क्या है?",
+    options: ["Data Backup Management System", "Database Management System", "Digital Binary Management Software", "Data Based Memory System"],
+    correct: 1,
+    explanations: [
+      "यह DBMS का नाम नहीं।",
+      "✅ सही! DBMS = Database Management System। यह software data को organize, store, retrieve और manage करता है — MySQL, PostgreSQL, Oracle, SQLite examples हैं।",
+      "यह भी गलत है।",
+      "यह भी गलत है।"
+    ]
+  },
+  {
+    q: "Primary Key क्या होती है Database में?",
+    options: ["सबसे important column", "Unique identifier — हर row को uniquely identify करने वाली column जो NULL नहीं हो सकती", "Largest column", "First column"],
+    correct: 1,
+    explanations: [
+      "Primary Key 'important' से define नहीं।",
+      "✅ सही! Primary Key वह column (या columns का combination) है जो हर record को uniquely identify करती है — duplicate और NULL values allowed नहीं।",
+      "Size से define नहीं।",
+      "Position से define नहीं।"
+    ]
+  },
+  {
+    q: "Foreign Key का क्या काम है?",
+    options: ["External database से connect करना", "एक table की column जो दूसरी table की Primary Key को reference करे — tables के बीच relationship", "Password protect करना", "Data encrypt करना"],
+    correct: 1,
+    explanations: [
+      "Foreign Key external connection नहीं।",
+      "✅ सही! Foreign Key एक table में वह column है जो दूसरी table की Primary Key को reference करती है — Referential Integrity maintain करती है।",
+      "Password protection security feature है।",
+      "Encryption अलग है।"
+    ]
+  },
+  {
+    q: "Normalization का क्या उद्देश्य है Database में?",
+    options: ["Database को fast बनाना", "Data redundancy कम करना और data integrity ensure करना", "Database को compress करना", "Database को backup करना"],
+    correct: 1,
+    explanations: [
+      "Normalization performance optimization नहीं है।",
+      "✅ सही! Database Normalization (1NF, 2NF, 3NF) data redundancy (duplication) को eliminate करती है और anomalies (Insert, Update, Delete) को prevent करती है।",
+      "Compression अलग है।",
+      "Backup अलग है।"
+    ]
+  },
+  {
+    q: "SQL में 'JOIN' क्या करता है?",
+    options: ["Files को merge करता है", "दो या अधिक tables के rows को related columns के basis पर combine करता है", "Data delete करता है", "Table create करता है"],
+    correct: 1,
+    explanations: [
+      "JOIN files merge नहीं करता।",
+      "✅ सही! SQL JOIN दो या more tables के rows को common column के basis पर combine करता है — INNER JOIN, LEFT JOIN, RIGHT JOIN, FULL JOIN प्रकार हैं।",
+      "DELETE statement data delete करता है।",
+      "CREATE TABLE statement table बनाता है।"
+    ]
+  },
+  {
+    q: "NoSQL Database का उदाहरण कौन सा है?",
+    options: ["MySQL", "PostgreSQL", "MongoDB", "Oracle"],
+    correct: 2,
+    explanations: [
+      "MySQL relational (SQL) database है।",
+      "PostgreSQL relational (SQL) database है।",
+      "✅ सही! MongoDB एक NoSQL (Document-oriented) database है जो JSON-like documents store करता है — schema-less और horizontally scalable है।",
+      "Oracle relational (SQL) database है।"
+    ]
+  },
+  {
+    q: "ACID Properties में 'A' किसके लिए है?",
+    options: ["Application", "Atomicity — transaction पूरा होगा या बिल्कुल नहीं होगा (all or nothing)", "Authorization", "Allocation"],
+    correct: 1,
+    explanations: [
+      "A = Application नहीं।",
+      "✅ सही! ACID = Atomicity, Consistency, Isolation, Durability। Atomicity मतलब transaction के सभी operations एक unit की तरह — या सब succeed हों या सब fail।",
+      "A = Authorization नहीं।",
+      "A = Allocation नहीं।"
+    ]
+  },
+  {
+    q: "Index Database में किसलिए use होता है?",
+    options: ["Data delete करने के लिए", "Query execution speed बढ़ाने के लिए — बिना full table scan के data find करना", "Data backup के लिए", "Table create करने के लिए"],
+    correct: 1,
+    explanations: [
+      "Index delete नहीं करता।",
+      "✅ सही! Database Index एक data structure है (B-tree, Hash) जो specific columns पर fast data lookup enable करता है — full table scan avoid होता है।",
+      "Index backup नहीं है।",
+      "Index table create नहीं करता।"
+    ]
+  },
+  {
+    q: "SQL में 'SELECT * FROM table' का क्या मतलब है?",
+    options: ["Table delete करना", "Table की सभी rows और columns retrieve करना", "New row insert करना", "Table update करना"],
+    correct: 1,
+    explanations: [
+      "DROP TABLE delete करता है।",
+      "✅ सही! SELECT * FROM tablename सभी columns (*) और सभी rows उस table से retrieve करता है।",
+      "INSERT INTO insert करता है।",
+      "UPDATE statement update करता है।"
+    ]
+  },
+  {
+    q: "Stored Procedure क्या है?",
+    options: ["Database का backup procedure", "Database में stored pre-compiled SQL statements का set जो बार-बार call किया जा सके", "Data recovery process", "Database install process"],
+    correct: 1,
+    explanations: [
+      "Stored Procedure backup नहीं है।",
+      "✅ सही! Stored Procedure database में stored pre-compiled SQL code block है जिसे application से call किया जा सकता है — performance और reusability बढ़ती है।",
+      "Data recovery अलग है।",
+      "Installation अलग है।"
+    ]
+  },
+  {
+    q: "Trigger Database में क्या होता है?",
+    options: ["Password reset करना", "Automatic action जो specific database event (INSERT/UPDATE/DELETE) पर automatically execute हो", "Manual backup", "Index rebuild"],
+    correct: 1,
+    explanations: [
+      "Trigger password से नहीं।",
+      "✅ सही! Database Trigger वह stored procedure है जो automatically execute होती है जब specific event occur हो — जैसे row insert होने पर automatic log entry।",
+      "Trigger manual नहीं — automatic है।",
+      "Index rebuild अलग है।"
+    ]
+  },
+  {
+    q: "Transaction Rollback क्या करता है?",
+    options: ["Transaction आगे बढ़ाता है", "Failed transaction के सभी changes को undo करके database को previous state में लाता है", "New transaction शुरू करता है", "Transaction save करता है"],
+    correct: 1,
+    explanations: [
+      "आगे बढ़ाना COMMIT है।",
+      "✅ सही! ROLLBACK transaction के सभी changes को undo करता है — error होने पर database consistency maintain होती है।",
+      "BEGIN TRANSACTION शुरू करता है।",
+      "COMMIT save करता है।"
+    ]
+  },
+  {
+    q: "Redis किस type का database है?",
+    options: ["Relational Database", "In-Memory Key-Value Store", "Document Database", "Graph Database"],
+    correct: 1,
+    explanations: [
+      "Redis relational नहीं।",
+      "✅ सही! Redis (Remote Dictionary Server) In-Memory Key-Value NoSQL database है — extremely fast (microseconds), caching, session management, real-time apps में use होता है।",
+      "Document DB MongoDB है।",
+      "Graph DB Neo4j है।"
+    ]
+  },
+  {
+    q: "Data Warehousing क्या है?",
+    options: ["Physical data storage room", "Large-scale data storage और analysis के लिए centralized repository — historical data analysis", "Small database", "Temporary data storage"],
+    correct: 1,
+    explanations: [
+      "Data Warehouse physical room नहीं।",
+      "✅ सही! Data Warehouse large amount of structured historical data store करता है — business intelligence, analytics और reporting के लिए — Amazon Redshift, Snowflake examples हैं।",
+      "Data Warehouse large-scale है।",
+      "यह permanent, long-term storage है।"
+    ]
+  },
+  {
+    q: "Big Data की '3 Vs' क्या हैं?",
+    options: ["Volume, Velocity, Variety", "Version, Validate, Verify", "Virtual, Visual, Verbal", "Value, Vision, Vector"],
+    correct: 0,
+    explanations: [
+      "✅ सही! Big Data की 3 Vs हैं: Volume (huge amount of data), Velocity (high speed of data generation), Variety (different types — structured, unstructured, semi-structured)।",
+      "यह 3 Vs नहीं हैं।",
+      "यह भी गलत है।",
+      "यह भी गलत है।"
+    ]
+  },
+  {
+    q: "SQL में 'GROUP BY' clause का क्या काम है?",
+    options: ["Data sort करना", "Same value वाली rows को groups में group करना — aggregate functions के साथ use होता है", "Data delete करना", "Table join करना"],
+    correct: 1,
+    explanations: [
+      "Data sort करना ORDER BY का काम है।",
+      "✅ सही! GROUP BY same column values वाली rows को group करता है — COUNT(), SUM(), AVG() जैसे aggregate functions के साथ use होता है।",
+      "DELETE statement delete करता है।",
+      "JOIN tables join करता है।"
+    ]
+  },
+  {
+    q: "Database Sharding क्या है?",
+    options: ["Database backup करना", "Large database को smaller horizontal partitions (shards) में split करना — different servers पर", "Database encrypt करना", "Database index करना"],
+    correct: 1,
+    explanations: [
+      "Sharding backup नहीं।",
+      "✅ सही! Sharding horizontal partitioning technique है — large database को multiple servers (shards) में split करते हैं जिससे scalability और performance बढ़ती है।",
+      "Encryption अलग है।",
+      "Indexing अलग है।"
+    ]
+  },
+  {
+    q: "ORM का पूरा नाम क्या है और यह क्या करता है?",
+    options: ["Object Relational Mapping — code में objects को database tables से map करना", "Online Resource Manager — internet resources manage करना", "Output Result Module — results display करना", "Operational Risk Management — risks manage करना"],
+    correct: 0,
+    explanations: [
+      "✅ सही! ORM = Object Relational Mapping। यह programming objects को database tables से map करता है — SQL लिखे बिना database operations possible — Hibernate, SQLAlchemy examples।",
+      "यह ORM का अर्थ नहीं।",
+      "यह भी गलत है।",
+      "यह भी गलत है।"
+    ]
+  },
+  {
+    q: "HAVING clause SQL में क्यों use होती है?",
+    options: ["Individual rows filter करने के लिए", "GROUP BY के बाद groups को filter करने के लिए — aggregate conditions apply करना", "Table create करने के लिए", "Data sort करने के लिए"],
+    correct: 1,
+    explanations: [
+      "Individual rows filter = WHERE clause।",
+      "✅ सही! HAVING clause GROUP BY के बाद groups पर condition apply करती है — जैसे HAVING COUNT(*) > 5 (केवल वे groups जिनमें 5 से ज्यादा rows हैं)।",
+      "Table create = CREATE TABLE।",
+      "Sort = ORDER BY।"
+    ]
+  },
+  {
+    q: "Database में View क्या होता है?",
+    options: ["Table का visual design", "Virtual table जो एक stored SQL query का result है", "Database का GUI", "Backup का view"],
+    correct: 1,
+    explanations: [
+      "View GUI नहीं है।",
+      "✅ सही! Database View एक virtual table है — underlying tables की data change होने पर view automatically update होता है। Complex queries को simplify करता है।",
+      "Database GUI tools अलग होते हैं।",
+      "Backup view अलग है।"
+    ]
+  },
+
+  // ===== SECTION 3: COMPUTER NETWORKS & SECURITY (41-60) =====
+  {
+    q: "OSI Model में कितने layers हैं?",
+    options: ["4", "5", "7", "9"],
+    correct: 2,
+    explanations: [
+      "4 layers TCP/IP model में हैं।",
+      "5 layers नहीं।",
+      "✅ सही! OSI (Open Systems Interconnection) Model में 7 layers हैं: Physical, Data Link, Network, Transport, Session, Presentation, Application।",
+      "9 layers नहीं।"
+    ]
+  },
+  {
+    q: "OSI Model की Transport Layer (Layer 4) का क्या काम है?",
+    options: ["Physical cables manage करना", "End-to-end communication, error control, flow control — TCP/UDP यहाँ है", "IP addressing", "Network routing"],
+    correct: 1,
+    explanations: [
+      "Physical cables Layer 1 (Physical Layer) है।",
+      "✅ सही! Transport Layer end-to-end communication ensure करती है — TCP (reliable) और UDP (unreliable) protocols यहाँ operate करते हैं।",
+      "IP addressing Network Layer (Layer 3) है।",
+      "Routing Network Layer (Layer 3) है।"
+    ]
+  },
+  {
+    q: "TCP और UDP में मुख्य अंतर क्या है?",
+    options: ["दोनों समान हैं", "TCP reliable, connection-oriented है; UDP fast, connectionless, no guarantee है", "UDP reliable है", "TCP faster है हमेशा"],
+    correct: 1,
+    explanations: [
+      "TCP और UDP अलग हैं।",
+      "✅ सही! TCP (Transmission Control Protocol) connection establish करता है, data delivery guarantee करता है। UDP (User Datagram Protocol) connectionless, fast — video streaming, gaming में use होता है।",
+      "UDP reliable नहीं — fire and forget।",
+      "TCP reliability के लिए overhead है, UDP faster।"
+    ]
+  },
+  {
+    q: "HTTPS में 'S' का क्या मतलब है?",
+    options: ["Speed", "Secure — SSL/TLS encryption से communication secure होती है", "Server", "Standard"],
+    correct: 1,
+    explanations: [
+      "S = Speed नहीं।",
+      "✅ सही! HTTPS = HyperText Transfer Protocol Secure। इसमें SSL/TLS protocol से data encrypt होता है — browser में padlock icon दिखता है।",
+      "S = Server नहीं।",
+      "S = Standard नहीं।"
+    ]
+  },
+  {
+    q: "IP Address क्या होता है?",
+    options: ["Internet का password", "Network पर device की unique numerical address जो communication के लिए जरूरी है", "Website का name", "Email address"],
+    correct: 1,
+    explanations: [
+      "IP Address password नहीं।",
+      "✅ सही! IP (Internet Protocol) Address network device की unique identifier है — IPv4: 192.168.1.1 (32-bit), IPv6: longer (128-bit)।",
+      "Website name = Domain Name।",
+      "Email address अलग है।"
+    ]
+  },
+  {
+    q: "Router का क्या काम है?",
+    options: ["Files store करना", "Different networks के बीच data packets forward करना — best path decide करना", "Internet speed बढ़ाना", "Passwords store करना"],
+    correct: 1,
+    explanations: [
+      "Router files store नहीं करता।",
+      "✅ सही! Router Network Layer (OSI Layer 3) device है जो IP addresses के basis पर data packets को different networks के बीच route करता है।",
+      "Internet speed ISP और bandwidth से है।",
+      "Router passwords से नहीं।"
+    ]
+  },
+  {
+    q: "MAC Address किस layer पर काम करता है?",
+    options: ["Network Layer (Layer 3)", "Data Link Layer (Layer 2)", "Transport Layer (Layer 4)", "Application Layer (Layer 7)"],
+    correct: 1,
+    explanations: [
+      "Layer 3 पर IP Address काम करता है।",
+      "✅ सही! MAC (Media Access Control) Address hardware device का unique physical address है — यह Data Link Layer (OSI Layer 2) पर काम करता है।",
+      "Layer 4 पर TCP/UDP है।",
+      "Layer 7 पर Applications हैं।"
+    ]
+  },
+  {
+    q: "VPN का क्या काम है?",
+    options: ["Internet speed बढ़ाना", "Encrypted tunnel बनाकर private और secure internet connection provide करना", "Files compress करना", "Virus remove करना"],
+    correct: 1,
+    explanations: [
+      "VPN internet slow भी कर सकता है।",
+      "✅ सही! VPN (Virtual Private Network) internet पर encrypted tunnel बनाता है — real IP hide होती है, geo-restrictions bypass होते हैं, public WiFi पर security मिलती है।",
+      "VPN compression नहीं करता primarily।",
+      "VPN antivirus नहीं।"
+    ]
+  },
+  {
+    q: "DDoS Attack क्या है?",
+    options: ["Single computer का attack", "Distributed Denial of Service — multiple systems से एक target को overwhelm करके crash करना", "Password steal करना", "Data encrypt करना"],
+    correct: 1,
+    explanations: [
+      "Single computer attack = DoS है।",
+      "✅ सही! DDoS (Distributed Denial of Service) में thousands/millions of compromised systems (botnet) एक target server को traffic से flood करते हैं जिससे legitimate users access नहीं कर पाते।",
+      "Password steal = Phishing/Brute Force।",
+      "Encrypt करना = Ransomware।"
+    ]
+  },
+  {
+    q: "SQL Injection क्या है?",
+    options: ["SQL database की speed improve करना", "Malicious SQL code को input fields में inject करके unauthorized database access", "SQL files को compress करना", "SQL backup लेना"],
+    correct: 1,
+    explanations: [
+      "SQL Injection performance improve नहीं करता।",
+      "✅ सही! SQL Injection में attacker input fields में malicious SQL code enter करता है — '; DROP TABLE users; -- जैसे — poorly sanitized queries execute हो जाती हैं।",
+      "SQL Injection compression नहीं।",
+      "SQL Injection backup नहीं।"
+    ]
+  },
+  {
+    q: "Two-Factor Authentication (2FA) क्या है?",
+    options: ["दो passwords use करना", "Two different verification factors — password + OTP/biometric — login के लिए", "दो users का account", "दो computers से login"],
+    correct: 1,
+    explanations: [
+      "2FA दो passwords नहीं।",
+      "✅ सही! 2FA में दो अलग authentication factors होते हैं: Something you know (password) + Something you have (OTP) या Something you are (fingerprint)।",
+      "2FA account sharing नहीं।",
+      "2FA location-based नहीं primarily।"
+    ]
+  },
+  {
+    q: "SSL/TLS Certificate का क्या काम है?",
+    options: ["Website की speed certificate", "Website की identity verify करना और encrypted connection establish करना", "Domain registration certificate", "Server hardware certificate"],
+    correct: 1,
+    explanations: [
+      "SSL/TLS speed से नहीं।",
+      "✅ सही! SSL/TLS Certificate website की authenticity verify करता है (issued by CA - Certificate Authority) और browser-server के बीच encrypted connection (HTTPS) enable करता है।",
+      "Domain registration अलग है।",
+      "Hardware certification अलग है।"
+    ]
+  },
+  {
+    q: "Subnet Mask का क्या काम है?",
+    options: ["Password mask करना", "IP address के network portion और host portion को identify करना", "Data को mask/encrypt करना", "User identity hide करना"],
+    correct: 1,
+    explanations: [
+      "Subnet Mask passwords से नहीं।",
+      "✅ सही! Subnet Mask (जैसे 255.255.255.0) IP address में network part और host part को distinguish करता है — network को subnets में divide करता है।",
+      "Subnet Mask data encryption नहीं।",
+      "Subnet Mask identity hiding नहीं।"
+    ]
+  },
+  {
+    q: "DHCP का क्या काम है?",
+    options: ["Data compress करना", "Network devices को automatically IP addresses assign करना", "Data encrypt करना", "Files transfer करना"],
+    correct: 1,
+    explanations: [
+      "DHCP compression नहीं करता।",
+      "✅ सही! DHCP (Dynamic Host Configuration Protocol) network में devices को automatically IP address, Subnet Mask, Gateway, DNS assign करता है।",
+      "DHCP encryption नहीं है।",
+      "File transfer FTP/HTTP करता है।"
+    ]
+  },
+  {
+    q: "Packet Sniffing क्या है?",
+    options: ["Fast packet delivery", "Network traffic को intercept और analyze करना", "Packet को compress करना", "Packet को create करना"],
+    correct: 1,
+    explanations: [
+      "Sniffing speed से नहीं।",
+      "✅ सही! Packet Sniffing network पर data packets को intercept और inspect करना है — network analysis के लिए (Wireshark) या malicious purpose से।",
+      "Sniffing compress नहीं।",
+      "Sniffing create नहीं।"
+    ]
+  },
+  {
+    q: "CDN का पूरा नाम और उपयोग क्या है?",
+    options: ["Central Data Network — data backup", "Content Delivery Network — geographically distributed servers से content fast deliver करना", "Computer Domain Name — domains manage करना", "Cloud Data Node — cloud storage"],
+    correct: 1,
+    explanations: [
+      "यह CDN का अर्थ नहीं।",
+      "✅ सही! CDN = Content Delivery Network। Geographically distributed servers का network जो users को nearest server से content deliver करता है — latency कम होती है।",
+      "यह भी गलत है।",
+      "यह भी गलत है।"
+    ]
+  },
+  {
+    q: "Man-in-the-Middle Attack क्या है?",
+    options: ["Physical attack", "दो parties की communication को secretly intercept करना — attacker बीच में होता है", "Password attack", "Physical hardware attack"],
+    correct: 1,
+    explanations: [
+      "MitM physical attack नहीं।",
+      "✅ सही! Man-in-the-Middle (MitM) attack में attacker two communicating parties के बीच secretly घुस जाता है — communication intercept, modify या eavesdrop कर सकता है।",
+      "Password attack = Brute Force/Phishing।",
+      "यह software/network attack है।"
+    ]
+  },
+  {
+    q: "Proxy Server का क्या काम है?",
+    options: ["Server को power देना", "Client और server के बीच intermediary — caching, filtering, anonymity provide करना", "Data store करना permanently", "Database manage करना"],
+    correct: 1,
+    explanations: [
+      "Proxy Server power नहीं देता।",
+      "✅ सही! Proxy Server client requests को intercept करता है — web filtering, content caching, anonymity (IP hide), access control जैसे functions करता है।",
+      "Permanent storage database करता है।",
+      "Database management DBMS करता है।"
+    ]
+  },
+  {
+    q: "Bandwidth और Latency में क्या अंतर है?",
+    options: ["दोनों समान हैं", "Bandwidth = data transfer capacity (speed), Latency = data travel करने में लगने वाला time (delay)", "Latency = capacity, Bandwidth = delay", "Bandwidth = price, Latency = speed"],
+    correct: 1,
+    explanations: [
+      "दोनों अलग-अलग metrics हैं।",
+      "✅ सही! Bandwidth maximum data transfer rate है (Mbps/Gbps में) — pipe की width। Latency = packet को source से destination तक जाने में लगने वाला time (milliseconds)।",
+      "यह उल्टा है।",
+      "यह गलत है।"
+    ]
+  },
+  {
+    q: "Zero Trust Security Model क्या है?",
+    options: ["सभी users पर trust करना", "किसी भी user/device पर by default trust नहीं — हर access request verify करो, चाहे inside network हो", "केवल external threats block करना", "Password-only security"],
+    correct: 1,
+    explanations: [
+      "Zero Trust = no default trust।",
+      "✅ सही! Zero Trust model 'never trust, always verify' principle पर काम करता है — network के अंदर का user भी हर access के लिए verify होता है।",
+      "Zero Trust internal threats भी address करता है।",
+      "Zero Trust multi-factor approach है।"
+    ]
+  },
+
+  // ===== SECTION 4: PROGRAMMING CONCEPTS & COMPUTER SCIENCE (61-80) =====
+  {
+    q: "Binary Search Algorithm की Time Complexity क्या है?",
+    options: ["O(n)", "O(n²)", "O(log n)", "O(n log n)"],
+    correct: 2,
+    explanations: [
+      "O(n) = Linear Search की complexity है।",
+      "O(n²) = Bubble Sort जैसे quadratic algorithms।",
+      "✅ सही! Binary Search O(log n) है — हर step में search space half होती है। यह केवल sorted arrays पर काम करता है।",
+      "O(n log n) = Merge Sort, Quick Sort।"
+    ]
+  },
+  {
+    q: "Linked List किसे कहते हैं?",
+    options: ["Internet links की list", "Data structure जिसमें elements (nodes) pointers से एक-दूसरे से linked होते हैं", "Array का दूसरा नाम", "Database table"],
+    correct: 1,
+    explanations: [
+      "Linked List internet links नहीं।",
+      "✅ सही! Linked List linear data structure है जहाँ हर node में data और next node का pointer होता है — dynamic size, insertions/deletions efficient।",
+      "Array contiguous memory में होता है।",
+      "Database table relational data है।"
+    ]
+  },
+  {
+    q: "Hash Table की average Time Complexity for lookup क्या है?",
+    options: ["O(n)", "O(log n)", "O(1)", "O(n²)"],
+    correct: 2,
+    explanations: [
+      "O(n) = Array linear search।",
+      "O(log n) = Binary Search।",
+      "✅ सही! Hash Table average case में O(1) — constant time lookup करता है। Hash function key को directly index में map करता है।",
+      "O(n²) = Inefficient algorithms।"
+    ]
+  },
+  {
+    q: "Bubble Sort Algorithm की Worst Case Time Complexity क्या है?",
+    options: ["O(n)", "O(log n)", "O(n log n)", "O(n²)"],
+    correct: 3,
+    explanations: [
+      "O(n) बहुत fast है।",
+      "O(log n) = Binary Search।",
+      "O(n log n) = Merge Sort, Quick Sort।",
+      "✅ सही! Bubble Sort Worst Case O(n²) है — nested loops की वजह से। यह छोटे datasets के लिए ठीक है।"
+    ]
+  },
+  {
+    q: "Tree Data Structure में 'Root Node' क्या होता है?",
+    options: ["सबसे नीचे वाला node", "Topmost node जिसका कोई parent नहीं होता", "Leaf node", "Middle node"],
+    correct: 1,
+    explanations: [
+      "सबसे नीचे = Leaf Nodes।",
+      "✅ सही! Root Node tree का topmost node है — इसका कोई parent नहीं होता। Tree traversal Root से शुरू होता है।",
+      "Leaf nodes सबसे नीचे, no children।",
+      "Middle node specific term नहीं।"
+    ]
+  },
+  {
+    q: "Graph में 'Dijkstra Algorithm' किसलिए use होता है?",
+    options: ["Graph को sort करने के लिए", "Shortest path ढूंढने के लिए — source से सभी vertices तक minimum distance", "Graph को create करने के लिए", "Cycles detect करने के लिए"],
+    correct: 1,
+    explanations: [
+      "Dijkstra sorting नहीं करता।",
+      "✅ सही! Dijkstra's Algorithm weighted graph में single source shortest path problem solve करता है — GPS navigation इसी का use करता है।",
+      "Graph creation algorithms अलग हैं।",
+      "Cycle detection = DFS/Floyd-Warshall।"
+    ]
+  },
+  {
+    q: "Dynamic Programming (DP) की मुख्य विशेषता क्या है?",
+    options: ["Random approach", "Overlapping subproblems को memoization/tabulation से solve करना — same subproblem बार-बार solve न हो", "Greedy approach", "Brute force approach"],
+    correct: 1,
+    explanations: [
+      "DP random नहीं।",
+      "✅ सही! Dynamic Programming overlapping subproblems को एक बार solve करके store करता है (memoization) — Fibonacci, Knapsack problem, Longest Common Subsequence में use।",
+      "Greedy locally optimal choice लेता है।",
+      "Brute force सभी possibilities try करता है।"
+    ]
+  },
+  {
+    q: "Greedy Algorithm क्या करता है?",
+    options: ["सभी possibilities check करता है", "हर step पर locally optimal choice लेता है — globally optimal हो भी सकता है नहीं भी", "Random choice लेता है", "DP जैसा काम करता है"],
+    correct: 1,
+    explanations: [
+      "Brute force सभी possibilities check करता है।",
+      "✅ सही! Greedy Algorithm हर step पर best immediate choice लेता है — Dijkstra, Huffman Coding, Activity Selection में use होता है।",
+      "Greedy random नहीं।",
+      "Greedy और DP अलग approaches हैं।"
+    ]
+  },
+  {
+    q: "Encapsulation OOP में क्या है?",
+    options: ["Code को compress करना", "Data (variables) और methods को एक unit (class) में bundle करना और internal details hide करना", "Code को encrypt करना", "Multiple classes बनाना"],
+    correct: 1,
+    explanations: [
+      "Encapsulation compression नहीं।",
+      "✅ सही! Encapsulation data hiding का principle है — class के internal details (private variables) को बाहर से direct access नहीं — getters/setters से access होता है।",
+      "Encapsulation encryption नहीं।",
+      "Multiple classes = polymorphism का part।"
+    ]
+  },
+  {
+    q: "Inheritance OOP में क्या है?",
+    options: ["Code को delete करना", "एक class दूसरी class के properties और methods inherit (पाती) कर सकती है — code reuse", "Data को encrypt करना", "Functions को overload करना"],
+    correct: 1,
+    explanations: [
+      "Inheritance delete नहीं करता।",
+      "✅ सही! Inheritance में child class (subclass) parent class (superclass) के properties और methods reuse करती है — 'is-a' relationship — code reusability बढ़ती है।",
+      "Inheritance encryption नहीं।",
+      "Function overloading = Polymorphism।"
+    ]
+  },
+  {
+    q: "Polymorphism OOP में क्या है?",
+    options: ["Multiple databases", "Same interface से different behaviors — method overloading और overriding", "Multiple files", "Multiple networks"],
+    correct: 1,
+    explanations: [
+      "Polymorphism multiple databases नहीं।",
+      "✅ सही! Polymorphism 'many forms' — same method name different behaviors show करे। Method Overloading (compile-time) और Method Overriding (runtime) दोनों polymorphism के types हैं।",
+      "Multiple files अलग है।",
+      "Multiple networks अलग है।"
+    ]
+  },
+  {
+    q: "Abstract Class और Interface में क्या अंतर है?",
+    options: ["दोनों समान हैं", "Abstract Class partial implementation हो सकती है; Interface केवल method signatures define करती है (Java)", "Interface में code होता है", "Abstract Class को instantiate किया जा सकता है"],
+    correct: 1,
+    explanations: [
+      "दोनों अलग हैं।",
+      "✅ सही! Abstract Class में concrete और abstract methods दोनों हो सकते हैं। Interface (Java) में केवल method signatures होती थीं (Java 8+ में default methods भी)। Abstract class को directly instantiate नहीं किया जा सकता।",
+      "Interface में concrete implementation नहीं (traditionally)।",
+      "Abstract Class को directly instantiate नहीं कर सकते।"
+    ]
+  },
+  {
+    q: "Lambda Expression क्या है?",
+    options: ["Greek letter का use", "Anonymous function — without name — concise way to represent functions", "Lambda server", "Database query"],
+    correct: 1,
+    explanations: [
+      "Lambda Expression Greek letter से inspired name है, लेकिन programming में anonymous function है।",
+      "✅ सही! Lambda Expression anonymous (nameless) function है जो concisely लिखा जाता है — Python: lambda x: x*2; Java 8+: (x) -> x*2।",
+      "Lambda server अलग है।",
+      "Lambda Database query नहीं।"
+    ]
+  },
+  {
+    q: "Concurrency और Parallelism में क्या अंतर है?",
+    options: ["दोनों समान हैं", "Concurrency = multiple tasks interleaved (एक CPU), Parallelism = multiple tasks truly simultaneously (multiple CPUs)", "Parallelism single core में", "Concurrency multi-core में only"],
+    correct: 1,
+    explanations: [
+      "दोनों related लेकिन अलग concepts हैं।",
+      "✅ सही! Concurrency में tasks interleave होते हैं — एक CPU quickly switch करता है (illusion of simultaneous)। Parallelism में multiple CPU cores truly simultaneously execute करते हैं।",
+      "Parallelism multiple cores में होता है।",
+      "Concurrency single या multiple cores में हो सकती है।"
+    ]
+  },
+  {
+    q: "Memoization क्या है?",
+    options: ["Memory को format करना", "Function के results को cache करना ताकि same inputs पर recalculate न करना पड़े", "Memory leak fix करना", "Memory को compress करना"],
+    correct: 1,
+    explanations: [
+      "Memoization formatting नहीं।",
+      "✅ सही! Memoization optimization technique है — function results को cache (dict/map) में store करते हैं। Same input आने पर stored result return होता है। Dynamic Programming में use।",
+      "Memory leak fix करना debugging है।",
+      "Memory compression अलग है।"
+    ]
+  },
+  {
+    q: "Garbage Collection Java में automatically क्या करता है?",
+    options: ["Files delete करना", "Unreachable objects को heap memory से free करना — manual memory management की जरूरत नहीं", "Disk cleanup करना", "Code optimize करना"],
+    correct: 1,
+    explanations: [
+      "GC system files delete नहीं।",
+      "✅ सही! Java का Garbage Collector JVM में automatically run होता है और जिन objects के कोई references नहीं हैं उन्हें heap memory से free करता है।",
+      "Disk cleanup अलग utility है।",
+      "Code optimization compiler/JIT करता है।"
+    ]
+  },
+  {
+    q: "Regular Expression (Regex) किसलिए use होती है?",
+    options: ["Regular loops के लिए", "Text patterns match, search और manipulate करने के लिए", "Regular backups के लिए", "Regular updates के लिए"],
+    correct: 1,
+    explanations: [
+      "Regex loops नहीं।",
+      "✅ सही! Regular Expressions (Regex) pattern matching के लिए use होती हैं — email validation, phone number extraction, search-replace — सभी programming languages में support है।",
+      "Backup अलग है।",
+      "Updates अलग है।"
+    ]
+  },
+  {
+    q: "Event-Driven Programming क्या है?",
+    options: ["Events को schedule करना", "Program का flow events (user clicks, key presses, messages) से control होना", "Event logs create करना", "Calendar events manage करना"],
+    correct: 1,
+    explanations: [
+      "Event scheduling अलग है।",
+      "✅ सही! Event-Driven Programming में program user actions (button click, mouse move) या system events (network packet) के response में execute होता है — GUI applications, Node.js।",
+      "Event logging अलग है।",
+      "Calendar management अलग application है।"
+    ]
+  },
+  {
+    q: "Asynchronous Programming क्या है?",
+    options: ["Slow programming", "Tasks को बिना block किए execute करना — एक task wait करे तो दूसरे tasks execute हों", "Synchronized programming का opposite (unrelated)", "Multiple computers पर programming"],
+    correct: 1,
+    explanations: [
+      "Async slow नहीं — actually more efficient।",
+      "✅ सही! Asynchronous Programming में long-running tasks (I/O, network) को background में execute करते हैं — main thread block नहीं होता। async/await, Promises JavaScript में।",
+      "यह definition incorrect है।",
+      "Multiple computers distributed computing है।"
+    ]
+  },
+  {
+    q: "Functional Programming में 'Pure Function' क्या है?",
+    options: ["100% correct function", "Same inputs पर always same output देने वाला function जिसका कोई side effect नहीं", "HTML का function", "Database function"],
+    correct: 1,
+    explanations: [
+      "Pure इस context में 'correct' नहीं।",
+      "✅ सही! Pure Function: (1) Same inputs → always same output, (2) No side effects (no global state change, no I/O)। Functional Programming का core concept है — testing easy होती है।",
+      "HTML function programming context में नहीं।",
+      "Database function अलग है।"
+    ]
+  },
+
+  // ===== SECTION 5: EMERGING TECH & MISC (81-100) =====
+  {
+    q: "Blockchain Technology क्या है?",
+    options: ["एक programming language", "Decentralized, distributed ledger जहाँ transactions blocks में record होती हैं और cryptographically linked होते हैं", "एक database type", "एक operating system"],
+    correct: 1,
+    explanations: [
+      "Blockchain language नहीं।",
+      "✅ सही! Blockchain cryptographically linked blocks की chain है — decentralized, immutable, transparent। Bitcoin, Ethereum इस पर based हैं।",
+      "Blockchain traditional database नहीं — distributed ledger है।",
+      "Blockchain OS नहीं।"
+    ]
+  },
+  {
+    q: "Neural Network किसे कहते हैं?",
+    options: ["Computer network का type", "Human brain से inspired layered computational structure जो patterns सीखती है", "Network cables का pattern", "Router का type"],
+    correct: 1,
+    explanations: [
+      "Neural Network computer network नहीं।",
+      "✅ सही! Artificial Neural Network human brain के neurons से inspired है — Input Layer, Hidden Layers, Output Layer। Deep Learning में multiple hidden layers होती हैं।",
+      "Network cables physical infrastructure हैं।",
+      "Neural Network router नहीं।"
+    ]
+  },
+  {
+    q: "Natural Language Processing (NLP) क्या है?",
+    options: ["Natural environment programming", "AI का branch जो computers को human language understand और process करने देता है", "Programming language natural बनाना", "Nature simulation"],
+    correct: 1,
+    explanations: [
+      "NLP natural environment से नहीं।",
+      "✅ सही! NLP AI का field है — computers human language (text/speech) को understand, interpret और generate कर सकते हैं। ChatGPT, Google Translate, Siri NLP use करते हैं।",
+      "NLP existing languages को natural नहीं बनाता।",
+      "NLP nature simulation नहीं।"
+    ]
+  },
+  {
+    q: "IoT (Internet of Things) क्या है?",
+    options: ["Internet का एक type", "Physical devices (sensors, appliances) का internet से connected होकर data exchange करना", "Internet of Technology", "Network of computers only"],
+    correct: 1,
+    explanations: [
+      "IoT internet का type नहीं।",
+      "✅ सही! IoT में everyday physical devices — Smart TVs, Thermostats, Fitness bands, Industrial sensors — internet से connected होकर data collect और exchange करते हैं।",
+      "IoT का पूरा नाम Internet of Things है।",
+      "IoT केवल computers नहीं — सभी smart devices।"
+    ]
+  },
+  {
+    q: "Quantum Computing, Classical Computing से कैसे अलग है?",
+    options: ["केवल faster computer", "Qubits use करता है जो superposition में 0 और 1 दोनों हो सकते हैं — certain problems exponentially faster", "Quantum physics बिना", "Same as classical but smaller"],
+    correct: 1,
+    explanations: [
+      "Quantum Computing सभी problems में fast नहीं।",
+      "✅ सही! Classical computers bits (0 या 1) use करते हैं। Quantum computers Qubits use करते हैं जो superposition में 0 और 1 simultaneously हो सकते हैं — cryptography, drug discovery में revolutionary।",
+      "Quantum physics fundamental है।",
+      "Quantum Computing fundamentally different paradigm है।"
+    ]
+  },
+  {
+    q: "Augmented Reality (AR) और Virtual Reality (VR) में क्या अंतर है?",
+    options: ["दोनों समान हैं", "AR = real world पर digital elements overlay; VR = completely virtual/immersive environment", "VR = real world overlay", "AR = complete virtual world"],
+    correct: 1,
+    explanations: [
+      "AR और VR अलग हैं।",
+      "✅ सही! AR (Pokemon Go, Snapchat filters) real world में digital content add करता है। VR (Oculus, HTC Vive) user को completely virtual environment में immerse करता है।",
+      "यह उल्टा है।",
+      "AR real world पर overlay करता है।"
+    ]
+  },
+  {
+    q: "Edge Computing क्या है?",
+    options: ["Cloud का दूसरा नाम", "Data को source/device के near process करना — Cloud पर भेजने की बजाय locally", "Edge browser", "Network edge"],
+    correct: 1,
+    explanations: [
+      "Edge Computing Cloud का alternative/complement है।",
+      "✅ सही! Edge Computing में data processing devices के पास (edge of network) होती है — low latency, bandwidth saving, real-time processing। IoT devices में important।",
+      "Edge browser Microsoft का browser है।",
+      "Network edge concept broader है।"
+    ]
+  },
+  {
+    q: "Serverless Computing क्या है?",
+    options: ["Servers का use न करना", "Cloud provider servers manage करता है, developer केवल code/functions write करता है — infrastructure tension नहीं", "Offline computing", "Server को shutdown करना"],
+    correct: 1,
+    explanations: [
+      "Serverless में servers होते हैं — बस developer manage नहीं करता।",
+      "✅ सही! Serverless (AWS Lambda, Azure Functions) में developer functions write करता है — Cloud provider automatically scale, run और bill करता है। 'Pay per execution' model।",
+      "Serverless offline नहीं।",
+      "Server shutdown अलग है।"
+    ]
+  },
+  {
+    q: "Open Source Software contribute करने का मुख्य platform कौन सा है?",
+    options: ["LinkedIn", "GitHub", "Twitter", "Instagram"],
+    correct: 1,
+    explanations: [
+      "LinkedIn professional networking है।",
+      "✅ सही! GitHub (Microsoft owned) दुनिया का सबसे बड़ा Open Source collaboration platform है — Git-based version control + code hosting + Pull Requests + Issues।",
+      "Twitter social media है।",
+      "Instagram photo sharing है।"
+    ]
+  },
+  {
+    q: "Software का 'Documentation' क्यों important है?",
+    options: ["केवल legal purpose के लिए", "Future developers और users को software understand, use और maintain करने में help करती है", "केवल marketing के लिए", "केवल testing के लिए"],
+    correct: 1,
+    explanations: [
+      "Documentation सिर्फ legal नहीं।",
+      "✅ सही! Good documentation — API docs, code comments, README, user manuals — software को maintainable, understandable और usable बनाती है।",
+      "Documentation marketing नहीं primarily।",
+      "Documentation testing से broader है।"
+    ]
+  },
+  {
+    q: "Computer Science में 'Algorithm' की सटीक परिभाषा क्या है?",
+    options: ["एक programming language", "Well-defined, step-by-step instructions जो किसी problem को solve करें — finite steps में", "Computer hardware", "Operating System"],
+    correct: 1,
+    explanations: [
+      "Algorithm language नहीं।",
+      "✅ सही! Algorithm finite, well-defined steps का sequence है जो specific problem solve करता है — Input लेता है, Process करता है, Output देता है — Sorting, Searching सब algorithms हैं।",
+      "Algorithm hardware नहीं।",
+      "Algorithm OS नहीं।"
+    ]
+  },
+  {
+    q: "Low-Code / No-Code Platform क्या है?",
+    options: ["Buggy software platform", "Platform जो minimal coding से applications बनाने देता है — drag-and-drop interface", "Old software platform", "Hardware platform"],
+    correct: 1,
+    explanations: [
+      "Low-Code buggy नहीं होता।",
+      "✅ सही! Low-Code/No-Code platforms (Microsoft Power Apps, Bubble, Webflow) non-developers को visual drag-and-drop interface से applications build करने देते हैं।",
+      "ये modern platforms हैं।",
+      "Low-Code software platform है।"
+    ]
+  },
+  {
+    q: "Progressive Web App (PWA) क्या है?",
+    options: ["एक programming language", "Web technology से बना app जो native app जैसा behave करे — offline work, push notifications, installable", "Server-only application", "Database application"],
+    correct: 1,
+    explanations: [
+      "PWA language नहीं।",
+      "✅ सही! PWA modern web app है — service workers से offline work, push notifications, home screen install सब possible। Twitter Lite, Starbucks PWA examples हैं।",
+      "PWA web-based है — server-only नहीं।",
+      "PWA database नहीं।"
+    ]
+  },
+  {
+    q: "WebSocket, HTTP से कैसे अलग है?",
+    options: ["WebSocket slower है", "WebSocket persistent, bi-directional connection — real-time communication; HTTP = request-response (one-way)", "HTTP bi-directional है", "दोनों same protocol हैं"],
+    correct: 1,
+    explanations: [
+      "WebSocket real-time apps में faster है।",
+      "✅ सही! HTTP: client request → server response (one-time)। WebSocket: एक बार connection establish होने पर server और client दोनों any time data भेज सकते हैं — chat apps, live updates।",
+      "HTTP unidirectional है।",
+      "दोनों अलग protocols हैं।"
+    ]
+  },
+  {
+    q: "Artificial General Intelligence (AGI) क्या है?",
+    options: ["Current AI का नाम", "Hypothetical AI जो human जैसी general intelligence रखे — any intellectual task perform कर सके", "एक specific AI tool", "एक programming framework"],
+    correct: 1,
+    explanations: [
+      "Current AI = Narrow AI है।",
+      "✅ सही! AGI hypothetical/future AI है जो human जैसी general intelligence रखे — किसी भी intellectual domain में human-level performance। Currently AI Narrow (task-specific) है।",
+      "Current AI tools task-specific हैं।",
+      "AGI programming framework नहीं।"
+    ]
+  },
+  {
+    q: "Software Piracy क्या है?",
+    options: ["Software install करना", "Software को बिना proper license के illegally copy, distribute या use करना", "Software update करना", "Software test करना"],
+    correct: 1,
+    explanations: [
+      "Legal installation piracy नहीं।",
+      "✅ सही! Software Piracy copyright infringement है — बिना license के software copy करना, crack करना, या unauthorized sharing। यह illegal और unethical है।",
+      "Update करना legitimate है।",
+      "Testing development का हिस्सा है।"
+    ]
+  },
+  {
+    q: "Continuous Monitoring (Software में) क्या है?",
+    options: ["Software देखते रहना physically", "Production systems को real-time monitor करना — performance, errors, security issues detect करना", "Employees monitor करना", "Code monitor करना manually"],
+    correct: 1,
+    explanations: [
+      "Physically देखना manual है।",
+      "✅ सही! Continuous Monitoring production applications को automated tools से real-time track करता है — Prometheus, Grafana, Datadog जैसे tools performance metrics, errors और alerts manage करते हैं।",
+      "Employee monitoring अलग है।",
+      "Automated monitoring manual नहीं है।"
+    ]
+  },
+  {
+    q: "Technical Interview में 'Big O Notation' क्यों important है?",
+    options: ["केवल exam के लिए", "Algorithm की efficiency (time और space) को mathematical way में express करना — scalability समझने के लिए", "Big O = Big Company की notation", "Only for Java"],
+    correct: 1,
+    explanations: [
+      "Big O Notation practical importance है।",
+      "✅ सही! Big O Notation algorithm की time (execution) और space (memory) complexity express करती है — O(1), O(n), O(log n), O(n²) — scalability और performance comparison के लिए।",
+      "Big O किसी company का नाम नहीं।",
+      "Big O सभी languages में applicable है।"
+    ]
+  },
+  {
+    q: "Immutable Object क्या होता है Programming में?",
+    options: ["Object जो delete नहीं होता", "Object जिसकी state create होने के बाद change नहीं की जा सकती", "Very large object", "Hidden object"],
+    correct: 1,
+    explanations: [
+      "Immutable delete से नहीं।",
+      "✅ सही! Immutable Object एक बार create होने के बाद change नहीं होता — Python में strings immutable हैं। Thread-safe होते हैं। Java में String immutable है।",
+      "Size से define नहीं।",
+      "Visibility से define नहीं।"
+    ]
+  },
+  {
+    q: "Open Source vs Closed Source में developer community की भूमिका क्या है?",
+    options: ["दोनों में समान", "Open Source में worldwide community contribute करती है — faster bug fixes, innovation; Closed Source में केवल company's team", "Closed Source में community बड़ी होती है", "Open Source में community नहीं होती"],
+    correct: 1,
+    explanations: [
+      "Community contribution अलग है।",
+      "✅ सही! Open Source (Linux, Python, React) में worldwide developers contribute करते हैं — diverse perspectives, rapid bug fixes, community-driven innovation। Closed Source केवल company internal team।",
+      "Open Source community बड़ी होती है।",
+      "Open Source community ही उसकी strength है।"
+    ]
+  }
+];
+
+// ===== QUIZ ENGINE =====
+let questions=[], currentIndex=0, score=0, wrongAnswers=0, answered=false;
+
+function shuffle(arr){
+  let a=[...arr];
+  for(let i=a.length-1;i>0;i--){
+    const j=Math.floor(Math.random()*(i+1));
+    [a[i],a[j]]=[a[j],a[i]];
+  }
+  return a;
+}
+
+function prepareQuestions(){
+  questions=shuffle(allQuestions).map(q=>{
+    const idx=shuffle([0,1,2,3]);
+    return{
+      q:q.q,
+      options:idx.map(i=>q.options[i]),
+      correct:idx.indexOf(q.correct),
+      explanations:idx.map(i=>q.explanations[i])
+    };
+  });
+}
+
+function loadQuestion(){
+  answered=false;
+  const q=questions[currentIndex];
+  document.getElementById('qNum').textContent=`प्रश्न ${currentIndex+1}`;
+  document.getElementById('qText').textContent=q.q;
+  document.getElementById('qCounter').textContent=`${currentIndex+1} / 100`;
+  document.getElementById('progressBar').style.width=`${(currentIndex/100)*100}%`;
+
+  const grid=document.getElementById('optionsGrid');
+  grid.innerHTML='';
+  ['A','B','C','D'].forEach((lbl,i)=>{
+    const btn=document.createElement('button');
+    btn.className='option-btn';
+    btn.innerHTML=`<span class="option-badge">${lbl}</span><span>${q.options[i]}</span>`;
+    btn.onclick=()=>selectAnswer(i);
+    grid.appendChild(btn);
+  });
+  document.getElementById('explanationBox').classList.remove('show');
+  document.getElementById('allExplanations').classList.remove('show');
+  document.getElementById('nextBtn').classList.remove('show');
+}
+
+function selectAnswer(sel){
+  if(answered)return;
+  answered=true;
+  const q=questions[currentIndex];
+  const btns=document.querySelectorAll('.option-btn');
+  btns.forEach(b=>b.disabled=true);
+
+  if(sel===q.correct){
+    btns[sel].classList.add('correct');
+    score++;
+    document.getElementById('correctCount').textContent=score;
+  }else{
+    btns[sel].classList.add('wrong');
+    btns[q.correct].classList.add('correct');
+    wrongAnswers++;
+    document.getElementById('wrongCount').textContent=wrongAnswers;
+  }
+  document.getElementById('scorePercent').textContent=Math.round((score/(currentIndex+1))*100)+'%';
+
+  document.getElementById('correctExp').textContent=q.explanations[q.correct];
+  const ae=document.getElementById('allExplanations');
+  ae.innerHTML='<div style="font-size:.76rem;color:#f9a338;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">सभी विकल्पों की व्याख्या:</div>';
+  ['A','B','C','D'].forEach((lbl,i)=>{
+    const d=document.createElement('div');
+    d.className='exp-option-row';
+    d.innerHTML=`<strong>${lbl})</strong> ${q.options[i]}: ${q.explanations[i]}`;
+    ae.appendChild(d);
+  });
+  document.getElementById('explanationBox').classList.add('show');
+  document.getElementById('allExplanations').classList.add('show');
+  const nb=document.getElementById('nextBtn');
+  nb.textContent=currentIndex===99?'परिणाम देखें 🏆':'अगला सवाल →';
+  nb.classList.add('show');
+}
+
+function nextQuestion(){
+  currentIndex++;
+  if(currentIndex>=100){showResult();return;}
+  loadQuestion();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function showResult(){
+  document.getElementById('questionCard').style.display='none';
+  document.getElementById('statsBar').style.display='none';
+  document.getElementById('resultScreen').classList.add('show');
+  const pct=Math.round((score/100)*100);
+  document.getElementById('finalScore').textContent=`${score} / 100`;
+  document.getElementById('finalPercent').textContent=`सफलता प्रतिशत: ${pct}%`;
+  document.getElementById('rCorrect').textContent=score;
+  document.getElementById('rWrong').textContent=wrongAnswers;
+  let emoji,grade,color;
+  if(pct>=90){emoji='🏆';grade='Outstanding! अद्भुत';color='#ffd200';}
+  else if(pct>=75){emoji='🌟';grade='Excellent! उत्कृष्ट';color='#43e97b';}
+  else if(pct>=60){emoji='👏';grade='Good! बहुत अच्छे';color='#38f9d7';}
+  else if(pct>=40){emoji='📚';grade='Average — और पढ़ें';color='#f9a338';}
+  else{emoji='💪';grade='Keep Going! हिम्मत रखो';color='#ff6b6b';}
+  document.getElementById('resultEmoji').textContent=emoji;
+  const b=document.getElementById('gradeBadge');
+  b.textContent=grade;
+  b.style.cssText=`background:${color}22;color:${color};border:1px solid ${color}55;`;
+}
+
+function restartQuiz(){
+  score=0;wrongAnswers=0;currentIndex=0;
+  document.getElementById('correctCount').textContent='0';
+  document.getElementById('wrongCount').textContent='0';
+  document.getElementById('scorePercent').textContent='0%';
+  document.getElementById('resultScreen').classList.remove('show');
+  document.getElementById('questionCard').style.display='block';
+  document.getElementById('statsBar').style.display='flex';
+  prepareQuestions();
+  loadQuestion();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+prepareQuestions();
+loadQuestion();
+</script>
+</body>
+</html>

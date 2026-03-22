@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Computer Software Quiz — Set 5</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+:root{--bg:#0e0e1a;--card:#1a1a2e;--card2:#16213e;--border:#ffffff14;--accent:#7c3aed;--accent2:#06b6d4;--accent3:#10b981;--warn:#ef4444;--gold:#f59e0b;--text:#f1f5f9;--muted:#94a3b8;--r:16px;}
+html{scroll-behavior:smooth;}
+body{font-family:-apple-system,'Noto Sans Devanagari','Segoe UI',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;padding:0;overflow-x:hidden;}
+.app{max-width:480px;margin:0 auto;min-height:100vh;background:var(--bg);padding-bottom:30px;}
+/* STATUS BAR */
+.sbar{background:linear-gradient(135deg,#7c3aed,#06b6d4);padding:14px 20px 18px;position:sticky;top:0;z-index:100;}
+.sbar-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;}
+.sbar-title{font-size:.75rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;opacity:.9;}
+.score-pill{background:rgba(255,255,255,.2);padding:4px 12px;border-radius:50px;font-size:.78rem;font-weight:700;backdrop-filter:blur(10px);}
+.prog-row{display:flex;align-items:center;gap:10px;}
+.prog-track{flex:1;height:6px;background:rgba(255,255,255,.25);border-radius:50px;overflow:hidden;}
+.prog-fill{height:100%;background:#fff;border-radius:50px;transition:width .4s cubic-bezier(.4,0,.2,1);width:0%;}
+.q-lbl{font-size:.72rem;font-weight:700;opacity:.9;white-space:nowrap;}
+/* STATS */
+.stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;padding:14px 16px 0;}
+.sc{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:10px 8px;text-align:center;}
+.sv{font-size:1.4rem;font-weight:800;}.sv.g{color:var(--accent3);}.sv.r{color:var(--warn);}.sv.b{color:var(--accent2);}
+.sl{font-size:.62rem;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;margin-top:2px;}
+/* QUESTION */
+.qwrap{padding:14px 16px 0;}
+.qcard{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:20px;animation:su .3s cubic-bezier(.4,0,.2,1);}
+@keyframes su{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+.qbadge{display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,#7c3aed22,#06b6d422);border:1px solid #7c3aed44;color:#a78bfa;font-size:.7rem;font-weight:700;padding:4px 10px;border-radius:50px;text-transform:uppercase;letter-spacing:1px;margin-bottom:14px;}
+.qtext{font-size:1rem;font-weight:600;line-height:1.65;color:#e2e8f0;}
+/* OPTIONS */
+.owrap{padding:10px 16px 0;}
+.obtn{width:100%;display:flex;align-items:center;gap:12px;background:var(--card);border:2px solid var(--border);border-radius:14px;padding:14px 16px;cursor:pointer;transition:all .2s ease;text-align:left;color:var(--text);font-size:.93rem;font-family:inherit;line-height:1.5;margin-bottom:10px;-webkit-appearance:none;}
+.obtn:hover:not(:disabled){border-color:#7c3aed;transform:translateX(3px);background:#1e1e35;}
+.obtn:active:not(:disabled){transform:scale(.98);}
+.oltr{min-width:34px;height:34px;border-radius:10px;background:rgba(255,255,255,.07);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.82rem;color:#a78bfa;flex-shrink:0;transition:all .2s;border:1.5px solid rgba(124,58,237,.3);}
+.otxt{font-size:.9rem;line-height:1.5;flex:1;}
+.oico{margin-left:auto;font-size:1.1rem;flex-shrink:0;}
+.obtn.correct{background:#052e16!important;border-color:#16a34a!important;}
+.obtn.correct .oltr{background:#16a34a!important;color:#fff!important;border-color:#16a34a!important;}
+.obtn.correct .otxt{color:#86efac!important;}
+.obtn.wrong{background:#2d0d0d!important;border-color:#dc2626!important;}
+.obtn.wrong .oltr{background:#dc2626!important;color:#fff!important;border-color:#dc2626!important;}
+.obtn.wrong .otxt{color:#fca5a5!important;}
+.obtn:disabled{cursor:default;transform:none!important;}
+/* EXPLANATION */
+.epanel{margin:10px 16px 0;background:var(--card2);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;animation:su .35s ease;display:none;}
+.epanel.show{display:block;}
+.ehdr{background:linear-gradient(135deg,#7c3aed22,#06b6d422);border-bottom:1px solid var(--border);padding:12px 16px;display:flex;align-items:center;gap:8px;}
+.ehdrtxt{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#a78bfa;}
+.ecbox{padding:14px 16px;border-bottom:1px solid var(--border);}
+.eclbl{font-size:.68rem;color:var(--accent3);font-weight:700;text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px;}
+.ectxt{font-size:.88rem;color:#cbd5e1;line-height:1.6;}
+.eatitle{padding:10px 16px 6px;font-size:.68rem;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.8px;}
+.erow{display:flex;gap:10px;padding:9px 16px;border-top:1px solid var(--border);font-size:.83rem;color:#94a3b8;line-height:1.5;}
+.erltr{min-width:22px;height:22px;border-radius:6px;background:rgba(255,255,255,.07);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.72rem;color:#a78bfa;flex-shrink:0;}
+.ertxt{flex:1;}.ertxt strong{color:#c4b5fd;}
+/* NEXT BUTTON */
+.nwrap{padding:12px 16px 0;display:none;}.nwrap.show{display:block;}
+.nbtn{width:100%;padding:16px;background:linear-gradient(135deg,#7c3aed,#06b6d4);border:none;border-radius:14px;font-size:1rem;font-weight:700;color:#fff;cursor:pointer;font-family:inherit;letter-spacing:.3px;transition:all .25s ease;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 4px 20px rgba(124,58,237,.35);}
+.nbtn:active{transform:scale(.97);}
+/* RESULT */
+.rscreen{display:none;padding:24px 16px;animation:su .4s ease;}.rscreen.show{display:block;}
+.rhero{background:linear-gradient(135deg,var(--card),var(--card2));border:1px solid var(--border);border-radius:20px;padding:28px 20px;text-align:center;margin-bottom:14px;}
+.remoji{font-size:4.5rem;margin-bottom:10px;display:block;}
+.rgrade{display:inline-block;padding:6px 20px;border-radius:50px;font-weight:800;font-size:.85rem;margin-bottom:14px;letter-spacing:.5px;}
+.rtitle{font-size:1.5rem;font-weight:800;margin-bottom:6px;}
+.rbig{font-size:3.8rem;font-weight:900;background:linear-gradient(135deg,#7c3aed,#06b6d4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1;margin:10px 0 4px;}
+.rpct{font-size:1rem;color:var(--muted);}
+.rgrid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin:16px 0 0;}
+.rsc{background:rgba(255,255,255,.05);border-radius:12px;padding:14px 10px;text-align:center;}
+.rnum{font-size:1.9rem;font-weight:800;}.rnum.g{color:var(--accent3);}.rnum.r{color:var(--warn);}.rnum.b{color:var(--accent2);}
+.rlbl{font-size:.62rem;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;margin-top:3px;}
+.rmsg{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:16px;margin-bottom:14px;font-size:.88rem;color:#cbd5e1;line-height:1.65;text-align:center;}
+.rbtn{width:100%;padding:17px;background:linear-gradient(135deg,#7c3aed,#06b6d4);border:none;border-radius:14px;font-size:1.05rem;font-weight:700;color:#fff;cursor:pointer;font-family:inherit;box-shadow:0 4px 24px rgba(124,58,237,.4);transition:all .25s ease;}
+.rbtn:active{transform:scale(.97);}
+/* SPLASH */
+.splash{padding:60px 28px 40px;text-align:center;animation:su .4s ease;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;}
+.slogo{width:80px;height:80px;border-radius:22px;background:linear-gradient(135deg,#7c3aed,#06b6d4);display:flex;align-items:center;justify-content:center;font-size:2.2rem;margin:0 auto 20px;box-shadow:0 8px 32px rgba(124,58,237,.4);}
+.splash h1{font-size:1.6rem;font-weight:800;margin-bottom:8px;}
+.splash h1 span{background:linear-gradient(135deg,#a78bfa,#06b6d4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.splash p{color:var(--muted);font-size:.95rem;line-height:1.6;margin-bottom:36px;}
+
+.stbtn{width:100%;padding:18px;background:linear-gradient(135deg,#7c3aed,#06b6d4);border:none;border-radius:14px;font-size:1.1rem;font-weight:800;color:#fff;cursor:pointer;font-family:inherit;box-shadow:0 6px 28px rgba(124,58,237,.45);transition:all .25s ease;}
+.stbtn:active{transform:scale(.97);}
+@media(min-width:481px){.app{border-left:1px solid var(--border);border-right:1px solid var(--border);box-shadow:0 0 60px rgba(124,58,237,.1);}}
+</style>
+</head>
+<body>
+<div class="app">
+
+<!-- SPLASH -->
+<div class="splash" id="splashScreen">
+  <div class="slogo">💻</div>
+  <h1>Computer Software<br><span>Quiz — Set 5</span></h1>
+  <p>100 बिल्कुल नए MCQs • हिंदी में</p>
+  <button class="stbtn" onclick="startQuiz()">🚀 Quiz शुरू करें</button>
+</div>
+
+<!-- QUIZ -->
+<div id="quizScreen" style="display:none;">
+  <div class="sbar">
+    <div class="sbar-top"><span class="sbar-title">💻 CS Quiz — Set 5</span><span class="score-pill" id="scorePill">Score: 0</span></div>
+    <div class="prog-row"><div class="prog-track"><div class="prog-fill" id="progFill"></div></div><span class="q-lbl" id="qLbl">1/100</span></div>
+  </div>
+  <div class="stats">
+    <div class="sc"><div class="sv g" id="sC">0</div><div class="sl">✅ सही</div></div>
+    <div class="sc"><div class="sv r" id="sW">0</div><div class="sl">❌ गलत</div></div>
+    <div class="sc"><div class="sv b" id="sP">0%</div><div class="sl">🎯 Accuracy</div></div>
+  </div>
+  <div class="qwrap">
+    <div class="qcard">
+      <div class="qbadge">📌 <span id="qBadge">प्रश्न 1 / 100</span></div>
+      <div class="qtext" id="qText"></div>
+    </div>
+  </div>
+  <div class="owrap" id="owrap"></div>
+  <div class="epanel" id="epanel">
+    <div class="ehdr"><span>💡</span><span class="ehdrtxt">विस्तृत व्याख्या</span></div>
+    <div class="ecbox"><div class="eclbl">✅ सही उत्तर की व्याख्या</div><div class="ectxt" id="ectxt"></div></div>
+    <div class="eatitle">📚 सभी विकल्पों की व्याख्या</div>
+    <div id="erows"></div>
+  </div>
+  <div class="nwrap" id="nwrap"><button class="nbtn" id="nbtn" onclick="nextQ()">अगला सवाल →</button></div>
+</div>
+
+<!-- RESULT -->
+<div class="rscreen" id="rscreen">
+  <div class="rhero">
+    <span class="remoji" id="rEmoji">🏆</span>
+    <div class="rgrade" id="rGrade"></div>
+    <div class="rtitle">Quiz पूरा हुआ!</div>
+    <div class="rbig" id="rBig"></div>
+    <div class="rpct" id="rPct"></div>
+    <div class="rgrid">
+      <div class="rsc"><div class="rnum g" id="rC">0</div><div class="rlbl">✅ सही</div></div>
+      <div class="rsc"><div class="rnum r" id="rW">0</div><div class="rlbl">❌ गलत</div></div>
+      <div class="rsc"><div class="rnum b">100</div><div class="rlbl">📋 कुल</div></div>
+    </div>
+  </div>
+  <div class="rmsg" id="rMsg"></div>
+  <button class="rbtn" onclick="restartQuiz()">🔄 फिर से शुरू करें</button>
+</div>
+
+</div>
+<script>
+const RAW=[
+{q:"Linux में 'chmod 755' command क्या करता है?",o:["File delete करता है","Owner को rwx, Group/Others को r-x permission देता है — 7=rwx, 5=r-x","File को hidden करता है","File size बदलता है"],c:1,e:["chmod delete नहीं करता।","✅ सही! chmod 755: 7=Owner(rwx), 5=Group(r-x), 5=Others(r-x)। Numeric: r=4, w=2, x=1।","Hidden files dot prefix से होती हैं।","File size resize से बदलती है।"]},
+{q:"Bash Script में '#!/bin/bash' (Shebang) क्यों लिखते हैं?",o:["Comment है","Script किस interpreter से run हो यह specify करता है","Copyright notice है","Script का नाम है"],c:1,e:["Shebang comment नहीं।","✅ सही! Shebang (#!) OS को बताती है कि script को किस interpreter से execute करना है।","Copyright अलग है।","Script नाम filename होती है।"]},
+{q:"Linux में 'grep' command का क्या उपयोग है?",o:["Files delete करना","Files या text में pattern/string search करना","Disk space check करना","Network test करना"],c:1,e:["rm files delete करता है।","✅ सही! grep files में pattern search करता है — grep 'error' log.txt।","df/du disk space check करते हैं।","ping network test करता है।"]},
+{q:"Cron Job किसलिए use होता है?",o:["Manual task run करने के लिए","Tasks को scheduled time पर automatically run करने के लिए","Files compress करने के लिए","Network configure करने के लिए"],c:1,e:["Cron automated है।","✅ सही! Cron daemon tasks को scheduled intervals पर automatically execute करता है।","Compression tar/gzip करता है।","Network ifconfig/ip करता है।"]},
+{q:"Linux में 'pipe' (|) का उपयोग क्या है?",o:["Files को join करना","एक command का output दूसरे command का input बनाना","Pipeline delete करना","Files rename करना"],c:1,e:["File join cat से होता है।","✅ सही! Pipe एक command का stdout दूसरे के stdin से connect करता है — ls | grep '.txt'।","Pipeline delete नहीं होता।","mv files rename करता है।"]},
+{q:"'sudo' command Linux में क्या करता है?",o:["Files delete करता है","Regular user को root privileges से specific commands execute करने देता है","Network restart करता है","System shutdown करता है"],c:1,e:["sudo delete नहीं करता।","✅ सही! sudo temporarily root privileges से specific commands run करने देता है।","Network restart अलग है।","shutdown/poweroff से system बंद होता है।"]},
+{q:"Environment Variable क्या होता है?",o:["Variable जो environment में visible हो","Process के लिए available named value — PATH, HOME, USER जैसे OS-level values","Database variable","HTML variable"],c:1,e:["Technically correct पर incomplete।","✅ सही! Environment Variables OS-level named values हैं — PATH, HOME, USER — processes को configuration देते हैं।","Database variables SQL में हैं।","HTML variables CSS properties हैं।"]},
+{q:"Linux में 'kill -9 PID' क्या करता है?",o:["Process को gracefully stop करता है","SIGKILL signal से process को forcefully terminate करता है","Process pause करता है","Process restart करता है"],c:1,e:["Graceful stop kill -15 (SIGTERM) है।","✅ सही! kill -9 SIGKILL भेजता है — process ignore नहीं कर सकती, immediately terminate।","SIGSTOP pause करता है।","Service restart अलग है।"]},
+{q:"Virtual Environment (Python) क्यों use करते हैं?",o:["Python fast बनाने के लिए","Project-specific isolated environment — different projects के अलग dependencies, no conflicts","Internet connection के लिए","GUI बनाने के लिए"],c:1,e:["Virtual env speed से नहीं।","✅ सही! Python venv/conda isolated environment बनाता है — एक project में Django 3.0, दूसरे में 4.0 बिना conflict।","Internet से नहीं।","GUI tkinter/PyQt से बनता है।"]},
+{q:"SSH (Secure Shell) किसलिए use होता है?",o:["Files compress करने के लिए","Remote computer पर securely encrypted connection से login और commands run करने के लिए","Database connect करने के लिए","Website build करने के लिए"],c:1,e:["SSH compression primarily नहीं।","✅ सही! SSH encrypted protocol है remote systems securely access करने के लिए।","Database connections अलग protocols हैं।","Web development अलग है।"]},
+{q:"Public Key Cryptography में क्या होता है?",o:["एक ही key से encrypt और decrypt","Public key से encrypt, Private key से decrypt — asymmetric key pair","दोनों keys same होती हैं","Password से encrypt"],c:1,e:["Symmetric cryptography में एक key।","✅ सही! Asymmetric Cryptography: Public Key (share करते हैं) से encrypt, Private Key (secret) से decrypt। RSA, ECC examples।","Keys अलग होती हैं।","Password-based encryption symmetric है।"]},
+{q:"OWASP Top 10 क्या है?",o:["Top 10 programming languages","Web Application Security के 10 most critical risks की list","Top 10 software companies","Top 10 operating systems"],c:1,e:["OWASP languages से नहीं।","✅ सही! OWASP Top 10 web app की most critical security vulnerabilities की list है — Injection, Broken Auth, XSS आदि।","Company list नहीं।","OS list नहीं।"]},
+{q:"Cross-Site Scripting (XSS) क्या है?",o:["CSS styling attack","Malicious scripts को web pages में inject करना जो other users के browsers में execute हों","Cross-site search","XML attack"],c:1,e:["XSS CSS से नहीं।","✅ सही! XSS में attacker malicious JavaScript inject करता है — cookie theft, session hijacking।","XSS search नहीं।","XSS XML से नहीं।"]},
+{q:"Penetration Testing क्या है?",o:["Software performance test","Authorized simulated attack — security vulnerabilities ढूंढने के लिए ethical hacking","Network speed test","Database performance test"],c:1,e:["Performance testing अलग।","✅ सही! Pen Testing में authorized professionals system को real attacker की तरह attack करते हैं।","Network speed test अलग।","Database testing अलग।"]},
+{q:"Salting (Password में) क्यों किया जाता है?",o:["Passwords को tastier बनाना","Hash से पहले random string add करना — rainbow table attacks prevent करना","Password encrypt करना","Password compress करना"],c:1,e:["Literal food नहीं।","✅ सही! Salt random string है — hash(password+salt) — same passwords के अलग hashes, rainbow tables ineffective।","Salting ≠ encrypting।","Compression अलग है।"]},
+{q:"Honeypot (Cybersecurity में) क्या है?",o:["Network firewall","Decoy system जो attackers को attract करे — attack patterns monitor करने के लिए","Password manager","Antivirus tool"],c:1,e:["Honeypot firewall नहीं।","✅ सही! Honeypot fake vulnerable system है — attackers इसे target करते हैं, security team attack techniques observe करती है।","Password manager अलग।","Antivirus अलग।"]},
+{q:"Brute Force Attack से बचने का best practice क्या है?",o:["Simple passwords","Account lockout, CAPTCHA, Rate limiting, MFA — combination","Longer passwords only","Firewalls only"],c:1,e:["Simple passwords vulnerable।","✅ सही! Multiple countermeasures: Account lockout, CAPTCHA, Rate limiting, MFA — combination सबसे effective।","Longer password एक factor।","Firewalls alone काफी नहीं।"]},
+{q:"Social Engineering Attack में क्या होता है?",o:["Social media hacking","Human psychology exploit करके sensitive information reveal कराना — technical नहीं","Social website attack","Network attack"],c:1,e:["Social engineering specific social media नहीं।","✅ सही! Phishing, Pretexting, Baiting — human manipulation से confidential info लेना।","Social website अलग।","यह human-focused है।"]},
+{q:"CVE क्या है?",o:["Computer Virus Encyclopedia","Common Vulnerabilities and Exposures — publicly disclosed vulnerabilities की standardized list","Certificate Verification Engine","Cyber Vulnerability Encryption"],c:1,e:["CVE virus encyclopedia नहीं।","✅ सही! CVE = Common Vulnerabilities and Exposures — publicly known security vulnerabilities के standardized IDs। MITRE maintain करता है।","Certificate verification अलग।","Vulnerability database है।"]},
+{q:"Steganography क्या है?",o:["Strong encryption","Secret data को innocuous files (images, audio) में छुपाना — existence of message hidden","Stenography","Password hashing"],c:1,e:["Steganography encryption नहीं — hiding है।","✅ सही! Steganography data को cover media में छुपाता है — image pixels में secret message।","Stenography shorthand writing है।","Password hashing अलग।"]},
+{q:"Binary Search Tree में in-order traversal कौन सा sequence produce करता है?",o:["Random sequence","Sorted ascending sequence","Reverse sorted sequence","Tree level-by-level"],c:1,e:["BST in-order random नहीं।","✅ सही! BST In-order traversal (Left→Root→Right) हमेशा sorted ascending sequence produce करता है।","Reverse = reverse in-order।","Level-by-level = BFS।"]},
+{q:"Merge Sort का Quick Sort पर क्या advantage है?",o:["कम memory use करता है","Stable sort है और worst case O(n log n) guaranteed है","Always faster है","In-place है"],c:1,e:["Merge Sort extra O(n) memory चाहता है।","✅ सही! Merge Sort stable है और worst case O(n log n) guaranteed — Quick Sort worst case O(n²) हो सकता है।","Quick Sort average faster हो सकता है।","Quick Sort in-place है।"]},
+{q:"Heap Data Structure का मुख्य use क्या है?",o:["Database indexing","Priority Queue — efficiently max/min element access करना O(log n)","Sorting only","Graph traversal"],c:1,e:["Heap primarily Priority Queue है।","✅ सही! Heap Priority Queue के लिए perfect — O(log n) insert/delete, O(1) peek। Heap Sort, Dijkstra में use।","Heap Sort करता है — main use PQ है।","Graph traversal DFS/BFS है।"]},
+{q:"Trie Data Structure किसलिए specially useful है?",o:["Number sorting","String prefix matching और autocomplete — dictionary में words","Image storage","Database queries"],c:1,e:["Trie number sorting नहीं।","✅ सही! Trie prefix search O(L) — Google autocomplete, spell checkers, IP routing।","Images binary में store होती हैं।","Database SQL है।"]},
+{q:"Floyd-Warshall Algorithm किसके लिए है?",o:["Single source shortest path","All pairs shortest path — सभी vertices के बीच shortest paths एक साथ","Minimum spanning tree","Graph coloring"],c:1,e:["Single source = Dijkstra।","✅ सही! Floyd-Warshall DP से all-pairs shortest paths, O(V³)।","MST = Prim's/Kruskal's।","Graph coloring अलग।"]},
+{q:"Divide and Conquer strategy क्या है?",o:["Multiple teams divide करना","Problem को subproblems में divide → solve → combine results","Database divide करना","Network divide करना"],c:1,e:["Human teams नहीं।","✅ सही! Divide and Conquer: Merge Sort, Quick Sort, Binary Search, FFT इसके examples।","Database division अलग।","Network segmentation अलग।"]},
+{q:"NP-Hard Problem का क्या मतलब है?",o:["Non-Programming problem","कोई known polynomial time algorithm नहीं — Traveling Salesman Problem","Not a Problem","New Problem"],c:1,e:["NP = Non-deterministic Polynomial।","✅ सही! NP-Hard: NP के सभी problems से at least as hard। TSP, Graph Coloring NP-Hard हैं।","Literal meaning नहीं।","गलत है।"]},
+{q:"Memoization vs Tabulation में क्या अंतर है?",o:["दोनों same हैं","Memoization=top-down (recursion+cache); Tabulation=bottom-up (iteration)","Tabulation top-down है","Memoization bottom-up है"],c:1,e:["दोनों DP approaches अलग हैं।","✅ सही! Memoization recursive+cache — only needed subproblems। Tabulation iterative — all subproblems, no recursion overhead।","उल्टा है।","उल्टा है।"]},
+{q:"KMP Algorithm किसके लिए है?",o:["Number sorting","String pattern matching O(n+m) — failure function से efficient search","Graph traversal","Matrix multiplication"],c:1,e:["KMP sorting नहीं।","✅ सही! KMP string search — failure function से already matched chars reuse। O(n+m)।","Graph traversal DFS/BFS है।","Matrix multiplication Strassen's है।"]},
+{q:"Segment Tree किसलिए use होता है?",o:["Network segments","Array पर range queries (sum, min, max) O(log n) efficiently","Database segments","Memory segments"],c:1,e:["Network segments अलग।","✅ सही! Segment Tree range queries — 'index 3 से 7 का sum?' O(log n)। Competitive programming में heavy use।","Database segments अलग।","Memory segments OS में।"]},
+{q:"Terraform क्या है?",o:["Programming language","Infrastructure as Code tool — cloud resources को code में define करके provision करना","Database tool","Testing framework"],c:1,e:["Terraform language नहीं।","✅ सही! Terraform IaC tool — AWS, Azure, GCP resources HCL files में define करके create/manage।","Database नहीं।","Testing framework नहीं।"]},
+{q:"Ansible किसलिए use होता है?",o:["Code compilation","IT automation — servers configure, software deploy, tasks automate (agentless)","Network routing","Database management"],c:1,e:["Ansible compiler नहीं।","✅ सही! Ansible agentless automation — YAML Playbooks से servers configure, SSH से काम।","Network routing नहीं।","Database management नहीं।"]},
+{q:"Circuit Breaker Pattern क्या है?",o:["Electrical circuit breaker","Failing service को repeatedly call करने से रोकना — threshold के बाद calls block","Code breaker","Database pattern"],c:1,e:["Software concept है electrical से inspired।","✅ सही! Circuit Breaker failing microservice से system protect करता है — Open/Closed/Half-Open states।","Code breaker अलग।","Database pattern अलग।"]},
+{q:"Observability के '3 Pillars' क्या हैं?",o:["Speed, Memory, Storage","Metrics, Logs, Traces — system internal state externally understand करने के लिए","CPU, RAM, Disk","Input, Process, Output"],c:1,e:["3 Pillars hardware नहीं।","✅ सही! Observability 3 Pillars: Metrics (quantitative), Logs (events), Traces (request journey across services)।","Hardware metrics incomplete picture।","IPO computing model है।"]},
+{q:"Chaos Engineering क्या है?",o:["Random code writing","Production system में controlled failures introduce करना — system resilience test","Chaos theory","Unplanned outages"],c:1,e:["Chaos Engineering planned है।","✅ सही! Netflix Chaos Monkey से famous — deliberately failures introduce, graceful handling verify।","Chaos theory mathematics है।","Unplanned outages bugs हैं।"]},
+{q:"Feature Flag (Feature Toggle) क्या है?",o:["Flag variable","Code में features को runtime पर on/off करना — code deploy किए बिना control","Git branch flag","Database flag"],c:1,e:["Feature Flag सिर्फ variable नहीं।","✅ सही! Feature Flags नई features disabled state में deploy करने देते हैं — gradual enable, A/B testing, emergency disable।","Git branches अलग।","Database flags अलग।"]},
+{q:"SLA का मतलब क्या है?",o:["Software License Agreement","Service Level Agreement — promised service quality का formal contract","System Log Analysis","Server Load Average"],c:1,e:["SLA software license नहीं।","✅ सही! SLA = Service Level Agreement — cloud providers uptime guarantees देते हैं जैसे 99.9%।","System log अलग।","Server load अलग।"]},
+{q:"Immutable Infrastructure क्या है?",o:["Infrastructure physically fixed","Servers update नहीं होते — new version के लिए नया server बनाते हैं, पुराना destroy","Unmovable servers","Frozen infrastructure"],c:1,e:["Immutable physically fixed नहीं।","✅ सही! Immutable Infrastructure: in-place updates नहीं — fresh build, replace। Consistent, reproducible deployments।","Physical location अलग।","Frozen concept अलग।"]},
+{q:"GitOps क्या है?",o:["Git commands collection","Git repository को single source of truth मानकर infrastructure manage करना","Git GUI","GitHub features"],c:1,e:["GitOps commands नहीं।","✅ सही! GitOps: Git में desired state declare — automated systems (Flux, ArgoCD) actual state match कराते हैं।","Git GUI tools अलग।","GitHub features अलग।"]},
+{q:"Prometheus क्या है?",o:["Greek mythology only","Open-source monitoring toolkit — time series metrics collect, store, query, alert","Programming language","General database"],c:1,e:["Prometheus DevOps tool भी है।","✅ सही! Prometheus CNCF monitoring — metrics scrape, PromQL query, Alertmanager alerts।","Language नहीं।","Time-series DB है।"]},
+{q:"FinOps क्या है?",o:["Financial software","Cloud financial management — cloud costs optimize करना, engineering-finance alignment","FinTech operations","Server finance"],c:1,e:["FinOps financial software नहीं।","✅ सही! FinOps cloud spending optimize — unused resources identify, reserved instances, cost allocation।","FinTech financial technology है।","FinOps broader concept।"]},
+{q:"React Native किसलिए use होता है?",o:["Web applications","JavaScript से iOS और Android दोनों के लिए native mobile apps","Desktop only","Server applications"],c:1,e:["React Native mobile के लिए।","✅ सही! React Native (Meta) एक codebase से iOS और Android native apps — JavaScript/React syntax, native components।","Desktop Electron से।","Server Node.js से।"]},
+{q:"Flutter किस language में apps बनाता है?",o:["JavaScript","Dart language — Google का cross-platform UI framework","Python","Java only"],c:1,e:["Flutter JavaScript नहीं।","✅ सही! Flutter = Dart language — iOS, Android, Web, Desktop एक codebase से। Skia rendering।","Python नहीं।","Java नहीं — Dart।"]},
+{q:"APK का पूरा नाम क्या है?",o:["Application Performance Kit","Android Package Kit — Android apps का installation file format","Android Platform Kit","Application Process Key"],c:1,e:["APK performance kit नहीं।","✅ सही! APK = Android Package Kit — ZIP-based format जिसमें compiled code, resources, manifest।","Platform kit अलग।","Process key अलग।"]},
+{q:"MVVM में ViewModel क्या करता है?",o:["View render करता है","UI के लिए data prepare करता है — Model और View के बीच bridge","Database manage करता है","Network calls करता है"],c:1,e:["ViewModel view render नहीं।","✅ सही! MVVM: ViewModel Model से data fetch, UI-ready format में transform, View observe करती है।","Database Model handle करता है।","Network Repository करता है।"]},
+{q:"Kotlin Coroutine क्या है?",o:["New OS thread","Lightweight concurrency — threads से efficient, suspend/resume कर सकते हैं","Database coroutine","Network coroutine"],c:1,e:["Coroutine OS thread नहीं।","✅ सही! Kotlin Coroutines lightweight — threads से कम resources, suspend करके दूसरे काम, फिर resume। Async code synchronous style में।","Database से नहीं।","Network से नहीं।"]},
+{q:"Test Driven Development (TDD) का process क्या है?",o:["Code लिखो फिर test","Red-Green-Refactor: failing test → minimum code → refactor","Test बाद में लिखना","Testing tools only"],c:1,e:["TDD code-first नहीं।","✅ सही! TDD: Red (failing test) → Green (minimum code pass) → Refactor (clean code, tests green)।","Test-after TDD नहीं।","TDD methodology है।"]},
+{q:"Semantic Versioning (SemVer) क्या है?",o:["Semantic analysis","MAJOR.MINOR.PATCH — breaking changes, features, bug fixes communicate करना","Random versioning","Date-based versioning"],c:1,e:["SemVer analysis नहीं।","✅ सही! SemVer: MAJOR(breaking), MINOR(new features backward-compatible), PATCH(bug fixes)।","Random unpredictable।","CalVer date-based है।"]},
+{q:"Dependency Injection (DI) क्या है?",o:["Malicious code inject","Objects/Dependencies बाहर से provide करना — loose coupling, testability","Database injection","Network injection"],c:1,e:["DI malicious नहीं।","✅ सही! DI pattern: class dependencies खुद नहीं बनाती — बाहर से inject होती हैं। Testing में mocks easy।","SQL Injection अलग।","Network injection अलग।"]},
+{q:"SOLID में 'S' किसके लिए है?",o:["Speed Principle","Single Responsibility Principle — हर class का एक responsibility","Security Principle","Software Principle"],c:1,e:["S = Speed नहीं।","✅ सही! SOLID का S = Single Responsibility Principle: हर class केवल एक काम, बदलने का एक reason।","S = Security नहीं।","Generic नहीं।"]},
+{q:"CAP Theorem क्या कहता है?",o:["3 features सब साथ मिलती हैं","Consistency, Availability, Partition Tolerance — तीनों simultaneously impossible, 2 choose करो","Network theorem","Database only"],c:1,e:["CAP तीनों एक साथ impossible।","✅ सही! CAP: Distributed system में Consistency, Availability, Partition Tolerance — तीनों simultaneously guarantee नहीं। 2 choose करो।","CAP distributed systems पर।","CAP databases से broader।"]},
+{q:"Apache Kafka किसलिए use होता है?",o:["Web server","Distributed streaming platform — high-throughput event streaming और message queuing","Apache HTTP server","General database"],c:1,e:["Kafka web server नहीं।","✅ सही! Kafka distributed event streaming — millions events/second, durable storage, real-time processing।","Apache HTTP Server अलग।","Kafka primarily streaming है।"]},
+{q:"Event Driven Architecture में Event Broker क्या करता है?",o:["Events schedule करना","Events producers से consumers तक route और deliver — decoupling enable","Events delete करना","Events create करना"],c:1,e:["Broker scheduling नहीं।","✅ सही! Event Broker (Kafka, RabbitMQ) producers और consumers के बीच intermediary — subscribe/publish model।","Delete अलग।","Producers events create करते हैं।"]},
+{q:"IaaS का मतलब क्या है?",o:["Internet as a Service","Infrastructure as a Service — virtual machines, storage, networking cloud पर rent","Software as a Service","Platform service"],c:1,e:["IaaS internet नहीं।","✅ सही! IaaS: cloud provider hardware manage करता है — user को VMs, storage, networking मिलती है। AWS EC2, Google Compute Engine।","SaaS अलग model।","PaaS platform provide करता है।"]},
+{q:"Service Mesh (Istio) क्या करता है?",o:["WiFi mesh","Microservices communication manage — traffic control, security, observability application code बिना बदले","Internet mesh","Database mesh"],c:1,e:["Service Mesh WiFi नहीं।","✅ सही! Istio/Linkerd microservices के लिए — mutual TLS, traffic routing, circuit breaking, observability।","Internet mesh अलग।","Database mesh अलग।"]},
+{q:"CSS में 'Box Model' क्या होता है?",o:["3D box बनाना","Content, Padding, Border, Margin — हर element के आसपास layout model","CSS animations","CSS grid"],c:1,e:["Box Model 3D नहीं।","✅ सही! CSS Box Model: Content → Padding → Border → Margin। हर HTML element rectangular box।","Animations @keyframes से।","Grid CSS Grid Layout है।"]},
+{q:"Virtual DOM क्या है React में?",o:["Fake website","Real DOM का in-memory representation — changes यहाँ पहले, फिर efficiently real DOM update","Virtual reality","DOM का backup"],c:1,e:["Virtual DOM fake website नहीं।","✅ सही! Virtual DOM JS object — React changes यहाँ करता है, diffing से only changed parts real DOM में update। Fast।","VR अलग।","Backup नहीं।"]},
+{q:"CORS क्यों important है?",o:["Colors share करना","Browser security — different origin के resources कौन access करे यह control करना","CSS share करना","Cookie sharing"],c:1,e:["CORS colors से नहीं।","✅ सही! CORS browser security — एक origin का page किस दूसरे origin के resources request कर सकता है। APIs में critical।","CSS resources अलग।","Cookie security अलग।"]},
+{q:"HTTP 404 का क्या मतलब है?",o:["Server Error","Not Found — requested resource server पर नहीं","Forbidden","Success"],c:1,e:["Server Error = 500।","✅ सही! HTTP 404 = Not Found। Codes: 200 OK, 301 Redirect, 403 Forbidden, 500 Server Error।","Forbidden = 403।","Success = 200।"]},
+{q:"OAuth 2.0 क्या है?",o:["Password encryption","Authorization framework — third-party apps को credentials share बिना limited access देना","Authentication protocol","Database security"],c:1,e:["OAuth encryption नहीं।","✅ सही! OAuth 2.0: 'Google से Login' features इससे — password share नहीं, access token से limited access।","Authentication OpenID Connect है।","Database security अलग।"]},
+{q:"JWT किसलिए use होता है?",o:["JSON compress करना","Authentication और information exchange — digitally signed compact token","JS testing","Database query"],c:1,e:["JWT compression नहीं।","✅ सही! JWT compact self-contained token — Header.Payload.Signature। REST API authentication में widely used।","JS testing अलग।","Database query अलग।"]},
+{q:"Service Worker क्या है?",o:["Web developer","Browser background में run — offline support, push notifications, caching enable — PWA foundation","Server worker process","CSS worker"],c:1,e:["Service Worker human नहीं।","✅ सही! Service Worker background JavaScript — network requests intercept, cache manage। PWA का foundation।","Server processes अलग।","CSS workers नहीं।"]},
+{q:"WebAssembly (WASM) क्या है?",o:["Web design tool","Browser में near-native speed पर C/C++/Rust compiled code run करना","Web scraping","Web server"],c:1,e:["WASM design tool नहीं।","✅ सही! WebAssembly binary format — C, C++, Rust को browser में near-native speed। Games, CAD, video editing browser में।","Web scraping अलग।","Web server अलग।"]},
+{q:"Tree Shaking JavaScript bundling में क्या है?",o:["Tree data structure remove करना","Dead code elimination — unused exports final bundle से automatically remove — size कम","Code shaking","File deletion"],c:1,e:["Tree Shaking data structure नहीं हटाता।","✅ सही! Webpack/Rollup dependency tree analyze करके unused code 'shake out' करता है। Smaller bundle = faster load।","Literal नहीं।","File deletion अलग।"]},
+{q:"Supervised Learning किसे कहते हैं?",o:["Teacher supervised करे","Labeled training data से model सिखाना — input-output pairs दिए जाते हैं","Unsupervised data analysis","Reinforcement"],c:1,e:["Human teacher नहीं।","✅ सही! Supervised: model labeled examples (input+correct output) से सीखता है — Email spam detection, Image classification।","Unsupervised में labels नहीं।","RL reward/punishment से।"]},
+{q:"Overfitting क्या है ML में?",o:["Model बहुत simple है","Training data पर बहुत well fit, new data पर poorly perform","Model fast है","Model accurate है"],c:1,e:["Simple model = Underfitting।","✅ सही! Overfitting: training data का noise याद — training accuracy high, test accuracy low। Regularization, Dropout से prevent।","Overfitting speed से नहीं।","Training पर accurate है।"]},
+{q:"Gradient Descent क्या है?",o:["Data sort करना","ML model parameters को iteratively adjust — loss minimize करना","Graph descent","Data compression"],c:1,e:["Sorting नहीं।","✅ सही! Gradient Descent: loss function gradient direction में parameters (weights) छोटे steps से update — minimum loss तक।","Literal graph नहीं।","Compression नहीं।"]},
+{q:"Transfer Learning क्या है?",o:["Data transfer","Pre-trained model knowledge को नए related task के लिए use करना — कम data और compute","File transfer","Network transfer"],c:1,e:["Data transfer नहीं।","✅ सही! Transfer Learning: pre-trained model (ImageNet trained) weights को नए task के लिए fine-tune — कम data में good results।","File transfer OS है।","Network transfer networking है।"]},
+{q:"Confusion Matrix में False Positive क्या है?",o:["Correct prediction","Model ने Positive predict किया लेकिन actually Negative था — Type I Error","Negative correctly predicted","Positive correctly predicted"],c:1,e:["Correct prediction TP/TN है।","✅ सही! False Positive: model ने 'Yes' कहा लेकिन actual 'No' — spam filter ने legitimate email spam बताया।","True Negative = correctly predicted negative।","True Positive = correctly predicted positive।"]},
+{q:"Random Forest Algorithm क्या है?",o:["Random data से forest","Multiple Decision Trees combine (Ensemble) — majority vote से predict","Single Decision Tree","Graph algorithm"],c:1,e:["Literal forest नहीं।","✅ सही! Random Forest: multiple decision trees, random data samples — majority vote (classification) या average (regression)।","Multiple trees हैं।","Graph algorithm अलग।"]},
+{q:"Attention Mechanism (Transformer) क्या करता है?",o:["Model को alert रखना","Input sequence के different parts पर अलग importance देना — relevant context focus","Network management","CPU attention"],c:1,e:["Literal attention नहीं।","✅ सही! Attention Mechanism model को input के relevant parts focus करने देता है। 'Attention is All You Need' — BERT, GPT का foundation।","Network management अलग।","CPU अलग।"]},
+{q:"RAG (Retrieval Augmented Generation) क्या है?",o:["Random generation","LLM को relevant documents retrieve करके उनसे response generate कराना — hallucinations कम","Regular generation","Redundant AI"],c:1,e:["RAG random नहीं।","✅ सही! RAG: (1) query के लिए docs vector DB से retrieve, (2) LLM उन docs को context में use करके accurate response। Factual accuracy बढ़ती है।","Regular generation अलग।","Hallucinations reduce करता है।"]},
+{q:"Vector Database किसलिए use होता है?",o:["Math vectors store","High-dimensional embeddings store और similarity search — AI applications में","Vector graphics store","2D vectors only"],c:1,e:["Math vectors से broader।","✅ सही! Vector DB (Pinecone, Weaviate, Chroma) AI embeddings store — semantic similarity search। RAG में critical।","Vector graphics अलग।","Multi-dimensional embeddings।"]},
+{q:"Federated Learning क्या है?",o:["Federal government AI","Data centralize किए बिना devices पर locally model train — privacy preserve","Distributed computing","Cloud learning"],c:1,e:["Government से नहीं।","✅ सही! Federated Learning: training multiple devices पर locally — only model updates central server पर, raw data नहीं। Google Keyboard, Healthcare AI।","Distributed computing broader।","Cloud learning centralized है।"]},
+{q:"LLM Hallucination क्या है?",o:["Visual experience","Confidently incorrect या fabricated information generate करना — real नहीं लेकिन real लगे","Dream generation","Random output"],c:1,e:["LLMs visual experience नहीं।","✅ सही! Hallucination: LLM plausible-sounding but factually incorrect info — fake citations, wrong dates। RAG और fact-checking से reduce।","Dreams humans के।","Specific type की error है।"]},
+{q:"Prompt Engineering क्या है?",o:["Prompting people","LLMs से better outputs पाने के लिए effective prompts design करना","Engineering prompt","Code prompting"],c:1,e:["Human prompting नहीं।","✅ सही! Prompt Engineering: AI से desired outputs पाने के लिए prompts craft करना — few-shot, chain-of-thought, role-playing।","Engineering prompt अलग।","Code prompting subset है।"]},
+{q:"Multi-Modal AI क्या है?",o:["Multiple AI models","Multiple input types (text, image, audio) process और generate कर सके — GPT-4V, Gemini","Multiple teaching","Modal windows"],c:1,e:["एक model में multiple capabilities।","✅ सही! Multi-Modal: text के साथ images, audio, video समझ और generate — 'इस image में क्या है?' — GPT-4 Vision, Gemini।","Teaching modalities अलग।","Modal windows UI में।"]},
+{q:"Fine-tuning vs Prompt Engineering में क्या अंतर है?",o:["दोनों same","Fine-tuning: model weights update (resource intensive); PE: only prompts change (no training)","PE model retrain करती है","Fine-tuning prompts change करती है"],c:1,e:["दोनों अलग approaches।","✅ सही! Fine-tuning: additional training, parameters update — expensive, permanent। Prompt Engineering: model unchanged, only input change — cheap, flexible।","उल्टा है।","उल्टा है।"]},
+{q:"Embeddings क्या होते हैं AI में?",o:["Embedded systems","Text/images को dense numerical vectors में convert — semantic meaning capture होती है","HTML embedding","Video embedding"],c:1,e:["Embeddings embedded systems से अलग।","✅ सही! Embeddings high-dimensional numerical vectors — similar meanings के vectors close होते हैं। word2vec, OpenAI embeddings, BERT।","HTML embedding iframe है।","Video embedding web में।"]},
+{q:"Zero Knowledge Proof क्या है?",o:["Zero knowledge का proof","Statement true है prove करना बिना additional information reveal किए","Zero password proof","Empty database proof"],c:1,e:["Literally zero knowledge नहीं।","✅ सही! ZKP: Prover, Verifier को convince करता है secret जानता है — बिना secret reveal किए। Privacy-preserving authentication।","Password से नहीं।","Database से नहीं।"]},
+{q:"Polyfill Web Development में क्या है?",o:["Filling website","Modern features को older browsers में implement करने वाला JavaScript code","Polymer filling","CSS polishing"],c:1,e:["Physical filling नहीं।","✅ सही! Polyfill modern browser features को older browsers में replicate करता है — Promise polyfill IE के लिए।","Polymer inspired name है।","CSS polishing अलग।"]},
+{q:"Content Security Policy (CSP) क्या है?",o:["Website content rules","HTTP security header — browser को बताए कि कौन से sources से content load हो — XSS prevent","Content management","CSS policy"],c:1,e:["CSP broader है।","✅ सही! CSP HTTP header — Content-Security-Policy: script-src 'self' — inline और external scripts control।","CMS अलग है।","CSS policy नहीं।"]},
+{q:"Synthetic Data क्यों generate की जाती है ML में?",o:["Real data permanently replace","Privacy preserve करना, rare scenarios create करना, training data augment करना","Data synthetic बनाना","Test fake data"],c:1,e:["Real data replace permanently नहीं।","✅ सही! Synthetic Data: Privacy (healthcare, finance), Rare events (autonomous driving), Data augmentation के लिए।","Supplement है।","Production testing अलग।"]},
+{q:"Domain Driven Design में Bounded Context क्या है?",o:["Website domain","Specific domain model applicable boundary — complex domain को separate contexts में divide","Database boundary","Network boundary"],c:1,e:["DDD broader है।","✅ सही! Bounded Context: subsystem की boundary — 'Order' E-commerce, Shipping, Billing में अलग meanings हो सकते हैं।","Database boundary अलग।","Network boundary अलग।"]},
+{q:"Generics programming में क्यों use होते हैं?",o:["General purpose variables","Type-safe reusable code different types के साथ — compile-time type checking, no duplicate code","Generic names","Code general बनाना"],c:1,e:["Generics सिर्फ variables नहीं।","✅ सही! Generics (Java <T>, TypeScript) — List<String>, List<Integer> same code different types, no casting needed।","Names generics नहीं।","Generics specific purpose।"]},
+{q:"Reactive Programming क्या है?",o:["Quickly responding","Data streams और change propagation — asynchronous data streams declaratively handle करना","Reactive design","HTML reactive"],c:1,e:["Speed से define नहीं।","✅ सही! Reactive Programming: Observables (RxJava, RxJS, Kotlin Flow) — event-driven async operations clean way में।","UI/UX design अलग।","HTML reactive नहीं।"]},
+{q:"Code Smell क्या है?",o:["Bad coding environment","Code में deeper problem का indicator — Duplicate Code, Long Method, Large Class","Literal smell","Compiler warning"],c:1,e:["Environment से नहीं।","✅ सही! Code Smell (Martin Fowler): code में कुछ wrong — Duplicate Code, Long Method, Feature Envy। Refactoring से fix।","Literal नहीं।","Compiler usually detect नहीं।"]},
+{q:"Pair Programming क्या है?",o:["Two computers","Two developers एक machine — Driver (code), Navigator (review, suggest)","Two projects साथ","Partner company"],c:1,e:["Two machines नहीं।","✅ सही! Pair Programming Agile practice — Driver keyboard, Navigator real-time review। Knowledge sharing, quality improvement।","Two projects अलग।","Partner company अलग।"]},
+{q:"CQRS Pattern का पूरा नाम क्या है?",o:["Core Query Resource System","Command Query Responsibility Segregation — read और write operations separate करना","Computer Queue Resource","Central Query Response"],c:1,e:["गलत है।","✅ सही! CQRS = Command Query Responsibility Segregation। Commands (write) और Queries (read) के separate models — scalability improve।","गलत है।","गलत है।"]},
+{q:"Blue-Green Deployment क्या है?",o:["Blue और green color UI","Two identical environments — एक live (Blue), एक standby (Green) — zero downtime deployment","Color-based testing","Database deployment"],c:1,e:["Color scheme से नहीं।","✅ सही! Blue-Green: दो identical environments — Green में new version deploy, tested होने पर traffic switch। Rollback = traffic back to Blue।","Testing strategy अलग।","Database deployment अलग।"]},
+{q:"Canary Deployment क्या है?",o:["Bird release करना","New version को पहले small subset users को — अगर ठीक हो तो gradually सभी को rollout","Color-based deployment","Emergency deployment"],c:1,e:["Literal birds नहीं।","✅ सही! Canary: new version 1-5% users को पहले — metrics monitor, issues नहीं तो 100% rollout। Risk कम।","Blue-Green color-based है।","Emergency अलग।"]},
+{q:"Platform Engineering क्या है?",o:["Engineers के लिए platform","Developer teams के लिए self-service Internal Developer Platform — developer productivity बढ़ाना","Platform design","Software platforms"],c:1,e:["Platform Engineering infra है।","✅ सही! Platform Engineering: golden paths और self-service tools — CI/CD, testing environments — developers feature development focus कर सकें।","Platform design UX में।","Broader है।"]},
+{q:"Segment Tree और Fenwick Tree (BIT) में क्या prefer करते हैं?",o:["दोनों same use case","Segment Tree: complex range queries; Fenwick/BIT: simple prefix sum — simpler और faster constants","BIT complex queries","Segment Tree simpler"],c:1,e:["दोनों different use cases।","✅ सही! Segment Tree: arbitrary range queries (min, max, sum, lazy propagation)। Fenwick/BIT: prefix sums के लिए simpler implementation, lower constant factor।","BIT simple prefix sum के लिए।","Segment Tree complex है।"]}
+];
+
+let qs=[],ci=0,cor=0,wr=0,ans=false;
+function sh(a){let b=[...a];for(let i=b.length-1;i>0;i--){const j=0|Math.random()*(i+1);[b[i],b[j]]=[b[j],b[i]];}return b;}
+function prep(){qs=sh(RAW).map(q=>{const idx=sh([0,1,2,3]);return{q:q.q,o:idx.map(i=>q.o[i]),c:idx.indexOf(q.c),e:idx.map(i=>q.e[i])};});}
+function startQuiz(){document.getElementById('splashScreen').style.display='none';document.getElementById('quizScreen').style.display='block';prep();ci=0;cor=0;wr=0;loadQ();}
+function loadQ(){
+  ans=false;
+  const q=qs[ci];
+  document.getElementById('progFill').style.width=(ci/100*100)+'%';
+  document.getElementById('qLbl').textContent=(ci+1)+'/100';
+  document.getElementById('scorePill').textContent='Score: '+cor;
+  document.getElementById('qBadge').textContent='प्रश्न '+(ci+1)+' / 100';
+  document.getElementById('qText').textContent=q.q;
+  const w=document.getElementById('owrap');w.innerHTML='';
+  ['A','B','C','D'].forEach((L,i)=>{
+    const b=document.createElement('button');b.className='obtn';
+    b.innerHTML=`<span class="oltr">${L}</span><span class="otxt">${q.o[i]}</span>`;
+    b.onclick=()=>pick(i);w.appendChild(b);
+  });
+  document.getElementById('epanel').classList.remove('show');
+  document.getElementById('nwrap').classList.remove('show');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function pick(sel){
+  if(ans)return;ans=true;
+  const q=qs[ci];
+  const bs=document.querySelectorAll('.obtn');
+  bs.forEach(b=>b.disabled=true);
+  if(sel===q.c){bs[sel].classList.add('correct');bs[sel].insertAdjacentHTML('beforeend','<span class="oico">✅</span>');cor++;}
+  else{bs[sel].classList.add('wrong');bs[sel].insertAdjacentHTML('beforeend','<span class="oico">❌</span>');bs[q.c].classList.add('correct');bs[q.c].insertAdjacentHTML('beforeend','<span class="oico">✅</span>');wr++;}
+  document.getElementById('sC').textContent=cor;
+  document.getElementById('sW').textContent=wr;
+  document.getElementById('sP').textContent=Math.round(cor/(ci+1)*100)+'%';
+  document.getElementById('scorePill').textContent='Score: '+cor;
+  document.getElementById('ectxt').textContent=q.e[q.c];
+  const er=document.getElementById('erows');er.innerHTML='';
+  ['A','B','C','D'].forEach((L,i)=>{
+    const d=document.createElement('div');d.className='erow';
+    d.innerHTML=`<span class="erltr">${L}</span><span class="ertxt"><strong>${q.o[i]}:</strong> ${q.e[i]}</span>`;
+    er.appendChild(d);
+  });
+  document.getElementById('epanel').classList.add('show');
+  document.getElementById('nbtn').textContent=ci===99?'🏆 परिणाम देखें':'अगला सवाल →';
+  document.getElementById('nwrap').classList.add('show');
+}
+function nextQ(){ci++;if(ci>=100){showResult();return;}loadQ();}
+function showResult(){
+  document.getElementById('quizScreen').style.display='none';
+  const rs=document.getElementById('rscreen');rs.classList.add('show');
+  const pct=Math.round(cor/100*100);
+  document.getElementById('rBig').textContent=cor+'/100';
+  document.getElementById('rPct').textContent=pct+'% सफलता';
+  document.getElementById('rC').textContent=cor;
+  document.getElementById('rW').textContent=wr;
+  let emoji,grade,color,msg;
+  if(pct>=95){emoji='🏆';grade='LEGENDARY!';color='#f59e0b';msg='अविश्वसनीय! आप Computer Science के true Master हैं। इस level की knowledge से किसी भी tech interview में top करेंगे!';}
+  else if(pct>=85){emoji='🌟';grade='OUTSTANDING!';color='#10b981';msg='शानदार! आपकी CS depth exceptional है। Top tech companies के interviews के लिए पूरी तरह ready हैं!';}
+  else if(pct>=75){emoji='🚀';grade='EXCELLENT!';color='#06b6d4';msg='बहुत अच्छे! Strong fundamentals हैं। कुछ advanced topics और practice से आप एक expert बनेंगे!';}
+  else if(pct>=60){emoji='👏';grade='GOOD JOB!';color='#8b5cf6';msg='अच्छा प्रदर्शन! Regular study से हर topic clear होगा। Keep it up!';}
+  else if(pct>=40){emoji='📚';grade='KEEP GOING!';color='#f59e0b';msg='अभ्यास जारी रखें! Sets 1-5 के explanations ध्यान से पढ़ें — improvement आएगी!';}
+  else{emoji='💪';grade='START FRESH!';color='#ef4444';msg='हर expert पहले beginner था। Concepts से शुरू करें, explanations पढ़ें — आप जरूर improve करेंगे!';}
+  document.getElementById('rEmoji').textContent=emoji;
+  const gb=document.getElementById('rGrade');gb.textContent=grade;
+  gb.style.cssText=`background:${color}22;color:${color};border:1px solid ${color}44;`;
+  document.getElementById('rMsg').textContent=msg;
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function restartQuiz(){cor=0;wr=0;ci=0;document.getElementById('rscreen').classList.remove('show');document.getElementById('quizScreen').style.display='block';prep();loadQ();}
+</script>
+</body>
+</html>
